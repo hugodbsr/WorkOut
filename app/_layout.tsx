@@ -7,10 +7,6 @@ export default function RootLayout() {
         name="(tabs)"
         options={{headerShown: false}}
     />
-    <Stack.Screen
-        name="exercice/[id]"
-        options={{headerShown: false}}
-    />
 
     </Stack>
 }
