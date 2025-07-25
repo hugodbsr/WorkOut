@@ -1,10 +1,10 @@
 import {ActivityIndicator, StyleSheet, Text, View, TextInput, Button, ScrollView} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useLocalSearchParams} from "expo-router";
 import useFetch from "@/services/useFetch";
 import {fetchExercice, fetchExerciceList} from "@/services/api";
 import {id} from "postcss-selector-parser";
-import {addSessionToExercise} from "@/services/storage";
+import {addSessionToExercise, deleteSessionOfExercice, getExerciseHistory, Set} from "@/services/storage";
 
 export default function Details(){
     const{id} = useLocalSearchParams();
@@ -17,8 +17,6 @@ export default function Details(){
 
     const [series, setSeries] = useState([{reps:'', weight:''}]);
 
-    const [savedIndexes, setSavedIndexes] = useState<number[]>([]);
-
     const handleAddSerieField = () => {
         setSeries([...series, { reps: '', weight: '' }]);
     };
@@ -29,18 +27,44 @@ export default function Details(){
         setSeries(updated);
 
         const current = updated[index];
-
         const isComplete = current.reps !== '' && current.weight !== '';
-        const notAlreadySaved = !savedIndexes.includes(index);
 
-        if (isComplete && notAlreadySaved) {
-            await addSessionToExercise(Number(id), [{
+        if (isComplete) {
+            await addSessionToExercise(Number(id), index,{
                 reps: parseInt(current.reps, 10),
                 weight: parseFloat(current.weight),
-            }]);
-            setSavedIndexes([...savedIndexes, index]);
+            });
         }
     };
+
+    const handleDeleteSerieField = async (index: number) => {
+        await deleteSessionOfExercice(Number(id), index)
+        const history = await getExerciseHistory(Number(id));
+        if (history && history.sessions.length > 0) {
+            const lastSession = history.sessions[history.sessions.length - 1].sets;
+            setSeries(lastSession.map(set => ({
+                reps: set.reps.toString(),
+                weight: set.weight.toString(),
+            })));
+        }
+    }
+
+    useEffect(() => {
+        const getHistory = async () => {
+            const history = await getExerciseHistory(Number(id));
+            if(history && history.sessions){
+                if (history.sessions.length > 0) {
+                    const lastSession = history.sessions[history.sessions.length - 1].sets;
+                    const lastSeries = lastSession.map(set=>({
+                        reps: set.reps.toString(),
+                        weight: set.weight.toString(),
+                    }))
+                    setSeries(lastSeries);
+                }
+            }
+        };
+        getHistory();
+    }, [id]);
 
 
     if (exerciceLoading) {
@@ -56,6 +80,7 @@ export default function Details(){
             <Text className="text-xl font-bold flex-wrap">{exercice?.name}</Text>
             {series.map((serie, index) => (
                 <View key={index} className="flex-row items-center gap m-4">
+                    <Button title="X" color="firebrick" onPress={() => handleDeleteSerieField(index)}/>
                     <Text className="text-xl">Serie {index+1} : </Text>
                     <TextInput
                         value={serie.reps}
@@ -63,6 +88,7 @@ export default function Details(){
                         onChangeText={(text) => handleChangeSerie(index, 'reps', text)}
                         keyboardType="numeric"
                         placeholder="10"
+                        placeholderTextColor={'gray'}
                     />
                     <Text className="text-sm"> X </Text>
                     <TextInput
@@ -71,6 +97,7 @@ export default function Details(){
                         onChangeText={(text) => handleChangeSerie(index, 'weight', text)}
                         keyboardType="numeric"
                         placeholder="50"
+                        placeholderTextColor={'gray'}
                     />
                     <Text className="text-sm"> Kg </Text>
                 </View>

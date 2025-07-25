@@ -2,41 +2,48 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const USER_EXERCISE_KEY = 'user_exercises_data';
 
-type Set = { reps: number; weight: number;};
-type Session = { sets: Set[] };
-type ExerciseEntry = {
+export type Set = {reps: number; weight: number;};
+export type Session = {
     date: string;
+    sets: Set[] };
+export type ExerciseEntry = {
     sessions: Session[];
 };
 type ExerciseUserData = {
-    [exerciseId: string]: ExerciseEntry[];
+    [exerciseId: string]: ExerciseEntry;
 };
 
 const getTodayDate = (): string => {
     return new Date().toISOString().split('T')[0];
 };
 
-export const addSessionToExercise = async (exerciseId: number, sets: Set[]) => {
+export const addSessionToExercise = async (exerciseId: number, index: number, set: Set) => {
     try {
         const json = await AsyncStorage.getItem(USER_EXERCISE_KEY);
         const data: ExerciseUserData = json ? JSON.parse(json) : {};
         const date = getTodayDate();
 
-        const existing = data[exerciseId] || [];
-
-        const updated = [...existing];
-        const todayEntry = updated.find(e => e.date === date);
-
-        if (todayEntry) {
-            todayEntry.sessions.push({ sets });
+        let existingEntry: ExerciseEntry;
+        if (data[exerciseId] && !Array.isArray(data[exerciseId])) {
+            existingEntry = data[exerciseId];
         } else {
-            updated.push({
-                date,
-                sessions: [{ sets }]
-            });
+            existingEntry = { sessions: [] };
         }
 
-        data[exerciseId] = updated;
+        let todaySession = existingEntry.sessions.find(session => session.date === date);
+
+        if (!todaySession) {
+            todaySession = { date, sets: [] };
+            existingEntry.sessions.push(todaySession);
+        }
+
+        if (todaySession.sets[index]) {
+            todaySession.sets[index] = set;
+        } else {
+            todaySession.sets.push(set);
+        }
+
+        data[exerciseId] = existingEntry;
 
         await AsyncStorage.setItem(USER_EXERCISE_KEY, JSON.stringify(data));
     } catch (error) {
@@ -44,7 +51,34 @@ export const addSessionToExercise = async (exerciseId: number, sets: Set[]) => {
     }
 };
 
-export const getExerciseHistory = async (exerciseId: number): Promise<ExerciseEntry[] | null> => {
+export const deleteSessionOfExercice = async (exerciseId: number, index: number) => {
+    try{
+        const json = await AsyncStorage.getItem(USER_EXERCISE_KEY);
+        const data: ExerciseUserData = json ? JSON.parse(json) : {};
+        const date = getTodayDate();
+
+        const existingEntry = data[exerciseId];
+        if (!existingEntry) return;
+
+        const todaySession = existingEntry.sessions.find(session => session.date === date);
+        if (!todaySession) return;
+
+        todaySession.sets.splice(index, 1);
+
+        if (todaySession.sets.length === 0) {
+            existingEntry.sessions = existingEntry.sessions.filter(session => session.date !== date);
+        }
+
+        data[exerciseId] = existingEntry;
+
+        await AsyncStorage.setItem(USER_EXERCISE_KEY, JSON.stringify(data));
+    } catch (error) {
+        console.error('Erreur de suppression', error);
+    }
+}
+
+
+export const getExerciseHistory = async (exerciseId: number): Promise<ExerciseEntry | null> => {
     try {
         const json = await AsyncStorage.getItem(USER_EXERCISE_KEY);
         const data: ExerciseUserData = json ? JSON.parse(json) : {};
