@@ -5,7 +5,7 @@ export const API_CONFIG = {
     },
 };
 
-export const fetchMuscles = async () => {
+export const fetchMuscleList = async () => {
     const endpoint = `${API_CONFIG.BASE_URL}/exercisecategory/`;
     const response = await fetch(endpoint, {
         method: 'GET',
@@ -17,6 +17,22 @@ export const fetchMuscles = async () => {
     const data = await response.json();
     return data.results;
 };
+
+export const fetchMuscle = async ({query}: {query:string}) => {
+    const endpoint = `${API_CONFIG.BASE_URL}/exercisecategory/${query}`;
+    const response = await fetch(endpoint, {
+        method: 'GET',
+        headers: API_CONFIG.headers,
+    });
+    if (!response.ok) {
+        throw new Error(response.statusText);
+    }
+    const data = await response.json();
+
+    return {
+        name: data?.name,
+    };
+}
 
 export const fetchExerciceList = async ({query}: {query:string}) => {
     const endpoint = `${API_CONFIG.BASE_URL}/exerciseinfo/?category=${query}&language=2&limit=200`;

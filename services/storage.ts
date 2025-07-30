@@ -13,7 +13,7 @@ type ExerciseUserData = {
     [exerciseId: string]: ExerciseEntry;
 };
 
-const getTodayDate = (): string => {
+export const getTodayDate = (): string => {
     return new Date().toISOString().split('T')[0];
 };
 

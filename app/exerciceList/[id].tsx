@@ -1,15 +1,24 @@
 import {ActivityIndicator, FlatList, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useLayoutEffect} from 'react';
 import {Link, useLocalSearchParams, useRouter} from "expo-router";
 import useFetch from "@/services/useFetch";
-import {fetchExerciceList} from "@/services/api";
+import {fetchExercice, fetchExerciceList, fetchMuscle} from "@/services/api";
 import {Image} from "expo-image";
+import {useNavigation} from "@react-navigation/native";
 
 export default function Details(){
+    const navigation = useNavigation();
+
     const router = useRouter();
 
     const {id} = useLocalSearchParams();
     const query = Array.isArray(id) ? id[0] : id;
+
+    const {
+        data: group,
+        loading: groupLoading,
+        error: groupError,
+    } = useFetch(() => fetchMuscle({query: `${id}`}));
 
     const {
         data: exercice,
@@ -17,11 +26,21 @@ export default function Details(){
         error: exerciceError,
     } = useFetch(() => fetchExerciceList({ query }));
 
-    if (exerciceLoading) {
+    useLayoutEffect(() => {
+        if(group){
+            navigation.setOptions({
+                headerTitle: () => (
+                    <Text className="font-bold text-xl">{group.name}</Text>
+                ),
+            });
+        }
+    }, [navigation, group]);
+
+    if (exerciceLoading || groupLoading) {
         return <ActivityIndicator size="large" color="blue" />;
     }
 
-    if (exerciceError) {
+    if (exerciceError || groupError) {
         return <Text>Error : {exerciceError?.message}</Text>;
     }
 
