@@ -1,12 +1,19 @@
 import { Stack } from "expo-router";
-import './globals.css'
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import './globals.css';
 
 export default function RootLayout() {
-  return <Stack>
-    <Stack.Screen
-        name="(tabs)"
-        options={{headerShown: false}}
-    />
-
-    </Stack>
+  return (
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <SafeAreaProvider>
+          <Stack>
+            <Stack.Screen
+                name="(tabs)"
+                options={{ headerShown: false }}
+            />
+          </Stack>
+        </SafeAreaProvider>
+      </GestureHandlerRootView>
+  );
 }
