@@ -30,7 +30,7 @@ export default function Add(){
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => (
                     <Link href={`/exerciceList/${item.id}`}
-                    className="p-4 mt-6 text-center text-2xl bg-blue-700 color-white"
+                    className="p-4 mt-6 text-center text-2xl bg-primary color-white"
                     style={{borderRadius: 10}}>
                         {item.name}
                     </Link>

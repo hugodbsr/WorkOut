@@ -3,7 +3,7 @@ import React, {useLayoutEffect} from 'react';
 import {Link, useLocalSearchParams, useRouter} from "expo-router";
 import useFetch from "@/services/useFetch";
 import {fetchExercice, fetchExerciceList, fetchMuscle} from "@/services/api";
-import {Image} from "expo-image";
+import { Image } from 'react-native';
 import {useNavigation} from "@react-navigation/native";
 
 export default function Details(){
@@ -50,14 +50,12 @@ export default function Details(){
                 data={exercice}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => (
-                    <View className="justify-around gap-2">
+                    <View className="justify-around">
                         <Link href={`/exercice/${item.id}`}>
-                        <View className="items-center flex flex-row gap-5 mb-5">
+                        <View className="items-center flex flex-row gap-3">
                             <Image
-                                className="border-4 border-blue-800"
                                 source={{ uri: item.image }}
-                                style={{width: 80, height: 80, borderRadius: 30}}
-                                contentFit="cover"
+                                className="w-20 h-20 rounded-[20px] border-4 border-blue-800"
                             />
                             <Text
                             className="text-xl font-bold flex-wrap">
@@ -74,14 +72,10 @@ export default function Details(){
 
 const styles = StyleSheet.create({
     container: {
+        display: "flex",
         flex: 1,
         marginTop: 20,
         paddingHorizontal: 16,
-    },
-    itemContainer: {
         flexDirection: "row",
-        alignItems: "center",
-        paddingVertical: 10,
-        borderBottomColor: "#ccc",
-        borderBottomWidth: 1,
-    }});
+        gap: "3px",
+    },});
