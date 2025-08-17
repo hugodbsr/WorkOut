@@ -1,0 +1,31 @@
+{
+  "muscleGroups": [
+    { "id": 1, "nameKey": "muscle.chest", "image": "poitrine.png" },
+    { "id": 2, "nameKey": "muscle.back", "image": "dos.png" },
+    { "id": 3, "nameKey": "muscle.shoulders", "image": "epaules.png" },
+    { "id": 4, "nameKey": "muscle.biceps", "image": "biceps.png" },
+    { "id": 5, "nameKey": "muscle.triceps", "image": "triceps.png" },
+    { "id": 6, "nameKey": "muscle.legs", "image": "jambes.png" },
+    { "id": 7, "nameKey": "muscle.abs", "image": "abdominaux.png" }
+  ],
+  "exercises": [
+    {
+      "id": 1,
+      "nameKey": "exercise.bench_press",
+      "descriptionKey": "exercise.bench_press_desc",
+      "image": "bench_press.jpg",
+      "exerciseTypeKey": "type.weight_training",
+      "muscleGroupId": 1,
+      "createdByUser": false
+    },
+    {
+      "id": 2,
+      "nameKey": "exercise.pull_up",
+      "descriptionKey": "exercise.pull_up_desc",
+      "image": "pull_up.jpg",
+      "exerciseTypeKey": "type.bodyweight",
+      "muscleGroupId": 2,
+      "createdByUser": false
+    }
+  ]
+}

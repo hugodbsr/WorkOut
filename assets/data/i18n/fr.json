@@ -1,0 +1,21 @@
+{
+  "muscle": {
+    "chest": "Poitrine",
+    "back": "Dos",
+    "shoulders": "Épaules",
+    "biceps": "Biceps",
+    "triceps": "Triceps",
+    "legs": "Jambes",
+    "abs": "Abdominaux"
+  },
+  "exercise": {
+    "bench_press": "Développé couché",
+    "bench_press_desc": "Allongé sur un banc, pousser la barre vers le haut depuis la poitrine.",
+    "pull_up": "Tractions",
+    "pull_up_desc": "Suspendu à une barre, tirer le corps vers le haut."
+  },
+  "type": {
+    "weight_training": "Musculation",
+    "bodyweight": "Poids du corps"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "muscle": {
+    "chest": "Chest",
+    "back": "Back",
+    "shoulders": "Shoulders",
+    "biceps": "Biceps",
+    "triceps": "Triceps",
+    "legs": "Legs",
+    "abs": "Abs"
+  },
+  "exercise": {
+    "bench_press": "Bench Press",
+    "bench_press_desc": "Lying on a bench, push the bar up from your chest.",
+    "pull_up": "Pull-ups",
+    "pull_up_desc": "Hanging from a bar, pull your body upward."
+  },
+  "type": {
+    "weight_training": "Weight Training",
+    "bodyweight": "Bodyweight"
+  }
+}

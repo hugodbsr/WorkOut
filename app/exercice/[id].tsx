@@ -2,7 +2,7 @@ import {ActivityIndicator, StyleSheet, Text, View, TextInput, Button, ScrollView
 import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {useLocalSearchParams} from "expo-router";
 import useFetch from "@/services/useFetch";
-import {fetchExercice, fetchExerciceList} from "@/services/api";
+import {fetchExercice, fetchExerciceList, fetchExerciseJson} from "@/services/api";
 import {id} from "postcss-selector-parser";
 import {addSessionToExercise, deleteSessionOfExercice, getExerciseHistory, Set, getTodayDate} from "@/services/storage";
 import Swipeable from 'react-native-gesture-handler/Swipeable';
@@ -16,7 +16,7 @@ export default function Details(){
         data: exercice,
         loading: exerciceLoading,
         error: exerciceError,
-    } = useFetch(() => fetchExercice({query: `${id}`}));
+    } = useFetch(() => fetchExerciseJson({query: `${id}`}));
 
     const [series, setSeries] = useState([{reps:'', weight:''}]);
 
@@ -126,7 +126,7 @@ export default function Details(){
     }
 
     return (
-        <View style={{ flex: 1 }}>
+        <View>
             <ScrollView className="bg-white -max-h-screen-safe-offset-36">
                 <Text className="text-3xl m-4 font-bold flex-wrap text-center">Série effectué aujourd&#39;hui</Text>
                 {series.map((serie, index) => (
@@ -155,12 +155,7 @@ export default function Details(){
                     </Swipeable>
                 ))}
             </ScrollView>
-
-            <View style={{ flex: 0.1 }} className="flex justify-end flex-row">
-                <TouchableOpacity style={styles.addButton} onPress={handleAddSerieField}>
-                    <Text className="color-white text-4xl">+</Text>
-                </TouchableOpacity>
-            </View>
+            <Button title={"Ajouter une entrée"} onPress={handleAddSerieField}/>
         </View>
     )
 }
@@ -203,21 +198,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    addButton: {
-        position: 'absolute',
-        bottom: 75,
-        right: 20,
-        backgroundColor: '#007AFF',
-        width: 80,
-        height: 80,
-        borderRadius: 50,
-        justifyContent: 'center',
-        alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 4,
-        elevation: 5,
-    }
-
 })

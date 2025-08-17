@@ -2,7 +2,7 @@ import {ActivityIndicator, FlatList, StyleSheet, Text, View} from "react-native"
 import React from 'react'
 import {Link, useRouter} from "expo-router";
 import useFetch from "@/services/useFetch";
-import {fetchMuscleList} from "@/services/api";
+import {fetchMuscleList, fetchMuscleJsonList} from "@/services/api";
 import {Image, ImageBackground} from "expo-image";
 
 export default function Add(){
@@ -12,7 +12,7 @@ export default function Add(){
         data: exercice,
         loading: exerciceLoading,
         error: exerciceError,
-    } = useFetch(fetchMuscleList);
+    } = useFetch(fetchMuscleJsonList);
 
     if (exerciceLoading) {
         return <ActivityIndicator size="large" color="blue" />;
