@@ -8,13 +8,35 @@
     { "id": 6, "nameKey": "muscle.legs", "image": "jambes.png" },
     { "id": 7, "nameKey": "muscle.abs", "image": "abdominaux.png" }
   ],
+  "exerciseType": [
+    {"id": 1, "nameKey": "type.weight_training"},
+    {"id": 2, "nameKey": "type.bodyweight"},
+    {"id": 3, "nameKey": "type.bench"},
+    {"id": 4, "nameKey": "type.cardio"},
+    {"id": 5, "nameKey": "type.flexibility"},
+    {"id": 6, "nameKey": "type.functional"},
+    {"id": 7, "nameKey": "type.powerlifting"},
+    {"id": 8, "nameKey": "type.olympic_lifting"},
+    {"id": 9, "nameKey": "type.isometric"},
+    {"id": 10, "nameKey": "type.plyometric"},
+    {"id": 11, "nameKey": "type.resistance_band"},
+    {"id": 12, "nameKey": "type.kettlebell"},
+    {"id": 13, "nameKey": "type.cable_machine"},
+    {"id": 14, "nameKey": "type.machine_based"},
+    {"id": 15, "nameKey": "type.free_weights"},
+    {"id": 16, "nameKey": "type.core_training"},
+    {"id": 17, "nameKey": "type.high_intensity"},
+    {"id": 18, "nameKey": "type.low_impact"},
+    {"id": 19, "nameKey": "type.stability"},
+    {"id": 20, "nameKey": "type.mobility"}
+  ],
   "exercises": [
     {
       "id": 1,
       "nameKey": "exercise.bench_press",
       "descriptionKey": "exercise.bench_press_desc",
       "image": "bench_press.jpg",
-      "exerciseTypeKey": "type.weight_training",
+      "exerciseTypeKey": "1",
       "muscleGroupId": 1,
       "createdByUser": false
     },
@@ -23,7 +45,7 @@
       "nameKey": "exercise.pull_up",
       "descriptionKey": "exercise.pull_up_desc",
       "image": "pull_up.jpg",
-      "exerciseTypeKey": "type.bodyweight",
+      "exerciseTypeKey": "2",
       "muscleGroupId": 2,
       "createdByUser": false
     }

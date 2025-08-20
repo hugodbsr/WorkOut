@@ -1,20 +1,21 @@
 import exercices from "@/assets/data/exercices.json"
-import * as RNLocalize from "react-native-localize";
+import * as Localization from "expo-localization";
 
-//Importation par fichiers JSON
-
-const loadTranslation = async (languageCode:string) => {
+// Importation par fichiers JSON
+const loadTranslation = async (languageCode: string) => {
     try {
         let translations;
-        if(languageCode==="fr"){
+        if (languageCode === "fr") {
             translations = await import(`../assets/data/i18n/fr.json`);
+        } else {
+            translations = await import(`../assets/data/i18n/en.json`);
         }
         return translations;
     } catch {
         const fallback = await import(`../assets/data/i18n/en.json`);
         return fallback;
     }
-}
+};
 
 const translated = (key: string, translations: any) => {
     const parts = key.split(".");
@@ -25,64 +26,75 @@ const translated = (key: string, translations: any) => {
     return value || key;
 };
 
-export const fetchMuscleJsonList = async () => {
-    const languageCode = RNLocalize.getLocales()[0]?.languageCode;
-    const translations = await loadTranslation(languageCode);
+const getLanguageCode = (): string => {
+    const locales = Localization.getLocales();
 
+    if (locales && locales.length > 0) {
+        const locale = locales[0];
+        if (locale.languageCode) {
+            return locale.languageCode;
+        }
+    }
+    return 'en';
+};
+
+export const fetchMuscleJsonList = async () => {
+    const languageCode = getLanguageCode();
+    const translations = await loadTranslation(languageCode);
 
     return exercices.muscleGroups.map((muscle) => ({
         id: muscle.id,
         name: translated(muscle.nameKey, translations),
         image: muscle.image,
     }));
-}
+};
 
-export const fetchMuscleJson = async ({query}: {query:string})  => {
-    const languageCode = RNLocalize.getLocales()[0]?.languageCode;
+export const fetchMuscleJson = async ({ query }: { query: string }) => {
+    const languageCode = getLanguageCode();
     const translations = await loadTranslation(languageCode);
 
     const muscle = exercices.muscleGroups.find(
-        (msc:any) => msc.id.toString() === query
+        (msc: any) => msc.id.toString() === query
     );
 
-    if(!muscle){
+    if (!muscle) {
         throw new Error("muscle not found");
     }
 
     return {
         name: translated(muscle.nameKey, translations),
-    }
-}
+    };
+};
 
-export const fetchExerciceListJson = async ({query}: {query:string})  => {
-    const languageCode = RNLocalize.getLocales()[0]?.languageCode;
+export const fetchExerciceListJson = async ({ query }: { query: string }) => {
+    const languageCode = getLanguageCode();
     const translations = await loadTranslation(languageCode);
 
     const muscleList = exercices.exercises.filter(
-        (msc:any) => msc.id.toString() === query
-    )
+        (msc: any) => msc.id.toString() === query
+    );
 
-    if(!muscleList){
+    if (!muscleList) {
         throw new Error("no exercice for this muscle");
     }
 
     return muscleList.map((exercise: any) => ({
         id: exercise.id,
         name: translated(exercise.nameKey, translations),
-        image: exercise.image
+        image: exercise.image,
     }));
-}
+};
 
-export const fetchExerciseJson = async ({query}: {query:string})  => {
-    const languageCode = RNLocalize.getLocales()[0]?.languageCode;
+export const fetchExerciseJson = async ({ query }: { query: string }) => {
+    const languageCode = getLanguageCode();
     const translations = await loadTranslation(languageCode);
 
     const exercise = exercices.exercises.find(
-        (msc:any)=> msc.id.toString() === query
-    )
+        (msc: any) => msc.id.toString() === query
+    );
 
-    if(!exercise){
-        throw new Error("exercice hasn't been find");
+    if (!exercise) {
+        throw new Error("exercice hasn't been found");
     }
 
     return {
@@ -90,21 +102,30 @@ export const fetchExerciseJson = async ({query}: {query:string})  => {
         name: translated(exercise.nameKey, translations),
         description: translated(exercise.descriptionKey, translations),
     };
-}
+};
+
+export const fetchExerciseTypeJson = async () => {
+    const languageCode = getLanguageCode();
+    const translations = await loadTranslation(languageCode);
+
+    return exercices.exerciseType.map((type) => ({
+        id: type.id,
+        name: translated(type.nameKey, translations),
+    }));
+};
 
 //Importation par API
-
 export const API_CONFIG = {
-    BASE_URL: 'https://wger.de/api/v2',
+    BASE_URL: "https://wger.de/api/v2",
     headers: {
-        accept: 'application/json',
+        accept: "application/json",
     },
 };
 
 export const fetchMuscleList = async () => {
     const endpoint = `${API_CONFIG.BASE_URL}/exercisecategory/`;
     const response = await fetch(endpoint, {
-        method: 'GET',
+        method: "GET",
         headers: API_CONFIG.headers,
     });
     if (!response.ok) {
@@ -114,10 +135,10 @@ export const fetchMuscleList = async () => {
     return data.results;
 };
 
-export const fetchMuscle = async ({query}: {query:string}) => {
+export const fetchMuscle = async ({ query }: { query: string }) => {
     const endpoint = `${API_CONFIG.BASE_URL}/exercisecategory/${query}`;
     const response = await fetch(endpoint, {
-        method: 'GET',
+        method: "GET",
         headers: API_CONFIG.headers,
     });
     if (!response.ok) {
@@ -128,12 +149,12 @@ export const fetchMuscle = async ({query}: {query:string}) => {
     return {
         name: data?.name,
     };
-}
+};
 
-export const fetchExerciceList = async ({query}: {query:string}) => {
+export const fetchExerciceList = async ({ query }: { query: string }) => {
     const endpoint = `${API_CONFIG.BASE_URL}/exerciseinfo/?category=${query}&language=2&limit=200`;
     const response = await fetch(endpoint, {
-        method: 'GET',
+        method: "GET",
         headers: API_CONFIG.headers,
     });
     if (!response.ok) {
@@ -154,10 +175,10 @@ export const fetchExerciceList = async ({query}: {query:string}) => {
         .filter(Boolean);
 };
 
-export const fetchExercice = async ({query}: {query:string}) => {
+export const fetchExercice = async ({ query }: { query: string }) => {
     const endpoint = `${API_CONFIG.BASE_URL}/exerciseinfo/${query}`;
     const response = await fetch(endpoint, {
-        method: 'GET',
+        method: "GET",
         headers: API_CONFIG.headers,
     });
     if (!response.ok) {
@@ -170,4 +191,4 @@ export const fetchExercice = async ({query}: {query:string}) => {
         name: translation?.name,
         description: translation?.description,
     };
-}
+};

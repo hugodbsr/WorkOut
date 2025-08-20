@@ -1,4 +1,4 @@
-import {ActivityIndicator, FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {ActivityIndicator, FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useLayoutEffect} from 'react';
 import {Link, useLocalSearchParams, useRouter} from "expo-router";
 import useFetch from "@/services/useFetch";
@@ -45,7 +45,7 @@ export default function Details(){
     }
 
     return (
-        <View style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.container}>
                 <FlatList
                     data={exercice}
@@ -53,28 +53,25 @@ export default function Details(){
                     renderItem={({ item }) => (
                         <View className="justify-around">
                             <Link href={`/exercice/${item.id}`}>
-                            <View className="items-center flex flex-row gap-3">
-                                <Image
-                                    source={{ uri: item.image }}
-                                    className="w-20 h-20 rounded-[20px] border-4 border-blue-800"
-                                />
-                                <Text
-                                className="text-xl font-bold flex-wrap">
-                                    {item.name}
-                                </Text>
-                            </View>
+                                <View className="items-center flex flex-row gap-3">
+                                    <Image
+                                        source={{ uri: item.image }}
+                                        className="w-20 h-20 rounded-[20px] border-4 border-blue-800"
+                                    />
+                                    <Text className="text-xl font-bold flex-wrap">{item.name}</Text>
+                                </View>
                             </Link>
                         </View>
                     )}
                 />
             </View>
 
-            <View style={{ flex: 0.1 }} className="flex justify-end flex-row">
-                <TouchableOpacity style={styles.addButton}>
-                    <Text className="color-white text-4xl">+</Text>
-                </TouchableOpacity>
-            </View>
-        </View>
+            <TouchableOpacity
+                style={styles.addButton}
+                onPress={() => router.push(`/addExercice/${query}`)}>
+                <Text className="color-white text-2xl">+</Text>
+            </TouchableOpacity>
+        </SafeAreaView>
     );
 }
 
@@ -89,18 +86,19 @@ const styles = StyleSheet.create({
     },
 
     addButton: {
-        position: 'absolute',
-        bottom: 75,
+        position: "absolute",
+        bottom: 50,
         right: 20,
-        backgroundColor: '#007AFF',
-        width: 80,
-        height: 80,
-        borderRadius: 50,
-        justifyContent: 'center',
-        alignItems: 'center',
-        shadowColor: '#000',
+        backgroundColor: "#007AFF",
+        width: 70,
+        height: 70,
+        borderRadius: 35,
+        justifyContent: "center",
+        alignItems: "center",
+        shadowColor: "#000",
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.3,
         shadowRadius: 4,
         elevation: 5,
-    },});
+    },
+});
