@@ -48,17 +48,22 @@ export default function Details(){
         <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.container}>
                 <FlatList
+                    className="mb-12"
                     data={exercice}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => (
-                        <View className="justify-around">
+                        <View className="justify-around mb-2">
                             <Link href={`/exercice/${item.id}`}>
                                 <View className="items-center flex flex-row gap-3">
                                     <Image
                                         source={{ uri: item.image }}
                                         className="w-20 h-20 rounded-[20px] border-4 border-blue-800"
                                     />
-                                    <Text className="text-xl font-bold flex-wrap">{item.name}</Text>
+                                    <View style={{ flex: 1 }}>
+                                    <Text numberOfLines={2}
+                                          ellipsizeMode="tail"
+                                          className="text-xl font-bold flex-wrap">{item.name}</Text>
+                                    </View>
                                 </View>
                             </Link>
                         </View>
@@ -68,6 +73,7 @@ export default function Details(){
 
             <TouchableOpacity
                 style={styles.addButton}
+                className="bg-primary"
                 onPress={() => router.push(`/addExercice/${query}`)}>
                 <Text className="color-white text-2xl">+</Text>
             </TouchableOpacity>
@@ -80,7 +86,7 @@ const styles = StyleSheet.create({
         display: "flex",
         flex: 1,
         marginTop: 20,
-        paddingHorizontal: 16,
+        paddingHorizontal: 18,
         flexDirection: "row",
         gap: "3px",
     },
@@ -89,7 +95,6 @@ const styles = StyleSheet.create({
         position: "absolute",
         bottom: 50,
         right: 20,
-        backgroundColor: "#007AFF",
         width: 70,
         height: 70,
         borderRadius: 35,

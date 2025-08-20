@@ -107,7 +107,7 @@ export default function Details() {
                         setSelected(item);
                     }}
                     />
-                <TouchableOpacity className="items-center bg-primary rounded p-1 w-11/12 ml-auto mr-auto mt-auto mb-20">
+                <TouchableOpacity className="items-center bg-primary rounded-xl p-3 w-11/12 ml-auto mr-auto mt-auto mb-20">
                     <Text className="color-white text-2xl">Confirm</Text>
                 </TouchableOpacity>
             </View>
@@ -148,7 +148,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 75,
         right: 20,
-        backgroundColor: '#007AFF',
         width: 80,
         height: 80,
         borderRadius: 50,

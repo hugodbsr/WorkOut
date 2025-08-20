@@ -71,7 +71,7 @@ export const fetchExerciceListJson = async ({ query }: { query: string }) => {
     const translations = await loadTranslation(languageCode);
 
     const muscleList = exercices.exercises.filter(
-        (msc: any) => msc.id.toString() === query
+        (ex: any) => ex.muscleGroupId?.toString() === query
     );
 
     if (!muscleList) {

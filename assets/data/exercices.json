@@ -33,8 +33,8 @@
   "exercises": [
     {
       "id": 1,
-      "nameKey": "exercise.bench_press",
-      "descriptionKey": "exercise.bench_press_desc",
+      "nameKey": "exercise.bench_press.name",
+      "descriptionKey": "exercise.bench_press.description",
       "image": "bench_press.jpg",
       "exerciseTypeKey": "1",
       "muscleGroupId": 1,
@@ -42,11 +42,173 @@
     },
     {
       "id": 2,
-      "nameKey": "exercise.pull_up",
-      "descriptionKey": "exercise.pull_up_desc",
+      "nameKey": "exercise.pull_up.name",
+      "descriptionKey": "exercise.pull_up.description",
       "image": "pull_up.jpg",
       "exerciseTypeKey": "2",
       "muscleGroupId": 2,
+      "createdByUser": false
+    },
+    {
+      "id": 3,
+      "nameKey": "exercise.barbell_curl.name",
+      "descriptionKey": "exercise.barbell_curl.description",
+      "image": "barbell_curl.jpg",
+      "exerciseTypeKey": "1",
+      "muscleGroupId": 4,
+      "createdByUser": false
+    },
+    {
+      "id": 4,
+      "nameKey": "exercise.preacher_curl.name",
+      "descriptionKey": "exercise.preacher_curl.description",
+      "image": "preacher_curl.jpg",
+      "exerciseTypeKey": "1",
+      "muscleGroupId": 4,
+      "createdByUser": false
+    },
+    {
+      "id": 5,
+      "nameKey": "exercise.cable_biceps_hammer.name",
+      "descriptionKey": "exercise.cable_biceps_hammer.description",
+      "image": "cable_biceps_hammer.jpg",
+      "exerciseTypeKey": "13",
+      "muscleGroupId": 4,
+      "createdByUser": false
+    },
+    {
+      "id": 6,
+      "nameKey": "exercise.cable_biceps_neutral.name",
+      "descriptionKey": "exercise.cable_biceps_neutral.description",
+      "image": "cable_biceps_neutral.jpg",
+      "exerciseTypeKey": "13",
+      "muscleGroupId": 4,
+      "createdByUser": false
+    },
+    {
+      "id": 7,
+      "nameKey": "exercise.concentration_curl_hammer.name",
+      "descriptionKey": "exercise.concentration_curl_hammer.description",
+      "image": "concentration_curl_hammer.jpg",
+      "exerciseTypeKey": "1",
+      "muscleGroupId": 4,
+      "createdByUser": false
+    },
+    {
+      "id": 8,
+      "nameKey": "exercise.concentration_curl_neutral.name",
+      "descriptionKey": "exercise.concentration_curl_neutral.description",
+      "image": "concentration_curl_neutral.jpg",
+      "exerciseTypeKey": "1",
+      "muscleGroupId": 4,
+      "createdByUser": false
+    },
+    {
+      "id": 9,
+      "nameKey": "exercise.hammer_curl.name",
+      "descriptionKey": "exercise.hammer_curl.description",
+      "image": "hammer_curl.jpg",
+      "exerciseTypeKey": "1",
+      "muscleGroupId": 4,
+      "createdByUser": false
+    },
+    {
+      "id": 10,
+      "nameKey": "exercise.dumbbell_curl.name",
+      "descriptionKey": "exercise.dumbbell_curl.description",
+      "image": "dumbbell_curl.jpg",
+      "exerciseTypeKey": "1",
+      "muscleGroupId": 4,
+      "createdByUser": false
+    },
+    {
+      "id": 11,
+      "nameKey": "exercise.incline_dumbbell_curl.name",
+      "descriptionKey": "exercise.incline_dumbbell_curl.description",
+      "image": "incline_dumbbell_curl.jpg",
+      "exerciseTypeKey": "1",
+      "muscleGroupId": 4,
+      "createdByUser": false
+    },
+    {
+      "id": 12,
+      "nameKey": "exercise.incline_hammer_curl.name",
+      "descriptionKey": "exercise.incline_hammer_curl.description",
+      "image": "incline_hammer_curl.jpg",
+      "exerciseTypeKey": "1",
+      "muscleGroupId": 4,
+      "createdByUser": false
+    },
+    {
+      "id": 13,
+      "nameKey": "exercise.incline_bench_press.name",
+      "descriptionKey": "exercise.incline_bench_press.description",
+      "image": "incline_bench_press.jpg",
+      "exerciseTypeKey": "1",
+      "muscleGroupId": 1,
+      "createdByUser": false
+    },
+    {
+      "id": 14,
+      "nameKey": "exercise.dumbbell_bench_press.name",
+      "descriptionKey": "exercise.dumbbell_bench_press.description",
+      "image": "dumbbell_bench_press.jpg",
+      "exerciseTypeKey": "15",
+      "muscleGroupId": 1,
+      "createdByUser": false
+    },
+    {
+      "id": 15,
+      "nameKey": "exercise.incline_dumbbell_press.name",
+      "descriptionKey": "exercise.incline_dumbbell_press.description",
+      "image": "incline_dumbbell_press.jpg",
+      "exerciseTypeKey": "15",
+      "muscleGroupId": 1,
+      "createdByUser": false
+    },
+    {
+      "id": 16,
+      "nameKey": "exercise.pec_fly.name",
+      "descriptionKey": "exercise.pec_fly.description",
+      "image": "pec_fly.jpg",
+      "exerciseTypeKey": "15",
+      "muscleGroupId": 1,
+      "createdByUser": false
+    },
+    {
+      "id": 17,
+      "nameKey": "exercise.cable_crossover.name",
+      "descriptionKey": "exercise.cable_crossover.description",
+      "image": "cable_crossover.jpg",
+      "exerciseTypeKey": "13",
+      "muscleGroupId": 1,
+      "createdByUser": false
+    },
+    {
+      "id": 18,
+      "nameKey": "exercise.dips_chest.name",
+      "descriptionKey": "exercise.dips_chest.description",
+      "image": "dips_chest.jpg",
+      "exerciseTypeKey": "2",
+      "muscleGroupId": 1,
+      "createdByUser": false
+    },
+    {
+      "id": 19,
+      "nameKey": "exercise.push_up.name",
+      "descriptionKey": "exercise.push_up.description",
+      "image": "push_up.jpg",
+      "exerciseTypeKey": "2",
+      "muscleGroupId": 1,
+      "createdByUser": false
+    },
+    {
+      "id": 20,
+      "nameKey": "exercise.machine_chest_press.name",
+      "descriptionKey": "exercise.machine_chest_press.description",
+      "image": "machine_chest_press.jpg",
+      "exerciseTypeKey": "14",
+      "muscleGroupId": 1,
       "createdByUser": false
     }
   ]

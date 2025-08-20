@@ -8,14 +8,108 @@
     "legs": "Jambes",
     "abs": "Abdominaux"
   },
-  "exercise": {
-    "bench_press": "Développé couché",
-    "bench_press_desc": "Allongé sur un banc, pousser la barre vers le haut depuis la poitrine.",
-    "pull_up": "Tractions",
-    "pull_up_desc": "Suspendu à une barre, tirer le corps vers le haut."
-  },
   "type": {
     "weight_training": "Musculation",
-    "bodyweight": "Poids du corps"
+    "bodyweight": "Poids du corps",
+    "bench": "Banc",
+    "cardio": "Cardio",
+    "flexibility": "Flexibilité",
+    "functional": "Entraînement fonctionnel",
+    "powerlifting": "Force athlétique",
+    "olympic_lifting": "Haltérophilie olympique",
+    "isometric": "Isométrique",
+    "plyometric": "Plyométrie",
+    "resistance_band": "Élastique",
+    "kettlebell": "Kettlebell",
+    "cable_machine": "Machine à câbles",
+    "machine_based": "À la machine",
+    "free_weights": "Poids libres",
+    "core_training": "Renforcement du tronc",
+    "high_intensity": "Haute intensité",
+    "low_impact": "Faible impact",
+    "stability": "Stabilité",
+    "mobility": "Mobilité"
+  },
+  "exercise": {
+    "bench_press": {
+      "name": "Développé couché",
+      "description": "Allongé sur un banc, pousser la barre vers le haut depuis la poitrine."
+    },
+    "incline_bench_press": {
+      "name": "Développé incliné",
+      "description": "Allongé sur un banc incliné, pousser la barre ou les haltères vers le haut depuis la poitrine."
+    },
+    "dumbbell_bench_press": {
+      "name": "Développé couché haltères",
+      "description": "Allongé sur un banc plat, pousser les haltères vers le haut depuis la poitrine."
+    },
+    "incline_dumbbell_press": {
+      "name": "Développé incliné haltères",
+      "description": "Allongé sur un banc incliné, pousser les haltères vers le haut depuis la poitrine."
+    },
+    "pec_fly": {
+      "name": "Pecs papillon",
+      "description": "Allongé sur un banc, ouvrir les bras avec des haltères puis les ramener au-dessus de la poitrine."
+    },
+    "cable_crossover": {
+      "name": "Écarté à la poulie",
+      "description": "Debout entre deux poulies, rapprocher les mains devant la poitrine en gardant les bras légèrement fléchis."
+    },
+    "dips_chest": {
+      "name": "Dips pour la poitrine",
+      "description": "Soutenir le corps sur des barres parallèles et descendre le torse, puis remonter pour travailler la poitrine."
+    },
+    "push_up": {
+      "name": "Pompes",
+      "description": "En position de planche, descendre la poitrine vers le sol puis remonter."
+    },
+    "machine_chest_press": {
+      "name": "Développé couché à la machine",
+      "description": "Assis sur la machine, pousser les poignées vers l'avant pour travailler la poitrine."
+    },
+    "pull_up": {
+      "name": "Tractions",
+      "description": "Suspendu à une barre, tirer le corps vers le haut."
+    },
+    "barbell_curl": {
+      "name": "Curl barre",
+      "description": "Tenez une barre en prise supination et ramenez-la vers la poitrine."
+    },
+    "preacher_curl": {
+      "name": "Curl pupitre",
+      "description": "Les bras posés sur un pupitre, ramenez la barre ou l’haltère vers le haut."
+    },
+    "cable_biceps_hammer": {
+      "name": "Curl biceps à la poulie basse prise marteau",
+      "description": "Avec une corde sur la poulie basse, effectuez un curl en prise marteau."
+    },
+    "cable_biceps_neutral": {
+      "name": "Curl biceps à la poulie basse prise neutre",
+      "description": "Avec une barre ou poignée sur la poulie basse, effectuez un curl en prise neutre."
+    },
+    "concentration_curl_hammer": {
+      "name": "Curl concentré prise marteau",
+      "description": "Assis, le coude appuyé sur la cuisse, effectuez un curl en prise marteau avec un haltère."
+    },
+    "concentration_curl_neutral": {
+      "name": "Curl concentré prise neutre",
+      "description": "Assis, le coude appuyé sur la cuisse, effectuez un curl en prise neutre avec un haltère."
+    },
+    "hammer_curl": {
+      "name": "Curl marteau",
+      "description": "Tenez des haltères en prise neutre et ramenez-les vers le haut."
+    },
+    "dumbbell_curl": {
+      "name": "Curl haltères",
+      "description": "Tenez des haltères en prise supination et ramenez-les vers les épaules."
+    },
+    "incline_dumbbell_curl": {
+      "name": "Curl incliné haltères",
+      "description": "Assis sur un banc incliné, effectuez un curl avec des haltères en prise supination."
+    },
+    "incline_hammer_curl": {
+      "name": "Curl incliné marteau",
+      "description": "Assis sur un banc incliné, effectuez un curl avec des haltères en prise marteau."
+    }
   }
 }

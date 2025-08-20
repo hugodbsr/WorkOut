@@ -8,14 +8,108 @@
     "legs": "Legs",
     "abs": "Abs"
   },
-  "exercise": {
-    "bench_press": "Bench Press",
-    "bench_press_desc": "Lying on a bench, push the bar up from your chest.",
-    "pull_up": "Pull-ups",
-    "pull_up_desc": "Hanging from a bar, pull your body upward."
-  },
   "type": {
     "weight_training": "Weight Training",
-    "bodyweight": "Bodyweight"
+    "bodyweight": "Bodyweight",
+    "bench": "Bench",
+    "cardio": "Cardio",
+    "flexibility": "Flexibility",
+    "functional": "Functional Training",
+    "powerlifting": "Powerlifting",
+    "olympic_lifting": "Olympic Lifting",
+    "isometric": "Isometric",
+    "plyometric": "Plyometric",
+    "resistance_band": "Resistance Band",
+    "kettlebell": "Kettlebell",
+    "cable_machine": "Cable Machine",
+    "machine_based": "Machine-based",
+    "free_weights": "Free Weights",
+    "core_training": "Core Training",
+    "high_intensity": "High Intensity",
+    "low_impact": "Low Impact",
+    "stability": "Stability",
+    "mobility": "Mobility"
+  },
+  "exercise": {
+    "bench_press": {
+      "name": "Bench Press",
+      "description": "Lying on a bench, push the bar up from your chest."
+    },
+    "incline_bench_press": {
+      "name": "Incline Bench Press",
+      "description": "Lying on an incline bench, push the bar or dumbbells up from your chest."
+    },
+    "dumbbell_bench_press": {
+      "name": "Dumbbell Bench Press",
+      "description": "Lying on a flat bench, press dumbbells upward from your chest."
+    },
+    "incline_dumbbell_press": {
+      "name": "Incline Dumbbell Press",
+      "description": "Lying on an incline bench, press dumbbells upward from your chest."
+    },
+    "pec_fly": {
+      "name": "Pec Fly",
+      "description": "Lying on a bench, open your arms with dumbbells and bring them back together above your chest."
+    },
+    "cable_crossover": {
+      "name": "Cable Crossover",
+      "description": "Standing between two cables, bring your hands together in front of your chest with slightly bent arms."
+    },
+    "dips_chest": {
+      "name": "Chest Dips",
+      "description": "Support your body on parallel bars and lower your torso, then push back up to target the chest."
+    },
+    "push_up": {
+      "name": "Push-up",
+      "description": "From a plank position, lower your chest to the ground and push back up."
+    },
+    "machine_chest_press": {
+      "name": "Machine Chest Press",
+      "description": "Sit on the machine and push the handles forward to work the chest."
+    },
+    "pull_up": {
+      "name": "Pull-up",
+      "description": "Hanging from a bar, pull your body upward."
+    },
+    "barbell_curl": {
+      "name": "Barbell Curl",
+      "description": "Hold a barbell with an underhand grip and curl it up towards your chest."
+    },
+    "preacher_curl": {
+      "name": "Preacher Curl",
+      "description": "Rest your arms on a preacher bench and curl the bar or dumbbell upward."
+    },
+    "cable_biceps_hammer": {
+      "name": "Cable Hammer Curl",
+      "description": "Using a rope on the low pulley, curl with a hammer grip."
+    },
+    "cable_biceps_neutral": {
+      "name": "Cable Neutral Curl",
+      "description": "Using a straight bar or handle on the low pulley, curl with a neutral grip."
+    },
+    "concentration_curl_hammer": {
+      "name": "Concentration Hammer Curl",
+      "description": "Seated with elbow resting on the thigh, curl the dumbbell with a hammer grip."
+    },
+    "concentration_curl_neutral": {
+      "name": "Concentration Neutral Curl",
+      "description": "Seated with elbow resting on the thigh, curl the dumbbell with a neutral grip."
+    },
+    "hammer_curl": {
+      "name": "Hammer Curl",
+      "description": "Hold dumbbells with a neutral grip and curl them upward."
+    },
+    "dumbbell_curl": {
+      "name": "Dumbbell Curl",
+      "description": "Hold dumbbells with an underhand grip and curl them towards your shoulders."
+    },
+    "incline_dumbbell_curl": {
+      "name": "Incline Dumbbell Curl",
+      "description": "Sitting on an incline bench, curl dumbbells upward with an underhand grip."
+    },
+    "incline_hammer_curl": {
+      "name": "Incline Hammer Curl",
+      "description": "Sitting on an incline bench, curl dumbbells upward with a hammer grip."
+    }
   }
 }
