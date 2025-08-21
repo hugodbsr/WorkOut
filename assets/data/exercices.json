@@ -210,6 +210,397 @@
       "exerciseTypeKey": "14",
       "muscleGroupId": 1,
       "createdByUser": false
+    },
+
+    {
+      "id": 21,
+      "nameKey": "exercise.skull_crusher.name",
+      "descriptionKey": "exercise.skull_crusher.description",
+      "image": "skull_crusher.jpg",
+      "exerciseTypeKey": "1",
+      "muscleGroupId": 5,
+      "createdByUser": false
+    },
+    {
+      "id": 22,
+      "nameKey": "exercise.skull_crusher_behind_head.name",
+      "descriptionKey": "exercise.skull_crusher_behind_head.description",
+      "image": "skull_crusher_behind_head.jpg",
+      "exerciseTypeKey": "1",
+      "muscleGroupId": 5,
+      "createdByUser": false
+    },
+    {
+      "id": 23,
+      "nameKey": "exercise.dips_triceps.name",
+      "descriptionKey": "exercise.dips_triceps.description",
+      "image": "dips_triceps.jpg",
+      "exerciseTypeKey": "2",
+      "muscleGroupId": 5,
+      "createdByUser": false
+    },
+    {
+      "id": 24,
+      "nameKey": "exercise.machine_dips.name",
+      "descriptionKey": "exercise.machine_dips.description",
+      "image": "machine_dips.jpg",
+      "exerciseTypeKey": "14",
+      "muscleGroupId": 5,
+      "createdByUser": false
+    },
+    {
+      "id": 25,
+      "nameKey": "exercise.dumbbell_triceps_extension.name",
+      "descriptionKey": "exercise.dumbbell_triceps_extension.description",
+      "image": "dumbbell_triceps_extension.jpg",
+      "exerciseTypeKey": "15",
+      "muscleGroupId": 5,
+      "createdByUser": false
+    },
+    {
+      "id": 26,
+      "nameKey": "exercise.cable_triceps_extension.name",
+      "descriptionKey": "exercise.cable_triceps_extension.description",
+      "image": "cable_triceps_extension.jpg",
+      "exerciseTypeKey": "13",
+      "muscleGroupId": 5,
+      "createdByUser": false
+    },
+    {
+      "id": 27,
+      "nameKey": "exercise.triceps_kickback.name",
+      "descriptionKey": "exercise.triceps_kickback.description",
+      "image": "triceps_kickback.jpg",
+      "exerciseTypeKey": "15",
+      "muscleGroupId": 5,
+      "createdByUser": false
+    },
+    {
+      "id": 28,
+      "nameKey": "exercise.overhead_triceps_extension.name",
+      "descriptionKey": "exercise.overhead_triceps_extension.description",
+      "image": "overhead_triceps_extension.jpg",
+      "exerciseTypeKey": "15",
+      "muscleGroupId": 5,
+      "createdByUser": false
+    },
+    {
+      "id": 29,
+      "nameKey": "exercise.lying_triceps_extension.name",
+      "descriptionKey": "exercise.lying_triceps_extension.description",
+      "image": "lying_triceps_extension.jpg",
+      "exerciseTypeKey": "15",
+      "muscleGroupId": 5,
+      "createdByUser": false
+    },
+
+    {
+      "id": 30,
+      "nameKey": "exercise.arnold_press.name",
+      "descriptionKey": "exercise.arnold_press.description",
+      "image": "arnold_press.jpg",
+      "exerciseTypeKey": "15",
+      "muscleGroupId": 3,
+      "createdByUser": false
+    },
+    {
+      "id": 31,
+      "nameKey": "exercise.military_press.name",
+      "descriptionKey": "exercise.military_press.description",
+      "image": "military_press.jpg",
+      "exerciseTypeKey": "1",
+      "muscleGroupId": 3,
+      "createdByUser": false
+    },
+    {
+      "id": 32,
+      "nameKey": "exercise.barbell_shoulder_press.name",
+      "descriptionKey": "exercise.barbell_shoulder_press.description",
+      "image": "barbell_shoulder_press.jpg",
+      "exerciseTypeKey": "1",
+      "muscleGroupId": 3,
+      "createdByUser": false
+    },
+    {
+      "id": 33,
+      "nameKey": "exercise.machine_shoulder_press.name",
+      "descriptionKey": "exercise.machine_shoulder_press.description",
+      "image": "machine_shoulder_press.jpg",
+      "exerciseTypeKey": "14",
+      "muscleGroupId": 3,
+      "createdByUser": false
+    },
+    {
+      "id": 34,
+      "nameKey": "exercise.rear_delt_fly.name",
+      "descriptionKey": "exercise.rear_delt_fly.description",
+      "image": "rear_delt_fly.jpg",
+      "exerciseTypeKey": "15",
+      "muscleGroupId": 3,
+      "createdByUser": false
+    },
+    {
+      "id": 35,
+      "nameKey": "exercise.rear_delt_raise.name",
+      "descriptionKey": "exercise.rear_delt_raise.description",
+      "image": "rear_delt_raise.jpg",
+      "exerciseTypeKey": "15",
+      "muscleGroupId": 3,
+      "createdByUser": false
+    },
+    {
+      "id": 36,
+      "nameKey": "exercise.dumbbell_front_raise.name",
+      "descriptionKey": "exercise.dumbbell_front_raise.description",
+      "image": "dumbbell_front_raise.jpg",
+      "exerciseTypeKey": "15",
+      "muscleGroupId": 3,
+      "createdByUser": false
+    },
+    {
+      "id": 37,
+      "nameKey": "exercise.cable_front_raise.name",
+      "descriptionKey": "exercise.cable_front_raise.description",
+      "image": "cable_front_raise.jpg",
+      "exerciseTypeKey": "13",
+      "muscleGroupId": 3,
+      "createdByUser": false
+    },
+    {
+      "id": 38,
+      "nameKey": "exercise.dumbbell_lateral_raise.name",
+      "descriptionKey": "exercise.dumbbell_lateral_raise.description",
+      "image": "dumbbell_lateral_raise.jpg",
+      "exerciseTypeKey": "15",
+      "muscleGroupId": 3,
+      "createdByUser": false
+    },
+    {
+      "id": 39,
+      "nameKey": "exercise.cable_lateral_raise.name",
+      "descriptionKey": "exercise.cable_lateral_raise.description",
+      "image": "cable_lateral_raise.jpg",
+      "exerciseTypeKey": "13",
+      "muscleGroupId": 3,
+      "createdByUser": false
+    },
+
+    {
+      "id": 40,
+      "nameKey": "exercise.wide_grip_pull_up.name",
+      "descriptionKey": "exercise.wide_grip_pull_up.description",
+      "image": "wide_grip_pull_up.jpg",
+      "exerciseTypeKey": "2",
+      "muscleGroupId": 2,
+      "createdByUser": false
+    },
+    {
+      "id": 41,
+      "nameKey": "exercise.close_grip_pull_up.name",
+      "descriptionKey": "exercise.close_grip_pull_up.description",
+      "image": "close_grip_pull_up.jpg",
+      "exerciseTypeKey": "2",
+      "muscleGroupId": 2,
+      "createdByUser": false
+    },
+    {
+      "id": 42,
+      "nameKey": "exercise.wide_grip_seated_row.name",
+      "descriptionKey": "exercise.wide_grip_seated_row.description",
+      "image": "wide_grip_seated_row.jpg",
+      "exerciseTypeKey": "14",
+      "muscleGroupId": 2,
+      "createdByUser": false
+    },
+    {
+      "id": 43,
+      "nameKey": "exercise.close_grip_seated_row.name",
+      "descriptionKey": "exercise.close_grip_seated_row.description",
+      "image": "close_grip_seated_row.jpg",
+      "exerciseTypeKey": "14",
+      "muscleGroupId": 2,
+      "createdByUser": false
+    },
+    {
+      "id": 44,
+      "nameKey": "exercise.wide_grip_lat_pulldown.name",
+      "descriptionKey": "exercise.wide_grip_lat_pulldown.description",
+      "image": "wide_grip_lat_pulldown.jpg",
+      "exerciseTypeKey": "14",
+      "muscleGroupId": 2,
+      "createdByUser": false
+    },
+    {
+      "id": 45,
+      "nameKey": "exercise.close_grip_lat_pulldown.name",
+      "descriptionKey": "exercise.close_grip_lat_pulldown.description",
+      "image": "close_grip_lat_pulldown.jpg",
+      "exerciseTypeKey": "14",
+      "muscleGroupId": 2,
+      "createdByUser": false
+    },
+    {
+      "id": 46,
+      "nameKey": "exercise.barbell_row.name",
+      "descriptionKey": "exercise.barbell_row.description",
+      "image": "barbell_row.jpg",
+      "exerciseTypeKey": "1",
+      "muscleGroupId": 2,
+      "createdByUser": false
+    },
+    {
+      "id": 47,
+      "nameKey": "exercise.dumbbell_shrug.name",
+      "descriptionKey": "exercise.dumbbell_shrug.description",
+      "image": "dumbbell_shrug.jpg",
+      "exerciseTypeKey": "15",
+      "muscleGroupId": 2,
+      "createdByUser": false
+    },
+    {
+      "id": 48,
+      "nameKey": "exercise.deadlift.name",
+      "descriptionKey": "exercise.deadlift.description",
+      "image": "deadlift.jpg",
+      "exerciseTypeKey": "7",
+      "muscleGroupId": 2,
+      "createdByUser": false
+    },
+
+    {
+      "id": 49,
+      "nameKey": "exercise.hip_abduction.name",
+      "descriptionKey": "exercise.hip_abduction.description",
+      "image": "hip_abduction.jpg",
+      "exerciseTypeKey": "14",
+      "muscleGroupId": 6,
+      "createdByUser": false
+    },
+    {
+      "id": 50,
+      "nameKey": "exercise.hip_adduction.name",
+      "descriptionKey": "exercise.hip_adduction.description",
+      "image": "hip_adduction.jpg",
+      "exerciseTypeKey": "14",
+      "muscleGroupId": 6,
+      "createdByUser": false
+    },
+    {
+      "id": 51,
+      "nameKey": "exercise.dumbbell_calf_raise.name",
+      "descriptionKey": "exercise.dumbbell_calf_raise.description",
+      "image": "dumbbell_calf_raise.jpg",
+      "exerciseTypeKey": "15",
+      "muscleGroupId": 6,
+      "createdByUser": false
+    },
+    {
+      "id": 52,
+      "nameKey": "exercise.dumbbell_lunge.name",
+      "descriptionKey": "exercise.dumbbell_lunge.description",
+      "image": "dumbbell_lunge.jpg",
+      "exerciseTypeKey": "15",
+      "muscleGroupId": 6,
+      "createdByUser": false
+    },
+    {
+      "id": 53,
+      "nameKey": "exercise.hack_squat.name",
+      "descriptionKey": "exercise.hack_squat.description",
+      "image": "hack_squat.jpg",
+      "exerciseTypeKey": "14",
+      "muscleGroupId": 6,
+      "createdByUser": false
+    },
+    {
+      "id": 54,
+      "nameKey": "exercise.seated_leg_curl.name",
+      "descriptionKey": "exercise.seated_leg_curl.description",
+      "image": "seated_leg_curl.jpg",
+      "exerciseTypeKey": "14",
+      "muscleGroupId": 6,
+      "createdByUser": false
+    },
+    {
+      "id": 55,
+      "nameKey": "exercise.lying_leg_curl.name",
+      "descriptionKey": "exercise.lying_leg_curl.description",
+      "image": "lying_leg_curl.jpg",
+      "exerciseTypeKey": "14",
+      "muscleGroupId": 6,
+      "createdByUser": false
+    },
+    {
+      "id": 56,
+      "nameKey": "exercise.leg_extension.name",
+      "descriptionKey": "exercise.leg_extension.description",
+      "image": "leg_extension.jpg",
+      "exerciseTypeKey": "14",
+      "muscleGroupId": 6,
+      "createdByUser": false
+    },
+    {
+      "id": 57,
+      "nameKey": "exercise.leg_press.name",
+      "descriptionKey": "exercise.leg_press.description",
+      "image": "leg_press.jpg",
+      "exerciseTypeKey": "14",
+      "muscleGroupId": 6,
+      "createdByUser": false
+    },
+    {
+      "id": 58,
+      "nameKey": "exercise.barbell_squat.name",
+      "descriptionKey": "exercise.barbell_squat.description",
+      "image": "barbell_squat.jpg",
+      "exerciseTypeKey": "1",
+      "muscleGroupId": 6,
+      "createdByUser": false
+    },
+    {
+      "id": 59,
+      "nameKey": "exercise.dumbbell_squat.name",
+      "descriptionKey": "exercise.dumbbell_squat.description",
+      "image": "dumbbell_squat.jpg",
+      "exerciseTypeKey": "15",
+      "muscleGroupId": 6,
+      "createdByUser": false
+    },
+    {
+      "id": 60,
+      "nameKey": "exercise.floor_crunch.name",
+      "descriptionKey": "exercise.floor_crunch.description",
+      "image": "floor_crunch.jpg",
+      "exerciseTypeKey": "2",
+      "muscleGroupId": 7,
+      "createdByUser": false
+    },
+    {
+      "id": 61,
+      "nameKey": "exercise.incline_bench_crunch.name",
+      "descriptionKey": "exercise.incline_bench_crunch.description",
+      "image": "incline_bench_crunch.jpg",
+      "exerciseTypeKey": "2",
+      "muscleGroupId": 7,
+      "createdByUser": false
+    },
+    {
+      "id": 62,
+      "nameKey": "exercise.cable_crunch.name",
+      "descriptionKey": "exercise.cable_crunch.description",
+      "image": "cable_crunch.jpg",
+      "exerciseTypeKey": "13",
+      "muscleGroupId": 7,
+      "createdByUser": false
+    },
+    {
+      "id": 63,
+      "nameKey": "exercise.oblique_crunch.name",
+      "descriptionKey": "exercise.oblique_crunch.description",
+      "image": "oblique_crunch.jpg",
+      "exerciseTypeKey": "2",
+      "muscleGroupId": 7,
+      "createdByUser": false
     }
   ]
 }

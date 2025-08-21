@@ -33,83 +33,255 @@
   "exercise": {
     "bench_press": {
       "name": "Développé couché",
-      "description": "Allongé sur un banc, pousser la barre vers le haut depuis la poitrine."
-    },
-    "incline_bench_press": {
-      "name": "Développé incliné",
-      "description": "Allongé sur un banc incliné, pousser la barre ou les haltères vers le haut depuis la poitrine."
-    },
-    "dumbbell_bench_press": {
-      "name": "Développé couché haltères",
-      "description": "Allongé sur un banc plat, pousser les haltères vers le haut depuis la poitrine."
-    },
-    "incline_dumbbell_press": {
-      "name": "Développé incliné haltères",
-      "description": "Allongé sur un banc incliné, pousser les haltères vers le haut depuis la poitrine."
-    },
-    "pec_fly": {
-      "name": "Pecs papillon",
-      "description": "Allongé sur un banc, ouvrir les bras avec des haltères puis les ramener au-dessus de la poitrine."
-    },
-    "cable_crossover": {
-      "name": "Écarté à la poulie",
-      "description": "Debout entre deux poulies, rapprocher les mains devant la poitrine en gardant les bras légèrement fléchis."
-    },
-    "dips_chest": {
-      "name": "Dips pour la poitrine",
-      "description": "Soutenir le corps sur des barres parallèles et descendre le torse, puis remonter pour travailler la poitrine."
-    },
-    "push_up": {
-      "name": "Pompes",
-      "description": "En position de planche, descendre la poitrine vers le sol puis remonter."
-    },
-    "machine_chest_press": {
-      "name": "Développé couché à la machine",
-      "description": "Assis sur la machine, pousser les poignées vers l'avant pour travailler la poitrine."
+      "description": "Exercice de base pour le développement des pectoraux."
     },
     "pull_up": {
       "name": "Tractions",
-      "description": "Suspendu à une barre, tirer le corps vers le haut."
+      "description": "Exercice pour travailler le dos et les biceps."
     },
     "barbell_curl": {
       "name": "Curl barre",
-      "description": "Tenez une barre en prise supination et ramenez-la vers la poitrine."
+      "description": "Exercice pour renforcer les biceps avec une barre."
     },
     "preacher_curl": {
-      "name": "Curl pupitre",
-      "description": "Les bras posés sur un pupitre, ramenez la barre ou l’haltère vers le haut."
+      "name": "Curl incliné biceps",
+      "description": "Isoler les biceps avec un banc incliné."
     },
     "cable_biceps_hammer": {
-      "name": "Curl biceps à la poulie basse prise marteau",
-      "description": "Avec une corde sur la poulie basse, effectuez un curl en prise marteau."
+      "name": "Curl marteau à la poulie",
+      "description": "Travaille les biceps et l'avant-bras avec une prise neutre."
     },
     "cable_biceps_neutral": {
-      "name": "Curl biceps à la poulie basse prise neutre",
-      "description": "Avec une barre ou poignée sur la poulie basse, effectuez un curl en prise neutre."
+      "name": "Curl biceps à la poulie, prise neutre",
+      "description": "Exercice pour les biceps avec poulie et prise neutre."
     },
     "concentration_curl_hammer": {
-      "name": "Curl concentré prise marteau",
-      "description": "Assis, le coude appuyé sur la cuisse, effectuez un curl en prise marteau avec un haltère."
+      "name": "Curl concentration marteau",
+      "description": "Isoler les biceps avec un mouvement de concentration et prise marteau."
     },
     "concentration_curl_neutral": {
-      "name": "Curl concentré prise neutre",
-      "description": "Assis, le coude appuyé sur la cuisse, effectuez un curl en prise neutre avec un haltère."
+      "name": "Curl concentration prise neutre",
+      "description": "Isoler les biceps avec un mouvement de concentration et prise neutre."
     },
     "hammer_curl": {
       "name": "Curl marteau",
-      "description": "Tenez des haltères en prise neutre et ramenez-les vers le haut."
+      "description": "Curl avec prise marteau pour travailler les biceps et avant-bras."
     },
     "dumbbell_curl": {
       "name": "Curl haltères",
-      "description": "Tenez des haltères en prise supination et ramenez-les vers les épaules."
+      "description": "Curl classique avec haltères."
     },
     "incline_dumbbell_curl": {
-      "name": "Curl incliné haltères",
-      "description": "Assis sur un banc incliné, effectuez un curl avec des haltères en prise supination."
+      "name": "Curl haltères incliné",
+      "description": "Curl pour biceps sur banc incliné."
     },
     "incline_hammer_curl": {
-      "name": "Curl incliné marteau",
-      "description": "Assis sur un banc incliné, effectuez un curl avec des haltères en prise marteau."
+      "name": "Curl marteau incliné",
+      "description": "Curl marteau sur banc incliné pour biceps et avant-bras."
+    },
+    "incline_bench_press": {
+      "name": "Développé incliné",
+      "description": "Développé pour le haut des pectoraux sur banc incliné."
+    },
+    "dumbbell_bench_press": {
+      "name": "Développé couché haltères",
+      "description": "Exercice pour les pectoraux avec haltères."
+    },
+    "incline_dumbbell_press": {
+      "name": "Développé incliné haltères",
+      "description": "Travaille le haut des pectoraux avec haltères."
+    },
+    "pec_fly": {
+      "name": "Écarté couché",
+      "description": "Exercice d'isolation pour les pectoraux."
+    },
+    "cable_crossover": {
+      "name": "Écarté à la poulie",
+      "description": "Travaille les pectoraux avec les câbles pour un mouvement complet."
+    },
+    "dips_chest": {
+      "name": "Dips poitrine",
+      "description": "Exercice au poids du corps pour les pectoraux."
+    },
+    "push_up": {
+      "name": "Pompes",
+      "description": "Exercice classique pour les pectoraux et triceps."
+    },
+    "machine_chest_press": {
+      "name": "Presse pectoraux machine",
+      "description": "Travaille les pectoraux à l'aide d'une machine guidée."
+    },
+    "skull_crusher": {
+      "name": "Extensions triceps couché",
+      "description": "Exercice pour renforcer les triceps avec une barre."
+    },
+    "skull_crusher_behind_head": {
+      "name": "Extensions triceps derrière la tête",
+      "description": "Travailler les triceps avec barre derrière la tête."
+    },
+    "dips_triceps": {
+      "name": "Dips triceps",
+      "description": "Dips pour cibler principalement les triceps."
+    },
+    "machine_dips": {
+      "name": "Dips machine",
+      "description": "Dips assistés pour les triceps à la machine."
+    },
+    "dumbbell_triceps_extension": {
+      "name": "Extension triceps haltère",
+      "description": "Travaille les triceps avec un haltère."
+    },
+    "cable_triceps_extension": {
+      "name": "Extension triceps à la poulie",
+      "description": "Exercice de triceps avec poulie."
+    },
+    "triceps_kickback": {
+      "name": "Kickback triceps",
+      "description": "Exercice pour isoler le triceps avec haltère."
+    },
+    "overhead_triceps_extension": {
+      "name": "Extension triceps au-dessus de la tête",
+      "description": "Triceps extension avec haltère au-dessus de la tête."
+    },
+    "lying_triceps_extension": {
+      "name": "Extension triceps couché",
+      "description": "Exercice pour les triceps en position couchée."
+    },
+    "arnold_press": {
+      "name": "Développé Arnold",
+      "description": "Exercice pour les épaules avec rotation des bras."
+    },
+    "military_press": {
+      "name": "Développé militaire",
+      "description": "Développé épaules debout avec barre."
+    },
+    "barbell_shoulder_press": {
+      "name": "Développé épaules barre",
+      "description": "Renforce les deltoïdes avec barre."
+    },
+    "machine_shoulder_press": {
+      "name": "Développé épaules machine",
+      "description": "Développé épaules à la machine."
+    },
+    "rear_delt_fly": {
+      "name": "Écarté deltoïdes arrière",
+      "description": "Isoler les deltoïdes postérieurs."
+    },
+    "rear_delt_raise": {
+      "name": "Élévations deltoïdes arrière",
+      "description": "Travaille les épaules arrière avec haltères."
+    },
+    "dumbbell_front_raise": {
+      "name": "Élévation frontale haltère",
+      "description": "Travaille le deltoïde antérieur."
+    },
+    "cable_front_raise": {
+      "name": "Élévation frontale à la poulie",
+      "description": "Travaille le deltoïde antérieur avec poulie."
+    },
+    "dumbbell_lateral_raise": {
+      "name": "Élévation latérale haltères",
+      "description": "Travaille les deltoïdes latéraux."
+    },
+    "cable_lateral_raise": {
+      "name": "Élévation latérale à la poulie",
+      "description": "Travaille les deltoïdes latéraux avec poulie."
+    },
+    "wide_grip_pull_up": {
+      "name": "Tractions prise large",
+      "description": "Exercice pour le dos avec prise large."
+    },
+    "close_grip_pull_up": {
+      "name": "Tractions prise serrée",
+      "description": "Exercice pour le dos avec prise serrée."
+    },
+    "wide_grip_seated_row": {
+      "name": "Rowing assis prise large",
+      "description": "Rowing pour le dos avec prise large."
+    },
+    "close_grip_seated_row": {
+      "name": "Rowing assis prise serrée",
+      "description": "Rowing pour le dos avec prise serrée."
+    },
+    "wide_grip_lat_pulldown": {
+      "name": "Tirage vertical prise large",
+      "description": "Tirage dos à la poulie avec prise large."
+    },
+    "close_grip_lat_pulldown": {
+      "name": "Tirage vertical prise serrée",
+      "description": "Tirage dos à la poulie avec prise serrée."
+    },
+    "barbell_row": {
+      "name": "Rowing barre",
+      "description": "Rowing avec barre pour le dos."
+    },
+    "dumbbell_shrug": {
+      "name": "Haussement d'épaules haltères",
+      "description": "Travaille les trapèzes avec haltères."
+    },
+    "deadlift": {
+      "name": "Soulevé de terre",
+      "description": "Exercice complet pour le dos, jambes et trapèzes."
+    },
+    "hip_abduction": {
+      "name": "Abduction de la hanche",
+      "description": "Travaille les muscles abducteurs de la hanche."
+    },
+    "hip_adduction": {
+      "name": "Adduction de la hanche",
+      "description": "Travaille les muscles adducteurs de la hanche."
+    },
+    "dumbbell_calf_raise": {
+      "name": "Élévations mollets haltères",
+      "description": "Renforce les mollets avec haltères."
+    },
+    "dumbbell_lunge": {
+      "name": "Fentes avec haltères",
+      "description": "Exercice pour travailler les quadriceps, fessiers et ischio-jambiers avec des haltères."
+    },
+    "hack_squat": {
+      "name": "Hack squat",
+      "description": "Exercice de squat à la machine ciblant les quadriceps."
+    },
+    "seated_leg_curl": {
+      "name": "Leg curl assis",
+      "description": "Travaille les ischio-jambiers en position assise sur la machine."
+    },
+    "lying_leg_curl": {
+      "name": "Leg curl couché",
+      "description": "Exercice pour isoler les ischio-jambiers en position couchée."
+    },
+    "leg_extension": {
+      "name": "Extension de jambes",
+      "description": "Exercice pour renforcer les quadriceps sur machine."
+    },
+    "leg_press": {
+      "name": "Presse à jambes",
+      "description": "Travaille les quadriceps, fessiers et ischio-jambiers à la presse."
+    },
+    "barbell_squat": {
+      "name": "Squat barre",
+      "description": "Exercice complet pour les jambes et fessiers avec barre."
+    },
+    "dumbbell_squat": {
+      "name": "Squat haltères",
+      "description": "Squat avec haltères pour travailler jambes et fessiers."
+    },
+    "floor_crunch": {
+      "name": "Crunch au sol",
+      "description": "Exercice classique pour les abdominaux sur le sol."
+    },
+    "incline_bench_crunch": {
+      "name": "Crunch sur banc incliné",
+      "description": "Crunch sur banc incliné pour augmenter l'intensité sur les abdominaux."
+    },
+    "cable_crunch": {
+      "name": "Crunch à la poulie",
+      "description": "Exercice pour les abdominaux avec résistance à la poulie."
+    },
+    "oblique_crunch": {
+      "name": "Crunch oblique",
+      "description": "Travaille les abdominaux obliques pour le gainage latéral."
     }
   }
 }
