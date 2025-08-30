@@ -6,7 +6,8 @@
     "biceps": "Biceps",
     "triceps": "Triceps",
     "legs": "Legs",
-    "abs": "Abs"
+    "abs": "Abs",
+    "other": "Other"
   },
   "type": {
     "weight_training": "Weight Training",

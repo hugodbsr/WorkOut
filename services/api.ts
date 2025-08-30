@@ -1,4 +1,4 @@
-import exercices from "@/assets/data/exercices.json"
+import exercices from "@/assets/data/exercises/exercices.json"
 import * as Localization from "expo-localization";
 
 // Importation par fichiers JSON
@@ -17,11 +17,15 @@ const loadTranslation = async (languageCode: string) => {
     }
 };
 
-const translated = (key: string, translations: any) => {
+const translated = async (key: string, translations: any) => {
     const parts = key.split(".");
     let value: any = translations;
     for (let part of parts) {
         value = value?.[part];
+    }
+    if(!value){
+        const en = await import(`../assets/data/i18n/en.json`)
+        return translated(key, en);
     }
     return value || key;
 };

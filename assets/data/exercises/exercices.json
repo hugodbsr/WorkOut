@@ -1,12 +1,13 @@
 {
   "muscleGroups": [
-    { "id": 1, "nameKey": "muscle.chest", "image": "poitrine.png" },
-    { "id": 2, "nameKey": "muscle.back", "image": "dos.png" },
-    { "id": 3, "nameKey": "muscle.shoulders", "image": "epaules.png" },
+    { "id": 1, "nameKey": "muscle.chest", "image": "chest.png" },
+    { "id": 2, "nameKey": "muscle.back", "image": "back.png" },
+    { "id": 3, "nameKey": "muscle.shoulders", "image": "shoulders.png" },
     { "id": 4, "nameKey": "muscle.biceps", "image": "biceps.png" },
     { "id": 5, "nameKey": "muscle.triceps", "image": "triceps.png" },
-    { "id": 6, "nameKey": "muscle.legs", "image": "jambes.png" },
-    { "id": 7, "nameKey": "muscle.abs", "image": "abdominaux.png" }
+    { "id": 6, "nameKey": "muscle.legs", "image": "legs.png" },
+    { "id": 7, "nameKey": "muscle.abs", "image": "abs.png" },
+    { "id": 8, "nameKey": "muscle.other", "image": "other.png" }
   ],
   "exerciseType": [
     {"id": 1, "nameKey": "type.weight_training"},
@@ -35,7 +36,7 @@
       "id": 1,
       "nameKey": "exercise.bench_press.name",
       "descriptionKey": "exercise.bench_press.description",
-      "image": "bench_press.jpg",
+      "image": "bench_press.gif",
       "exerciseTypeKey": "1",
       "muscleGroupId": 1,
       "createdByUser": false
@@ -44,7 +45,7 @@
       "id": 2,
       "nameKey": "exercise.pull_up.name",
       "descriptionKey": "exercise.pull_up.description",
-      "image": "pull_up.jpg",
+      "image": "pull_up.gif",
       "exerciseTypeKey": "2",
       "muscleGroupId": 2,
       "createdByUser": false
@@ -53,7 +54,7 @@
       "id": 3,
       "nameKey": "exercise.barbell_curl.name",
       "descriptionKey": "exercise.barbell_curl.description",
-      "image": "barbell_curl.jpg",
+      "image": "barbell_curl.gif",
       "exerciseTypeKey": "1",
       "muscleGroupId": 4,
       "createdByUser": false
@@ -62,7 +63,7 @@
       "id": 4,
       "nameKey": "exercise.preacher_curl.name",
       "descriptionKey": "exercise.preacher_curl.description",
-      "image": "preacher_curl.jpg",
+      "image": "preacher_curl.gif",
       "exerciseTypeKey": "1",
       "muscleGroupId": 4,
       "createdByUser": false
@@ -71,7 +72,7 @@
       "id": 5,
       "nameKey": "exercise.cable_biceps_hammer.name",
       "descriptionKey": "exercise.cable_biceps_hammer.description",
-      "image": "cable_biceps_hammer.jpg",
+      "image": "cable_biceps_hammer.gif",
       "exerciseTypeKey": "13",
       "muscleGroupId": 4,
       "createdByUser": false
@@ -80,7 +81,7 @@
       "id": 6,
       "nameKey": "exercise.cable_biceps_neutral.name",
       "descriptionKey": "exercise.cable_biceps_neutral.description",
-      "image": "cable_biceps_neutral.jpg",
+      "image": "cable_biceps_neutral.gif",
       "exerciseTypeKey": "13",
       "muscleGroupId": 4,
       "createdByUser": false
@@ -89,7 +90,7 @@
       "id": 7,
       "nameKey": "exercise.concentration_curl_hammer.name",
       "descriptionKey": "exercise.concentration_curl_hammer.description",
-      "image": "concentration_curl_hammer.jpg",
+      "image": "concentration_curl_hammer.gif",
       "exerciseTypeKey": "1",
       "muscleGroupId": 4,
       "createdByUser": false
@@ -98,7 +99,7 @@
       "id": 8,
       "nameKey": "exercise.concentration_curl_neutral.name",
       "descriptionKey": "exercise.concentration_curl_neutral.description",
-      "image": "concentration_curl_neutral.jpg",
+      "image": "concentration_curl_neutral.gif",
       "exerciseTypeKey": "1",
       "muscleGroupId": 4,
       "createdByUser": false
@@ -107,7 +108,7 @@
       "id": 9,
       "nameKey": "exercise.hammer_curl.name",
       "descriptionKey": "exercise.hammer_curl.description",
-      "image": "hammer_curl.jpg",
+      "image": "hammer_curl.gif",
       "exerciseTypeKey": "1",
       "muscleGroupId": 4,
       "createdByUser": false
@@ -116,7 +117,7 @@
       "id": 10,
       "nameKey": "exercise.dumbbell_curl.name",
       "descriptionKey": "exercise.dumbbell_curl.description",
-      "image": "dumbbell_curl.jpg",
+      "image": "dumbbell_curl.gif",
       "exerciseTypeKey": "1",
       "muscleGroupId": 4,
       "createdByUser": false
@@ -125,7 +126,7 @@
       "id": 11,
       "nameKey": "exercise.incline_dumbbell_curl.name",
       "descriptionKey": "exercise.incline_dumbbell_curl.description",
-      "image": "incline_dumbbell_curl.jpg",
+      "image": "incline_dumbbell_curl.gif",
       "exerciseTypeKey": "1",
       "muscleGroupId": 4,
       "createdByUser": false
@@ -134,7 +135,7 @@
       "id": 12,
       "nameKey": "exercise.incline_hammer_curl.name",
       "descriptionKey": "exercise.incline_hammer_curl.description",
-      "image": "incline_hammer_curl.jpg",
+      "image": "incline_hammer_curl.gif",
       "exerciseTypeKey": "1",
       "muscleGroupId": 4,
       "createdByUser": false
@@ -143,7 +144,7 @@
       "id": 13,
       "nameKey": "exercise.incline_bench_press.name",
       "descriptionKey": "exercise.incline_bench_press.description",
-      "image": "incline_bench_press.jpg",
+      "image": "incline_bench_press.gif",
       "exerciseTypeKey": "1",
       "muscleGroupId": 1,
       "createdByUser": false
@@ -152,7 +153,7 @@
       "id": 14,
       "nameKey": "exercise.dumbbell_bench_press.name",
       "descriptionKey": "exercise.dumbbell_bench_press.description",
-      "image": "dumbbell_bench_press.jpg",
+      "image": "dumbbell_bench_press.gif",
       "exerciseTypeKey": "15",
       "muscleGroupId": 1,
       "createdByUser": false
@@ -161,7 +162,7 @@
       "id": 15,
       "nameKey": "exercise.incline_dumbbell_press.name",
       "descriptionKey": "exercise.incline_dumbbell_press.description",
-      "image": "incline_dumbbell_press.jpg",
+      "image": "incline_dumbbell_press.gif",
       "exerciseTypeKey": "15",
       "muscleGroupId": 1,
       "createdByUser": false
@@ -170,7 +171,7 @@
       "id": 16,
       "nameKey": "exercise.pec_fly.name",
       "descriptionKey": "exercise.pec_fly.description",
-      "image": "pec_fly.jpg",
+      "image": "pec_fly.gif",
       "exerciseTypeKey": "15",
       "muscleGroupId": 1,
       "createdByUser": false
@@ -179,7 +180,7 @@
       "id": 17,
       "nameKey": "exercise.cable_crossover.name",
       "descriptionKey": "exercise.cable_crossover.description",
-      "image": "cable_crossover.jpg",
+      "image": "cable_crossover.gif",
       "exerciseTypeKey": "13",
       "muscleGroupId": 1,
       "createdByUser": false
@@ -188,7 +189,7 @@
       "id": 18,
       "nameKey": "exercise.dips_chest.name",
       "descriptionKey": "exercise.dips_chest.description",
-      "image": "dips_chest.jpg",
+      "image": "dips_chest.gif",
       "exerciseTypeKey": "2",
       "muscleGroupId": 1,
       "createdByUser": false
@@ -197,7 +198,7 @@
       "id": 19,
       "nameKey": "exercise.push_up.name",
       "descriptionKey": "exercise.push_up.description",
-      "image": "push_up.jpg",
+      "image": "push_up.gif",
       "exerciseTypeKey": "2",
       "muscleGroupId": 1,
       "createdByUser": false
@@ -206,7 +207,7 @@
       "id": 20,
       "nameKey": "exercise.machine_chest_press.name",
       "descriptionKey": "exercise.machine_chest_press.description",
-      "image": "machine_chest_press.jpg",
+      "image": "machine_chest_press.gif",
       "exerciseTypeKey": "14",
       "muscleGroupId": 1,
       "createdByUser": false
@@ -216,7 +217,7 @@
       "id": 21,
       "nameKey": "exercise.skull_crusher.name",
       "descriptionKey": "exercise.skull_crusher.description",
-      "image": "skull_crusher.jpg",
+      "image": "skull_crusher.gif",
       "exerciseTypeKey": "1",
       "muscleGroupId": 5,
       "createdByUser": false
@@ -225,7 +226,7 @@
       "id": 22,
       "nameKey": "exercise.skull_crusher_behind_head.name",
       "descriptionKey": "exercise.skull_crusher_behind_head.description",
-      "image": "skull_crusher_behind_head.jpg",
+      "image": "skull_crusher_behind_head.gif",
       "exerciseTypeKey": "1",
       "muscleGroupId": 5,
       "createdByUser": false
@@ -234,7 +235,7 @@
       "id": 23,
       "nameKey": "exercise.dips_triceps.name",
       "descriptionKey": "exercise.dips_triceps.description",
-      "image": "dips_triceps.jpg",
+      "image": "dips_triceps.gif",
       "exerciseTypeKey": "2",
       "muscleGroupId": 5,
       "createdByUser": false
@@ -243,7 +244,7 @@
       "id": 24,
       "nameKey": "exercise.machine_dips.name",
       "descriptionKey": "exercise.machine_dips.description",
-      "image": "machine_dips.jpg",
+      "image": "machine_dips.gif",
       "exerciseTypeKey": "14",
       "muscleGroupId": 5,
       "createdByUser": false
@@ -252,7 +253,7 @@
       "id": 25,
       "nameKey": "exercise.dumbbell_triceps_extension.name",
       "descriptionKey": "exercise.dumbbell_triceps_extension.description",
-      "image": "dumbbell_triceps_extension.jpg",
+      "image": "dumbbell_triceps_extension.gif",
       "exerciseTypeKey": "15",
       "muscleGroupId": 5,
       "createdByUser": false
@@ -261,7 +262,7 @@
       "id": 26,
       "nameKey": "exercise.cable_triceps_extension.name",
       "descriptionKey": "exercise.cable_triceps_extension.description",
-      "image": "cable_triceps_extension.jpg",
+      "image": "cable_triceps_extension.gif",
       "exerciseTypeKey": "13",
       "muscleGroupId": 5,
       "createdByUser": false
@@ -270,7 +271,7 @@
       "id": 27,
       "nameKey": "exercise.triceps_kickback.name",
       "descriptionKey": "exercise.triceps_kickback.description",
-      "image": "triceps_kickback.jpg",
+      "image": "triceps_kickback.gif",
       "exerciseTypeKey": "15",
       "muscleGroupId": 5,
       "createdByUser": false
@@ -279,7 +280,7 @@
       "id": 28,
       "nameKey": "exercise.overhead_triceps_extension.name",
       "descriptionKey": "exercise.overhead_triceps_extension.description",
-      "image": "overhead_triceps_extension.jpg",
+      "image": "overhead_triceps_extension.gif",
       "exerciseTypeKey": "15",
       "muscleGroupId": 5,
       "createdByUser": false
@@ -288,7 +289,7 @@
       "id": 29,
       "nameKey": "exercise.lying_triceps_extension.name",
       "descriptionKey": "exercise.lying_triceps_extension.description",
-      "image": "lying_triceps_extension.jpg",
+      "image": "lying_triceps_extension.gif",
       "exerciseTypeKey": "15",
       "muscleGroupId": 5,
       "createdByUser": false
@@ -298,7 +299,7 @@
       "id": 30,
       "nameKey": "exercise.arnold_press.name",
       "descriptionKey": "exercise.arnold_press.description",
-      "image": "arnold_press.jpg",
+      "image": "arnold_press.gif",
       "exerciseTypeKey": "15",
       "muscleGroupId": 3,
       "createdByUser": false
@@ -307,7 +308,7 @@
       "id": 31,
       "nameKey": "exercise.military_press.name",
       "descriptionKey": "exercise.military_press.description",
-      "image": "military_press.jpg",
+      "image": "military_press.gif",
       "exerciseTypeKey": "1",
       "muscleGroupId": 3,
       "createdByUser": false
@@ -316,7 +317,7 @@
       "id": 32,
       "nameKey": "exercise.barbell_shoulder_press.name",
       "descriptionKey": "exercise.barbell_shoulder_press.description",
-      "image": "barbell_shoulder_press.jpg",
+      "image": "barbell_shoulder_press.gif",
       "exerciseTypeKey": "1",
       "muscleGroupId": 3,
       "createdByUser": false
@@ -325,7 +326,7 @@
       "id": 33,
       "nameKey": "exercise.machine_shoulder_press.name",
       "descriptionKey": "exercise.machine_shoulder_press.description",
-      "image": "machine_shoulder_press.jpg",
+      "image": "machine_shoulder_press.gif",
       "exerciseTypeKey": "14",
       "muscleGroupId": 3,
       "createdByUser": false
@@ -334,7 +335,7 @@
       "id": 34,
       "nameKey": "exercise.rear_delt_fly.name",
       "descriptionKey": "exercise.rear_delt_fly.description",
-      "image": "rear_delt_fly.jpg",
+      "image": "rear_delt_fly.gif",
       "exerciseTypeKey": "15",
       "muscleGroupId": 3,
       "createdByUser": false
@@ -343,7 +344,7 @@
       "id": 35,
       "nameKey": "exercise.rear_delt_raise.name",
       "descriptionKey": "exercise.rear_delt_raise.description",
-      "image": "rear_delt_raise.jpg",
+      "image": "rear_delt_raise.gif",
       "exerciseTypeKey": "15",
       "muscleGroupId": 3,
       "createdByUser": false
@@ -352,7 +353,7 @@
       "id": 36,
       "nameKey": "exercise.dumbbell_front_raise.name",
       "descriptionKey": "exercise.dumbbell_front_raise.description",
-      "image": "dumbbell_front_raise.jpg",
+      "image": "dumbbell_front_raise.gif",
       "exerciseTypeKey": "15",
       "muscleGroupId": 3,
       "createdByUser": false
@@ -361,7 +362,7 @@
       "id": 37,
       "nameKey": "exercise.cable_front_raise.name",
       "descriptionKey": "exercise.cable_front_raise.description",
-      "image": "cable_front_raise.jpg",
+      "image": "cable_front_raise.gif",
       "exerciseTypeKey": "13",
       "muscleGroupId": 3,
       "createdByUser": false
@@ -370,7 +371,7 @@
       "id": 38,
       "nameKey": "exercise.dumbbell_lateral_raise.name",
       "descriptionKey": "exercise.dumbbell_lateral_raise.description",
-      "image": "dumbbell_lateral_raise.jpg",
+      "image": "dumbbell_lateral_raise.gif",
       "exerciseTypeKey": "15",
       "muscleGroupId": 3,
       "createdByUser": false
@@ -379,7 +380,7 @@
       "id": 39,
       "nameKey": "exercise.cable_lateral_raise.name",
       "descriptionKey": "exercise.cable_lateral_raise.description",
-      "image": "cable_lateral_raise.jpg",
+      "image": "cable_lateral_raise.gif",
       "exerciseTypeKey": "13",
       "muscleGroupId": 3,
       "createdByUser": false
@@ -389,7 +390,7 @@
       "id": 40,
       "nameKey": "exercise.wide_grip_pull_up.name",
       "descriptionKey": "exercise.wide_grip_pull_up.description",
-      "image": "wide_grip_pull_up.jpg",
+      "image": "wide_grip_pull_up.gif",
       "exerciseTypeKey": "2",
       "muscleGroupId": 2,
       "createdByUser": false
@@ -398,7 +399,7 @@
       "id": 41,
       "nameKey": "exercise.close_grip_pull_up.name",
       "descriptionKey": "exercise.close_grip_pull_up.description",
-      "image": "close_grip_pull_up.jpg",
+      "image": "close_grip_pull_up.gif",
       "exerciseTypeKey": "2",
       "muscleGroupId": 2,
       "createdByUser": false
@@ -407,7 +408,7 @@
       "id": 42,
       "nameKey": "exercise.wide_grip_seated_row.name",
       "descriptionKey": "exercise.wide_grip_seated_row.description",
-      "image": "wide_grip_seated_row.jpg",
+      "image": "wide_grip_seated_row.gif",
       "exerciseTypeKey": "14",
       "muscleGroupId": 2,
       "createdByUser": false
@@ -416,7 +417,7 @@
       "id": 43,
       "nameKey": "exercise.close_grip_seated_row.name",
       "descriptionKey": "exercise.close_grip_seated_row.description",
-      "image": "close_grip_seated_row.jpg",
+      "image": "close_grip_seated_row.gif",
       "exerciseTypeKey": "14",
       "muscleGroupId": 2,
       "createdByUser": false
@@ -425,7 +426,7 @@
       "id": 44,
       "nameKey": "exercise.wide_grip_lat_pulldown.name",
       "descriptionKey": "exercise.wide_grip_lat_pulldown.description",
-      "image": "wide_grip_lat_pulldown.jpg",
+      "image": "wide_grip_lat_pulldown.gif",
       "exerciseTypeKey": "14",
       "muscleGroupId": 2,
       "createdByUser": false
@@ -434,7 +435,7 @@
       "id": 45,
       "nameKey": "exercise.close_grip_lat_pulldown.name",
       "descriptionKey": "exercise.close_grip_lat_pulldown.description",
-      "image": "close_grip_lat_pulldown.jpg",
+      "image": "close_grip_lat_pulldown.gif",
       "exerciseTypeKey": "14",
       "muscleGroupId": 2,
       "createdByUser": false
@@ -443,7 +444,7 @@
       "id": 46,
       "nameKey": "exercise.barbell_row.name",
       "descriptionKey": "exercise.barbell_row.description",
-      "image": "barbell_row.jpg",
+      "image": "barbell_row.gif",
       "exerciseTypeKey": "1",
       "muscleGroupId": 2,
       "createdByUser": false
@@ -452,7 +453,7 @@
       "id": 47,
       "nameKey": "exercise.dumbbell_shrug.name",
       "descriptionKey": "exercise.dumbbell_shrug.description",
-      "image": "dumbbell_shrug.jpg",
+      "image": "dumbbell_shrug.gif",
       "exerciseTypeKey": "15",
       "muscleGroupId": 2,
       "createdByUser": false
@@ -461,7 +462,7 @@
       "id": 48,
       "nameKey": "exercise.deadlift.name",
       "descriptionKey": "exercise.deadlift.description",
-      "image": "deadlift.jpg",
+      "image": "deadlift.gif",
       "exerciseTypeKey": "7",
       "muscleGroupId": 2,
       "createdByUser": false
@@ -471,7 +472,7 @@
       "id": 49,
       "nameKey": "exercise.hip_abduction.name",
       "descriptionKey": "exercise.hip_abduction.description",
-      "image": "hip_abduction.jpg",
+      "image": "hip_abduction.gif",
       "exerciseTypeKey": "14",
       "muscleGroupId": 6,
       "createdByUser": false
@@ -480,7 +481,7 @@
       "id": 50,
       "nameKey": "exercise.hip_adduction.name",
       "descriptionKey": "exercise.hip_adduction.description",
-      "image": "hip_adduction.jpg",
+      "image": "hip_adduction.gif",
       "exerciseTypeKey": "14",
       "muscleGroupId": 6,
       "createdByUser": false
@@ -489,7 +490,7 @@
       "id": 51,
       "nameKey": "exercise.dumbbell_calf_raise.name",
       "descriptionKey": "exercise.dumbbell_calf_raise.description",
-      "image": "dumbbell_calf_raise.jpg",
+      "image": "dumbbell_calf_raise.gif",
       "exerciseTypeKey": "15",
       "muscleGroupId": 6,
       "createdByUser": false
@@ -498,7 +499,7 @@
       "id": 52,
       "nameKey": "exercise.dumbbell_lunge.name",
       "descriptionKey": "exercise.dumbbell_lunge.description",
-      "image": "dumbbell_lunge.jpg",
+      "image": "dumbbell_lunge.gif",
       "exerciseTypeKey": "15",
       "muscleGroupId": 6,
       "createdByUser": false
@@ -507,7 +508,7 @@
       "id": 53,
       "nameKey": "exercise.hack_squat.name",
       "descriptionKey": "exercise.hack_squat.description",
-      "image": "hack_squat.jpg",
+      "image": "hack_squat.gif",
       "exerciseTypeKey": "14",
       "muscleGroupId": 6,
       "createdByUser": false
@@ -516,7 +517,7 @@
       "id": 54,
       "nameKey": "exercise.seated_leg_curl.name",
       "descriptionKey": "exercise.seated_leg_curl.description",
-      "image": "seated_leg_curl.jpg",
+      "image": "seated_leg_curl.gif",
       "exerciseTypeKey": "14",
       "muscleGroupId": 6,
       "createdByUser": false
@@ -525,7 +526,7 @@
       "id": 55,
       "nameKey": "exercise.lying_leg_curl.name",
       "descriptionKey": "exercise.lying_leg_curl.description",
-      "image": "lying_leg_curl.jpg",
+      "image": "lying_leg_curl.gif",
       "exerciseTypeKey": "14",
       "muscleGroupId": 6,
       "createdByUser": false
@@ -534,7 +535,7 @@
       "id": 56,
       "nameKey": "exercise.leg_extension.name",
       "descriptionKey": "exercise.leg_extension.description",
-      "image": "leg_extension.jpg",
+      "image": "leg_extension.gif",
       "exerciseTypeKey": "14",
       "muscleGroupId": 6,
       "createdByUser": false
@@ -543,7 +544,7 @@
       "id": 57,
       "nameKey": "exercise.leg_press.name",
       "descriptionKey": "exercise.leg_press.description",
-      "image": "leg_press.jpg",
+      "image": "leg_press.gif",
       "exerciseTypeKey": "14",
       "muscleGroupId": 6,
       "createdByUser": false
@@ -552,7 +553,7 @@
       "id": 58,
       "nameKey": "exercise.barbell_squat.name",
       "descriptionKey": "exercise.barbell_squat.description",
-      "image": "barbell_squat.jpg",
+      "image": "barbell_squat.gif",
       "exerciseTypeKey": "1",
       "muscleGroupId": 6,
       "createdByUser": false
@@ -561,7 +562,7 @@
       "id": 59,
       "nameKey": "exercise.dumbbell_squat.name",
       "descriptionKey": "exercise.dumbbell_squat.description",
-      "image": "dumbbell_squat.jpg",
+      "image": "dumbbell_squat.gif",
       "exerciseTypeKey": "15",
       "muscleGroupId": 6,
       "createdByUser": false
@@ -570,7 +571,7 @@
       "id": 60,
       "nameKey": "exercise.floor_crunch.name",
       "descriptionKey": "exercise.floor_crunch.description",
-      "image": "floor_crunch.jpg",
+      "image": "floor_crunch.gif",
       "exerciseTypeKey": "2",
       "muscleGroupId": 7,
       "createdByUser": false
@@ -579,7 +580,7 @@
       "id": 61,
       "nameKey": "exercise.incline_bench_crunch.name",
       "descriptionKey": "exercise.incline_bench_crunch.description",
-      "image": "incline_bench_crunch.jpg",
+      "image": "incline_bench_crunch.gif",
       "exerciseTypeKey": "2",
       "muscleGroupId": 7,
       "createdByUser": false
@@ -588,7 +589,7 @@
       "id": 62,
       "nameKey": "exercise.cable_crunch.name",
       "descriptionKey": "exercise.cable_crunch.description",
-      "image": "cable_crunch.jpg",
+      "image": "cable_crunch.gif",
       "exerciseTypeKey": "13",
       "muscleGroupId": 7,
       "createdByUser": false
@@ -597,7 +598,7 @@
       "id": 63,
       "nameKey": "exercise.oblique_crunch.name",
       "descriptionKey": "exercise.oblique_crunch.description",
-      "image": "oblique_crunch.jpg",
+      "image": "oblique_crunch.gif",
       "exerciseTypeKey": "2",
       "muscleGroupId": 7,
       "createdByUser": false

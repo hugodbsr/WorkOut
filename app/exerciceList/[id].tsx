@@ -5,6 +5,7 @@ import useFetch from "@/services/useFetch";
 import {fetchExercice, fetchExerciceList, fetchExerciceListJson, fetchMuscle, fetchMuscleJson} from "@/services/api";
 import { Image } from 'react-native';
 import {useNavigation} from "@react-navigation/native";
+import {exerciseImages} from "@/assets/constants/images";
 
 export default function Details(){
     const navigation = useNavigation();
@@ -44,6 +45,10 @@ export default function Details(){
         return <Text>Error : {exerciceError?.message}</Text>;
     }
 
+    function getExerciseImage(name: keyof typeof exerciseImages) {
+        return exerciseImages[name] ?? require("../../assets/data/exercises/images/skull_crusher.gif");
+    }
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.container}>
@@ -56,7 +61,7 @@ export default function Details(){
                             <Link href={`/exercice/${item.id}`}>
                                 <View className="items-center flex flex-row gap-3">
                                     <Image
-                                        source={{ uri: item.image }}
+                                        source={getExerciseImage(item.image)}
                                         className="w-20 h-20 rounded-[20px] border-4 border-blue-800"
                                     />
                                     <View style={{ flex: 1 }}>
@@ -68,6 +73,7 @@ export default function Details(){
                             </Link>
                         </View>
                     )}
+                    contentContainerStyle={{ paddingBottom: 90}}
                 />
             </View>
 
@@ -75,7 +81,7 @@ export default function Details(){
                 style={styles.addButton}
                 className="bg-primary"
                 onPress={() => router.push(`/addExercice/${query}`)}>
-                <Text className="color-white text-2xl">+</Text>
+                <Text className="color-white text-3xl">+</Text>
             </TouchableOpacity>
         </SafeAreaView>
     );
@@ -93,7 +99,7 @@ const styles = StyleSheet.create({
 
     addButton: {
         position: "absolute",
-        bottom: 50,
+        bottom: 45,
         right: 20,
         width: 70,
         height: 70,
