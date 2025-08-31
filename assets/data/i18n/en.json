@@ -32,6 +32,86 @@
     "mobility": "Mobility"
   },
   "exercise": {
+    "bench_press": {
+      "name": "Bench Press",
+      "description": "Basic exercise for developing the chest muscles."
+    },
+    "pull_up": {
+      "name": "Pull-up",
+      "description": "Exercise to work the back and biceps."
+    },
+    "barbell_curl": {
+      "name": "Barbell Curl",
+      "description": "Exercise to strengthen the biceps with a barbell."
+    },
+    "preacher_curl": {
+      "name": "Preacher Curl",
+      "description": "Isolate the biceps using an inclined bench."
+    },
+    "cable_biceps_hammer": {
+      "name": "Cable Hammer Curl",
+      "description": "Works the biceps and forearms with a neutral grip."
+    },
+    "cable_biceps_neutral": {
+      "name": "Cable Biceps Curl Neutral Grip",
+      "description": "Exercise for the biceps using a cable machine and neutral grip."
+    },
+    "concentration_curl_hammer": {
+      "name": "Concentration Hammer Curl",
+      "description": "Isolate the biceps with a concentration movement and hammer grip."
+    },
+    "concentration_curl_neutral": {
+      "name": "Concentration Curl Neutral Grip",
+      "description": "Isolate the biceps with a concentration movement using a neutral grip."
+    },
+    "hammer_curl": {
+      "name": "Hammer Curl",
+      "description": "Curl with hammer grip to work the biceps and forearms."
+    },
+    "dumbbell_curl": {
+      "name": "Dumbbell Curl",
+      "description": "Classic biceps curl with dumbbells."
+    },
+    "incline_dumbbell_curl": {
+      "name": "Incline Dumbbell Curl",
+      "description": "Curl on an incline bench to target the biceps."
+    },
+    "incline_hammer_curl": {
+      "name": "Incline Hammer Curl",
+      "description": "Hammer curl on an incline bench for biceps and forearms."
+    },
+    "incline_bench_press": {
+      "name": "Incline Bench Press",
+      "description": "Targets the upper chest on an incline bench."
+    },
+    "dumbbell_bench_press": {
+      "name": "Dumbbell Bench Press",
+      "description": "Exercise for the chest using dumbbells."
+    },
+    "incline_dumbbell_press": {
+      "name": "Incline Dumbbell Press",
+      "description": "Targets the upper chest with dumbbells."
+    },
+    "pec_fly": {
+      "name": "Chest Fly",
+      "description": "Isolation exercise for the chest muscles."
+    },
+    "cable_crossover": {
+      "name": "Cable Crossover",
+      "description": "Works the chest using cables for a full range of motion."
+    },
+    "dips_chest": {
+      "name": "Chest Dips",
+      "description": "Bodyweight exercise for the chest."
+    },
+    "push_up": {
+      "name": "Push-up",
+      "description": "Classic exercise for chest and triceps."
+    },
+    "machine_chest_press": {
+      "name": "Chest Press Machine",
+      "description": "Works the chest using a guided machine."
+    },
     "skull_crusher": {
       "name": "Skull Crusher",
       "description": "Lying on a bench, lower the bar or dumbbells toward your forehead and extend back up to work the triceps."
@@ -44,7 +124,7 @@
       "name": "Triceps Dips",
       "description": "Support your body on parallel bars and bend your elbows to work the triceps."
     },
-    "machine_triceps_dips": {
+    "machine_dips": {
       "name": "Machine Triceps Dips",
       "description": "Using the dip machine, push down to engage the triceps."
     },
@@ -59,14 +139,6 @@
     "triceps_kickback": {
       "name": "Triceps Kickback",
       "description": "Bend forward with dumbbells and extend your arms backward to target the triceps."
-    },
-    "horizontal_brachialis_extension": {
-      "name": "Horizontal Brachialis Extension",
-      "description": "Extend the arms horizontally to isolate the brachialis muscle."
-    },
-    "vertical_brachialis_extension": {
-      "name": "Vertical Brachialis Extension",
-      "description": "Extend the arms vertically to target the brachialis."
     },
     "arnold_press": {
       "name": "Arnold Press",
@@ -84,47 +156,51 @@
       "name": "Machine Shoulder Press",
       "description": "Sit on the shoulder press machine and push the handles upward."
     },
-    "rear_fly": {
-      "name": "Rear Fly",
+    "rear_delt_fly": {
+      "name": "Rear Delt Fly",
       "description": "Bend forward and open your arms to the sides with dumbbells to work rear delts."
     },
-    "lateral_raise_dumbbell": {
-      "name": "Dumbbell Lateral Raise",
-      "description": "Lift dumbbells to the sides until shoulder height."
+    "rear_delt_raise": {
+      "name": "Rear Delt Raise",
+      "description": "Work the rear delts with dumbbells."
     },
-    "lateral_raise_cable": {
-      "name": "Cable Lateral Raise",
-      "description": "Use a cable machine to lift the arm laterally to shoulder height."
-    },
-    "front_raise_dumbbell": {
+    "dumbbell_front_raise": {
       "name": "Dumbbell Front Raise",
       "description": "Lift dumbbells in front of you to shoulder height."
     },
-    "front_raise_cable": {
+    "cable_front_raise": {
       "name": "Cable Front Raise",
       "description": "Using a cable, lift your arm forward to shoulder height."
     },
-    "pull_up_wide": {
+    "dumbbell_lateral_raise": {
+      "name": "Dumbbell Lateral Raise",
+      "description": "Lift dumbbells to the sides until shoulder height."
+    },
+    "cable_lateral_raise": {
+      "name": "Cable Lateral Raise",
+      "description": "Use a cable machine to lift the arm laterally to shoulder height."
+    },
+    "wide_grip_pull_up": {
       "name": "Wide Grip Pull-up",
       "description": "Hang from a bar with a wide grip and pull your chest toward it."
     },
-    "pull_up_close": {
+    "close_grip_pull_up": {
       "name": "Close Grip Pull-up",
       "description": "Hang from a bar with a narrow grip and pull your chest toward it."
     },
-    "seated_row_wide": {
+    "wide_grip_seated_row": {
       "name": "Seated Row Wide Grip",
       "description": "Pull the handle toward your torso while keeping a wide grip."
     },
-    "seated_row_close": {
+    "close_grip_seated_row": {
       "name": "Seated Row Close Grip",
       "description": "Pull the handle toward your torso using a narrow grip."
     },
-    "lat_pull_down_wide": {
+    "wide_grip_lat_pulldown": {
       "name": "Wide Grip Lat Pulldown",
       "description": "Pull the bar down in front of your chest with a wide grip."
     },
-    "lat_pull_down_close": {
+    "close_grip_lat_pulldown": {
       "name": "Close Grip Lat Pulldown",
       "description": "Pull the bar down in front of your chest with a close grip."
     },
@@ -140,15 +216,15 @@
       "name": "Deadlift",
       "description": "Lift a barbell from the ground to hip height, keeping a straight back."
     },
-    "abductor_machine": {
-      "name": "Abductor Machine",
-      "description": "Push outward against the pads to work the outer thighs."
+    "hip_abduction": {
+      "name": "Hip Abduction",
+      "description": "Works the hip abductor muscles."
     },
-    "adductor_machine": {
-      "name": "Adductor Machine",
-      "description": "Push inward against the pads to work the inner thighs."
+    "hip_adduction": {
+      "name": "Hip Adduction",
+      "description": "Works the hip adductor muscles."
     },
-    "calf_raise_dumbbell": {
+    "dumbbell_calf_raise": {
       "name": "Dumbbell Calf Raise",
       "description": "Hold dumbbells and raise your heels to work the calves."
     },

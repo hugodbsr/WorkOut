@@ -3,9 +3,9 @@ import React, {useLayoutEffect} from 'react';
 import {Link, useLocalSearchParams, useRouter} from "expo-router";
 import useFetch from "@/services/useFetch";
 import {fetchExercice, fetchExerciceList, fetchExerciceListJson, fetchMuscle, fetchMuscleJson} from "@/services/api";
-import { Image } from 'react-native';
 import {useNavigation} from "@react-navigation/native";
 import {exerciseImages} from "@/assets/constants/images";
+import { Image } from "expo-image";
 
 export default function Details(){
     const navigation = useNavigation();
@@ -46,7 +46,16 @@ export default function Details(){
     }
 
     function getExerciseImage(name: keyof typeof exerciseImages) {
-        return exerciseImages[name] ?? require("../../assets/data/exercises/images/skull_crusher.gif");
+        try {
+            if (exerciseImages[name]) {
+                return exerciseImages[name];
+            } else {
+                return require("../../assets/data/exercises/images/skull_crusher.gif");
+            }
+        } catch (error) {
+            console.error("Erreur lors du chargement de l'image:", error);
+            return require("../../assets/data/exercises/images/skull_crusher.gif");
+        }
     }
 
     return (
@@ -62,7 +71,13 @@ export default function Details(){
                                 <View className="items-center flex flex-row gap-3">
                                     <Image
                                         source={getExerciseImage(item.image)}
-                                        className="w-20 h-20 rounded-[20px] border-4 border-blue-800"
+                                        style={{
+                                            width: 80,
+                                            height: 80,
+                                            borderWidth: 4,
+                                            borderRadius: 20,
+                                            borderColor: '#1e40af',
+                                        }}
                                     />
                                     <View style={{ flex: 1 }}>
                                     <Text numberOfLines={2}

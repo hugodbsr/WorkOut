@@ -25,7 +25,10 @@ const translated = async (key: string, translations: any) => {
     }
     if(!value){
         const en = await import(`../assets/data/i18n/en.json`)
-        return translated(key, en);
+        let value: any = en;
+        for (let part of parts) {
+            value = value?.[part];
+        }
     }
     return value || key;
 };
