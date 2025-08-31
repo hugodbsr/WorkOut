@@ -62,7 +62,7 @@ export default function Details(){
         <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.container}>
                 <FlatList
-                    className="mb-15"
+                    className="mb-12"
                     data={exercice}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => (

@@ -1,4 +1,14 @@
-import {ActivityIndicator, StyleSheet, Text, View, TextInput, Button, ScrollView, TouchableOpacity} from 'react-native';
+import {
+    ActivityIndicator,
+    StyleSheet,
+    Text,
+    View,
+    TextInput,
+    Button,
+    ScrollView,
+    TouchableOpacity,
+    SafeAreaView
+} from 'react-native';
 import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {useLocalSearchParams} from "expo-router";
 import useFetch from "@/services/useFetch";
@@ -126,41 +136,103 @@ export default function Details(){
     }
 
     return (
-        <View>
-            <ScrollView className="bg-white -max-h-screen-safe-offset-36">
-                <Text className="text-3xl m-4 font-bold flex-wrap text-center">Série effectué aujourd&#39;hui</Text>
-                {series.map((serie, index) => (
-                    <Swipeable key={index} renderRightActions={() => renderRightActions(index)}>
-                        <View key={index} className="p-3" style={styles.view}>
-                            <Text style={styles.text}>Série n°{index + 1} : </Text>
-                            <TextInput
-                                value={serie.reps}
-                                style={styles.textInput}
-                                onChangeText={(text) => handleChangeSerie(index, 'reps', text)}
-                                keyboardType="numeric"
-                                placeholder={oldSeries[index]?.reps || '10'}
-                                placeholderTextColor="gray"
-                            />
-                            <Text style={styles.text}> X </Text>
-                            <TextInput
-                                value={serie.weight}
-                                style={styles.textInput}
-                                onChangeText={(text) => handleChangeSerie(index, 'weight', text)}
-                                keyboardType="numeric"
-                                placeholder={oldSeries[index]?.weight || '30'}
-                                placeholderTextColor="gray"
-                            />
-                            <Text style={styles.text}> Kg </Text>
-                        </View>
-                    </Swipeable>
-                ))}
-            </ScrollView>
-            <Button title={"Ajouter une entrée"} onPress={handleAddSerieField}/>
-        </View>
+        <SafeAreaView style={{ flex: 1 }}>
+            <View style={styles.container}>
+                <ScrollView className="bg-white" contentContainerStyle={{ paddingBottom: 50 }}>
+                    <Text className="text-3xl m-4 font-bold flex-wrap text-center">Série effectué aujourd&#39;hui</Text>
+                    {series.map((serie, index) => (
+                        <Swipeable key={index} renderRightActions={() => renderRightActions(index)}>
+                            <View key={index} className="p-3" style={styles.view}>
+                                <Text style={styles.text}>Série n°{index + 1} : </Text>
+                                <TextInput
+                                    value={serie.reps}
+                                    style={styles.textInput}
+                                    onChangeText={(text) => handleChangeSerie(index, 'reps', text)}
+                                    keyboardType="numeric"
+                                    placeholder={oldSeries[index]?.reps || '10'}
+                                    placeholderTextColor="gray"
+                                />
+                                <Text style={styles.text}> X </Text>
+                                <TextInput
+                                    value={serie.weight}
+                                    style={styles.textInput}
+                                    onChangeText={(text) => handleChangeSerie(index, 'weight', text)}
+                                    keyboardType="numeric"
+                                    placeholder={oldSeries[index]?.weight || '30'}
+                                    placeholderTextColor="gray"
+                                />
+                                <Text style={styles.text}> Kg </Text>
+                            </View>
+                        </Swipeable>
+                    ))}
+                </ScrollView>
+            </View>
+            <TouchableOpacity
+                style={styles.recordButton}
+                className="bg-primary"
+                onPress={handleAddSerieField}>
+                <Text className="color-white text-3xl">Records</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.chronoButton}
+                className="bg-primary"
+                onPress={handleAddSerieField}>
+                <Text className="color-white text-3xl">Chrono</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.addButton}
+                className="bg-primary"
+                onPress={handleAddSerieField}>
+                <Text className="color-white text-6xl">+</Text>
+            </TouchableOpacity>
+        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
+    container: {
+        display: "flex",
+        flex: 1,
+        flexDirection: "row",
+        gap: "3px",
+        marginBottom: 100,
+    },
+    chronoButton:{
+        position: "absolute",
+        bottom: 45,
+        left: -10,
+        width: "55%",
+        height: 55,
+        justifyContent: "center",
+        alignItems: "flex-start",
+        paddingLeft: 25,
+    },
+    recordButton:{
+        position: "absolute",
+        bottom: 45,
+        right: -10,
+        width: "55%",
+        height: 55,
+        justifyContent: "center",
+        alignItems: "flex-end",
+        paddingRight: 25,
+    },
+    addButton: {
+        position: "absolute",
+        left: "50%",
+        transform: [{ translateX: -45 }],
+        bottom: 50,
+        width: 100,
+        height: 100,
+        borderRadius: 55,
+        justifyContent: "center",
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
+        elevation: 5,
+    },
     text: {
         fontSize: 23,
         fontWeight: 400,
