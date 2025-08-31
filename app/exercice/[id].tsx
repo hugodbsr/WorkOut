@@ -10,7 +10,7 @@ import {
     SafeAreaView
 } from 'react-native';
 import React, {useEffect, useLayoutEffect, useState} from 'react';
-import {useLocalSearchParams} from "expo-router";
+import {router, useLocalSearchParams} from "expo-router";
 import useFetch from "@/services/useFetch";
 import {fetchExercice, fetchExerciceList, fetchExerciseJson} from "@/services/api";
 import {id} from "postcss-selector-parser";
@@ -21,6 +21,7 @@ import { useNavigation } from '@react-navigation/native';
 export default function Details(){
     const{id} = useLocalSearchParams();
     const navigation = useNavigation();
+    const query = Array.isArray(id) ? id[0] : id;
 
     const {
         data: exercice,
@@ -167,18 +168,22 @@ export default function Details(){
                     ))}
                 </ScrollView>
             </View>
-            <TouchableOpacity
-                style={styles.recordButton}
-                className="bg-primary"
-                onPress={handleAddSerieField}>
-                <Text className="color-white text-3xl">Records</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={styles.chronoButton}
-                className="bg-primary"
-                onPress={handleAddSerieField}>
-                <Text className="color-white text-3xl">Chrono</Text>
-            </TouchableOpacity>
+            <View style={styles.footer}>
+                <TouchableOpacity
+                    style={styles.footerButton}
+                    className="bg-primary"
+                    onPress={handleAddSerieField}>
+                    <Text className="color-white text-2xl">Chrono</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={styles.footerButton}
+                    className="bg-primary"
+                    onPress={() => router.push(`/exerciceRecord/${query}`)}>
+                    <Text className="color-white text-2xl">Records</Text>
+                </TouchableOpacity>
+            </View>
+
             <TouchableOpacity
                 style={styles.addButton}
                 className="bg-primary"
@@ -186,45 +191,40 @@ export default function Details(){
                 <Text className="color-white text-6xl">+</Text>
             </TouchableOpacity>
         </SafeAreaView>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
     container: {
-        display: "flex",
         flex: 1,
+    },
+    footer: {
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        right: 0,
         flexDirection: "row",
-        gap: "3px",
-        marginBottom: 100,
+        justifyContent: "space-around",
+        paddingVertical: 0,
+        paddingBottom: 45,
+        backgroundColor: "white",
+        borderTopWidth: 1,
+        borderColor: "#ddd",
     },
-    chronoButton:{
-        position: "absolute",
-        bottom: 45,
-        left: -10,
-        width: "55%",
-        height: 55,
+    footerButton: {
+        flex: 1,
+        paddingVertical: 15,
         justifyContent: "center",
-        alignItems: "flex-start",
-        paddingLeft: 25,
-    },
-    recordButton:{
-        position: "absolute",
-        bottom: 45,
-        right: -10,
-        width: "55%",
-        height: 55,
-        justifyContent: "center",
-        alignItems: "flex-end",
-        paddingRight: 25,
+        alignItems: "center",
     },
     addButton: {
         position: "absolute",
+        bottom: 60,
         left: "50%",
-        transform: [{ translateX: -45 }],
-        bottom: 50,
+        transform: [{ translateX: -50 }],
         width: 100,
         height: 100,
-        borderRadius: 55,
+        borderRadius: 50,
         justifyContent: "center",
         alignItems: "center",
         shadowColor: "#000",
@@ -258,16 +258,14 @@ const styles = StyleSheet.create({
         alignItems: "center",
         backgroundColor: "white",
         justifyContent: "center",
-        color: 'white',
         marginRight: 12,
     },
     deleteButton: {
         backgroundColor: "firebrick",
         borderRadius: 60,
-        margin: "auto",
         width: 40,
         height: 40,
         justifyContent: 'center',
         alignItems: 'center',
     },
-})
+});
