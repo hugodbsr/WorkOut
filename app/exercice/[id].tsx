@@ -172,7 +172,7 @@ export default function Details(){
                 <TouchableOpacity
                     style={styles.footerButton}
                     className="bg-primary"
-                    onPress={handleAddSerieField}>
+                    onPress={() => router.push(`../chrono`)}>
                     <Text className="color-white text-2xl">Chrono</Text>
                 </TouchableOpacity>
 
