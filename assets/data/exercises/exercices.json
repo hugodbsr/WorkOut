@@ -223,15 +223,6 @@
       "createdByUser": false
     },
     {
-      "id": 22,
-      "nameKey": "exercise.skull_crusher_behind_head.name",
-      "descriptionKey": "exercise.skull_crusher_behind_head.description",
-      "image": "skull_crusher_behind_head.gif",
-      "exerciseTypeKey": "1",
-      "muscleGroupId": 5,
-      "createdByUser": false
-    },
-    {
       "id": 23,
       "nameKey": "exercise.dips_triceps.name",
       "descriptionKey": "exercise.dips_triceps.description",
