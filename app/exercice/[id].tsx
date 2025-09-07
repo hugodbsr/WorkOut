@@ -17,6 +17,8 @@ import {id} from "postcss-selector-parser";
 import {addSessionToExercise, deleteSessionOfExercice, getExerciseHistory, Set, getTodayDate} from "@/services/storage";
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { useNavigation } from '@react-navigation/native';
+import {Image} from "expo-image";
+import RepWeightInput from "@/app/components/RepWeightInput";
 
 export default function Details(){
     const{id} = useLocalSearchParams();
@@ -29,12 +31,12 @@ export default function Details(){
         error: exerciceError,
     } = useFetch(() => fetchExerciseJson({query: `${id}`}));
 
-    const [series, setSeries] = useState([{reps:'', weight:''}]);
-
     const [oldSeries, setOldSeries] = useState([{reps:'', weight:''}]);
 
+    const [series, setSeries] = useState([{ id: Date.now(), reps: '', weight: '' }]);
+
     const handleAddSerieField = () => {
-        setSeries([...series, { reps: '', weight: '' }]);
+        setSeries([...series, { id: Date.now(), reps: '', weight: '' }]);
     };
 
     const handleChangeSerie = async (index: number, field: 'reps' | 'weight', value: string) => {
@@ -93,6 +95,7 @@ export default function Details(){
 
             let currentSeries = todaySession
                 ? todaySession.sets.map(set => ({
+                    id: Date.now(),
                     reps: set.reps.toString(),
                     weight: set.weight.toString(),
                 }))
@@ -106,7 +109,7 @@ export default function Details(){
                 : [];
 
             while (currentSeries.length < previousSeries.length) {
-                currentSeries.push({ reps: '', weight: '' });
+                currentSeries.push({id: 0, reps: '', weight: '' });
             }
 
             setOldSeries(previousSeries);
@@ -130,7 +133,10 @@ export default function Details(){
         return(
             <View style={styles.viewDeleteButton}>
                 <TouchableOpacity style={styles.deleteButton} onPress={() => handleDeleteSerieField(index)}>
-                    <Text className="color-white text-3xl pl-3.5 pr-3.5">-</Text>
+                    <Image source={require("../../assets/images/trash-2-128.png")} style={{
+                        width: 25,
+                        height: 25,
+                    }}/>
                 </TouchableOpacity>
             </View>
         )
@@ -142,28 +148,27 @@ export default function Details(){
                 <ScrollView className="bg-white" contentContainerStyle={{ paddingBottom: 50 }}>
                     <Text className="text-3xl m-4 font-bold flex-wrap text-center">Série effectué aujourd&#39;hui</Text>
                     {series.map((serie, index) => (
-                        <Swipeable key={index} renderRightActions={() => renderRightActions(index)}>
-                            <View key={index} className="p-3" style={styles.view}>
+                        <Swipeable key={serie.id} renderRightActions={() => renderRightActions(index)}>
+                            <View
+                                key={index}
+                                className="p-1 h-13 pl-0 border-l-8 border-blue-800 m-2 ml-0 mr-0"
+                                style={[styles.view]}
+                            >
                                 <Text style={styles.text}>Série n°{index + 1} : </Text>
-                                <TextInput
+                                <RepWeightInput
                                     value={serie.reps}
-                                    style={styles.textInput}
-                                    onChangeText={(text) => handleChangeSerie(index, 'reps', text)}
-                                    keyboardType="numeric"
+                                    onChangeText={(text: string) => handleChangeSerie(index, 'reps', text)}
                                     placeholder={oldSeries[index]?.reps || '10'}
-                                    placeholderTextColor="gray"
                                 />
                                 <Text style={styles.text}> X </Text>
-                                <TextInput
+                                <RepWeightInput
                                     value={serie.weight}
-                                    style={styles.textInput}
-                                    onChangeText={(text) => handleChangeSerie(index, 'weight', text)}
-                                    keyboardType="numeric"
+                                    onChangeText={(text: string) => handleChangeSerie(index, 'weight', text)}
                                     placeholder={oldSeries[index]?.weight || '30'}
-                                    placeholderTextColor="gray"
                                 />
                                 <Text style={styles.text}> Kg </Text>
                             </View>
+
                         </Swipeable>
                     ))}
                 </ScrollView>
@@ -237,21 +242,11 @@ const styles = StyleSheet.create({
         fontSize: 23,
         fontWeight: 400,
     },
-    textInput: {
-        borderStyle: "solid",
-        borderWidth: 4,
-        borderRadius: 5,
-        width: 75,
-        borderColor: "blue",
-        padding: 2,
-        fontSize: 22,
-        textAlign: "center",
-    },
     view: {
         flexDirection: "row",
         alignItems: "center",
         backgroundColor: "white",
-        justifyContent: "flex-end",
+        justifyContent: "center",
     },
     viewDeleteButton: {
         flexDirection: "row",
@@ -262,7 +257,6 @@ const styles = StyleSheet.create({
     },
     deleteButton: {
         backgroundColor: "firebrick",
-        borderRadius: 60,
         width: 40,
         height: 40,
         justifyContent: 'center',

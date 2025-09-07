@@ -2,6 +2,7 @@
 import React, { useRef } from 'react';
 import {SafeAreaView, StyleSheet, View, Button, TouchableOpacity, Text} from 'react-native';
 import StopwatchTimer, { StopwatchTimerMethods } from 'react-native-animated-stopwatch-timer';
+import ChronoButton from "@/app/components/ChronoButton";
 
 const App = () => {
     const stopwatchRef = useRef<StopwatchTimerMethods>(null);
@@ -44,15 +45,9 @@ const App = () => {
             </View>
 
             <View style={styles.buttonsContainer}>
-                <TouchableOpacity className="bg-primary align-middle justify-center p-4 pl-6 pr-6" onPress={handlePlay}>
-                    <Text className="color-white text-xl">PLAY</Text>
-                </TouchableOpacity>
-                <TouchableOpacity className="bg-primary align-middle justify-center p-4 pl-6 pr-6" onPress={handlePause}>
-                    <Text className="color-white text-xl">PAUSE</Text>
-                </TouchableOpacity>
-                <TouchableOpacity className="bg-primary align-middle justify-center p-4 pl-6 pr-6" onPress={handleReset}>
-                    <Text className="color-white text-xl">RESET</Text>
-                </TouchableOpacity>
+                <ChronoButton title="PLAY" onPress={handlePlay} />
+                <ChronoButton title="PAUSE" onPress={handlePause} />
+                <ChronoButton title="RESET" onPress={handleReset} />
             </View>
         </SafeAreaView>
     );
