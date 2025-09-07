@@ -19,6 +19,7 @@ import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { useNavigation } from '@react-navigation/native';
 import {Image} from "expo-image";
 import RepWeightInput from "@/app/components/RepWeightInput";
+import {exerciseImages} from "@/assets/constants/images";
 
 export default function Details(){
     const{id} = useLocalSearchParams();
@@ -55,6 +56,16 @@ export default function Details(){
         }
     };
 
+
+    function getExerciseImage(name?: string) {
+        if (name && exerciseImages[name as keyof typeof exerciseImages]) {
+            return exerciseImages[name as keyof typeof exerciseImages];
+        } else {
+            return require("../../assets/data/exercises/images/skull_crusher.gif");
+        }
+    }
+
+
     const handleDeleteSerieField = async (index: number) => {
         const updatedSeries = [...series];
         const removed = updatedSeries.splice(index, 1)[0];
@@ -75,7 +86,7 @@ export default function Details(){
         if(exercice){
             navigation.setOptions({
                 headerTitle: () => (
-                    <Text className="font-bold text-xl">{exercice.name}</Text>
+                    <Text className="font-bold text-xl">Série effectué aujourd&#39;hui</Text>
                 ),
             });
         }
@@ -143,10 +154,22 @@ export default function Details(){
     }
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{flex: 1}}>
             <View style={styles.container}>
-                <ScrollView className="bg-white" contentContainerStyle={{ paddingBottom: 50 }}>
-                    <Text className="text-3xl m-4 font-bold flex-wrap text-center">Série effectué aujourd&#39;hui</Text>
+                <ScrollView className="bg-white" contentContainerStyle={{paddingBottom: 50}}>
+                    <Image
+                        source={getExerciseImage(exercice?.image)}
+                        style={{
+                            width: 150,
+                            height: 150,
+                            borderWidth: 5,
+                            borderRadius: 90,
+                            borderColor: '#1e40af',
+                            alignSelf: "center",
+                            marginTop: 20,
+                        }}
+                    />
+                    <Text className="text-3xl m-4 font-bold flex-wrap text-center">{exercice?.name}</Text>
                     {series.map((serie, index) => (
                         <Swipeable key={serie.id} renderRightActions={() => renderRightActions(index)}>
                             <View
