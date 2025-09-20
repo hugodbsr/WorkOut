@@ -15,11 +15,12 @@ import useFetch from "@/services/useFetch";
 import {fetchExercice, fetchExerciceList, fetchExerciseJson} from "@/services/api";
 import {id} from "postcss-selector-parser";
 import {addSessionToExercise, deleteSessionOfExercice, getExerciseHistory, Set, getTodayDate} from "@/services/storage";
-import Swipeable from 'react-native-gesture-handler/Swipeable';
+import { GestureHandlerRootView, Swipeable } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import {Image} from "expo-image";
 import RepWeightInput from "@/app/components/RepWeightInput";
 import {exerciseImages} from "@/assets/constants/images";
+import UnilateralButton from "@/app/components/UnilateralButton";
 
 export default function Details(){
     const{id} = useLocalSearchParams();
@@ -35,6 +36,8 @@ export default function Details(){
     const [oldSeries, setOldSeries] = useState([{reps:'', weight:''}]);
 
     const [series, setSeries] = useState([{ id: Date.now(), reps: '', weight: '' }]);
+
+    const [unilateral, setUnilateral] = useState(false);
 
     const handleAddSerieField = () => {
         setSeries([...series, { id: Date.now(), reps: '', weight: '' }]);
@@ -154,6 +157,7 @@ export default function Details(){
     }
 
     return (
+        <GestureHandlerRootView style={{ flex: 1 }}>
         <SafeAreaView style={{flex: 1}}>
             <View style={styles.container}>
                 <ScrollView className="bg-white" contentContainerStyle={{paddingBottom: 50}}>
@@ -170,10 +174,23 @@ export default function Details(){
                         }}
                     />
                     <Text className="text-3xl m-4 font-bold flex-wrap text-center">{exercice?.name}</Text>
+                    {exercice?.unilateral && (
+                        <View style={{ flexDirection: "row", justifyContent: "center", marginBottom: 10 }}>
+                            <UnilateralButton
+                                title="Unilatéral"
+                                onPress={() => setUnilateral(true)}
+                                active={unilateral === true}
+                            />
+                            <UnilateralButton
+                                title="Bilatéral"
+                                onPress={() => setUnilateral(false)}
+                                active={unilateral === false}
+                            />
+                        </View>
+                    )}
                     {series.map((serie, index) => (
                         <Swipeable key={serie.id} renderRightActions={() => renderRightActions(index)}>
                             <View
-                                key={index}
                                 className="p-1 h-13 pl-0 border-l-8 border-blue-800 m-2 ml-0 mr-0"
                                 style={[styles.view]}
                             >
@@ -219,6 +236,7 @@ export default function Details(){
                 <Text className="color-white text-6xl">+</Text>
             </TouchableOpacity>
         </SafeAreaView>
+        </GestureHandlerRootView>
     );
 }
 
@@ -280,8 +298,8 @@ const styles = StyleSheet.create({
     },
     deleteButton: {
         backgroundColor: "firebrick",
-        width: 40,
-        height: 40,
+        width: 42,
+        height: 42,
         justifyContent: 'center',
         alignItems: 'center',
     },

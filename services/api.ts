@@ -109,6 +109,7 @@ export const fetchExerciseJson = async ({ query }: { query: string }) => {
         name: translated(exercise.nameKey, translations),
         image: exercise.image,
         description: translated(exercise.descriptionKey, translations),
+        unilateral: exercise.unilateral
     };
 };
 
