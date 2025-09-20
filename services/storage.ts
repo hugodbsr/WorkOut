@@ -2,7 +2,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const USER_EXERCISE_KEY = 'user_exercises_data';
 
-export type Set = {reps: number; weight: number;};
+export type Side = "left" | "right" | "both";
+
+export type Set = {reps: number; weight: number; side: Side;};
 export type Session = {
     date: string;
     sets: Set[] };
@@ -17,7 +19,11 @@ export const getTodayDate = (): string => {
     return new Date().toISOString().split('T')[0];
 };
 
-export const addSessionToExercise = async (exerciseId: number, index: number, set: Set) => {
+export const addSessionToExercise = async (
+    exerciseId: number,
+    index: number,
+    set: Set
+) => {
     try {
         const json = await AsyncStorage.getItem(USER_EXERCISE_KEY);
         const data: ExerciseUserData = json ? JSON.parse(json) : {};
@@ -30,7 +36,9 @@ export const addSessionToExercise = async (exerciseId: number, index: number, se
             existingEntry = { sessions: [] };
         }
 
-        let todaySession = existingEntry.sessions.find(session => session.date === date);
+        let todaySession = existingEntry.sessions.find(
+            (session) => session.date === date
+        );
 
         if (!todaySession) {
             todaySession = { date, sets: [] };
@@ -47,7 +55,7 @@ export const addSessionToExercise = async (exerciseId: number, index: number, se
 
         await AsyncStorage.setItem(USER_EXERCISE_KEY, JSON.stringify(data));
     } catch (error) {
-        console.error('Erreur de sauvegarde', error);
+        console.error("Erreur de sauvegarde", error);
     }
 };
 

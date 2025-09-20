@@ -2,7 +2,7 @@ import {ActivityIndicator, FlatList, SafeAreaView, StyleSheet, Text, TouchableOp
 import React, {useLayoutEffect} from 'react';
 import {Link, useLocalSearchParams, useRouter} from "expo-router";
 import useFetch from "@/services/useFetch";
-import {fetchExercice, fetchExerciceList, fetchExerciceListJson, fetchMuscle, fetchMuscleJson} from "@/services/api";
+import {fetchExerciceListJson, fetchMuscleJson} from "@/services/api";
 import {useNavigation} from "@react-navigation/native";
 import {exerciseImages} from "@/assets/constants/images";
 import { Image } from "expo-image";

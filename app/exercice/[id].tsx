@@ -12,7 +12,7 @@ import {
 import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {router, useLocalSearchParams} from "expo-router";
 import useFetch from "@/services/useFetch";
-import {fetchExercice, fetchExerciceList, fetchExerciseJson} from "@/services/api";
+import {fetchExerciseJson} from "@/services/api";
 import {id} from "postcss-selector-parser";
 import {addSessionToExercise, deleteSessionOfExercice, getExerciseHistory, Set, getTodayDate} from "@/services/storage";
 import { GestureHandlerRootView, Swipeable } from 'react-native-gesture-handler';
@@ -33,14 +33,16 @@ export default function Details(){
         error: exerciceError,
     } = useFetch(() => fetchExerciseJson({query: `${id}`}));
 
+    const [side, setSide] = useState<"left" | "right" | "both">("both");
+
     const [oldSeries, setOldSeries] = useState([{reps:'', weight:''}]);
 
-    const [series, setSeries] = useState([{ id: Date.now(), reps: '', weight: '' }]);
+    const [series, setSeries] = useState([{ id: Date.now(), reps: '', weight: '', side: 'both' }]);
 
     const [unilateral, setUnilateral] = useState(false);
 
     const handleAddSerieField = () => {
-        setSeries([...series, { id: Date.now(), reps: '', weight: '' }]);
+        setSeries([...series, { id: Date.now(), reps: '', weight: '', side: unilateral ? "left" : "both", }]);
     };
 
     const handleChangeSerie = async (index: number, field: 'reps' | 'weight', value: string) => {
@@ -55,6 +57,7 @@ export default function Details(){
             await addSessionToExercise(Number(id), index,{
                 reps: parseInt(current.reps, 10),
                 weight: parseFloat(current.weight),
+                side: unilateral ? side : "both",
             });
         }
     };
@@ -112,6 +115,7 @@ export default function Details(){
                     id: Date.now(),
                     reps: set.reps.toString(),
                     weight: set.weight.toString(),
+                    side: set.side ?? "both",
                 }))
                 : [];
 
@@ -119,11 +123,12 @@ export default function Details(){
                 ? pastSessions[0].sets.map(set => ({
                     reps: set.reps.toString(),
                     weight: set.weight.toString(),
+                    side: set.side ?? "both",
                 }))
                 : [];
 
             while (currentSeries.length < previousSeries.length) {
-                currentSeries.push({id: 0, reps: '', weight: '' });
+                currentSeries.push({id: 0, reps: '', weight: '', side: 'left' });
             }
 
             setOldSeries(previousSeries);
@@ -160,12 +165,12 @@ export default function Details(){
         <GestureHandlerRootView style={{ flex: 1 }}>
         <SafeAreaView style={{flex: 1}}>
             <View style={styles.container}>
-                <ScrollView className="bg-white" contentContainerStyle={{paddingBottom: 50}}>
+                <ScrollView className="bg-gray-100" contentContainerStyle={{paddingBottom: 170}}>
                     <Image
                         source={getExerciseImage(exercice?.image)}
                         style={{
-                            width: 150,
-                            height: 150,
+                            width: 120,
+                            height: 120,
                             borderWidth: 5,
                             borderRadius: 90,
                             borderColor: '#1e40af',
@@ -190,11 +195,9 @@ export default function Details(){
                     )}
                     {series.map((serie, index) => (
                         <Swipeable key={serie.id} renderRightActions={() => renderRightActions(index)}>
-                            <View
-                                className="p-1 h-13 pl-0 border-l-8 border-blue-800 m-2 ml-0 mr-0"
-                                style={[styles.view]}
-                            >
-                                <Text style={styles.text}>Série n°{index + 1} : </Text>
+                            <View className="border-l-4 border-blue-800 h-13 m-2 ml-0 mr-0" style={[styles.viewSerie]}>
+                                <Text style={styles.text}>Série n°{index + 1} </Text>
+                                <View style={[styles.view]}>
                                 <RepWeightInput
                                     value={serie.reps}
                                     onChangeText={(text: string) => handleChangeSerie(index, 'reps', text)}
@@ -207,6 +210,43 @@ export default function Details(){
                                     placeholder={oldSeries[index]?.weight || '30'}
                                 />
                                 <Text style={styles.text}> Kg </Text>
+                                <View
+                                    style={{
+                                        marginLeft: 6,
+                                        width: 40,
+                                        height: 40,
+                                        borderRadius: 6,
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        backgroundColor:
+                                            serie.side === "left" ? "#205d30" :
+                                                serie.side === "right" ? "#b91e10" :
+                                                    "transparent",
+                                    }}
+                                >
+                                    {(serie.side === "left" || serie.side === "right") && (
+                                        <TouchableOpacity
+                                            onPress={() => {
+                                                if (!unilateral) return;
+                                                const newSide = serie.side === "left" ? "right" : "left";
+                                                const updated = [...series];
+                                                updated[index].side = newSide;
+                                                setSeries(updated);
+                                            }}
+                                            style={{
+                                                width: "100%",
+                                                height: "100%",
+                                                justifyContent: "center",
+                                                alignItems: "center",
+                                            }}
+                                        >
+                                            <Text className="text-4xl font-bold text-white">
+                                                {serie.side === "left" ? "G" : "D"}
+                                            </Text>
+                                        </TouchableOpacity>
+                                    )}
+                                </View>
+                                </View>
                             </View>
 
                         </Swipeable>
@@ -265,7 +305,7 @@ const styles = StyleSheet.create({
     },
     addButton: {
         position: "absolute",
-        bottom: 60,
+        bottom: 56,
         left: "50%",
         transform: [{ translateX: -50 }],
         width: 100,
@@ -280,7 +320,7 @@ const styles = StyleSheet.create({
         elevation: 5,
     },
     text: {
-        fontSize: 23,
+        fontSize: 22,
         fontWeight: 400,
     },
     view: {
@@ -288,18 +328,25 @@ const styles = StyleSheet.create({
         alignItems: "center",
         backgroundColor: "white",
         justifyContent: "center",
+        paddingHorizontal: 8,
+        paddingVertical: 6,
+        borderRadius: 8,
+    },
+    viewSerie: {
+        flexDirection: "row",
+        alignItems: "center",
+        backgroundColor: "#f3f4f6",
+        justifyContent: "center",
     },
     viewDeleteButton: {
         flexDirection: "row",
         alignItems: "center",
-        backgroundColor: "white",
         justifyContent: "center",
-        marginRight: 12,
     },
     deleteButton: {
         backgroundColor: "firebrick",
-        width: 42,
-        height: 42,
+        width: 90,
+        height: 45,
         justifyContent: 'center',
         alignItems: 'center',
     },
