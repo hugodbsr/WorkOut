@@ -1,6 +1,6 @@
 import {ActivityIndicator, FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useLayoutEffect} from 'react';
-import {Link, useLocalSearchParams, useRouter} from "expo-router";
+import React, {useCallback, useLayoutEffect} from 'react';
+import {Link, useFocusEffect, useLocalSearchParams, useRouter} from "expo-router";
 import useFetch from "@/services/useFetch";
 import {fetchExerciceListJson, fetchMuscleJson} from "@/services/api";
 import {useNavigation} from "@react-navigation/native";
@@ -59,14 +59,14 @@ export default function Details(){
     }
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1 }} className="bg-gray-100">
             <View style={styles.container}>
                 <FlatList
                     className="mb-12"
                     data={exercice}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => (
-                        <View className="justify-around mb-2">
+                        <View className="bg-gray-50 rounded-2xl justify-around mb-2">
                             <Link href={`/exercice/${item.id}`}>
                                 <View className="items-center flex flex-row gap-3">
                                     <Image
@@ -74,9 +74,8 @@ export default function Details(){
                                         style={{
                                             width: 80,
                                             height: 80,
-                                            borderWidth: 4,
-                                            borderRadius: 20,
-                                            borderColor: '#1e40af',
+                                            borderRadius: 45,
+                                            margin: 5,
                                         }}
                                     />
                                     <View style={{ flex: 1 }}>

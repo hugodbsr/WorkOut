@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const USER_EXERCISE_KEY = 'user_exercises_data';
+const USER_CREATED_EXERCISES_KEY = "user_created_exercises";
 
 export type Side = "left" | "right" | "both";
 
@@ -18,6 +19,19 @@ type ExerciseUserData = {
 export const getTodayDate = (): string => {
     return new Date().toISOString().split('T')[0];
 };
+
+export const addUserExercice = async (exercise : any) =>{
+    try{
+        const json = await AsyncStorage.getItem(USER_CREATED_EXERCISES_KEY);
+        const userExercises = json ? JSON.parse(json) : [];
+        userExercises.push(exercise);
+
+        await AsyncStorage.setItem(USER_CREATED_EXERCISES_KEY, JSON.stringify(userExercises));
+
+    }catch(e){
+        console.error("Erreur lors de l'ajout de l'exercice",e);
+    }
+}
 
 export const addSessionToExercise = async (
     exerciseId: number,

@@ -210,9 +210,11 @@ export default function Details(){
                                     placeholder={oldSeries[index]?.weight || '30'}
                                 />
                                 <Text style={styles.text}> Kg </Text>
+
+                                </View>
                                 <View
                                     style={{
-                                        marginLeft: 6,
+                                        marginLeft: 10,
                                         width: 40,
                                         height: 40,
                                         borderRadius: 6,
@@ -245,7 +247,6 @@ export default function Details(){
                                             </Text>
                                         </TouchableOpacity>
                                     )}
-                                </View>
                                 </View>
                             </View>
 
@@ -320,7 +321,7 @@ const styles = StyleSheet.create({
         elevation: 5,
     },
     text: {
-        fontSize: 22,
+        fontSize: 24,
         fontWeight: 400,
     },
     view: {
@@ -328,8 +329,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
         backgroundColor: "white",
         justifyContent: "center",
-        paddingHorizontal: 8,
-        paddingVertical: 6,
+        paddingHorizontal: 12,
+        paddingVertical: 10,
         borderRadius: 8,
     },
     viewSerie: {
@@ -346,7 +347,7 @@ const styles = StyleSheet.create({
     deleteButton: {
         backgroundColor: "firebrick",
         width: 90,
-        height: 45,
+        height: 40,
         justifyContent: 'center',
         alignItems: 'center',
     },
