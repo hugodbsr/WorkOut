@@ -21,6 +21,7 @@ import {Image} from "expo-image";
 import RepWeightInput from "@/app/components/RepWeightInput";
 import {exerciseImages} from "@/assets/constants/images";
 import UnilateralButton from "@/app/components/UnilateralButton";
+import { nanoid } from 'nanoid/non-secure';
 
 export default function Details(){
     const{id} = useLocalSearchParams();
@@ -37,12 +38,12 @@ export default function Details(){
 
     const [oldSeries, setOldSeries] = useState([{reps:'', weight:''}]);
 
-    const [series, setSeries] = useState([{ id: Date.now(), reps: '', weight: '', side: 'both' }]);
+    const [series, setSeries] = useState([{ id: nanoid(), reps: '', weight: '', side: 'both' }]);
 
     const [unilateral, setUnilateral] = useState(false);
 
     const handleAddSerieField = () => {
-        setSeries([...series, { id: Date.now(), reps: '', weight: '', side: unilateral ? "left" : "both", }]);
+        setSeries([...series, { id: nanoid(), reps: '', weight: '', side: unilateral ? "left" : "both", }]);
     };
 
     const handleChangeSerie = async (index: number, field: 'reps' | 'weight', value: string) => {
@@ -67,7 +68,7 @@ export default function Details(){
         if (name && exerciseImages[name as keyof typeof exerciseImages]) {
             return exerciseImages[name as keyof typeof exerciseImages];
         } else {
-            return require("../../assets/data/exercises/images/skull_crusher.gif");
+            return undefined;
         }
     }
 
@@ -112,7 +113,7 @@ export default function Details(){
 
             let currentSeries = todaySession
                 ? todaySession.sets.map(set => ({
-                    id: Date.now(),
+                    id: nanoid(),
                     reps: set.reps.toString(),
                     weight: set.weight.toString(),
                     side: set.side ?? "both",
@@ -128,7 +129,7 @@ export default function Details(){
                 : [];
 
             while (currentSeries.length < previousSeries.length) {
-                currentSeries.push({id: 0, reps: '', weight: '', side: 'left' });
+                currentSeries.push({id: '', reps: '', weight: '', side: 'left' });
             }
 
             setOldSeries(previousSeries);
@@ -166,19 +167,22 @@ export default function Details(){
         <SafeAreaView style={{flex: 1}}>
             <View style={styles.container}>
                 <ScrollView className="bg-gray-100" contentContainerStyle={{paddingBottom: 170}}>
+                    <View className="flex-row justify-center">
+                    </View>
                     <Image
                         source={getExerciseImage(exercice?.image)}
                         style={{
-                            width: 120,
-                            height: 120,
+                            width: 140,
+                            height: 140,
                             borderWidth: 5,
-                            borderRadius: 90,
+                            borderRadius: 30,
                             borderColor: '#1e40af',
                             alignSelf: "center",
                             marginTop: 20,
                         }}
                     />
                     <Text className="text-3xl m-4 font-bold flex-wrap text-center">{exercice?.name}</Text>
+                    {/*<Text className="text-xl mb-5 mr-12 ml-12 font-normal flex-wrap text-center">{exercice?.description}</Text>*/}
                     {exercice?.unilateral && (
                         <View style={{ flexDirection: "row", justifyContent: "center", marginBottom: 10 }}>
                             <UnilateralButton
@@ -347,7 +351,7 @@ const styles = StyleSheet.create({
     deleteButton: {
         backgroundColor: "firebrick",
         width: 90,
-        height: 40,
+        height: 45,
         justifyContent: 'center',
         alignItems: 'center',
     },

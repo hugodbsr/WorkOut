@@ -7,6 +7,7 @@ import {fetchExerciseTypeJson, fetchMuscleJsonList} from "@/services/api";
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Checkbox } from 'expo-checkbox';
 import {addUserExercice} from "@/services/storage";
+import { nanoid } from 'nanoid/non-secure';
 
 export default function Details() {
     const navigation = useNavigation();
@@ -30,7 +31,7 @@ export default function Details() {
             return
         }
         const exerciceToAdd = {
-            id: Date.now(),
+            id: nanoid(),
             nameKey: exerciceName,
             descriptionKey: exerciceDesc,
             image: "cable_triceps_extension.gif",
@@ -127,7 +128,7 @@ export default function Details() {
 
                 <TouchableOpacity onPress={handleConfirmExercice}
                     className="items-center bg-primary rounded-xl p-3 w-11/12 ml-auto mr-auto mt-auto mb-20">
-                    <Text className="color-white text-2xl">Confirm</Text>
+                    <Text className="color-white text-2xl">Add exercice</Text>
                 </TouchableOpacity>
             </View>
         </View>

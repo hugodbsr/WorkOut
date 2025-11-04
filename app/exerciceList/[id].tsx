@@ -50,11 +50,11 @@ export default function Details(){
             if (exerciseImages[name]) {
                 return exerciseImages[name];
             } else {
-                return require("../../assets/data/exercises/images/skull_crusher.gif");
+                return undefined;
             }
         } catch (error) {
             console.error("Erreur lors du chargement de l'image:", error);
-            return require("../../assets/data/exercises/images/skull_crusher.gif");
+            return undefined;
         }
     }
 

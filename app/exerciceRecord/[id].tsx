@@ -110,23 +110,26 @@ export default function RecordScreen(){
                     ) : (
                         series.map((serie, index) => (
                             <Swipeable key={index} renderRightActions={() => renderRightActions(index)}>
-                                <View key={index} className="p-3" style={styles.view}>
+                                <View className="items-center py-2 my-1">
                                     <Text style={styles.dateText}>{serie.date}</Text>
-                                    <Text style={styles.text}> | Série n°{index + 1} : </Text>
-                                    <TextInput
-                                        value={serie.reps}
-                                        style={styles.textInput}
-                                        onChangeText={(text) => handleChangeSerie(index, 'reps', text)}
-                                        keyboardType="numeric"
-                                    />
-                                    <Text style={styles.text}> X </Text>
-                                    <TextInput
-                                        value={serie.weight}
-                                        style={styles.textInput}
-                                        onChangeText={(text) => handleChangeSerie(index, 'weight', text)}
-                                        keyboardType="numeric"
-                                    />
-                                    <Text style={styles.text}> Kg </Text>
+                                    <View className="h-1 w-3/4 bg-primary my-2" />
+                                    <View key={index} className="p-3" style={styles.view}>
+                                        <Text style={styles.text}>Série n°{index + 1} : </Text>
+                                        <TextInput
+                                            value={serie.reps}
+                                            style={styles.textInput}
+                                            onChangeText={(text) => handleChangeSerie(index, 'reps', text)}
+                                            keyboardType="numeric"
+                                        />
+                                        <Text style={styles.text}> X </Text>
+                                        <TextInput
+                                            value={serie.weight}
+                                            style={styles.textInput}
+                                            onChangeText={(text) => handleChangeSerie(index, 'weight', text)}
+                                            keyboardType="numeric"
+                                        />
+                                        <Text style={styles.text}> Kg </Text>
+                                    </View>
                                 </View>
                             </Swipeable>
                         ))
@@ -151,8 +154,8 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
     dateText: {
-        fontSize: 16,
-        color: "gray",
+        fontSize: 22,
+        color: "black",
         marginRight: 10,
     },
     textInput: {
