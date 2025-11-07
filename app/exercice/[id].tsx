@@ -8,17 +8,26 @@ import {
     SafeAreaView
 } from 'react-native';
 import React, {useEffect, useLayoutEffect, useState} from 'react';
-import {router, useLocalSearchParams} from "expo-router";
+import { useLocalSearchParams} from "expo-router";
 import useFetch from "@/services/useFetch";
 import {fetchExerciseJson} from "@/services/api";
-import {addSessionToExercise, deleteSessionOfExercice, getExerciseHistory, Set, getTodayDate} from "@/services/storage";
+import {addSessionToExercise, deleteSessionOfExercice, getExerciseHistory, Set, getTodayDate, Side} from "@/services/storage";
 import { GestureHandlerRootView, Swipeable } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import {Image} from "expo-image";
-import RepWeightInput from "@/app/components/RepWeightInput";
 import {exerciseImages} from "@/assets/constants/images";
-import UnilateralButton from "@/app/components/UnilateralButton";
-import { nanoid } from 'nanoid/non-secure';
+
+import { ExerciseHeader } from '@/app/components/exercise/ExerciseHeader';
+import { SeriesItem } from '@/app/components/exercise/SeriesItem';
+import { ExerciseFooter } from '@/app/components/exercise/ExerciseFooter';
+import {nanoid} from "nanoid/non-secure";
+
+type LocalSet = {
+    id: string;
+    reps: string;
+    weight: string;
+    side: Side;
+};
 
 export default function Details(){
     const{id} = useLocalSearchParams();
@@ -31,37 +40,45 @@ export default function Details(){
         error: exerciceError,
     } = useFetch(() => fetchExerciseJson({query: `${id}`}));
 
-    const [side, setSide] = useState<"left" | "right" | "both">("both");
-
-    const [oldSeries, setOldSeries] = useState([{reps:'', weight:''}]);
-
-    const [series, setSeries] = useState([{ id: nanoid(), reps: '', weight: '', side: 'both' }]);
-
+    const [oldSeries, setOldSeries] = useState<{reps: string, weight: string, side?: Side}[]>([]);
+    const [series, setSeries] = useState<LocalSet[]>([{ id: nanoid(), reps: '', weight: '', side: 'both' }]);
     const [unilateral, setUnilateral] = useState(false);
 
     const handleAddSerieField = () => {
         setSeries([...series, { id: nanoid(), reps: '', weight: '', side: unilateral ? "left" : "both", }]);
     };
 
+    const saveSetToStorage = async (set: LocalSet) => {
+        const isComplete = set.reps !== '' && set.weight !== '';
+        if (isComplete) {
+            await addSessionToExercise(
+                query as string,
+                {
+                    id: set.id,
+                    reps: parseInt(set.reps, 10),
+                    weight: parseFloat(set.weight),
+                    side: set.side,
+                });
+        }
+    }
+
     const handleChangeSerie = async (index: number, field: 'reps' | 'weight', value: string) => {
         const updated = [...series];
         updated[index][field] = value;
         setSeries(updated);
-
-        const current = updated[index];
-        const isComplete = current.reps !== '' && current.weight !== '';
-
-        if (isComplete) {
-            await addSessionToExercise(
-                query as string,
-                index, {
-                    reps: parseInt(current.reps, 10),
-                    weight: parseFloat(current.weight),
-                    side: unilateral ? side : "both",
-                });
-        }
+        await saveSetToStorage(updated[index]);
     };
 
+    const handleChangeSide = async (index: number) => {
+        if (!unilateral) return;
+
+        const updated = [...series];
+        const currentSide = updated[index].side;
+        updated[index].side = currentSide === "left" ? "right" : "left";
+        setSeries(updated);
+
+        await saveSetToStorage(updated[index]);
+    };
 
     function getExerciseImage(name?: string) {
         if (name && exerciseImages[name as keyof typeof exerciseImages]) {
@@ -70,7 +87,6 @@ export default function Details(){
             return undefined;
         }
     }
-
 
     const handleDeleteSerieField = async (index: number) => {
         const updatedSeries = [...series];
@@ -81,7 +97,7 @@ export default function Details(){
 
         if (wasComplete) {
             try {
-                await deleteSessionOfExercice(query as string, index);
+                await deleteSessionOfExercice(query as string, removed.id);
             } catch (e) {
                 console.warn("Erreur lors de la suppression du stockage", e);
             }
@@ -100,7 +116,6 @@ export default function Details(){
 
     useEffect(() => {
         const today = getTodayDate();
-
         const getHistory = async () => {
             const history = await getExerciseHistory(query as string);
             if (!history || !history.sessions) return;
@@ -110,16 +125,16 @@ export default function Details(){
                 .filter(s => s.date !== today)
                 .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-            let currentSeries = todaySession
+            let currentSeries: LocalSet[] = todaySession
                 ? todaySession.sets.map(set => ({
-                    id: nanoid(),
+                    id: set.id || nanoid(),
                     reps: set.reps.toString(),
                     weight: set.weight.toString(),
                     side: set.side ?? "both",
                 }))
                 : [];
 
-            let previousSeries = pastSessions.length > 0
+            let previousSeries: {reps: string, weight: string, side?: Side}[] = pastSessions.length > 0
                 ? pastSessions[0].sets.map(set => ({
                     reps: set.reps.toString(),
                     weight: set.weight.toString(),
@@ -128,17 +143,15 @@ export default function Details(){
                 : [];
 
             while (currentSeries.length < previousSeries.length) {
-                currentSeries.push({id: '', reps: '', weight: '', side: 'left' });
+                currentSeries.push({id: nanoid(), reps: '', weight: '', side: 'left' });
             }
 
             setOldSeries(previousSeries);
-            setSeries(currentSeries);
+            setSeries(currentSeries.length > 0 ? currentSeries : [{ id: nanoid(), reps: '', weight: '', side: 'both' }]);
         };
 
         getHistory();
     }, [id]);
-
-
 
     if (exerciceLoading) {
         return <ActivityIndicator size="large" color="blue" />;
@@ -163,122 +176,41 @@ export default function Details(){
 
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
-        <SafeAreaView style={{flex: 1}}>
-            <View style={styles.container}>
-                <ScrollView className="bg-gray-100" contentContainerStyle={{paddingBottom: 170}}>
-                    <View className="flex-row justify-center">
-                    </View>
-                    <Image
-                        source={getExerciseImage(exercice?.image)}
-                        style={{
-                            width: 140,
-                            height: 140,
-                            borderWidth: 5,
-                            borderRadius: 30,
-                            borderColor: '#1e40af',
-                            alignSelf: "center",
-                            marginTop: 20,
-                        }}
-                    />
-                    <Text className="text-3xl m-4 font-bold flex-wrap text-center">{exercice?.name}</Text>
-                    {exercice?.unilateral && (
-                        <View style={{ flexDirection: "row", justifyContent: "center", marginBottom: 10 }}>
-                            <UnilateralButton
-                                title="Unilatéral"
-                                onPress={() => setUnilateral(true)}
-                                active={unilateral}
-                            />
-                            <UnilateralButton
-                                title="Bilatéral"
-                                onPress={() => setUnilateral(false)}
-                                active={!unilateral}
-                            />
-                        </View>
-                    )}
-                    {series.map((serie, index) => (
-                        <Swipeable key={serie.id} renderRightActions={() => renderRightActions(index)}>
-                            <View className="border-l-4 border-blue-800 h-13 m-2 ml-0 mr-0" style={[styles.viewSerie]}>
-                                <Text style={styles.text}>Série n°{index + 1} </Text>
-                                <View style={[styles.view]}>
-                                <RepWeightInput
-                                    value={serie.reps}
-                                    onChangeText={(text: string) => handleChangeSerie(index, 'reps', text)}
-                                    placeholder={oldSeries[index]?.reps || '10'}
+            <SafeAreaView style={{flex: 1}}>
+                <View style={styles.container}>
+                    <ScrollView className="bg-gray-100" contentContainerStyle={{paddingBottom: 170}}>
+
+                        <ExerciseHeader
+                            name={exercice?.name}
+                            imageSource={getExerciseImage(exercice?.image)}
+                            isUnilateral={exercice?.unilateral}
+                            unilateral={unilateral}
+                            setUnilateral={setUnilateral}
+                        />
+
+                        {series.map((serie, index) => (
+                            <Swipeable key={serie.id} renderRightActions={() => renderRightActions(index)}>
+                                <SeriesItem
+                                    serie={serie}
+                                    index={index}
+                                    placeholderReps={oldSeries[index]?.reps}
+                                    placeholderWeight={oldSeries[index]?.weight}
+                                    onRepChange={(text) => handleChangeSerie(index, 'reps', text)}
+                                    onWeightChange={(text) => handleChangeSerie(index, 'weight', text)}
+                                    onSideChange={() => handleChangeSide(index)}
+                                    isUnilateral={unilateral}
                                 />
-                                <Text style={styles.text}> X </Text>
-                                <RepWeightInput
-                                    value={serie.weight}
-                                    onChangeText={(text: string) => handleChangeSerie(index, 'weight', text)}
-                                    placeholder={oldSeries[index]?.weight || '30'}
-                                />
-                                <Text style={styles.text}> Kg </Text>
+                            </Swipeable>
+                        ))}
+                    </ScrollView>
+                </View>
 
-                                </View>
-                                <View
-                                    style={{
-                                        marginLeft: 10,
-                                        width: 40,
-                                        height: 40,
-                                        borderRadius: 6,
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                        backgroundColor:
-                                            serie.side === "left" ? "#205d30" :
-                                                serie.side === "right" ? "#b91e10" :
-                                                    "transparent",
-                                    }}
-                                >
-                                    {(serie.side === "left" || serie.side === "right") && (
-                                        <TouchableOpacity
-                                            onPress={() => {
-                                                if (!unilateral) return;
-                                                const newSide = serie.side === "left" ? "right" : "left";
-                                                const updated = [...series];
-                                                updated[index].side = newSide;
-                                                setSeries(updated);
-                                            }}
-                                            style={{
-                                                width: "100%",
-                                                height: "100%",
-                                                justifyContent: "center",
-                                                alignItems: "center",
-                                            }}
-                                        >
-                                            <Text className="text-4xl font-bold text-white">
-                                                {serie.side === "left" ? "G" : "D"}
-                                            </Text>
-                                        </TouchableOpacity>
-                                    )}
-                                </View>
-                            </View>
+                <ExerciseFooter
+                    exerciseQuery={query}
+                    onAddPress={handleAddSerieField}
+                />
 
-                        </Swipeable>
-                    ))}
-                </ScrollView>
-            </View>
-            <View style={styles.footer}>
-                <TouchableOpacity
-                    style={styles.footerButton}
-                    className="bg-primary"
-                    onPress={() => router.push(`../chrono`)}>
-                    <Text className="color-white text-2xl">Chrono</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    style={styles.footerButton}
-                    className="bg-primary"
-                    onPress={() => router.push(`/exerciceRecord/${query}`)}>
-                    <Text className="color-white text-2xl">Records</Text>
-                </TouchableOpacity>
-            </View>
-
-            <TouchableOpacity
-                style={styles.addButton}
-                className="bg-primary"
-                onPress={handleAddSerieField}>
-                <Text className="color-white text-6xl">+</Text>
-            </TouchableOpacity>
-        </SafeAreaView>
+            </SafeAreaView>
         </GestureHandlerRootView>
     );
 }
@@ -286,60 +218,6 @@ export default function Details(){
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-    footer: {
-        position: "absolute",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        flexDirection: "row",
-        justifyContent: "space-around",
-        paddingVertical: 0,
-        paddingBottom: 45,
-        backgroundColor: "white",
-        borderTopWidth: 1,
-        borderColor: "#ddd",
-    },
-    footerButton: {
-        flex: 1,
-        paddingVertical: 15,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    addButton: {
-        position: "absolute",
-        bottom: 56,
-        left: "50%",
-        transform: [{ translateX: -50 }],
-        width: 100,
-        height: 100,
-        borderRadius: 50,
-        justifyContent: "center",
-        alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 4,
-        elevation: 5,
-    },
-    text: {
-        fontSize: 24,
-        fontWeight: 400,
-    },
-    view: {
-        flexDirection: "row",
-        alignItems: "center",
-        backgroundColor: "white",
-        justifyContent: "center",
-        paddingHorizontal: 12,
-        paddingVertical: 10,
-        borderRadius: 8,
-    },
-    viewSerie: {
-        flexDirection: "row",
-        alignItems: "center",
-        backgroundColor: "#f3f4f6",
-        justifyContent: "center",
     },
     viewDeleteButton: {
         flexDirection: "row",

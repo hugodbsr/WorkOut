@@ -13,12 +13,13 @@ import {fetchExerciseJson} from "@/services/api";
 import { getExerciseHistory, Set, Session } from "@/services/storage";
 import { useNavigation } from '@react-navigation/native';
 
-import HistorySetItem from '@/app/components/HistorySetItem';
-import HistorySectionHeader from '@/app/components/HistorySectionHeader';
+import HistorySetItem from '@/app/components/history/HistorySetItem';
+import HistorySectionHeader from '@/app/components/history/HistorySectionHeader';
+import {nanoid} from "nanoid/non-secure";
 
 type HistorySection = {
-    title: string; // La date
-    data: Set[];   // Les séries (sets)
+    title: string;
+    data: Set[];
 }
 
 export default function RecordScreen(){
@@ -58,7 +59,10 @@ export default function RecordScreen(){
 
             const formattedSections: HistorySection[] = sortedSessions.map(session => ({
                 title: new Date(session.date).toLocaleDateString(),
-                data: session.sets,
+                data: session.sets.map(set => ({
+                    ...set,
+                    id: set.id || nanoid()
+                })),
             }));
 
             setSections(formattedSections);
@@ -87,7 +91,7 @@ export default function RecordScreen(){
                 ) : (
                     <SectionList
                         sections={sections}
-                        keyExtractor={(item, index) => item.reps + "-" + item.weight + "-" + index + (item.side || '')}
+                        keyExtractor={(item, index) => item.id || `${item.reps}-${item.weight}-${index}-${item.side || ''}`}
 
                         renderItem={({ item, index }) => (
                             <HistorySetItem item={item} index={index} />

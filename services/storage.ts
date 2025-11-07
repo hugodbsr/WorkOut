@@ -5,7 +5,7 @@ const USER_CREATED_EXERCISES_KEY = "user_created_exercises";
 
 export type Side = "left" | "right" | "both";
 
-export type Set = {reps: number; weight: number; side: Side;};
+export type Set = {id: string; reps: number; weight: number; side: Side;};
 export type Session = {
     date: string;
     sets: Set[] };
@@ -35,7 +35,6 @@ export const addUserExercice = async (exercise : any) =>{
 
 export const addSessionToExercise = async (
     exerciseId: string,
-    index: number,
     set: Set
 ) => {
     try {
@@ -59,8 +58,10 @@ export const addSessionToExercise = async (
             existingEntry.sessions.push(todaySession);
         }
 
-        if (todaySession.sets[index]) {
-            todaySession.sets[index] = set;
+        const setIndex = todaySession.sets.findIndex(s => s.id === set.id);
+
+        if (setIndex > -1) {
+            todaySession.sets[setIndex] = set;
         } else {
             todaySession.sets.push(set);
         }
@@ -73,7 +74,7 @@ export const addSessionToExercise = async (
     }
 };
 
-export const deleteSessionOfExercice = async (exerciseId: string, index: number) => {
+export const deleteSessionOfExercice = async (exerciseId: string, setId: string) => {
     try{
         const json = await AsyncStorage.getItem(USER_EXERCISE_KEY);
         const data: ExerciseUserData = json ? JSON.parse(json) : {};
@@ -85,7 +86,7 @@ export const deleteSessionOfExercice = async (exerciseId: string, index: number)
         const todaySession = existingEntry.sessions.find(session => session.date === date);
         if (!todaySession) return;
 
-        todaySession.sets.splice(index, 1);
+        todaySession.sets = todaySession.sets.filter(s => s.id !== setId);
 
         if (todaySession.sets.length === 0) {
             existingEntry.sessions = existingEntry.sessions.filter(session => session.date !== date);

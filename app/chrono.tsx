@@ -2,7 +2,7 @@
 import React, { useRef } from 'react';
 import {SafeAreaView, StyleSheet, View, Button, TouchableOpacity, Text} from 'react-native';
 import StopwatchTimer, { StopwatchTimerMethods } from 'react-native-animated-stopwatch-timer';
-import ChronoButton from "@/app/components/ChronoButton";
+import ChronoButton from "@/app/components/common/ChronoButton";
 
 const App = () => {
     const stopwatchRef = useRef<StopwatchTimerMethods>(null);
