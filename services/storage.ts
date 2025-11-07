@@ -34,7 +34,7 @@ export const addUserExercice = async (exercise : any) =>{
 }
 
 export const addSessionToExercise = async (
-    exerciseId: number,
+    exerciseId: string,
     index: number,
     set: Set
 ) => {
@@ -73,7 +73,7 @@ export const addSessionToExercise = async (
     }
 };
 
-export const deleteSessionOfExercice = async (exerciseId: number, index: number) => {
+export const deleteSessionOfExercice = async (exerciseId: string, index: number) => {
     try{
         const json = await AsyncStorage.getItem(USER_EXERCISE_KEY);
         const data: ExerciseUserData = json ? JSON.parse(json) : {};
@@ -100,7 +100,7 @@ export const deleteSessionOfExercice = async (exerciseId: number, index: number)
 }
 
 
-export const getExerciseHistory = async (exerciseId: number): Promise<ExerciseEntry | null> => {
+export const getExerciseHistory = async (exerciseId: string): Promise<ExerciseEntry | null> => {
     try {
         const json = await AsyncStorage.getItem(USER_EXERCISE_KEY);
         const data: ExerciseUserData = json ? JSON.parse(json) : {};

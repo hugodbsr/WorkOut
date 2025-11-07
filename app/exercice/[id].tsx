@@ -3,8 +3,6 @@ import {
     StyleSheet,
     Text,
     View,
-    TextInput,
-    Button,
     ScrollView,
     TouchableOpacity,
     SafeAreaView
@@ -13,7 +11,6 @@ import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {router, useLocalSearchParams} from "expo-router";
 import useFetch from "@/services/useFetch";
 import {fetchExerciseJson} from "@/services/api";
-import {id} from "postcss-selector-parser";
 import {addSessionToExercise, deleteSessionOfExercice, getExerciseHistory, Set, getTodayDate} from "@/services/storage";
 import { GestureHandlerRootView, Swipeable } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
@@ -55,11 +52,13 @@ export default function Details(){
         const isComplete = current.reps !== '' && current.weight !== '';
 
         if (isComplete) {
-            await addSessionToExercise(Number(id), index,{
-                reps: parseInt(current.reps, 10),
-                weight: parseFloat(current.weight),
-                side: unilateral ? side : "both",
-            });
+            await addSessionToExercise(
+                query as string,
+                index, {
+                    reps: parseInt(current.reps, 10),
+                    weight: parseFloat(current.weight),
+                    side: unilateral ? side : "both",
+                });
         }
     };
 
@@ -82,7 +81,7 @@ export default function Details(){
 
         if (wasComplete) {
             try {
-                await deleteSessionOfExercice(Number(id), index);
+                await deleteSessionOfExercice(query as string, index);
             } catch (e) {
                 console.warn("Erreur lors de la suppression du stockage", e);
             }
@@ -103,7 +102,7 @@ export default function Details(){
         const today = getTodayDate();
 
         const getHistory = async () => {
-            const history = await getExerciseHistory(Number(id));
+            const history = await getExerciseHistory(query as string);
             if (!history || !history.sessions) return;
 
             const todaySession = history.sessions.find(s => s.date === today);
@@ -182,18 +181,17 @@ export default function Details(){
                         }}
                     />
                     <Text className="text-3xl m-4 font-bold flex-wrap text-center">{exercice?.name}</Text>
-                    {/*<Text className="text-xl mb-5 mr-12 ml-12 font-normal flex-wrap text-center">{exercice?.description}</Text>*/}
                     {exercice?.unilateral && (
                         <View style={{ flexDirection: "row", justifyContent: "center", marginBottom: 10 }}>
                             <UnilateralButton
                                 title="Unilatéral"
                                 onPress={() => setUnilateral(true)}
-                                active={unilateral === true}
+                                active={unilateral}
                             />
                             <UnilateralButton
                                 title="Bilatéral"
                                 onPress={() => setUnilateral(false)}
-                                active={unilateral === false}
+                                active={!unilateral}
                             />
                         </View>
                     )}
