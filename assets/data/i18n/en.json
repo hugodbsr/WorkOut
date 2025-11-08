@@ -140,6 +140,14 @@
       "name": "Triceps Kickback",
       "description": "Bend forward with dumbbells and extend your arms backward to target the triceps."
     },
+    "overhead_triceps_extension": {
+      "name": "Overhead Triceps Extension",
+      "description": ""
+    },
+    "lying_triceps_extension": {
+      "name": "Lying Triceps Extension",
+      "description": ""
+    },
     "arnold_press": {
       "name": "Arnold Press",
       "description": "Hold dumbbells in front of your shoulders and rotate outward while pressing overhead."

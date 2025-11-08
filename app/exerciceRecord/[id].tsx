@@ -36,14 +36,12 @@ export default function RecordScreen(){
     const [sections, setSections] = useState<HistorySection[]>([]);
 
     useLayoutEffect(() => {
-        if(exercice){
-            navigation.setOptions({
-                headerTitle: () => (
-                    <Text className="font-bold text-xl">{exercice.name} - Records</Text>
-                ),
-            });
-        }
-    }, [navigation, exercice]);
+        navigation.setOptions({
+            headerTitle: () => (
+                <Text className="font-bold text-xl">Historique de l&#39;exercice</Text>
+            ),
+        });
+    }, [navigation]);
 
     useEffect(() => {
         const getHistory = async () => {
@@ -82,9 +80,11 @@ export default function RecordScreen(){
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.container}>
-                <Text className="text-3xl m-4 font-bold flex-wrap text-center">
-                    Historique de l&#39;exercice
-                </Text>
+                {exercice && (
+                    <Text className="text-3xl m-4 font-bold flex-wrap text-center">
+                        {exercice.name}
+                    </Text>
+                )}
 
                 {sections.length === 0 ? (
                     <Text style={styles.noDataText}>Aucune donnée pour cet exercice</Text>

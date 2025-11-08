@@ -1,11 +1,9 @@
 import {
     ActivityIndicator,
-    StyleSheet,
     Text,
     View,
     ScrollView,
     TouchableOpacity,
-    SafeAreaView
 } from 'react-native';
 import React, {useEffect, useLayoutEffect, useState} from 'react';
 import { useLocalSearchParams} from "expo-router";
@@ -15,12 +13,14 @@ import {addSessionToExercise, deleteSessionOfExercice, getExerciseHistory, Set, 
 import { GestureHandlerRootView, Swipeable } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import {Image} from "expo-image";
-import {exerciseImages} from "@/assets/constants/images";
+import {exerciseImages, muscleGroupImages} from "@/assets/constants/images";
 
 import { ExerciseHeader } from '@/app/components/exercise/ExerciseHeader';
 import { SeriesItem } from '@/app/components/exercise/SeriesItem';
 import { ExerciseFooter } from '@/app/components/exercise/ExerciseFooter';
 import {nanoid} from "nanoid/non-secure";
+
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type LocalSet = {
     id: string;
@@ -33,6 +33,8 @@ export default function Details(){
     const{id} = useLocalSearchParams();
     const navigation = useNavigation();
     const query = Array.isArray(id) ? id[0] : id;
+
+    const insets = useSafeAreaInsets();
 
     const {
         data: exercice,
@@ -163,21 +165,24 @@ export default function Details(){
 
     const renderRightActions = (index : number) => {
         return(
-            <View style={styles.viewDeleteButton}>
-                <TouchableOpacity style={styles.deleteButton} onPress={() => handleDeleteSerieField(index)}>
-                    <Image source={require("../../assets/images/trash-2-128.png")} style={{
-                        width: 25,
-                        height: 25,
-                    }}/>
+            <View className="flex-row items-center justify-center">
+                <TouchableOpacity
+                    className="bg-[firebrick] w-[90px] h-[45px] justify-center items-center"
+                    onPress={() => handleDeleteSerieField(index)}
+                >
+                    <Image
+                        source={require("../../assets/images/trash-2-128.png")}
+                        className="w-[25px] h-[25px]"
+                    />
                 </TouchableOpacity>
             </View>
         )
     }
 
     return (
-        <GestureHandlerRootView style={{ flex: 1 }}>
-            <SafeAreaView style={{flex: 1}}>
-                <View style={styles.container}>
+        <GestureHandlerRootView className="flex-1">
+            <View className="flex-1">
+                <View className="flex-1">
                     <ScrollView className="bg-gray-100" contentContainerStyle={{paddingBottom: 170}}>
 
                         <ExerciseHeader
@@ -205,30 +210,14 @@ export default function Details(){
                     </ScrollView>
                 </View>
 
-                <ExerciseFooter
-                    exerciseQuery={query}
-                    onAddPress={handleAddSerieField}
-                />
+                <View style={{ paddingBottom: insets.bottom }}>
+                    <ExerciseFooter
+                        exerciseQuery={query}
+                        onAddPress={handleAddSerieField}
+                    />
+                </View>
 
-            </SafeAreaView>
+            </View>
         </GestureHandlerRootView>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    viewDeleteButton: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    deleteButton: {
-        backgroundColor: "firebrick",
-        width: 90,
-        height: 45,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-});

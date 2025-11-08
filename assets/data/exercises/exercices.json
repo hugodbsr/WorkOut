@@ -414,17 +414,6 @@
       "createdByUser": false,
       "unilateral": false
     },
-
-    {
-      "id": 40,
-      "nameKey": "exercise.wide_grip_pull_up.name",
-      "descriptionKey": "exercise.wide_grip_pull_up.description",
-      "image": "wide_grip_pull_up.gif",
-      "exerciseTypeKey": "2",
-      "muscleGroupId": 2,
-      "createdByUser": false,
-      "unilateral": false
-    },
     {
       "id": 41,
       "nameKey": "exercise.close_grip_pull_up.name",

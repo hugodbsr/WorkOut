@@ -1,6 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 import { Set } from '@/services/storage';
+
+//style
+const valueTextStyle = "text-2xl font-bold text-[#3456AD] min-w-[40px] text-center";
 
 type HistorySetItemProps = {
     item: Set;
@@ -10,46 +13,37 @@ type HistorySetItemProps = {
 // eslint-disable-next-line react/display-name
 const HistorySetItem = React.memo(({ item, index }: HistorySetItemProps) => {
     return (
-        <View className="p-3" style={styles.view}>
-            <Text style={styles.text}>Série n°{index + 1} : </Text>
-            <Text style={styles.textValue}>{item.reps}</Text>
-            <Text style={styles.text}> X </Text>
-            <Text style={styles.textValue}>{item.weight}</Text>
-            <Text style={styles.text}> Kg </Text>
+        <View
+            className="
+                flex-row
+                items-center
+                bg-gray-50
+                py-2.5
+                px-4
+                border-b
+                border-b-gray-200
+            ">
+            <Text className="text-2xl">Série n°{index + 1} : </Text>
+
+            <Text className={valueTextStyle}>
+                {item.reps}
+            </Text>
+
+            <Text className="text-2xl"> X </Text>
+
+            <Text className={valueTextStyle}>
+                {item.weight}
+            </Text>
+
+            <Text className="text-2xl"> Kg </Text>
+
             {item.side && item.side !== "both" && (
-                <Text style={styles.textSide}>
+                <Text className="text-lg text-gray-500 ml-2.5">
                     ({item.side === "left" ? "Gauche" : "Droite"})
                 </Text>
             )}
         </View>
     );
-});
-
-const styles = StyleSheet.create({
-    view: {
-        flexDirection: "row",
-        alignItems: "center",
-        backgroundColor: "white",
-        paddingVertical: 10,
-        paddingHorizontal: 15,
-        borderBottomWidth: 1,
-        borderBottomColor: "#eee",
-    },
-    text: {
-        fontSize: 20,
-    },
-    textValue: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: '#3456AD',
-        minWidth: 40,
-        textAlign: 'center',
-    },
-    textSide: {
-        fontSize: 18,
-        color: 'gray',
-        marginLeft: 10,
-    },
 });
 
 export default HistorySetItem;

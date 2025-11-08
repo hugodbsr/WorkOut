@@ -16,16 +16,16 @@ const HistorySectionHeader = React.memo(({ title }: HistorySectionHeaderProps) =
 
 const styles = StyleSheet.create({
     sectionHeader: {
-        backgroundColor: "#f3f4f6",
+        backgroundColor: "#3456AD",
         paddingVertical: 8,
-        paddingHorizontal: 15,
+        paddingHorizontal: 20,
         borderBottomWidth: 1,
         borderBottomColor: "#ddd",
     },
     dateText: {
-        fontSize: 20,
+        fontSize: 22,
         fontWeight: 'bold',
-        color: "black",
+        color: "white",
     },
 });
 

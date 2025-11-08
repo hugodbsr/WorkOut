@@ -1,9 +1,18 @@
-import {ActivityIndicator, FlatList, StyleSheet, Text, View} from "react-native";
+import {ActivityIndicator, FlatList, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React from 'react'
 import {Link, useRouter} from "expo-router";
 import useFetch from "@/services/useFetch";
-import {fetchMuscleList, fetchMuscleJsonList} from "@/services/api";
+import {fetchMuscleJsonList} from "@/services/api";
 import {Image, ImageBackground} from "expo-image";
+import {muscleGroupImages} from "@/assets/constants/images";
+
+function getMuscleImage(name?: string) {
+    if (name && muscleGroupImages[name as keyof typeof muscleGroupImages]) {
+        return muscleGroupImages[name as keyof typeof muscleGroupImages];
+    } else {
+        return undefined;
+    }
+}
 
 export default function Add(){
     const router = useRouter();
@@ -23,17 +32,29 @@ export default function Add(){
     }
 
     return (
-        <View style={styles.container}>
+        <View className="flex-1 mt-5 px-4">
+            <Text className="text-4xl font-bold text-center m-4 my-6">Choisissez un exercice</Text>
             <FlatList
-                className="m-4"
+                className="m-auto"
                 data={exercice}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => (
-                    <Link href={`/exerciceList/${item.id}`}
-                    className="p-4 mt-6 text-center text-2xl bg-primary color-white"
-                    style={{borderRadius: 10}}>
-                        {item.name}
-                    </Link>
+                    <TouchableOpacity>
+                        <Link href={`/exerciceList/${item.id}`}
+                              className="flex flex-row items-center px-12 my-2 bg-[#3456AD] rounded-xl">
+                            <View className="items-start flex flex-row">
+                                <Image
+                                    source={getMuscleImage(item.image)}
+                                    style={{ width: 65, height: 65, margin: "auto" }}
+
+                                />
+                                <Text
+                                    className="p-4 font-bold text-3xl text-white rounded-[10px]">
+                                    {item.name}
+                                </Text>
+                            </View>
+                        </Link>
+                    </TouchableOpacity>
                 )}
             />
         </View>
