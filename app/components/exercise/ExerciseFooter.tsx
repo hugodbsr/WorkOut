@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import {getUITranslation} from "@/services/translation";
+import { Octicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 type ExerciseFooterProps = {
     exerciseQuery: string;
@@ -20,19 +21,39 @@ export const ExerciseFooter: React.FC<ExerciseFooterProps> = React.memo(({
 
     return (
         <>
-            <View className="absolute bottom-0 left-0 right-0 flex-row justify-around bg-primary border-t border-[#ddd] pb-[43px]">
+            <View className="absolute bottom-[-1px] left-[-1px] right-[-1px] rounded-t-3xl flex-row justify-around bg-primary border-t pb-[43px]">
                 <TouchableOpacity
-                    className="bg-primary flex-1 py-[13px] mr-12 justify-center items-center"
-                    onPress={() => router.push(`../chrono`)}
-                >
-                    <Text className="color-white font-medium italic text-2xl">{uiChrono}</Text>
+                className="bg-primary flex-1 py-[13px] rounded-tl-3xl mr-12 justify-center items-center relative overflow-hidden"
+                onPress={() => router.push(`../chrono`)}>
+                    <View className="absolute justify-center items-center opacity-10">
+                        <Octicons 
+                            name="stopwatch" 
+                            size={100}
+                            color="white" 
+                            style={{ transform: [{ rotate: '15deg' }] }}
+                        />
+                    </View>
+
+                    <Text className="text-white font-medium italic text-2xl z-10">
+                        {uiChrono}
+                    </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    className="bg-primary flex-1 py-[13px] ml-12 justify-center items-center"
-                    onPress={() => router.push(`/exerciceRecord/${exerciseQuery}`)}
-                >
-                    <Text className="color-white font-medium italic text-2xl">{uiRecords}</Text>
+                    className="bg-primary flex-1 py-[13px] rounded-tr-3xl ml-12 gap-1 justify-center flex-row items-center overflow-hidden"
+                    onPress={() => router.push(`/exerciceRecord/${exerciseQuery}`)}>
+                    <View className="absolute justify-center items-center opacity-10">
+                        <MaterialCommunityIcons 
+                            name="notebook" 
+                            size={100}
+                            color="white" 
+                            style={{ transform: [{ rotate: '15deg' }] }}
+                        />
+                    </View>
+
+                    <Text className="text-white font-medium italic text-2xl z-10">
+                        {uiRecords}
+                    </Text>
                 </TouchableOpacity>
             </View>
 

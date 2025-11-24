@@ -20,6 +20,7 @@ import { SeriesItem } from '@/app/components/exercise/SeriesItem';
 import { ExerciseFooter } from '@/app/components/exercise/ExerciseFooter';
 import {nanoid} from "nanoid/non-secure";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Animated, { SlideOutLeft, Layout, FadeIn } from 'react-native-reanimated';
 
 type LocalSet = {
     id: string;
@@ -166,12 +167,13 @@ export default function Details(){
         return(
             <View className="flex-row items-center justify-center">
                 <TouchableOpacity
-                    className="bg-[firebrick] w-[90px] h-[45px] justify-center items-center"
+                    className="bg-[firebrick] w-[90px] h-[45px] justify-center rounded-l-md items-center"
                     onPress={() => handleDeleteSerieField(index)}
                 >
                 <Image
                     source={require("../../assets/images/trash-2-128.png")}
                     className="w-[25px] h-[25px]"
+                    style={{ width: 25, height: 25 }}
                 />
                 </TouchableOpacity>
             </View>
@@ -181,7 +183,6 @@ export default function Details(){
     return (
         <GestureHandlerRootView className="flex-1">
             <View className="flex-1">
-                <View className="flex-1">
                     <ScrollView className="bg-gray-100" contentContainerStyle={{paddingBottom: 320}}>
 
                         <ExerciseHeader
@@ -193,21 +194,25 @@ export default function Details(){
                         />
 
                         {series.map((serie, index) => (
-                            <Swipeable key={serie.id} renderRightActions={() => renderRightActions(index)}>
-                                <SeriesItem
-                                    serie={serie}
-                                    index={index}
-                                    placeholderReps={oldSeries[index]?.reps}
-                                    placeholderWeight={oldSeries[index]?.weight}
-                                    onRepChange={(text) => handleChangeSerie(index, 'reps', text)}
-                                    onWeightChange={(text) => handleChangeSerie(index, 'weight', text)}
-                                    onSideChange={() => handleChangeSide(index)}
-                                    isUnilateral={unilateral}
-                                />
-                            </Swipeable>
+                            <Animated.View
+                                key={serie.id}
+                                exiting={SlideOutLeft.duration(300)}
+                                layout={Layout.springify()}>
+                                <Swipeable key={serie.id} renderRightActions={() => renderRightActions(index)}>
+                                    <SeriesItem
+                                        serie={serie}
+                                        index={index}
+                                        placeholderReps={oldSeries[index]?.reps}
+                                        placeholderWeight={oldSeries[index]?.weight}
+                                        onRepChange={(text) => handleChangeSerie(index, 'reps', text)}
+                                        onWeightChange={(text) => handleChangeSerie(index, 'weight', text)}
+                                        onSideChange={() => handleChangeSide(index)}
+                                        isUnilateral={unilateral}
+                                    />
+                                </Swipeable>
+                            </Animated.View>
                         ))}
                     </ScrollView>
-                </View>
 
                 <View style={{ paddingBottom: insets.bottom }}>
                     <ExerciseFooter
