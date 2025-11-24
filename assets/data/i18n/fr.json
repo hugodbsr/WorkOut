@@ -1,4 +1,22 @@
 {
+  "ui": {
+    "today_series": "Séries effectuées aujourd'hui",
+    "choose_exercice": "Choisissez un exercice",
+    "exercise_history": "Historique de l'exercice",
+    "no_data": "Aucune donnée pour cet exercice",
+    "chrono": "Chrono",
+    "serie_number": "Série n°",
+    "records": "Historique",
+    "exercise_name": "Nom de l'exercice",
+    "exercise_desc": "Description de l'exercice",
+    "muscle_used": "Muscle sollicité",
+    "exercise_type": "Catégories de l'exercice",
+    "select_type": "Sélectionner une ou plusieurs catégories",
+    "unilateral": "Unilatéral",
+    "bilateral": "Bilatéral",
+    "add_exercice": "Ajouter un exercice",
+    "add_exercice_button": "Ajouter"
+  },
   "muscle": {
     "chest": "Pectoraux",
     "back": "Dos",

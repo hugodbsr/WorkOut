@@ -4,6 +4,7 @@ import {
     View,
     ScrollView,
     TouchableOpacity,
+    Image,
 } from 'react-native';
 import React, {useEffect, useLayoutEffect, useState} from 'react';
 import { useLocalSearchParams} from "expo-router";
@@ -12,14 +13,12 @@ import {fetchExerciseJson} from "@/services/api";
 import {addSessionToExercise, deleteSessionOfExercice, getExerciseHistory, Set, getTodayDate, Side} from "@/services/storage";
 import { GestureHandlerRootView, Swipeable } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
-import {Image} from "expo-image";
 import {exerciseImages, muscleGroupImages} from "@/assets/constants/images";
 
 import { ExerciseHeader } from '@/app/components/exercise/ExerciseHeader';
 import { SeriesItem } from '@/app/components/exercise/SeriesItem';
 import { ExerciseFooter } from '@/app/components/exercise/ExerciseFooter';
 import {nanoid} from "nanoid/non-secure";
-
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type LocalSet = {
@@ -170,10 +169,10 @@ export default function Details(){
                     className="bg-[firebrick] w-[90px] h-[45px] justify-center items-center"
                     onPress={() => handleDeleteSerieField(index)}
                 >
-                    <Image
-                        source={require("../../assets/images/trash-2-128.png")}
-                        className="w-[25px] h-[25px]"
-                    />
+                <Image
+                    source={require("../../assets/images/trash-2-128.png")}
+                    className="w-[25px] h-[25px]"
+                />
                 </TouchableOpacity>
             </View>
         )
@@ -183,7 +182,7 @@ export default function Details(){
         <GestureHandlerRootView className="flex-1">
             <View className="flex-1">
                 <View className="flex-1">
-                    <ScrollView className="bg-gray-100" contentContainerStyle={{paddingBottom: 170}}>
+                    <ScrollView className="bg-gray-100" contentContainerStyle={{paddingBottom: 320}}>
 
                         <ExerciseHeader
                             name={exercice?.name}

@@ -1,4 +1,22 @@
 {
+  "ui": {
+    "today_series": "Series of the day",
+    "choose_exercice": "Choose an exercice",
+    "exercise_history": "Exercise records",
+    "no_data": "No data for this exercise",
+    "chrono": "Chrono",
+    "serie_number": "Serie n°",
+    "records": "Records",
+    "exercise_name": "Exercise's name",
+    "exercise_desc": "Exercise's description",
+    "muscle_used": "Muscle used",
+    "exercise_type": "Exercise's type",
+    "select_type": "Select type(s)",
+    "unilateral": "Unilateral",
+    "bilateral": "Bilateral",
+    "add_exercice": "Add an exercice",
+    "add_exercice_button": "Add"
+  },
   "muscle": {
     "chest": "Chest",
     "back": "Back",

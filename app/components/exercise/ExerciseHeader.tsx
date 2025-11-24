@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text } from 'react-native';
 import { Image, ImageSource } from 'expo-image';
 import UnilateralButton from '../common/UnilateralButton';
+import { getUITranslation } from "@/services/translation";
 
 type ExerciseHeaderProps = {
     name?: string;
@@ -19,6 +20,22 @@ export const ExerciseHeader: React.FC<ExerciseHeaderProps> = React.memo(({
                                                                              unilateral,
                                                                              setUnilateral,
                                                                          }) => {
+    const [uiUnilateral, setUiUnilateral] = useState<string>('Unilateral');
+    const [uiBilateral, setUiBilateral] = useState<string>('Bilateral');
+
+    useEffect(() => {
+        const loadTranslations = async () => {
+            const unilateralText = await getUITranslation("unilateral");
+            const bilateralText = await getUITranslation("bilateral");
+
+            setUiUnilateral(String(unilateralText));
+            setUiBilateral(String(bilateralText));
+        };
+
+        loadTranslations();
+    }, []);
+
+    // @ts-ignore
     return (
         <>
             <Image
@@ -37,12 +54,12 @@ export const ExerciseHeader: React.FC<ExerciseHeaderProps> = React.memo(({
             {isUnilateral && (
                 <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 10 }}>
                     <UnilateralButton
-                        title="Unilatéral"
+                        title={uiUnilateral}
                         onPress={() => setUnilateral(true)}
                         active={unilateral}
                     />
                     <UnilateralButton
-                        title="Bilatéral"
+                        title={uiBilateral}
                         onPress={() => setUnilateral(false)}
                         active={!unilateral}
                     />

@@ -1,57 +1,11 @@
 import exercices from "@/assets/data/exercises/exercices.json"
 import * as Localization from "expo-localization";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {loadTranslations, getTranslatedValue, getLanguageCode} from "./translation";
 
 const USER_CREATED_EXERCISES_KEY = "user_created_exercises";
 
 // Importation par fichiers JSON
-const getNestedValue = (key: string, translations: any): string | undefined => {
-    const parts = key.split(".");
-    let value: any = translations;
-    for (let part of parts) {
-        if (!value || typeof value !== 'object' || !value.hasOwnProperty(part)) {
-            return undefined;
-        }
-        value = value[part];
-    }
-    return typeof value === 'string' || typeof value === 'number' ? value.toString() : undefined;
-};
-
-const loadTranslations = async (languageCode: string) => {
-    const en = await import('../assets/data/i18n/en.json');
-    let primary = en;
-
-    if (languageCode === "fr") {
-        try {
-            primary = await import('../assets/data/i18n/fr.json');
-        } catch {
-        }
-    }
-
-    return { primary: primary.default, fallback: en.default };
-};
-
-const getTranslatedValue = async (key: string, { primary, fallback }: { primary: any, fallback: any }): Promise<string> => {
-    let value = getNestedValue(key, primary);
-
-    if (value === undefined) {
-        value = getNestedValue(key, fallback);
-    }
-
-    return value !== undefined ? value : key;
-};
-
-const getLanguageCode = (): string => {
-    const locales = Localization.getLocales();
-
-    if (locales && locales.length > 0) {
-        const locale = locales[0];
-        if (locale.languageCode) {
-            return locale.languageCode;
-        }
-    }
-    return 'en';
-};
 
 const fetchAllExercises = async () => {
     try {

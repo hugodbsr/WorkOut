@@ -1,4 +1,4 @@
-import {Button, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {Text, TextInput, TouchableOpacity, View} from "react-native";
 import React, {useLayoutEffect, useMemo, useState} from 'react'
 import {useNavigation} from "@react-navigation/native";
 import {useLocalSearchParams, useRouter} from "expo-router";
@@ -8,6 +8,18 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import { Checkbox } from 'expo-checkbox';
 import {addUserExercice} from "@/services/storage";
 import { nanoid } from 'nanoid/non-secure';
+import { getUITranslation } from "@/services/translation";
+
+const uiAddExercice = getUITranslation("add_exercice");
+const uiExerciseName = getUITranslation("exercise_name");
+const uiExerciseDesc = getUITranslation("exercise_desc");
+const uiMuscleUsed = getUITranslation("muscle_used");
+const uiExerciseType = getUITranslation("exercise_type");
+const uiSelectMuscle = getUITranslation("select_muscle");
+const uiSelectType = getUITranslation("select_type");
+const uiUnilateral = getUITranslation("unilateral");
+const uiAddExerciceButton = getUITranslation("add_exercice_button");
+const uiFillAllFields = getUITranslation("fill_all_fields");
 
 export default function Details() {
     const navigation = useNavigation();
@@ -27,7 +39,7 @@ export default function Details() {
 
     const handleConfirmExercice= () =>{
         if(!exerciceDesc || !exerciceName || !selectedMuscle){
-            alert("Veuillez remplir tous les champs")
+            alert(uiFillAllFields || "Veuillez remplir tous les champs")
             return
         }
         const exerciceToAdd = {
@@ -64,7 +76,7 @@ export default function Details() {
     useLayoutEffect(() => {
         navigation.setOptions({
             headerTitle: () => (
-                <Text className="text-xl">Ajouter un exercice</Text>
+                <Text className="text-xl">{uiAddExercice}</Text>
             ),
         });
     }, [navigation]);
@@ -72,14 +84,19 @@ export default function Details() {
     const [isUnilateral, setIsUnilateral] = useState(false);
 
     return (
-        <View style={{ flex: 1 }}>
-            <View style={styles.container}>
-                <Text style={styles.text}>Exercise&#39;s name</Text>
-                <TextInput style={styles.textInput} keyboardType="default" onChangeText={setExerciceName} />
+        <View className="flex-1">
+            <View className="flex-1 mt-5 ml-5 px-4 flex-col gap-1.5">
 
-                <Text style={styles.text}>Exercise&#39;s description</Text>
+                <Text className="text-xl font-normal">{uiExerciseName}</Text>
                 <TextInput
-                    style={styles.textInput}
+                    className="border-solid border-4 border-[#3456AD] rounded-md w-11/12 border-primary p-0.5 text-xl text-left mb-2.5"
+                    keyboardType="default"
+                    onChangeText={setExerciceName}
+                />
+
+                <Text className="text-xl font-normal">{uiExerciseDesc}</Text>
+                <TextInput
+                    className="border-solid border-4 border-[#3456AD] rounded-md w-11/12 border-primary p-0.5 text-xl text-left mb-2.5"
                     keyboardType="default"
                     multiline={true}
                     numberOfLines={4}
@@ -87,21 +104,32 @@ export default function Details() {
                     onChangeText={setExerciceDesc}
                 />
 
-                <Text style={styles.text}>Muscle Used</Text>
+                <Text className="text-xl font-normal">{uiMuscleUsed}</Text>
                 <DropDownPicker
                     open={muscleOpen}
                     value={selectedMuscle}
                     items={formattedDataMuscle}
                     setOpen={setMuscleOpen}
                     setValue={setSelectedMuscle}
-                    placeholder="Select a muscle"
+                    placeholder={uiSelectMuscle}
                     zIndex={3000}
                     zIndexInverse={1000}
-                    style={styles.dropdown}
+                    style={{
+                      height: 50,
+                      borderWidth: 1,
+                      borderColor: "#ccc",
+                      borderRadius: 8,
+                      paddingHorizontal: 12,
+                      backgroundColor: "white",
+                    }}
+                    containerStyle={{
+                        width: '91.666667%',
+                        marginBottom: 10,
+                    }}
                     dropDownContainerStyle={{backgroundColor: 'white'}}
                 />
 
-                <Text style={styles.text}>Exercise&#39;s type</Text>
+                <Text className="text-xl font-normal">{uiExerciseType}</Text>
                 <DropDownPicker
                     multiple={true}
                     open={typeOpen}
@@ -109,15 +137,26 @@ export default function Details() {
                     items={formattedDataType}
                     setOpen={setTypeOpen}
                     setValue={setSelectedType}
-                    placeholder="Select type(s)"
+                    placeholder={uiSelectType}
                     zIndex={2000}
                     zIndexInverse={2000}
-                    style={styles.dropdown}
+                    style={{
+                      height: 50,
+                      borderWidth: 1,
+                      borderColor: "#ccc",
+                      borderRadius: 8,
+                      paddingHorizontal: 12,
+                      backgroundColor: "white",
+                    }}
+                    containerStyle={{
+                        width: '91.666667%',
+                        marginBottom: 10,
+                    }}
                     dropDownContainerStyle={{backgroundColor: 'white'}}
                 />
 
                 <View className="flex-row items-center gap-2 mt-2">
-                    <Text className="text-xl">Unilatéral</Text>
+                    <Text className="text-xl">{uiUnilateral}</Text>
                     <Checkbox
                         className="p-4"
                         value={isUnilateral}
@@ -126,48 +165,12 @@ export default function Details() {
                     />
                 </View>
 
-                <TouchableOpacity onPress={handleConfirmExercice}
+                <TouchableOpacity
+                    onPress={handleConfirmExercice}
                     className="items-center bg-primary rounded-xl p-3 w-11/12 ml-auto mr-auto mt-auto mb-20">
-                    <Text className="color-white text-2xl">Add exercice</Text>
+                    <Text className="color-white text-2xl">{uiAddExerciceButton}</Text>
                 </TouchableOpacity>
             </View>
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        display: "flex",
-        flex: 1,
-        marginTop: 20,
-        marginLeft: 20,
-        paddingHorizontal: 16,
-        flexDirection: "column",
-        gap: 3,
-    },
-    text: {
-        fontSize: 20,
-        fontWeight: "400",
-    },
-    textInput: {
-        borderStyle: "solid",
-        borderWidth: 4,
-        borderRadius: 5,
-        width: "91.666667%",
-        borderColor: "#3456AD",
-        padding: 2,
-        fontSize: 22,
-        textAlign: "left",
-        marginBottom: 10,
-    },
-    dropdown: {
-        height: 50,
-        width: "91.666667%",
-        borderWidth: 1,
-        borderColor: "#ccc",
-        borderRadius: 8,
-        paddingHorizontal: 12,
-        backgroundColor: "white",
-        marginBottom: 10,
-    },
-});

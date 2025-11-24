@@ -16,6 +16,7 @@ import { useNavigation } from '@react-navigation/native';
 import HistorySetItem from '@/app/components/history/HistorySetItem';
 import HistorySectionHeader from '@/app/components/history/HistorySectionHeader';
 import {nanoid} from "nanoid/non-secure";
+import {getUITranslation} from "@/services/translation";
 
 type HistorySection = {
     title: string;
@@ -35,10 +36,12 @@ export default function RecordScreen(){
 
     const [sections, setSections] = useState<HistorySection[]>([]);
 
+    const uiExerciseHistory = getUITranslation("exercise_history");
+
     useLayoutEffect(() => {
         navigation.setOptions({
             headerTitle: () => (
-                <Text className="font-bold text-xl">Historique de l&#39;exercice</Text>
+                <Text className="font-bold text-xl">{uiExerciseHistory}</Text>
             ),
         });
     }, [navigation]);
@@ -77,6 +80,8 @@ export default function RecordScreen(){
         return <Text>Error : {exerciceError?.message}</Text>;
     }
 
+    const uiNoData = getUITranslation("no_data");
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.container}>
@@ -87,7 +92,7 @@ export default function RecordScreen(){
                 )}
 
                 {sections.length === 0 ? (
-                    <Text style={styles.noDataText}>Aucune donnée pour cet exercice</Text>
+                    <Text style={styles.noDataText}>{uiNoData}</Text>
                 ) : (
                     <SectionList
                         sections={sections}
