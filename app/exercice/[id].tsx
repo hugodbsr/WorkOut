@@ -4,7 +4,7 @@ import {
     View,
     ScrollView,
     TouchableOpacity,
-    Image,
+    Image, Button,
 } from 'react-native';
 import React, {useEffect, useLayoutEffect, useState} from 'react';
 import { useLocalSearchParams} from "expo-router";
@@ -14,6 +14,7 @@ import {addSessionToExercise, deleteSessionOfExercice, getExerciseHistory, Set, 
 import { GestureHandlerRootView, Swipeable } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import {exerciseImages, muscleGroupImages} from "@/assets/constants/images";
+import {Feather} from '@expo/vector-icons';
 
 import { ExerciseHeader } from '@/app/components/exercise/ExerciseHeader';
 import { SeriesItem } from '@/app/components/exercise/SeriesItem';
@@ -45,6 +46,9 @@ export default function Details(){
     const [oldSeries, setOldSeries] = useState<{reps: string, weight: string, side?: Side}[]>([]);
     const [series, setSeries] = useState<LocalSet[]>([{ id: nanoid(), reps: '', weight: '', side: 'both' }]);
     const [unilateral, setUnilateral] = useState(false);
+
+    const [isEditing, setIsEditing] = useState(false);
+    const swipeableRefs = React.useRef<Record<string, Swipeable | null>>({});
 
     const handleAddSerieField = () => {
         setSeries([...series, { id: nanoid(), reps: '', weight: '', side: unilateral ? "left" : "both", }]);
@@ -106,15 +110,42 @@ export default function Details(){
         }
     };
 
+    const toggleEditMode = () => {
+        const newState = !isEditing;
+        setIsEditing(newState);
+
+        const refs = Object.values(swipeableRefs.current);
+
+        refs.forEach(ref => {
+            if (ref) {
+                if (newState) {
+                    ref.openRight();
+                } else {
+                    ref.close();
+                }
+            }
+        });
+    };
+
     useLayoutEffect(() => {
         if(exercice){
             navigation.setOptions({
                 headerTitle: () => (
                     <Text className="font-bold text-xl">Série effectué aujourd&#39;hui</Text>
                 ),
+                headerRight: () => (
+                    <TouchableOpacity onPress={toggleEditMode}>
+                        <Feather
+                            name={isEditing ? "x-circle" : "edit"}
+                            size={24}
+                            color="black"
+                            className="mr-4"
+                        />
+                    </TouchableOpacity>
+                ),
             });
         }
-    }, [navigation, exercice]);
+    }, [navigation, exercice, isEditing]);
 
     useEffect(() => {
         const today = getTodayDate();
@@ -170,11 +201,11 @@ export default function Details(){
                     className="bg-[firebrick] w-[90px] h-[45px] justify-center rounded-l-md items-center"
                     onPress={() => handleDeleteSerieField(index)}
                 >
-                <Image
-                    source={require("../../assets/images/trash-2-128.png")}
-                    className="w-[25px] h-[25px]"
-                    style={{ width: 25, height: 25 }}
-                />
+                    <Image
+                        source={require("../../assets/images/trash-2-128.png")}
+                        className="w-[25px] h-[25px]"
+                        style={{ width: 25, height: 25 }}
+                    />
                 </TouchableOpacity>
             </View>
         )
@@ -183,36 +214,40 @@ export default function Details(){
     return (
         <GestureHandlerRootView className="flex-1">
             <View className="flex-1">
-                    <ScrollView className="bg-gray-100" contentContainerStyle={{paddingBottom: 320}}>
+                <ScrollView className="bg-gray-100" contentContainerStyle={{paddingBottom: 320}}>
 
-                        <ExerciseHeader
-                            name={exercice?.name}
-                            imageSource={getExerciseImage(exercice?.image)}
-                            isUnilateral={exercice?.unilateral}
-                            unilateral={unilateral}
-                            setUnilateral={setUnilateral}
-                        />
+                    <ExerciseHeader
+                        name={exercice?.name}
+                        imageSource={getExerciseImage(exercice?.image)}
+                        isUnilateral={exercice?.unilateral}
+                        unilateral={unilateral}
+                        setUnilateral={setUnilateral}
+                    />
 
-                        {series.map((serie, index) => (
-                            <Animated.View
+                    {series.map((serie, index) => (
+                        <Animated.View
+                            key={serie.id}
+                            exiting={SlideOutLeft.duration(300)}
+                            layout={Layout.springify()}>
+                            <Swipeable
                                 key={serie.id}
-                                exiting={SlideOutLeft.duration(300)}
-                                layout={Layout.springify()}>
-                                <Swipeable key={serie.id} renderRightActions={() => renderRightActions(index)}>
-                                    <SeriesItem
-                                        serie={serie}
-                                        index={index}
-                                        placeholderReps={oldSeries[index]?.reps}
-                                        placeholderWeight={oldSeries[index]?.weight}
-                                        onRepChange={(text) => handleChangeSerie(index, 'reps', text)}
-                                        onWeightChange={(text) => handleChangeSerie(index, 'weight', text)}
-                                        onSideChange={() => handleChangeSide(index)}
-                                        isUnilateral={unilateral}
-                                    />
-                                </Swipeable>
-                            </Animated.View>
-                        ))}
-                    </ScrollView>
+                                ref={el => (swipeableRefs.current[serie.id] = el)}
+                                renderRightActions={() => renderRightActions(index)}
+                            >
+                                <SeriesItem
+                                    serie={serie}
+                                    index={index}
+                                    placeholderReps={oldSeries[index]?.reps}
+                                    placeholderWeight={oldSeries[index]?.weight}
+                                    onRepChange={(text) => handleChangeSerie(index, 'reps', text)}
+                                    onWeightChange={(text) => handleChangeSerie(index, 'weight', text)}
+                                    onSideChange={() => handleChangeSide(index)}
+                                    isUnilateral={unilateral}
+                                />
+                            </Swipeable>
+                        </Animated.View>
+                    ))}
+                </ScrollView>
 
                 <View style={{ paddingBottom: insets.bottom }}>
                     <ExerciseFooter

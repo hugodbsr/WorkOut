@@ -4,6 +4,8 @@ import expo.modules.splashscreen.SplashScreenManager
 import android.os.Build
 import android.os.Bundle
 
+import androidx.core.view.WindowCompat
+
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
@@ -13,15 +15,20 @@ import expo.modules.ReactActivityDelegateWrapper
 
 class MainActivity : ReactActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
-    // Set the theme to AppTheme BEFORE onCreate to support
-    // coloring the background, status bar, and navigation bar.
-    // This is required for expo-splash-screen.
-    // setTheme(R.style.AppTheme);
-    // @generated begin expo-splashscreen - expo prebuild (DO NOT MODIFY) sync-f3ff59a738c56c9a6119210cb55f0b613eb8b6af
-    SplashScreenManager.registerOnActivity(this)
-    // @generated end expo-splashscreen
-    super.onCreate(null)
-  }
+      // Set the theme to AppTheme BEFORE onCreate to support
+      // coloring the background, status bar, and navigation bar.
+      // This is required for expo-splash-screen.
+      // setTheme(R.style.AppTheme);
+      // @generated begin expo-splashscreen - expo prebuild (DO NOT MODIFY) sync-f3ff59a738c56c9a6119210cb55f0b613eb8b6af
+      SplashScreenManager.registerOnActivity(this)
+      // @generated end expo-splashscreen
+
+      // 2. AJOUTER CETTE LIGNE DANS onCreate()
+      // Pour permettre au contenu de l'application de s'étendre sous les barres système (Edge-to-Edge)
+      WindowCompat.setDecorFitsSystemWindows(window, false)
+
+      super.onCreate(null)
+    }
 
   /**
    * Returns the name of the main component registered from JavaScript. This is used to schedule

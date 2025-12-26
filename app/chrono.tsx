@@ -1,89 +1,95 @@
-// App.tsx
-import React, { useRef } from 'react';
-import {SafeAreaView, StyleSheet, View, Button, TouchableOpacity, Text} from 'react-native';
-import StopwatchTimer, { StopwatchTimerMethods } from 'react-native-animated-stopwatch-timer';
-import ChronoButton from "@/app/components/common/ChronoButton";
+import React, { useState, useEffect, useRef } from "react";
+import { Text, View, TouchableOpacity, SafeAreaView } from "react-native";
+import { useNavigation } from "expo-router";
+import { Feather } from '@expo/vector-icons';
 
 const App = () => {
-    const stopwatchRef = useRef<StopwatchTimerMethods>(null);
+  const navigation = useNavigation();
+  
+  const [elapsedTime, setElapsedTime] = useState(0);
+  const [isRunning, setIsRunning] = useState(false);
 
-    const handlePlay = () => {
-        stopwatchRef.current?.play();
-    };
+  const startTimeRef = useRef<number>(0);
+  const pausedTimeRef = useRef<number>(0);
 
-    const handlePause = () => {
-        const elapsedMs = stopwatchRef.current?.pause();
-        console.log('Paused at (ms):', elapsedMs);
-    };
+  useEffect(() => {
+    navigation?.setOptions({
+      title: "Chrono",
+    });
+  }, [navigation]);
 
-    const handleReset = () => {
-        stopwatchRef.current?.reset();
-    };
+  useEffect(() => {
+    let interval: ReturnType<typeof setInterval>;
 
-    const handleFinish = () => {
-        console.log('Timer finished!');
-    };
+    if (isRunning) {
+      startTimeRef.current = Date.now() - pausedTimeRef.current;
+      interval = setInterval(() => {
+        const now = Date.now();
+        const diff = now - startTimeRef.current;
+        setElapsedTime(diff);
+      }, 30);
+    }
 
-    return (
-        <SafeAreaView style={styles.container}>
-            <View style={styles.timerContainer}>
-                <StopwatchTimer
-                    ref={stopwatchRef}
-                    trailingZeros={1}
-                    animationDuration={80}
-                    animationDelay={0}
-                    animationDistance={120}
-                    enterAnimationType="slide-in-up"
-                    leadingZeros={1}
-                    decimalSeparator=","
-                    onFinish={handleFinish}
-                    containerStyle={styles.timer}
-                    digitStyle={styles.digit}
-                    separatorStyle={styles.separator}
-                    textCharStyle={styles.textChar}
-                />
-            </View>
+    return () => clearInterval(interval);
+  }, [isRunning]);
 
-            <View style={styles.buttonsContainer}>
-                <ChronoButton title="PLAY" onPress={handlePlay} />
-                <ChronoButton title="PAUSE" onPress={handlePause} />
-                <ChronoButton title="RESET" onPress={handleReset} />
-            </View>
-        </SafeAreaView>
-    );
+  const toggleTimer = () => {
+    if (isRunning) {
+      pausedTimeRef.current = elapsedTime;
+    }
+    setIsRunning(!isRunning);
+  };
+
+  const resetTimer = () => {
+    setIsRunning(false);
+    setElapsedTime(0);
+    pausedTimeRef.current = 0;
+  };
+
+  const formatTime = (ms: number) => {
+    const minutes = Math.floor(ms / 60000);
+    const seconds = Math.floor((ms % 60000) / 1000);
+    const centiseconds = Math.floor((ms % 1000) / 10);
+
+    const min = ("0" + minutes).slice(-2);
+    const sec = ("0" + seconds).slice(-2);
+    const cen = ("0" + centiseconds).slice(-2);
+
+    return `${min}:${sec},${cen}`;
+  };
+
+  return (
+    <SafeAreaView className="flex-1 justify-center items-center bg-gray-100">
+      <View className="items-center justify-center">
+        <Text className="text-5xl font-bold text-primary">
+          {formatTime(elapsedTime)}
+        </Text>
+      </View>
+
+      <View className="flex-row items-center mt-12">
+        <TouchableOpacity
+          onPress={toggleTimer}
+          activeOpacity={0.8}
+          className="w-28 h-28 rounded-full shadow-lg mx-4 items-center justify-center bg-primary"
+        >
+          <Feather
+            name={isRunning ? "pause" : "play"}
+            size={45}
+            color="white"
+            style={!isRunning ? { marginLeft: 5 } : {}}
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={resetTimer}
+          activeOpacity={0.7}
+          className="w-20 h-20 rounded-full bg-white shadow-md mx-4 items-center justify-center"
+        >
+          <Feather name="rotate-cw" size={30} color="#3456AD" />
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
+  );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        paddingHorizontal: 20,
-    },
-    timerContainer: {
-        alignItems: 'center',
-        marginBottom: 40,
-    },
-    timer: {
-        backgroundColor: '#f0f0f0',
-        padding: 10,
-        borderRadius: 8,
-    },
-    digit: {
-        fontSize: 48,
-        fontWeight: 'bold',
-        color: '#333',
-    },
-    separator: {
-        fontSize: 48,
-        color: '#666',
-    },
-    textChar: {
-        // Optionnel — style pour chaque caractère séparément
-    },
-    buttonsContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-    },
-});
 
 export default App;
