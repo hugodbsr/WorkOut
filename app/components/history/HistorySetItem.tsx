@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { Set } from '@/services/storage';
+import { getUITranslation, getLanguageCode } from '@/services/translation';
 
 //style
 const valueTextStyle = "text-2xl font-bold text-[#3456AD] min-w-[40px] text-center";
@@ -10,8 +11,26 @@ type HistorySetItemProps = {
     index: number;
 };
 
-// eslint-disable-next-line react/display-name
-const HistorySetItem = React.memo(({ item, index }: HistorySetItemProps) => {
+const HistorySetItem = ({ item, index }: HistorySetItemProps) => {
+    const [serieLabel, setSerieLabel] = useState('');
+    const [leftLabel, setLeftLabel] = useState('Gauche');
+    const [rightLabel, setRightLabel] = useState('Droite');
+
+    useEffect(() => {
+        const loadTranslations = async () => {
+            const serie = await getUITranslation("serie_number");
+            setSerieLabel(serie);
+
+            // Set left/right based on language
+            const lang = getLanguageCode();
+            if (lang === 'en') {
+                setLeftLabel('Left');
+                setRightLabel('Right');
+            }
+        };
+        loadTranslations();
+    }, []);
+
     return (
         <View
             className="
@@ -23,7 +42,7 @@ const HistorySetItem = React.memo(({ item, index }: HistorySetItemProps) => {
                 border-b
                 border-b-gray-200
             ">
-            <Text className="text-2xl">Série n°{index + 1} : </Text>
+            <Text className="text-2xl">{serieLabel}{index + 1} : </Text>
 
             <Text className={valueTextStyle}>
                 {item.reps}
@@ -39,11 +58,11 @@ const HistorySetItem = React.memo(({ item, index }: HistorySetItemProps) => {
 
             {item.side && item.side !== "both" && (
                 <Text className="text-lg text-gray-500 ml-2.5">
-                    ({item.side === "left" ? "Gauche" : "Droite"})
+                    ({item.side === "left" ? leftLabel : rightLabel})
                 </Text>
             )}
         </View>
     );
-});
+};
 
 export default HistorySetItem;

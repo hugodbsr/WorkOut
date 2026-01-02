@@ -34,8 +34,8 @@ export default function Add() {
     }
 
     return (
-        <SafeAreaView className="flex-1 px-4">
-            <Text className="text-4xl font-bold text-center m-4 my-6">{getUITranslation("choose_exercice")}</Text>
+        <SafeAreaView className="flex-1">
+            <Text className="text-4xl font-bold text-center m-2">{getUITranslation("choose_exercice")}</Text>
             <FlatList
                 className="m-auto"
                 data={exercice}
@@ -43,7 +43,7 @@ export default function Add() {
                 renderItem={({ item }) => (
                     <TouchableOpacity>
                         <Link href={`/exerciceList/${item.id}`}
-                            className="flex flex-row items-center px-12 my-2 bg-[#3456AD] rounded-xl">
+                            className="flex flex-row items-center px-12 my-1.5 bg-[#3456AD] rounded-xl">
                             <View className="items-start flex flex-row">
                                 <Image
                                     source={getMuscleImage(item.image)}
@@ -66,7 +66,6 @@ export default function Add() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 20,
         paddingHorizontal: 16,
     },
     itemContainer: {

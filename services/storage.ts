@@ -5,10 +5,11 @@ const USER_CREATED_EXERCISES_KEY = "user_created_exercises";
 
 export type Side = "left" | "right" | "both";
 
-export type Set = {id: string; reps: number; weight: number; side: Side;};
+export type Set = { id: string; reps: number; weight: number; side: Side; };
 export type Session = {
     date: string;
-    sets: Set[] };
+    sets: Set[]
+};
 export type ExerciseEntry = {
     sessions: Session[];
 };
@@ -20,16 +21,16 @@ export const getTodayDate = (): string => {
     return new Date().toISOString().split('T')[0];
 };
 
-export const addUserExercice = async (exercise : any) =>{
-    try{
+export const addUserExercice = async (exercise: any) => {
+    try {
         const json = await AsyncStorage.getItem(USER_CREATED_EXERCISES_KEY);
         const userExercises = json ? JSON.parse(json) : [];
         userExercises.push(exercise);
 
         await AsyncStorage.setItem(USER_CREATED_EXERCISES_KEY, JSON.stringify(userExercises));
 
-    }catch(e){
-        console.error("Erreur lors de l'ajout de l'exercice",e);
+    } catch (e) {
+        console.error("Erreur lors de l'ajout de l'exercice", e);
     }
 }
 
@@ -75,7 +76,7 @@ export const addSessionToExercise = async (
 };
 
 export const deleteSessionOfExercice = async (exerciseId: string, setId: string) => {
-    try{
+    try {
         const json = await AsyncStorage.getItem(USER_EXERCISE_KEY);
         const data: ExerciseUserData = json ? JSON.parse(json) : {};
         const date = getTodayDate();
@@ -109,5 +110,15 @@ export const getExerciseHistory = async (exerciseId: string): Promise<ExerciseEn
     } catch (error) {
         console.error('Erreur de lecture', error);
         return null;
+    }
+};
+
+export const getAllExerciseHistory = async (): Promise<ExerciseUserData> => {
+    try {
+        const json = await AsyncStorage.getItem(USER_EXERCISE_KEY);
+        return json ? JSON.parse(json) : {};
+    } catch (error) {
+        console.error('Erreur de lecture', error);
+        return {};
     }
 };
