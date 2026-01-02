@@ -1,7 +1,7 @@
-import exercices from "@/assets/data/exercises/exercices.json"
+import exercices from "@/src/data/exercises/exercices.json"
 import * as Localization from "expo-localization";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {loadTranslations, getTranslatedValue, getLanguageCode} from "./translation";
+import { loadTranslations, getTranslatedValue, getLanguageCode } from "./translation";
 
 const USER_CREATED_EXERCISES_KEY = "user_created_exercises";
 

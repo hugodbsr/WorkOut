@@ -1,25 +1,25 @@
-import {ActivityIndicator, FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useCallback, useLayoutEffect} from 'react';
-import {Link, useFocusEffect, useLocalSearchParams, useRouter} from "expo-router";
+import { ActivityIndicator, FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useCallback, useLayoutEffect } from 'react';
+import { Link, useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
 import useFetch from "@/services/useFetch";
-import {fetchExerciceListJson, fetchMuscleJson} from "@/services/api";
-import {useNavigation} from "@react-navigation/native";
-import {exerciseImages} from "@/assets/constants/images";
+import { fetchExerciceListJson, fetchMuscleJson } from "@/services/api";
+import { useNavigation } from "@react-navigation/native";
+import { exerciseImages } from "@/src/constants/images";
 import { Image } from "expo-image";
 
-export default function Details(){
+export default function Details() {
     const navigation = useNavigation();
 
     const router = useRouter();
 
-    const {id} = useLocalSearchParams();
+    const { id } = useLocalSearchParams();
     const query = Array.isArray(id) ? id[0] : id;
 
     const {
         data: group,
         loading: groupLoading,
         error: groupError,
-    } = useFetch(() => fetchMuscleJson({query: `${id}`}));
+    } = useFetch(() => fetchMuscleJson({ query: `${id}` }));
 
     const {
         data: exercice,
@@ -28,7 +28,7 @@ export default function Details(){
     } = useFetch(() => fetchExerciceListJson({ query }));
 
     useLayoutEffect(() => {
-        if(group){
+        if (group) {
             navigation.setOptions({
                 headerTitle: () => (
                     <Text className="font-bold text-xl">{group.name}</Text>
@@ -79,15 +79,15 @@ export default function Details(){
                                         }}
                                     />
                                     <View style={{ flex: 1 }}>
-                                    <Text numberOfLines={2}
-                                          ellipsizeMode="tail"
-                                          className="text-xl font-bold flex-wrap">{item.name}</Text>
+                                        <Text numberOfLines={2}
+                                            ellipsizeMode="tail"
+                                            className="text-xl font-bold flex-wrap">{item.name}</Text>
                                     </View>
                                 </View>
                             </Link>
                         </View>
                     )}
-                    contentContainerStyle={{ paddingBottom: 90}}
+                    contentContainerStyle={{ paddingBottom: 90 }}
                 />
             </View>
 

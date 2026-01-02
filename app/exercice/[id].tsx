@@ -6,20 +6,20 @@ import {
     TouchableOpacity,
     Image, Button,
 } from 'react-native';
-import React, {useEffect, useLayoutEffect, useState} from 'react';
-import { useLocalSearchParams} from "expo-router";
+import React, { useEffect, useLayoutEffect, useState } from 'react';
+import { useLocalSearchParams } from "expo-router";
 import useFetch from "@/services/useFetch";
-import {fetchExerciseJson} from "@/services/api";
-import {addSessionToExercise, deleteSessionOfExercice, getExerciseHistory, Set, getTodayDate, Side} from "@/services/storage";
+import { fetchExerciseJson } from "@/services/api";
+import { addSessionToExercise, deleteSessionOfExercice, getExerciseHistory, Set, getTodayDate, Side } from "@/services/storage";
 import { GestureHandlerRootView, Swipeable } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
-import {exerciseImages, muscleGroupImages} from "@/assets/constants/images";
-import {Feather} from '@expo/vector-icons';
+import { exerciseImages, muscleGroupImages } from "@/src/constants/images";
+import { Feather } from '@expo/vector-icons';
 
 import { ExerciseHeader } from '@/app/components/exercise/ExerciseHeader';
 import { SeriesItem } from '@/app/components/exercise/SeriesItem';
 import { ExerciseFooter } from '@/app/components/exercise/ExerciseFooter';
-import {nanoid} from "nanoid/non-secure";
+import { nanoid } from "nanoid/non-secure";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Animated, { SlideOutLeft, Layout, FadeIn } from 'react-native-reanimated';
 
@@ -30,8 +30,8 @@ type LocalSet = {
     side: Side;
 };
 
-export default function Details(){
-    const{id} = useLocalSearchParams();
+export default function Details() {
+    const { id } = useLocalSearchParams();
     const navigation = useNavigation();
     const query = Array.isArray(id) ? id[0] : id;
 
@@ -41,9 +41,9 @@ export default function Details(){
         data: exercice,
         loading: exerciceLoading,
         error: exerciceError,
-    } = useFetch(() => fetchExerciseJson({query: `${id}`}));
+    } = useFetch(() => fetchExerciseJson({ query: `${id}` }));
 
-    const [oldSeries, setOldSeries] = useState<{reps: string, weight: string, side?: Side}[]>([]);
+    const [oldSeries, setOldSeries] = useState<{ reps: string, weight: string, side?: Side }[]>([]);
     const [series, setSeries] = useState<LocalSet[]>([{ id: nanoid(), reps: '', weight: '', side: 'both' }]);
     const [unilateral, setUnilateral] = useState(false);
 
@@ -128,7 +128,7 @@ export default function Details(){
     };
 
     useLayoutEffect(() => {
-        if(exercice){
+        if (exercice) {
             navigation.setOptions({
                 headerTitle: () => (
                     <Text className="font-bold text-xl">Série effectué aujourd&#39;hui</Text>
@@ -167,7 +167,7 @@ export default function Details(){
                 }))
                 : [];
 
-            let previousSeries: {reps: string, weight: string, side?: Side}[] = pastSessions.length > 0
+            let previousSeries: { reps: string, weight: string, side?: Side }[] = pastSessions.length > 0
                 ? pastSessions[0].sets.map(set => ({
                     reps: set.reps.toString(),
                     weight: set.weight.toString(),
@@ -176,7 +176,7 @@ export default function Details(){
                 : [];
 
             while (currentSeries.length < previousSeries.length) {
-                currentSeries.push({id: nanoid(), reps: '', weight: '', side: 'left' });
+                currentSeries.push({ id: nanoid(), reps: '', weight: '', side: 'left' });
             }
 
             setOldSeries(previousSeries);
@@ -194,8 +194,8 @@ export default function Details(){
         return <Text>Error : {exerciceError?.message}</Text>;
     }
 
-    const renderRightActions = (index : number) => {
-        return(
+    const renderRightActions = (index: number) => {
+        return (
             <View className="flex-row items-center justify-center">
                 <TouchableOpacity
                     className="bg-[firebrick] w-[90px] h-[45px] justify-center rounded-l-md items-center"
@@ -214,7 +214,7 @@ export default function Details(){
     return (
         <GestureHandlerRootView className="flex-1">
             <View className="flex-1">
-                <ScrollView className="bg-gray-100" contentContainerStyle={{paddingBottom: 320}}>
+                <ScrollView className="bg-gray-100" contentContainerStyle={{ paddingBottom: 320 }}>
 
                     <ExerciseHeader
                         name={exercice?.name}

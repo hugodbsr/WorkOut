@@ -1,10 +1,10 @@
-import {ActivityIndicator, FlatList, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import { ActivityIndicator, FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from 'react'
-import {Link, useRouter} from "expo-router";
+import { Link, useRouter } from "expo-router";
 import useFetch from "@/services/useFetch";
-import {fetchMuscleJsonList} from "@/services/api";
-import {Image, ImageBackground} from "expo-image";
-import {muscleGroupImages} from "@/assets/constants/images";
+import { fetchMuscleJsonList } from "@/services/api";
+import { Image, ImageBackground } from "expo-image";
+import { muscleGroupImages } from "@/src/constants/images";
 import { getUITranslation } from "@/services/translation";
 
 function getMuscleImage(name?: string) {
@@ -15,7 +15,7 @@ function getMuscleImage(name?: string) {
     }
 }
 
-export default function Add(){
+export default function Add() {
     const router = useRouter();
 
     const {
@@ -42,7 +42,7 @@ export default function Add(){
                 renderItem={({ item }) => (
                     <TouchableOpacity>
                         <Link href={`/exerciceList/${item.id}`}
-                              className="flex flex-row items-center px-12 my-2 bg-[#3456AD] rounded-xl">
+                            className="flex flex-row items-center px-12 my-2 bg-[#3456AD] rounded-xl">
                             <View className="items-start flex flex-row">
                                 <Image
                                     source={getMuscleImage(item.image)}

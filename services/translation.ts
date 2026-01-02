@@ -6,12 +6,12 @@ export const loadTranslations = async (languageCode: string) => {
         return cachedTranslations;
     }
 
-    const en = await import('../assets/data/i18n/en.json');
+    const en = await import('../src/data/i18n/en.json');
     let primary = en;
 
     if (languageCode === "fr") {
         try {
-            primary = await import('../assets/data/i18n/fr.json');
+            primary = await import('../src/data/i18n/fr.json');
         } catch {
         }
     }
