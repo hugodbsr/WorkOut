@@ -20,7 +20,7 @@ import { ExerciseHeader } from '@/app/components/exercise/ExerciseHeader';
 import { SeriesItem } from '@/app/components/exercise/SeriesItem';
 import { ExerciseFooter } from '@/app/components/exercise/ExerciseFooter';
 import { nanoid } from "nanoid/non-secure";
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Animated, { SlideOutLeft, Layout, FadeIn } from 'react-native-reanimated';
 
 type LocalSet = {
@@ -34,8 +34,6 @@ export default function Details() {
     const { id } = useLocalSearchParams();
     const navigation = useNavigation();
     const query = Array.isArray(id) ? id[0] : id;
-
-    const insets = useSafeAreaInsets();
 
     const {
         data: exercice,
@@ -213,8 +211,8 @@ export default function Details() {
 
     return (
         <GestureHandlerRootView className="flex-1">
-            <View className="flex-1">
-                <ScrollView className="bg-gray-100" contentContainerStyle={{ paddingBottom: 320 }}>
+            <SafeAreaView className="flex-1 bg-gray-100">
+                <ScrollView className="bg-gray-100" contentContainerStyle={{ flexGrow: 1 }}>
 
                     <ExerciseHeader
                         name={exercice?.name}
@@ -249,14 +247,11 @@ export default function Details() {
                     ))}
                 </ScrollView>
 
-                <View style={{ paddingBottom: insets.bottom }}>
-                    <ExerciseFooter
-                        exerciseQuery={query}
-                        onAddPress={handleAddSerieField}
-                    />
-                </View>
-
-            </View>
+                <ExerciseFooter
+                    exerciseQuery={query}
+                    onAddPress={handleAddSerieField}
+                />
+            </SafeAreaView>
         </GestureHandlerRootView>
     );
 }

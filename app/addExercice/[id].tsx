@@ -1,14 +1,15 @@
-import {Text, TextInput, TouchableOpacity, View} from "react-native";
-import React, {useLayoutEffect, useMemo, useState} from 'react'
-import {useNavigation} from "@react-navigation/native";
-import {useLocalSearchParams, useRouter} from "expo-router";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import React, { useLayoutEffect, useMemo, useState } from 'react'
+import { useNavigation } from "@react-navigation/native";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import useFetch from "@/services/useFetch";
-import {fetchExerciseTypeJson, fetchMuscleJsonList} from "@/services/api";
+import { fetchExerciseTypeJson, fetchMuscleJsonList } from "@/services/api";
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Checkbox } from 'expo-checkbox';
-import {addUserExercice} from "@/services/storage";
+import { addUserExercice } from "@/services/storage";
 import { nanoid } from 'nanoid/non-secure';
 import { getUITranslation } from "@/services/translation";
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const uiAddExercice = getUITranslation("add_exercice");
 const uiExerciseName = getUITranslation("exercise_name");
@@ -24,7 +25,7 @@ const uiFillAllFields = getUITranslation("fill_all_fields");
 export default function Details() {
     const navigation = useNavigation();
     const router = useRouter();
-    const {id} = useLocalSearchParams();
+    const { id } = useLocalSearchParams();
     const query = Array.isArray(id) ? id[0] : id;
 
     const { data: type } = useFetch(() => fetchExerciseTypeJson());
@@ -37,8 +38,8 @@ export default function Details() {
     const [muscleOpen, setMuscleOpen] = useState(false);
     const [typeOpen, setTypeOpen] = useState(false);
 
-    const handleConfirmExercice= () =>{
-        if(!exerciceDesc || !exerciceName || !selectedMuscle){
+    const handleConfirmExercice = () => {
+        if (!exerciceDesc || !exerciceName || !selectedMuscle) {
             alert(uiFillAllFields || "Veuillez remplir tous les champs")
             return
         }
@@ -84,7 +85,7 @@ export default function Details() {
     const [isUnilateral, setIsUnilateral] = useState(false);
 
     return (
-        <View className="flex-1">
+        <SafeAreaView className="flex-1">
             <View className="flex-1 mt-5 ml-5 px-4 flex-col gap-1.5">
 
                 <Text className="text-xl font-normal">{uiExerciseName}</Text>
@@ -115,18 +116,18 @@ export default function Details() {
                     zIndex={3000}
                     zIndexInverse={1000}
                     style={{
-                      height: 50,
-                      borderWidth: 1,
-                      borderColor: "#ccc",
-                      borderRadius: 8,
-                      paddingHorizontal: 12,
-                      backgroundColor: "white",
+                        height: 50,
+                        borderWidth: 1,
+                        borderColor: "#ccc",
+                        borderRadius: 8,
+                        paddingHorizontal: 12,
+                        backgroundColor: "white",
                     }}
                     containerStyle={{
                         width: '91.666667%',
                         marginBottom: 10,
                     }}
-                    dropDownContainerStyle={{backgroundColor: 'white'}}
+                    dropDownContainerStyle={{ backgroundColor: 'white' }}
                 />
 
                 <Text className="text-xl font-normal">{uiExerciseType}</Text>
@@ -141,18 +142,18 @@ export default function Details() {
                     zIndex={2000}
                     zIndexInverse={2000}
                     style={{
-                      height: 50,
-                      borderWidth: 1,
-                      borderColor: "#ccc",
-                      borderRadius: 8,
-                      paddingHorizontal: 12,
-                      backgroundColor: "white",
+                        height: 50,
+                        borderWidth: 1,
+                        borderColor: "#ccc",
+                        borderRadius: 8,
+                        paddingHorizontal: 12,
+                        backgroundColor: "white",
                     }}
                     containerStyle={{
                         width: '91.666667%',
                         marginBottom: 10,
                     }}
-                    dropDownContainerStyle={{backgroundColor: 'white'}}
+                    dropDownContainerStyle={{ backgroundColor: 'white' }}
                 />
 
                 <View className="flex-row items-center gap-2 mt-2">
@@ -171,6 +172,6 @@ export default function Details() {
                     <Text className="color-white text-2xl">{uiAddExerciceButton}</Text>
                 </TouchableOpacity>
             </View>
-        </View>
+        </SafeAreaView>
     );
 }

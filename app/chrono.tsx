@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Text, View, TouchableOpacity, SafeAreaView } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import { useNavigation } from "expo-router";
 import { Feather } from '@expo/vector-icons';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Chrono = () => {
     const navigation = useNavigation();

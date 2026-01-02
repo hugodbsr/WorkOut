@@ -1,4 +1,4 @@
-import { ActivityIndicator, FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { useCallback, useLayoutEffect } from 'react';
 import { Link, useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
 import useFetch from "@/services/useFetch";
@@ -6,6 +6,7 @@ import { fetchExerciceListJson, fetchMuscleJson } from "@/services/api";
 import { useNavigation } from "@react-navigation/native";
 import { exerciseImages } from "@/src/constants/images";
 import { Image } from "expo-image";
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Details() {
     const navigation = useNavigation();

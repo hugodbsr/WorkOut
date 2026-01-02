@@ -6,6 +6,7 @@ import { fetchMuscleJsonList } from "@/services/api";
 import { Image, ImageBackground } from "expo-image";
 import { muscleGroupImages } from "@/src/constants/images";
 import { getUITranslation } from "@/services/translation";
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 function getMuscleImage(name?: string) {
     if (name && muscleGroupImages[name as keyof typeof muscleGroupImages]) {
@@ -33,7 +34,7 @@ export default function Add() {
     }
 
     return (
-        <View className="flex-1 mt-5 px-4">
+        <SafeAreaView className="flex-1 px-4">
             <Text className="text-4xl font-bold text-center m-4 my-6">{getUITranslation("choose_exercice")}</Text>
             <FlatList
                 className="m-auto"
@@ -58,7 +59,7 @@ export default function Add() {
                     </TouchableOpacity>
                 )}
             />
-        </View>
+        </SafeAreaView>
     );
 }
 

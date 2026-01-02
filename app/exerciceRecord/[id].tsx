@@ -3,28 +3,28 @@ import {
     StyleSheet,
     Text,
     View,
-    SafeAreaView,
     SectionList
 } from 'react-native';
-import React, {useEffect, useLayoutEffect, useState} from 'react';
-import {useLocalSearchParams} from "expo-router";
+import React, { useEffect, useLayoutEffect, useState } from 'react';
+import { useLocalSearchParams } from "expo-router";
 import useFetch from "@/services/useFetch";
-import {fetchExerciseJson} from "@/services/api";
+import { fetchExerciseJson } from "@/services/api";
 import { getExerciseHistory, Set, Session } from "@/services/storage";
 import { useNavigation } from '@react-navigation/native';
 
 import HistorySetItem from '@/app/components/history/HistorySetItem';
 import HistorySectionHeader from '@/app/components/history/HistorySectionHeader';
-import {nanoid} from "nanoid/non-secure";
-import {getUITranslation} from "@/services/translation";
+import { nanoid } from "nanoid/non-secure";
+import { getUITranslation } from "@/services/translation";
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type HistorySection = {
     title: string;
     data: Set[];
 }
 
-export default function RecordScreen(){
-    const {id} = useLocalSearchParams();
+export default function RecordScreen() {
+    const { id } = useLocalSearchParams();
     const navigation = useNavigation();
     const query = Array.isArray(id) ? id[0] : id;
 
@@ -32,7 +32,7 @@ export default function RecordScreen(){
         data: exercice,
         loading: exerciceLoading,
         error: exerciceError,
-    } = useFetch(() => fetchExerciseJson({query: `${id}`}));
+    } = useFetch(() => fetchExerciseJson({ query: `${id}` }));
 
     const [sections, setSections] = useState<HistorySection[]>([]);
 
