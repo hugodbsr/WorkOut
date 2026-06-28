@@ -9,7 +9,8 @@ import React, { useEffect, useState } from 'react';
 import { getAllExerciseHistory, Set } from "@/services/storage";
 import { fetchExerciseJson } from "@/services/api";
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { getUITranslation, getLanguageCode } from "@/services/translation";
+import { getLanguageCode } from "@/services/translation";
+import { useUITranslation } from '@/services/useUITranslation';
 import HistorySetItem from '@/app/components/history/HistorySetItem';
 import HistorySectionHeader from '@/app/components/history/HistorySectionHeader';
 
@@ -30,6 +31,7 @@ type DaySection = {
 export default function Records() {
     const [sections, setSections] = useState<DaySection[]>([]);
     const [loading, setLoading] = useState(true);
+    const uiNoData = useUITranslation('no_data', 'No data');
 
     useEffect(() => {
         const loadHistory = async () => {
@@ -123,7 +125,7 @@ export default function Records() {
         </View>
     );
 
-    const uiNoData = getUITranslation("no_data");
+
 
     return (
         <SafeAreaView style={styles.container}>

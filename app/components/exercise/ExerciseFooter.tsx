@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
-import {getUITranslation} from "@/services/translation";
+import { useUITranslation } from "@/services/useUITranslation";
 import { Octicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 type ExerciseFooterProps = {
@@ -15,8 +15,8 @@ export const ExerciseFooter: React.FC<ExerciseFooterProps> = React.memo(({
                                                                              onAddPress,
                                                                          }) => {
     const router = useRouter();
-    const uiChrono = React.useMemo(() => getUITranslation("chrono"), []);
-    const uiRecords = React.useMemo(() => getUITranslation("records"), []);
+    const uiChrono = useUITranslation("chrono", "Chrono");
+    const uiRecords = useUITranslation("records", "Records");
 
 
     return (
@@ -41,7 +41,7 @@ export const ExerciseFooter: React.FC<ExerciseFooterProps> = React.memo(({
 
                 <TouchableOpacity
                     className="bg-primary flex-1 py-[13px] rounded-tr-3xl ml-12 gap-1 justify-center flex-row items-center overflow-hidden"
-                    onPress={() => router.push(`/exerciceRecord/${exerciseQuery}`)}>
+                    onPress={() => router.push(`/exerciseRecord/${exerciseQuery}`)}>
                     <View className="absolute justify-center items-center opacity-10">
                         <MaterialCommunityIcons 
                             name="notebook" 

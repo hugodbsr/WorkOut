@@ -1,7 +1,7 @@
 {
   "ui": {
     "today_series": "Series of the day",
-    "choose_exercice": "Choose an exercice",
+    "choose_exercise": "Choose an exercise",
     "exercise_history": "Exercise records",
     "no_data": "No data for this exercise",
     "chrono": "Chrono",
@@ -14,8 +14,8 @@
     "select_type": "Select type(s)",
     "unilateral": "Unilateral",
     "bilateral": "Bilateral",
-    "add_exercice": "Add an exercice",
-    "add_exercice_button": "Add"
+    "add_exercise": "Add an exercise",
+    "add_exercise_button": "Add"
   },
   "muscle": {
     "chest": "Chest",

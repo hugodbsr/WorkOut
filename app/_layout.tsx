@@ -4,6 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as NavigationBar from 'expo-navigation-bar';
 import { useEffect } from 'react';
 import { Platform } from 'react-native';
+import { TimerProvider } from './context/TimerContext';
 import './globals.css';
 
 export default function RootLayout() {
@@ -17,24 +18,26 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
-        <Stack>
-          <Stack.Screen
-            name="index"
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="add"
-            options={{ headerShown: true, title: "Add" }}
-          />
-          <Stack.Screen
-            name="records"
-            options={{ headerShown: true, title: "Records" }}
-          />
-          <Stack.Screen
-            name="settings"
-            options={{ headerShown: true, title: "Settings" }}
-          />
-        </Stack>
+        <TimerProvider>
+          <Stack>
+            <Stack.Screen
+              name="index"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="add"
+              options={{ headerShown: true, title: "Add" }}
+            />
+            <Stack.Screen
+              name="records"
+              options={{ headerShown: true, title: "Records" }}
+            />
+            <Stack.Screen
+              name="settings"
+              options={{ headerShown: true, title: "Settings" }}
+            />
+          </Stack>
+        </TimerProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );

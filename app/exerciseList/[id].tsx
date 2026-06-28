@@ -2,7 +2,7 @@ import { ActivityIndicator, FlatList, StyleSheet, Text, TouchableOpacity, View }
 import React, { useCallback, useLayoutEffect } from 'react';
 import { Link, useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
 import useFetch from "@/services/useFetch";
-import { fetchExerciceListJson, fetchMuscleJson } from "@/services/api";
+import { fetchExerciseListJson, fetchMuscleJson } from "@/services/api";
 import { useNavigation } from "@react-navigation/native";
 import { exerciseImages } from "@/src/constants/images";
 import { Image } from "expo-image";
@@ -23,10 +23,10 @@ export default function Details() {
     } = useFetch(() => fetchMuscleJson({ query: `${id}` }));
 
     const {
-        data: exercice,
-        loading: exerciceLoading,
-        error: exerciceError,
-    } = useFetch(() => fetchExerciceListJson({ query }));
+        data: exercises,
+        loading: exercisesLoading,
+        error: exercisesError,
+    } = useFetch(() => fetchExerciseListJson({ query }));
 
     useLayoutEffect(() => {
         if (group) {
@@ -38,12 +38,12 @@ export default function Details() {
         }
     }, [navigation, group]);
 
-    if (exerciceLoading || groupLoading) {
+    if (exercisesLoading || groupLoading) {
         return <ActivityIndicator size="large" color="blue" />;
     }
 
-    if (exerciceError || groupError) {
-        return <Text>Error : {exerciceError?.message}</Text>;
+    if (exercisesError || groupError) {
+        return <Text>Error : {exercisesError?.message}</Text>;
     }
 
     function getExerciseImage(name: keyof typeof exerciseImages) {
@@ -64,11 +64,11 @@ export default function Details() {
             <View style={styles.container}>
                 <FlatList
                     className="mb-12"
-                    data={exercice}
+                    data={exercises}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => (
                         <View className="bg-gray-50 rounded-2xl justify-around mb-2">
-                            <Link href={`/exercice/${item.id}`}>
+                            <Link href={`/exercise/${item.id}`}>
                                 <View className="items-center flex flex-row gap-3">
                                     <Image
                                         source={getExerciseImage(item.image)}
@@ -95,7 +95,7 @@ export default function Details() {
             <TouchableOpacity
                 style={styles.addButton}
                 className="bg-primary"
-                onPress={() => router.push(`/addExercice/${query}`)}>
+                onPress={() => router.push(`/addExercise/${query}`)}>
                 <Text className="color-white text-3xl">+</Text>
             </TouchableOpacity>
         </SafeAreaView>

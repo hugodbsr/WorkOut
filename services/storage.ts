@@ -21,7 +21,7 @@ export const getTodayDate = (): string => {
     return new Date().toISOString().split('T')[0];
 };
 
-export const addUserExercice = async (exercise: any) => {
+export const addUserExercise = async (exercise: any) => {
     try {
         const json = await AsyncStorage.getItem(USER_CREATED_EXERCISES_KEY);
         const userExercises = json ? JSON.parse(json) : [];
@@ -75,7 +75,7 @@ export const addSessionToExercise = async (
     }
 };
 
-export const deleteSessionOfExercice = async (exerciseId: string, setId: string) => {
+export const deleteSessionOfExercise = async (exerciseId: string, setId: string) => {
     try {
         const json = await AsyncStorage.getItem(USER_EXERCISE_KEY);
         const data: ExerciseUserData = json ? JSON.parse(json) : {};

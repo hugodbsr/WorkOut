@@ -5,7 +5,7 @@ import useFetch from "@/services/useFetch";
 import { fetchMuscleJsonList } from "@/services/api";
 import { Image, ImageBackground } from "expo-image";
 import { muscleGroupImages } from "@/src/constants/images";
-import { getUITranslation } from "@/services/translation";
+import { useUITranslation } from "@/services/useUITranslation";
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 function getMuscleImage(name?: string) {
@@ -19,30 +19,32 @@ function getMuscleImage(name?: string) {
 export default function Add() {
     const router = useRouter();
 
+    const chooseExerciseText = useUITranslation('choose_exercise', 'Choose an exercise');
+
     const {
-        data: exercice,
-        loading: exerciceLoading,
-        error: exerciceError,
+        data: muscleGroups,
+        loading: muscleGroupsLoading,
+        error: muscleGroupsError,
     } = useFetch(fetchMuscleJsonList);
 
-    if (exerciceLoading) {
+    if (muscleGroupsLoading) {
         return <ActivityIndicator size="large" color="blue" />;
     }
 
-    if (exerciceError) {
-        return <Text>Error : {exerciceError?.message}</Text>;
+    if (muscleGroupsError) {
+        return <Text>Error : {muscleGroupsError?.message}</Text>;
     }
 
     return (
         <SafeAreaView className="flex-1">
-            <Text className="text-4xl font-bold text-center m-2">{getUITranslation("choose_exercice")}</Text>
+            <Text className="text-4xl font-bold text-center m-2">{chooseExerciseText}</Text>
             <FlatList
                 className="m-auto"
-                data={exercice}
+                data={muscleGroups}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => (
                     <TouchableOpacity>
-                        <Link href={`/exerciceList/${item.id}`}
+                        <Link href={`/exerciseList/${item.id}`}
                             className="flex flex-row items-center px-12 my-1.5 bg-[#3456AD] rounded-xl">
                             <View className="items-start flex flex-row">
                                 <Image

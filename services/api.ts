@@ -1,4 +1,4 @@
-import exercices from "@/src/data/exercises/exercices.json"
+import exercisesData from "@/src/data/exercises/exercises.json"
 import * as Localization from "expo-localization";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { loadTranslations, getTranslatedValue, getLanguageCode } from "./translation";
@@ -11,10 +11,10 @@ const fetchAllExercises = async () => {
     try {
         const stored = await AsyncStorage.getItem(USER_CREATED_EXERCISES_KEY);
         const userExercises = stored ? JSON.parse(stored) : [];
-        return [...exercices.exercises, ...userExercises];
+        return [...exercisesData.exercises, ...userExercises];
     } catch (e) {
         console.error("Erreur lors du chargement des exercices", e);
-        return exercices.exercises;
+        return exercisesData.exercises;
     }
 };
 
@@ -23,7 +23,7 @@ export const fetchMuscleJsonList = async () => {
     const translations = await loadTranslations(languageCode);
 
     const muscles = await Promise.all(
-        exercices.muscleGroups.map(async (muscle) => ({
+        exercisesData.muscleGroups.map(async (muscle) => ({
             id: muscle.id,
             name: await getTranslatedValue(muscle.nameKey, translations),
             image: muscle.image,
@@ -37,7 +37,7 @@ export const fetchMuscleJson = async ({ query }: { query: string }) => {
     const languageCode = getLanguageCode();
     const translations = await loadTranslations(languageCode);
 
-    const muscle = exercices.muscleGroups.find(
+    const muscle = exercisesData.muscleGroups.find(
         (msc: any) => msc.id.toString() === query
     );
 
@@ -50,7 +50,7 @@ export const fetchMuscleJson = async ({ query }: { query: string }) => {
     };
 };
 
-export const fetchExerciceListJson = async ({ query }: { query: string }) => {
+export const fetchExerciseListJson = async ({ query }: { query: string }) => {
     const languageCode = getLanguageCode();
     const translations = await loadTranslations(languageCode);
 
@@ -99,7 +99,7 @@ export const fetchExerciseTypeJson = async () => {
     const translations = await loadTranslations(languageCode);
 
     const types = await Promise.all(
-        exercices.exerciseType.map(async (type) => ({
+        exercisesData.exerciseType.map(async (type) => ({
             id: type.id,
             name: await getTranslatedValue(type.nameKey, translations),
         }))

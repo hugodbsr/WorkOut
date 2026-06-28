@@ -7,7 +7,7 @@ export default function Index() {
     return (
         <SafeAreaView className={"flex-1 justify-center items-center"}>
             <Text className={"text-3xl font-bold color-primary"}>WELCOME</Text>
-            <Link href="/exercice/curl">Curl</Link>
+            <Link href="/exercise/curl">Curl</Link>
             <HomeFooter />
         </SafeAreaView>
     );

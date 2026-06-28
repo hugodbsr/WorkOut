@@ -10,7 +10,7 @@ import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useLocalSearchParams } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchExerciseJson } from "@/services/api";
-import { addSessionToExercise, deleteSessionOfExercice, getExerciseHistory, Set, getTodayDate, Side } from "@/services/storage";
+import { addSessionToExercise, deleteSessionOfExercise, getExerciseHistory, Set, getTodayDate, Side } from "@/services/storage";
 import { GestureHandlerRootView, Swipeable } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import { exerciseImages, muscleGroupImages } from "@/src/constants/images";
@@ -36,9 +36,9 @@ export default function Details() {
     const query = Array.isArray(id) ? id[0] : id;
 
     const {
-        data: exercice,
-        loading: exerciceLoading,
-        error: exerciceError,
+        data: exercise,
+        loading: exerciseLoading,
+        error: exerciseError,
     } = useFetch(() => fetchExerciseJson({ query: `${id}` }));
 
     const [oldSeries, setOldSeries] = useState<{ reps: string, weight: string, side?: Side }[]>([]);
@@ -101,7 +101,7 @@ export default function Details() {
 
         if (wasComplete) {
             try {
-                await deleteSessionOfExercice(query as string, removed.id);
+                await deleteSessionOfExercise(query as string, removed.id);
             } catch (e) {
                 console.warn("Erreur lors de la suppression du stockage", e);
             }
@@ -126,7 +126,7 @@ export default function Details() {
     };
 
     useLayoutEffect(() => {
-        if (exercice) {
+        if (exercise) {
             navigation.setOptions({
                 headerTitle: () => (
                     <Text className="font-bold text-xl">Série effectué aujourd&#39;hui</Text>
@@ -143,7 +143,7 @@ export default function Details() {
                 ),
             });
         }
-    }, [navigation, exercice, isEditing]);
+    }, [navigation, exercise, isEditing]);
 
     useEffect(() => {
         const today = getTodayDate();
@@ -184,12 +184,12 @@ export default function Details() {
         getHistory();
     }, [id]);
 
-    if (exerciceLoading) {
+    if (exerciseLoading) {
         return <ActivityIndicator size="large" color="blue" />;
     }
 
-    if (exerciceError) {
-        return <Text>Error : {exerciceError?.message}</Text>;
+    if (exerciseError) {
+        return <Text>Error : {exerciseError?.message}</Text>;
     }
 
     const renderRightActions = (index: number) => {
@@ -215,9 +215,9 @@ export default function Details() {
                 <ScrollView className="bg-gray-100" contentContainerStyle={{ flexGrow: 1 }}>
 
                     <ExerciseHeader
-                        name={exercice?.name}
-                        imageSource={getExerciseImage(exercice?.image)}
-                        isUnilateral={exercice?.unilateral}
+                        name={exercise?.name}
+                        imageSource={getExerciseImage(exercise?.image)}
+                        isUnilateral={exercise?.unilateral}
                         unilateral={unilateral}
                         setUnilateral={setUnilateral}
                     />

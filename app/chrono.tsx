@@ -1,17 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import { useNavigation } from "expo-router";
 import { Feather } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useTimer } from './context/TimerContext';
 
 const Chrono = () => {
     const navigation = useNavigation();
-
-    const [elapsedTime, setElapsedTime] = useState(0);
-    const [isRunning, setIsRunning] = useState(false);
-
-    const startTimeRef = useRef<number>(0);
-    const pausedTimeRef = useRef<number>(0);
+    const { elapsedTime, isRunning, toggle, reset, formatTime } = useTimer();
 
     useEffect(() => {
         navigation?.setOptions({
@@ -19,46 +15,6 @@ const Chrono = () => {
             headerShown: true,
         });
     }, [navigation]);
-
-    useEffect(() => {
-        let interval: ReturnType<typeof setInterval>;
-
-        if (isRunning) {
-            startTimeRef.current = Date.now() - pausedTimeRef.current;
-            interval = setInterval(() => {
-                const now = Date.now();
-                const diff = now - startTimeRef.current;
-                setElapsedTime(diff);
-            }, 30);
-        }
-
-        return () => clearInterval(interval);
-    }, [isRunning]);
-
-    const toggleTimer = () => {
-        if (isRunning) {
-            pausedTimeRef.current = elapsedTime;
-        }
-        setIsRunning(!isRunning);
-    };
-
-    const resetTimer = () => {
-        setIsRunning(false);
-        setElapsedTime(0);
-        pausedTimeRef.current = 0;
-    };
-
-    const formatTime = (ms: number) => {
-        const minutes = Math.floor(ms / 60000);
-        const seconds = Math.floor((ms % 60000) / 1000);
-        const centiseconds = Math.floor((ms % 1000) / 10);
-
-        const min = ("0" + minutes).slice(-2);
-        const sec = ("0" + seconds).slice(-2);
-        const cen = ("0" + centiseconds).slice(-2);
-
-        return `${min}:${sec},${cen}`;
-    };
 
     return (
         <SafeAreaView className="flex-1 justify-center items-center bg-gray-100">
@@ -70,7 +26,7 @@ const Chrono = () => {
 
             <View className="flex-row items-center mt-12">
                 <TouchableOpacity
-                    onPress={toggleTimer}
+                    onPress={toggle}
                     activeOpacity={0.8}
                     className="w-28 h-28 rounded-full shadow-lg mx-4 items-center justify-center bg-primary"
                 >
@@ -83,7 +39,7 @@ const Chrono = () => {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={resetTimer}
+                    onPress={reset}
                     activeOpacity={0.7}
                     className="w-20 h-20 rounded-full bg-white shadow-md mx-4 items-center justify-center"
                 >
@@ -95,3 +51,4 @@ const Chrono = () => {
 };
 
 export default Chrono;
+

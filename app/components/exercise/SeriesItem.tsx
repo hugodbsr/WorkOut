@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import RepWeightInput from '../common/RepWeightInput';
 import { Side } from '@/services/storage';
-import {getUITranslation} from "@/services/translation";
+import { useUITranslation } from '@/services/useUITranslation';
 
 type LocalSet = {
     id: string;
@@ -22,7 +22,7 @@ type SeriesItemProps = {
     isUnilateral: boolean;
 };
 
-const uiSerieNumber = getUITranslation("serie_number");
+
 
 // eslint-disable-next-line react/display-name
 export const SeriesItem: React.FC<SeriesItemProps> = React.memo(({
@@ -35,6 +35,7 @@ export const SeriesItem: React.FC<SeriesItemProps> = React.memo(({
                                                                      onSideChange,
                                                                      isUnilateral,
                                                                  }) => {
+    const uiSerieNumber = useUITranslation('serie_number', 'Série n°');
     return (
         <View className="flex-row items-center justify-center bg-gray-100 border-l-[5px] border-blue-800 h-13 my-2 mx-0">
             <Text className="text-2xl font-normal">{uiSerieNumber}{index + 1} </Text>

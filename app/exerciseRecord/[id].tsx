@@ -15,7 +15,7 @@ import { useNavigation } from '@react-navigation/native';
 import HistorySetItem from '@/app/components/history/HistorySetItem';
 import HistorySectionHeader from '@/app/components/history/HistorySectionHeader';
 import { nanoid } from "nanoid/non-secure";
-import { getUITranslation } from "@/services/translation";
+import { useUITranslation } from "@/services/useUITranslation";
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 type HistorySection = {
@@ -29,14 +29,15 @@ export default function RecordScreen() {
     const query = Array.isArray(id) ? id[0] : id;
 
     const {
-        data: exercice,
-        loading: exerciceLoading,
-        error: exerciceError,
+        data: exercise,
+        loading: exerciseLoading,
+        error: exerciseError,
     } = useFetch(() => fetchExerciseJson({ query: `${id}` }));
 
     const [sections, setSections] = useState<HistorySection[]>([]);
 
-    const uiExerciseHistory = getUITranslation("exercise_history");
+    const uiExerciseHistory = useUITranslation("exercise_history", "Exercise history");
+    const uiNoData = useUITranslation("no_data", "No data");
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -72,22 +73,21 @@ export default function RecordScreen() {
         getHistory();
     }, [id]);
 
-    if (exerciceLoading) {
+    if (exerciseLoading) {
         return <ActivityIndicator size="large" color="blue" />;
     }
 
-    if (exerciceError) {
-        return <Text>Error : {exerciceError?.message}</Text>;
+    if (exerciseError) {
+        return <Text>Error : {exerciseError?.message}</Text>;
     }
 
-    const uiNoData = getUITranslation("no_data");
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.container}>
-                {exercice && (
+                {exercise && (
                     <Text className="text-3xl m-4 font-bold flex-wrap text-center">
-                        {exercice.name}
+                        {exercise.name}
                     </Text>
                 )}
 

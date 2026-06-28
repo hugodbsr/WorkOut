@@ -6,21 +6,10 @@ import useFetch from "@/services/useFetch";
 import { fetchExerciseTypeJson, fetchMuscleJsonList } from "@/services/api";
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Checkbox } from 'expo-checkbox';
-import { addUserExercice } from "@/services/storage";
+import { addUserExercise } from "@/services/storage";
 import { nanoid } from 'nanoid/non-secure';
-import { getUITranslation } from "@/services/translation";
+import { useUITranslation } from "@/services/useUITranslation";
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-const uiAddExercice = getUITranslation("add_exercice");
-const uiExerciseName = getUITranslation("exercise_name");
-const uiExerciseDesc = getUITranslation("exercise_desc");
-const uiMuscleUsed = getUITranslation("muscle_used");
-const uiExerciseType = getUITranslation("exercise_type");
-const uiSelectMuscle = getUITranslation("select_muscle");
-const uiSelectType = getUITranslation("select_type");
-const uiUnilateral = getUITranslation("unilateral");
-const uiAddExerciceButton = getUITranslation("add_exercice_button");
-const uiFillAllFields = getUITranslation("fill_all_fields");
 
 export default function Details() {
     const navigation = useNavigation();
@@ -31,29 +20,40 @@ export default function Details() {
     const { data: type } = useFetch(() => fetchExerciseTypeJson());
     const { data: muscle } = useFetch(() => fetchMuscleJsonList());
 
-    const [exerciceName, setExerciceName] = useState<string>();
-    const [exerciceDesc, setExerciceDesc] = useState<string>();
+    const [exerciseName, setExerciseName] = useState<string>();
+    const [exerciseDesc, setExerciseDesc] = useState<string>();
+
+    const uiAddExercise = useUITranslation("add_exercise", "Add an exercise");
+    const uiExerciseName = useUITranslation("exercise_name", "Exercise's name");
+    const uiExerciseDesc = useUITranslation("exercise_desc", "Exercise's description");
+    const uiMuscleUsed = useUITranslation("muscle_used", "Muscle used");
+    const uiExerciseType = useUITranslation("exercise_type", "Exercise's type");
+    const uiSelectMuscle = useUITranslation("select_muscle", "Select a muscle");
+    const uiSelectType = useUITranslation("select_type", "Select type(s)");
+    const uiUnilateral = useUITranslation("unilateral", "Unilateral");
+    const uiAddExerciseButton = useUITranslation("add_exercise_button", "Add");
+    const uiFillAllFields = useUITranslation("fill_all_fields", "Please fill all fields");
     const [selectedMuscle, setSelectedMuscle] = useState(query || null);
     const [selectedType, setSelectedType] = useState([]);
     const [muscleOpen, setMuscleOpen] = useState(false);
     const [typeOpen, setTypeOpen] = useState(false);
 
-    const handleConfirmExercice = () => {
-        if (!exerciceDesc || !exerciceName || !selectedMuscle) {
+    const handleConfirmExercise = () => {
+        if (!exerciseDesc || !exerciseName || !selectedMuscle) {
             alert(uiFillAllFields || "Veuillez remplir tous les champs")
             return
         }
-        const exerciceToAdd = {
+        const exerciseToAdd = {
             id: nanoid(),
-            nameKey: exerciceName,
-            descriptionKey: exerciceDesc,
+            nameKey: exerciseName,
+            descriptionKey: exerciseDesc,
             image: "cable_triceps_extension.gif",
             exerciseTypeKey: selectedType,
             muscleGroupId: selectedMuscle,
             createdByUser: true,
             unilateral: isUnilateral,
         }
-        addUserExercice(exerciceToAdd);
+        addUserExercise(exerciseToAdd);
         router.back();
     }
 
@@ -77,7 +77,7 @@ export default function Details() {
     useLayoutEffect(() => {
         navigation.setOptions({
             headerTitle: () => (
-                <Text className="text-xl">{uiAddExercice}</Text>
+                <Text className="text-xl">{uiAddExercise}</Text>
             ),
         });
     }, [navigation]);
@@ -92,7 +92,7 @@ export default function Details() {
                 <TextInput
                     className="border-solid border-4 border-[#3456AD] rounded-md w-11/12 border-primary p-0.5 text-xl text-left mb-2.5"
                     keyboardType="default"
-                    onChangeText={setExerciceName}
+                    onChangeText={setExerciseName}
                 />
 
                 <Text className="text-xl font-normal">{uiExerciseDesc}</Text>
@@ -102,7 +102,7 @@ export default function Details() {
                     multiline={true}
                     numberOfLines={4}
                     textAlignVertical="top"
-                    onChangeText={setExerciceDesc}
+                    onChangeText={setExerciseDesc}
                 />
 
                 <Text className="text-xl font-normal">{uiMuscleUsed}</Text>
@@ -167,9 +167,9 @@ export default function Details() {
                 </View>
 
                 <TouchableOpacity
-                    onPress={handleConfirmExercice}
+                    onPress={handleConfirmExercise}
                     className="items-center bg-primary rounded-xl p-3 w-11/12 ml-auto mr-auto mt-auto mb-20">
-                    <Text className="color-white text-2xl">{uiAddExerciceButton}</Text>
+                    <Text className="color-white text-2xl">{uiAddExerciseButton}</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>

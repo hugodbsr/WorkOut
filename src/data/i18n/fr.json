@@ -1,7 +1,7 @@
 {
   "ui": {
     "today_series": "Séries effectuées aujourd'hui",
-    "choose_exercice": "Choisissez un exercice",
+    "choose_exercise": "Choisissez un exercice",
     "exercise_history": "Historique de l'exercice",
     "no_data": "Aucune donnée pour cet exercice",
     "chrono": "Chrono",
@@ -14,8 +14,8 @@
     "select_type": "Sélectionner une ou plusieurs catégories",
     "unilateral": "Unilatéral",
     "bilateral": "Bilatéral",
-    "add_exercice": "Ajouter un exercice",
-    "add_exercice_button": "Ajouter"
+    "add_exercise": "Ajouter un exercice",
+    "add_exercise_button": "Ajouter"
   },
   "muscle": {
     "chest": "Pectoraux",
