@@ -40,3 +40,7 @@ expo-env.d.ts
 # Dossiers générés (Expo Prebuild)
 android/
 ios/
+
+# Fichiers et dossiers d'IDE / OS
+.idea/
+.directory
