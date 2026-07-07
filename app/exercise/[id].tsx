@@ -129,14 +129,14 @@ export default function Details() {
         if (exercise) {
             navigation.setOptions({
                 headerTitle: () => (
-                    <Text className="font-bold text-xl">Série effectué aujourd&#39;hui</Text>
+                    <Text className="font-bold text-xl text-white">Série effectué aujourd&#39;hui</Text>
                 ),
                 headerRight: () => (
                     <TouchableOpacity onPress={toggleEditMode}>
                         <Feather
                             name={isEditing ? "x-circle" : "edit"}
                             size={24}
-                            color="black"
+                            color="white"
                             className="mr-4"
                         />
                     </TouchableOpacity>
@@ -212,7 +212,7 @@ export default function Details() {
     return (
         <GestureHandlerRootView className="flex-1">
             <SafeAreaView className="flex-1 bg-gray-100">
-                <ScrollView className="bg-gray-100" contentContainerStyle={{ flexGrow: 1 }}>
+                <ScrollView className="bg-gray-100" style={{ marginBottom: 110 }} contentContainerStyle={{ flexGrow: 1 }}>
 
                     <ExerciseHeader
                         name={exercise?.name}

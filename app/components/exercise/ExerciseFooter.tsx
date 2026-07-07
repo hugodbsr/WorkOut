@@ -23,24 +23,7 @@ export const ExerciseFooter: React.FC<ExerciseFooterProps> = React.memo(({
         <>
             <View className="absolute bottom-[-1px] left-[-1px] right-[-1px] rounded-t-3xl flex-row justify-around bg-primary border-t pb-[43px]">
                 <TouchableOpacity
-                className="bg-primary flex-1 py-[13px] rounded-tl-3xl mr-12 justify-center items-center relative overflow-hidden"
-                onPress={() => router.push(`../chrono`)}>
-                    <View className="absolute justify-center items-center opacity-10">
-                        <Octicons 
-                            name="stopwatch" 
-                            size={100}
-                            color="white" 
-                            style={{ transform: [{ rotate: '15deg' }] }}
-                        />
-                    </View>
-
-                    <Text className="text-white font-medium italic text-2xl z-10">
-                        {uiChrono}
-                    </Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    className="bg-primary flex-1 py-[13px] rounded-tr-3xl ml-12 gap-1 justify-center flex-row items-center overflow-hidden"
+                    className="bg-primary flex-1 py-[13px] rounded-tl-3xl mr-12 justify-center items-center relative overflow-hidden"
                     onPress={() => router.push(`/exerciseRecord/${exerciseQuery}`)}>
                     <View className="absolute justify-center items-center opacity-10">
                         <MaterialCommunityIcons 
@@ -53,6 +36,23 @@ export const ExerciseFooter: React.FC<ExerciseFooterProps> = React.memo(({
 
                     <Text className="text-white font-medium italic text-2xl z-10">
                         {uiRecords}
+                    </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    className="bg-primary flex-1 py-[13px] rounded-tr-3xl ml-12 gap-1 justify-center flex-row items-center overflow-hidden"
+                    onPress={() => router.push(`../chrono`)}>
+                    <View className="absolute justify-center items-center opacity-10">
+                        <Octicons 
+                            name="stopwatch" 
+                            size={100}
+                            color="white" 
+                            style={{ transform: [{ rotate: '15deg' }] }}
+                        />
+                    </View>
+
+                    <Text className="text-white font-medium italic text-2xl z-10">
+                        {uiChrono}
                     </Text>
                 </TouchableOpacity>
             </View>

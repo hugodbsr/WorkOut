@@ -15,7 +15,9 @@
     "unilateral": "Unilateral",
     "bilateral": "Bilateral",
     "add_exercise": "Add an exercise",
-    "add_exercise_button": "Add"
+    "add_exercise_button": "Add",
+    "select_muscle": "Select a muscle",
+    "fill_all_fields": "Please fill all fields"
   },
   "muscle": {
     "chest": "Chest",

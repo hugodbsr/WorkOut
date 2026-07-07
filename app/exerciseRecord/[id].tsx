@@ -42,7 +42,7 @@ export default function RecordScreen() {
     useLayoutEffect(() => {
         navigation.setOptions({
             headerTitle: () => (
-                <Text className="font-bold text-xl">{uiExerciseHistory}</Text>
+                <Text className="font-bold text-xl text-white">{uiExerciseHistory}</Text>
             ),
         });
     }, [navigation]);

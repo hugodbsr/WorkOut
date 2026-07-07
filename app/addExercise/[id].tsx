@@ -1,4 +1,4 @@
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Text, TextInput, TouchableOpacity, View, ScrollView, Alert } from "react-native";
 import React, { useLayoutEffect, useMemo, useState } from 'react'
 import { useNavigation } from "@react-navigation/native";
 import { useLocalSearchParams, useRouter } from "expo-router";
@@ -10,6 +10,7 @@ import { addUserExercise } from "@/services/storage";
 import { nanoid } from 'nanoid/non-secure';
 import { useUITranslation } from "@/services/useUITranslation";
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Feather } from '@expo/vector-icons';
 
 export default function Details() {
     const navigation = useNavigation();
@@ -37,10 +38,11 @@ export default function Details() {
     const [selectedType, setSelectedType] = useState([]);
     const [muscleOpen, setMuscleOpen] = useState(false);
     const [typeOpen, setTypeOpen] = useState(false);
+    const [isUnilateral, setIsUnilateral] = useState(false);
 
     const handleConfirmExercise = () => {
         if (!exerciseDesc || !exerciseName || !selectedMuscle) {
-            alert(uiFillAllFields || "Veuillez remplir tous les champs")
+            Alert.alert("", uiFillAllFields || "Please fill all fields");
             return
         }
         const exerciseToAdd = {
@@ -73,40 +75,72 @@ export default function Details() {
         }));
     }, [type]);
 
-
     useLayoutEffect(() => {
         navigation.setOptions({
             headerTitle: () => (
-                <Text className="text-xl">{uiAddExercise}</Text>
+                <Text className="text-xl font-semibold italic text-white">{uiAddExercise}</Text>
             ),
         });
-    }, [navigation]);
+    }, [navigation, uiAddExercise]);
 
-    const [isUnilateral, setIsUnilateral] = useState(false);
+    const dropdownStyle = {
+        borderWidth: 1,
+        borderColor: '#e5e7eb',
+        borderRadius: 12,
+        paddingHorizontal: 16,
+        backgroundColor: '#f9fafb',
+        minHeight: 50,
+    };
+
+    const dropdownContainerStyle = {
+        width: '100%' as const,
+        marginBottom: 4,
+    };
+
+    const dropdownListStyle = {
+        backgroundColor: 'white',
+        borderWidth: 1,
+        borderColor: '#e5e7eb',
+        borderRadius: 12,
+    };
 
     return (
-        <SafeAreaView className="flex-1">
-            <View className="flex-1 mt-5 ml-5 px-4 flex-col gap-1.5">
-
-                <Text className="text-xl font-normal">{uiExerciseName}</Text>
+        <SafeAreaView className="flex-1 bg-white">
+            <ScrollView
+                className="flex-1 px-6 pt-4"
+                keyboardShouldPersistTaps="handled"
+                contentContainerStyle={{ paddingBottom: 120 }}
+            >
+                {/* Nom de l'exercice */}
+                <Text className="text-gray-700 text-base font-semibold mb-2 ml-1">{uiExerciseName}</Text>
                 <TextInput
-                    className="border-solid border-4 border-[#3456AD] rounded-md w-11/12 border-primary p-0.5 text-xl text-left mb-2.5"
+                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-base mb-5"
+                    placeholderTextColor="#9ca3af"
+                    placeholder={uiExerciseName}
                     keyboardType="default"
                     onChangeText={setExerciseName}
+                    value={exerciseName}
                 />
 
-                <Text className="text-xl font-normal">{uiExerciseDesc}</Text>
+                {/* Description */}
+                <Text className="text-gray-700 text-base font-semibold mb-2 ml-1">{uiExerciseDesc}</Text>
                 <TextInput
-                    className="border-solid border-4 border-[#3456AD] rounded-md w-11/12 border-primary p-0.5 text-xl text-left mb-2.5"
+                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-base mb-5"
+                    placeholderTextColor="#9ca3af"
+                    placeholder={uiExerciseDesc}
                     keyboardType="default"
                     multiline={true}
-                    numberOfLines={4}
+                    numberOfLines={3}
                     textAlignVertical="top"
                     onChangeText={setExerciseDesc}
+                    value={exerciseDesc}
+                    style={{ minHeight: 80 }}
                 />
 
-                <Text className="text-xl font-normal">{uiMuscleUsed}</Text>
+                {/* Muscle sollicité */}
+                <Text className="text-gray-700 text-base font-semibold mb-2 ml-1">{uiMuscleUsed}</Text>
                 <DropDownPicker
+                    listMode="SCROLLVIEW"
                     open={muscleOpen}
                     value={selectedMuscle}
                     items={formattedDataMuscle}
@@ -115,23 +149,19 @@ export default function Details() {
                     placeholder={uiSelectMuscle}
                     zIndex={3000}
                     zIndexInverse={1000}
-                    style={{
-                        height: 50,
-                        borderWidth: 1,
-                        borderColor: "#ccc",
-                        borderRadius: 8,
-                        paddingHorizontal: 12,
-                        backgroundColor: "white",
-                    }}
-                    containerStyle={{
-                        width: '91.666667%',
-                        marginBottom: 10,
-                    }}
-                    dropDownContainerStyle={{ backgroundColor: 'white' }}
+                    style={dropdownStyle}
+                    placeholderStyle={{ color: '#9ca3af' }}
+                    containerStyle={dropdownContainerStyle}
+                    dropDownContainerStyle={dropdownListStyle}
+                    ArrowDownIconComponent={() => <Feather name="chevron-down" size={20} color="#6b7280" />}
+                    ArrowUpIconComponent={() => <Feather name="chevron-up" size={20} color="#6b7280" />}
+                    TickIconComponent={() => <Feather name="check" size={18} color="#3456AD" />}
                 />
 
-                <Text className="text-xl font-normal">{uiExerciseType}</Text>
+                {/* Type d'exercice */}
+                <Text className="text-gray-700 text-base font-semibold mb-2 ml-1 mt-5">{uiExerciseType}</Text>
                 <DropDownPicker
+                    listMode="SCROLLVIEW"
                     multiple={true}
                     open={typeOpen}
                     value={selectedType}
@@ -141,35 +171,39 @@ export default function Details() {
                     placeholder={uiSelectType}
                     zIndex={2000}
                     zIndexInverse={2000}
-                    style={{
-                        height: 50,
-                        borderWidth: 1,
-                        borderColor: "#ccc",
-                        borderRadius: 8,
-                        paddingHorizontal: 12,
-                        backgroundColor: "white",
-                    }}
-                    containerStyle={{
-                        width: '91.666667%',
-                        marginBottom: 10,
-                    }}
-                    dropDownContainerStyle={{ backgroundColor: 'white' }}
+                    style={dropdownStyle}
+                    placeholderStyle={{ color: '#9ca3af' }}
+                    containerStyle={dropdownContainerStyle}
+                    dropDownContainerStyle={dropdownListStyle}
+                    ArrowDownIconComponent={() => <Feather name="chevron-down" size={20} color="#6b7280" />}
+                    ArrowUpIconComponent={() => <Feather name="chevron-up" size={20} color="#6b7280" />}
+                    TickIconComponent={() => <Feather name="check" size={18} color="#3456AD" />}
                 />
 
-                <View className="flex-row items-center gap-2 mt-2">
-                    <Text className="text-xl">{uiUnilateral}</Text>
+                {/* Unilatéral */}
+                <TouchableOpacity
+                    className="flex-row items-center mt-6 bg-gray-50 border border-gray-200 rounded-xl px-4 py-4"
+                    activeOpacity={0.7}
+                    onPress={() => setIsUnilateral(!isUnilateral)}
+                >
                     <Checkbox
-                        className="p-4"
                         value={isUnilateral}
                         onValueChange={setIsUnilateral}
                         color={isUnilateral ? '#3456AD' : undefined}
+                        style={{ borderColor: '#d1d5db', borderRadius: 6, width: 24, height: 24 }}
                     />
-                </View>
+                    <Text className="text-gray-700 text-base font-semibold ml-3">{uiUnilateral}</Text>
+                </TouchableOpacity>
+            </ScrollView>
 
+            {/* Bouton Ajouter */}
+            <View className="absolute bottom-0 left-0 right-0 px-6 pb-10 pt-4 bg-white">
                 <TouchableOpacity
                     onPress={handleConfirmExercise}
-                    className="items-center bg-primary rounded-xl p-3 w-11/12 ml-auto mr-auto mt-auto mb-20">
-                    <Text className="color-white text-2xl">{uiAddExerciseButton}</Text>
+                    className="items-center bg-primary rounded-2xl py-4"
+                    activeOpacity={0.8}
+                >
+                    <Text className="text-white text-xl font-bold">{uiAddExerciseButton}</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>

@@ -80,6 +80,10 @@ const FloatingTimer = () => {
         return `${min}:${sec}`;
     };
 
+    if (elapsedTime === 0 && !isRunning) {
+        return null;
+    }
+
     return (
         <View style={styles.container} pointerEvents="box-none">
             {/* Bouton Reset */}

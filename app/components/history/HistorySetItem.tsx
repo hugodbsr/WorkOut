@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { Set } from '@/services/storage';
 import { getUITranslation, getLanguageCode } from '@/services/translation';
-
-//style
-const valueTextStyle = "text-2xl font-bold text-[#3456AD] min-w-[40px] text-center";
+import { Feather } from '@expo/vector-icons';
 
 type HistorySetItemProps = {
     item: Set;
@@ -21,7 +19,6 @@ const HistorySetItem = ({ item, index }: HistorySetItemProps) => {
             const serie = await getUITranslation("serie_number");
             setSerieLabel(serie);
 
-            // Set left/right based on language
             const lang = getLanguageCode();
             if (lang === 'en') {
                 setLeftLabel('Left');
@@ -32,34 +29,38 @@ const HistorySetItem = ({ item, index }: HistorySetItemProps) => {
     }, []);
 
     return (
-        <View
-            className="
-                flex-row
-                items-center
-                bg-gray-50
-                py-2.5
-                px-4
-                border-b
-                border-b-gray-200
-            ">
-            <Text className="text-2xl">{serieLabel}{index + 1} : </Text>
+        <View className="flex-row items-center bg-white mx-4 my-1 px-4 py-3 rounded-xl shadow-sm shadow-black/5">
+            {/* Numéro de série */}
+            <View className="bg-primary/10 rounded-full w-8 h-8 items-center justify-center mr-3">
+                <Text className="text-primary font-bold text-sm">{index + 1}</Text>
+            </View>
 
-            <Text className={valueTextStyle}>
-                {item.reps}
-            </Text>
+            {/* Reps */}
+            <View className="items-center mr-1">
+                <Text className="text-2xl font-bold text-primary">{item.reps}</Text>
+            </View>
 
-            <Text className="text-2xl"> X </Text>
+            <Text className="text-gray-400 text-lg mx-1">×</Text>
 
-            <Text className={valueTextStyle}>
-                {item.weight}
-            </Text>
+            {/* Poids */}
+            <View className="items-center mr-1">
+                <Text className="text-2xl font-bold text-primary">{item.weight}</Text>
+            </View>
 
-            <Text className="text-2xl"> Kg </Text>
+            <Text className="text-gray-500 text-base ml-1">kg</Text>
 
+            {/* Côté (unilatéral) */}
             {item.side && item.side !== "both" && (
-                <Text className="text-lg text-gray-500 ml-2.5">
-                    ({item.side === "left" ? leftLabel : rightLabel})
-                </Text>
+                <View className="flex-row items-center ml-auto bg-gray-100 rounded-full px-3 py-1">
+                    <Feather
+                        name={item.side === "left" ? "arrow-left" : "arrow-right"}
+                        size={14}
+                        color="#6b7280"
+                    />
+                    <Text className="text-gray-500 text-sm ml-1">
+                        {item.side === "left" ? leftLabel : rightLabel}
+                    </Text>
+                </View>
             )}
         </View>
     );

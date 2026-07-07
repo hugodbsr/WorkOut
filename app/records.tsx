@@ -1,6 +1,5 @@
 import {
     ActivityIndicator,
-    StyleSheet,
     Text,
     View,
     SectionList,
@@ -13,6 +12,7 @@ import { getLanguageCode } from "@/services/translation";
 import { useUITranslation } from '@/services/useUITranslation';
 import HistorySetItem from '@/app/components/history/HistorySetItem';
 import HistorySectionHeader from '@/app/components/history/HistorySectionHeader';
+import { Feather } from '@expo/vector-icons';
 
 type ExerciseSetData = {
     exerciseId: string;
@@ -110,7 +110,7 @@ export default function Records() {
 
     if (loading) {
         return (
-            <SafeAreaView style={styles.container}>
+            <SafeAreaView className="flex-1 bg-gray-100 justify-center items-center">
                 <ActivityIndicator size="large" color="#3456AD" />
             </SafeAreaView>
         );
@@ -119,18 +119,22 @@ export default function Records() {
     const renderItem = ({ item }: { item: ExerciseSetData }) => (
         <View>
             {item.isFirstOfExercise && (
-                <Text style={styles.exerciseName}>{item.exerciseName}</Text>
+                <View className="flex-row items-center gap-2 px-5 pt-4 pb-2">
+                    <Feather name="activity" size={16} color="#3456AD" />
+                    <Text className="text-lg font-bold text-gray-800">{item.exerciseName}</Text>
+                </View>
             )}
             <HistorySetItem item={item.set} index={item.setIndex} />
         </View>
     );
 
-
-
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView className="flex-1 bg-gray-100">
             {sections.length === 0 ? (
-                <Text style={styles.noDataText}>{uiNoData}</Text>
+                <View className="flex-1 justify-center items-center">
+                    <Feather name="inbox" size={48} color="#d1d5db" />
+                    <Text className="text-gray-400 text-lg mt-4">{uiNoData}</Text>
+                </View>
             ) : (
                 <SectionList
                     sections={sections}
@@ -141,30 +145,9 @@ export default function Records() {
                     )}
                     contentContainerStyle={{ paddingBottom: 50 }}
                     stickySectionHeadersEnabled={true}
+                    SectionSeparatorComponent={() => <View className="h-2" />}
                 />
             )}
         </SafeAreaView>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-    },
-    exerciseName: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: '#333',
-        paddingHorizontal: 16,
-        paddingTop: 16,
-        paddingBottom: 8,
-        backgroundColor: '#f5f5f5',
-    },
-    noDataText: {
-        fontSize: 18,
-        color: 'gray',
-        textAlign: 'center',
-        marginTop: 50,
-    },
-});

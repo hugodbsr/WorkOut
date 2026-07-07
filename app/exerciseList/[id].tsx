@@ -32,7 +32,7 @@ export default function Details() {
         if (group) {
             navigation.setOptions({
                 headerTitle: () => (
-                    <Text className="font-bold text-xl">{group.name}</Text>
+                    <Text className="font-bold text-xl text-white">{group.name}</Text>
                 ),
             });
         }
