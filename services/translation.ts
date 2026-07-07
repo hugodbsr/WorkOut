@@ -1,5 +1,25 @@
 import * as Localization from "expo-localization";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 let cachedTranslations: { primary: any, fallback: any } | null = null;
+let manualLanguageCode: string | null = null;
+
+export const initLanguage = async () => {
+    try {
+        const stored = await AsyncStorage.getItem('user_language');
+        if (stored) {
+            manualLanguageCode = stored;
+        }
+    } catch {}
+};
+
+export const setLanguageCode = async (code: string) => {
+    manualLanguageCode = code;
+    try {
+        await AsyncStorage.setItem('user_language', code);
+    } catch {}
+    cachedTranslations = null; // force reload next time
+};
 
 export const loadTranslations = async (languageCode: string) => {
     if (cachedTranslations) {
@@ -40,6 +60,8 @@ export const getTranslatedValue = async (key: string, { primary, fallback }: { p
 };
 
 export const getLanguageCode = (): string => {
+    if (manualLanguageCode) return manualLanguageCode;
+    
     const locales = Localization.getLocales();
 
     if (locales && locales.length > 0) {

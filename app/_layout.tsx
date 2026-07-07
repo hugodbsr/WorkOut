@@ -2,11 +2,12 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Stack } from "expo-router";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as NavigationBar from 'expo-navigation-bar';
-import { useEffect } from 'react';
-import { Platform, TouchableOpacity } from 'react-native';
+import { useEffect, useState } from 'react';
+import { Platform, TouchableOpacity, ActivityIndicator, View } from 'react-native';
 import { TimerProvider } from './context/TimerContext';
 import { Feather } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import { initLanguage } from '@/services/translation';
 import './globals.css';
 import BannerTimer from './components/common/BannerTimer';
 
@@ -24,12 +25,26 @@ function CustomBackButton() {
 }
 
 export default function RootLayout() {
+  const [isReady, setIsReady] = useState(false);
+
   useEffect(() => {
     if (Platform.OS === 'android') {
       NavigationBar.setPositionAsync('absolute');
       NavigationBar.setBackgroundColorAsync('transparent');
     }
+
+    initLanguage().finally(() => {
+      setIsReady(true);
+    });
   }, []);
+
+  if (!isReady) {
+    return (
+      <View style={{ flex: 1, backgroundColor: '#3456AD', justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color="white" />
+      </View>
+    );
+  }
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
@@ -63,8 +78,20 @@ export default function RootLayout() {
               options={{ title: "Records" }}
             />
             <Stack.Screen
-              name="settings"
+              name="settings/index"
               options={{ title: "Settings" }}
+            />
+            <Stack.Screen
+              name="settings/language"
+              options={{ title: "Language" }}
+            />
+            <Stack.Screen
+              name="settings/rest"
+              options={{ title: "Rest" }}
+            />
+            <Stack.Screen
+              name="settings/data"
+              options={{ title: "Data" }}
             />
             <Stack.Screen
               name="chrono"

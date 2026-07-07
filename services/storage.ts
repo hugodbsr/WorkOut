@@ -122,3 +122,19 @@ export const getAllExerciseHistory = async (): Promise<ExerciseUserData> => {
         return {};
     }
 };
+
+export const clearAllExerciseHistory = async () => {
+    try {
+        await AsyncStorage.removeItem(USER_EXERCISE_KEY);
+    } catch (error) {
+        console.error('Erreur lors de la suppression de l\'historique', error);
+    }
+};
+
+export const clearUserCreatedExercises = async () => {
+    try {
+        await AsyncStorage.removeItem(USER_CREATED_EXERCISES_KEY);
+    } catch (error) {
+        console.error('Erreur lors de la suppression des exercices créés', error);
+    }
+};
