@@ -4,7 +4,7 @@ import {
     View,
     ScrollView,
     TouchableOpacity,
-    Image, Button,
+    Image,
 } from 'react-native';
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useLocalSearchParams } from "expo-router";
@@ -13,7 +13,7 @@ import { fetchExerciseJson } from "@/services/api";
 import { addSessionToExercise, deleteSessionOfExercise, getExerciseHistory, Set, getTodayDate, Side } from "@/services/storage";
 import { GestureHandlerRootView, Swipeable } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
-import { exerciseImages, muscleGroupImages } from "@/src/constants/images";
+import { exerciseImages } from "@/src/constants/images";
 import { Feather } from '@expo/vector-icons';
 
 import { ExerciseHeader } from '@/app/components/exercise/ExerciseHeader';
@@ -217,7 +217,7 @@ export default function Details() {
                     <ExerciseHeader
                         name={exercise?.name}
                         imageSource={getExerciseImage(exercise?.image)}
-                        isUnilateral={exercise?.unilateral}
+                        isUnilateral={!!exercise?.unilateral}
                         unilateral={unilateral}
                         setUnilateral={setUnilateral}
                     />
@@ -229,7 +229,7 @@ export default function Details() {
                             layout={Layout.springify()}>
                             <Swipeable
                                 key={serie.id}
-                                ref={el => (swipeableRefs.current[serie.id] = el)}
+                                ref={el => { swipeableRefs.current[serie.id] = el; }}
                                 renderRightActions={() => renderRightActions(index)}
                             >
                                 <SeriesItem

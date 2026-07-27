@@ -1,9 +1,9 @@
-import { ActivityIndicator, FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, FlatList, Text, TouchableOpacity, View } from "react-native";
 import React from 'react'
 import { Link, useRouter } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchMuscleJsonList } from "@/services/api";
-import { Image, ImageBackground } from "expo-image";
+import { Image } from "expo-image";
 import { muscleGroupImages } from "@/src/constants/images";
 import { useUITranslation } from "@/services/useUITranslation";
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -64,28 +64,4 @@ export default function Add() {
         </SafeAreaView>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingHorizontal: 16,
-    },
-    itemContainer: {
-        flexDirection: "row",
-        alignItems: "center",
-        paddingVertical: 10,
-        borderBottomColor: "#ccc",
-        borderBottomWidth: 1,
-    },
-    image: {
-        width: 60,
-        height: 60,
-        marginRight: 12,
-        borderRadius: 6,
-        backgroundColor: "#eee",
-    },
-    item: {
-        fontSize: 18,
-    },
-});
 

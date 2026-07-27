@@ -5,9 +5,29 @@ import { loadTranslations, getTranslatedValue, getLanguageCode } from "./transla
 
 const USER_CREATED_EXERCISES_KEY = "user_created_exercises";
 
+export type MuscleGroup = {
+    id: string | number;
+    nameKey: string;
+    image: string;
+};
+
+export type Exercise = {
+    id: string | number;
+    nameKey: string;
+    descriptionKey: string;
+    image: string;
+    muscleGroupId: string | number;
+    unilateral?: boolean;
+};
+
+export type ExerciseType = {
+    id: string | number;
+    nameKey: string;
+};
+
 // Importation par fichiers JSON
 
-const fetchAllExercises = async () => {
+export const fetchAllExercises = async (): Promise<Exercise[]> => {
     try {
         const stored = await AsyncStorage.getItem(USER_CREATED_EXERCISES_KEY);
         const userExercises = stored ? JSON.parse(stored) : [];
@@ -23,7 +43,7 @@ export const fetchMuscleJsonList = async () => {
     const translations = await loadTranslations(languageCode);
 
     const muscles = await Promise.all(
-        exercisesData.muscleGroups.map(async (muscle) => ({
+        exercisesData.muscleGroups.map(async (muscle: MuscleGroup) => ({
             id: muscle.id,
             name: await getTranslatedValue(muscle.nameKey, translations),
             image: muscle.image,
@@ -38,7 +58,7 @@ export const fetchMuscleJson = async ({ query }: { query: string }) => {
     const translations = await loadTranslations(languageCode);
 
     const muscle = exercisesData.muscleGroups.find(
-        (msc: any) => msc.id.toString() === query
+        (msc: MuscleGroup) => msc.id.toString() === query
     );
 
     if (!muscle) {
@@ -57,14 +77,14 @@ export const fetchExerciseListJson = async ({ query }: { query: string }) => {
     const allExercices = await fetchAllExercises();
 
     const muscleList = allExercices.filter(
-        (ex: any) => ex.muscleGroupId?.toString() === query
+        (ex: Exercise) => ex.muscleGroupId?.toString() === query
     );
 
     if (!muscleList) {
         throw new Error("no exercice for this muscle");
     }
 
-    return await Promise.all(muscleList.map(async (exercise: any) => ({
+    return await Promise.all(muscleList.map(async (exercise: Exercise) => ({
         id: exercise.id,
         name: await getTranslatedValue(exercise.nameKey, translations),
         image: exercise.image,
@@ -78,7 +98,7 @@ export const fetchExerciseJson = async ({ query }: { query: string }) => {
     const allExercices = await fetchAllExercises();
 
     const exercise = allExercices.find(
-        (msc: any) => msc.id.toString() === query
+        (msc: Exercise) => msc.id.toString() === query
     );
 
     if (!exercise) {
@@ -99,7 +119,7 @@ export const fetchExerciseTypeJson = async () => {
     const translations = await loadTranslations(languageCode);
 
     const types = await Promise.all(
-        exercisesData.exerciseType.map(async (type) => ({
+        exercisesData.exerciseType.map(async (type: ExerciseType) => ({
             id: type.id,
             name: await getTranslatedValue(type.nameKey, translations),
         }))

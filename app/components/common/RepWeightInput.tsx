@@ -1,5 +1,5 @@
 import React from 'react';
-import {TextInputProps, TextInput} from 'react-native';
+import { TextInput, View, StyleSheet } from 'react-native';
 
 const RepWeightInput = ({...rest }) => {
     return (

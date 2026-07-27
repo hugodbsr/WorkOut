@@ -42,7 +42,20 @@
     "custom_cleared": "Custom exercises cleared.",
     "select_language": "Select a language",
     "rest_duration": "Rest duration",
-    "default": "Default"
+    "default": "Default",
+    "left_side": "L",
+    "right_side": "R",
+    "today_overview": "Today's overview",
+    "see_more": "See more",
+    "no_session_today": "No session today. Start training!",
+    "sets_count": "sets",
+    "today_records": "Today's Records",
+    "list_view": "List",
+    "body_view": "Body",
+    "front": "Front",
+    "back": "Back",
+    "running": "Running...",
+    "paused": "Paused"
   },
   "muscle": {
     "chest": "Chest",

@@ -58,7 +58,6 @@ export default function RootLayout() {
               headerTintColor: 'white',
               headerTitleStyle: {
                 fontWeight: '600',
-                fontStyle: 'italic',
                 fontSize: 20,
               },
               headerShadowVisible: false,
@@ -76,6 +75,10 @@ export default function RootLayout() {
             <Stack.Screen
               name="records"
               options={{ title: "Records" }}
+            />
+            <Stack.Screen
+              name="today_records"
+              options={{ title: "Today's Records" }}
             />
             <Stack.Screen
               name="settings/index"

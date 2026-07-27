@@ -46,10 +46,10 @@ export default function Details() {
         return <Text>Error : {exercisesError?.message}</Text>;
     }
 
-    function getExerciseImage(name: keyof typeof exerciseImages) {
+    function getExerciseImage(name: string) {
         try {
-            if (exerciseImages[name]) {
-                return exerciseImages[name];
+            if (exerciseImages[name as keyof typeof exerciseImages]) {
+                return exerciseImages[name as keyof typeof exerciseImages];
             } else {
                 return undefined;
             }
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         paddingHorizontal: 18,
         flexDirection: "row",
-        gap: "3px",
+        gap: 3,
     },
 
     addButton: {

@@ -36,6 +36,9 @@ export const SeriesItem: React.FC<SeriesItemProps> = React.memo(({
                                                                      isUnilateral,
                                                                  }) => {
     const uiSerieNumber = useUITranslation('serie_number', 'Série n°');
+    const uiLeftSide = useUITranslation('left_side', 'L');
+    const uiRightSide = useUITranslation('right_side', 'R');
+
     return (
         <View className="flex-row items-center justify-center bg-gray-100 border-l-[5px] border-blue-800 h-13 my-2 mx-0">
             <Text className="text-2xl font-normal">{uiSerieNumber}{index + 1} </Text>
@@ -68,7 +71,7 @@ export const SeriesItem: React.FC<SeriesItemProps> = React.memo(({
                         className="w-full h-full justify-center items-center"
                     >
                         <Text className="text-4xl font-bold text-white">
-                            {serie.side === 'left' ? 'G' : 'D'}
+                            {serie.side === 'left' ? uiLeftSide : uiRightSide}
                         </Text>
                     </TouchableOpacity>
                 )}

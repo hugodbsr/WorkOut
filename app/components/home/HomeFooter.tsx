@@ -2,9 +2,12 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
+import { useUITranslation } from '@/services/useUITranslation';
 
 export const HomeFooter: React.FC = React.memo(() => {
     const router = useRouter();
+    const uiRecords = useUITranslation('records', 'Records');
+    const uiSettings = useUITranslation('settings', 'Settings');
 
     return (
         <>
@@ -22,7 +25,7 @@ export const HomeFooter: React.FC = React.memo(() => {
                     </View>
 
                     <Text className="text-white font-medium italic text-2xl z-10">
-                        Records
+                        {uiRecords}
                     </Text>
                 </TouchableOpacity>
 
@@ -39,7 +42,7 @@ export const HomeFooter: React.FC = React.memo(() => {
                     </View>
 
                     <Text className="text-white font-medium italic text-2xl z-10">
-                        Settings
+                        {uiSettings}
                     </Text>
                 </TouchableOpacity>
             </View>

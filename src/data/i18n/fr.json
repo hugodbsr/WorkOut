@@ -42,7 +42,20 @@
     "custom_cleared": "Vos exercices ont été effacés.",
     "select_language": "Sélectionnez une langue",
     "rest_duration": "Durée du repos",
-    "default": "Défaut"
+    "default": "Défaut",
+    "left_side": "G",
+    "right_side": "D",
+    "today_overview": "Aperçu de la journée",
+    "see_more": "Voir plus",
+    "no_session_today": "Aucune séance aujourd'hui. Lancez-vous !",
+    "sets_count": "séries",
+    "today_records": "Historique du jour",
+    "list_view": "Liste",
+    "body_view": "Corps",
+    "front": "Face",
+    "back": "Dos",
+    "running": "En cours...",
+    "paused": "En pause"
   },
   "muscle": {
     "chest": "Pectoraux",
