@@ -10,11 +10,12 @@ const UnilateralButton = ({ title, active = false, ...rest }: Props) => {
     return (
         <TouchableOpacity
             {...rest}
-            className={`mr-10 ml-10 rounded-md pl-3 pr-3 pb-2 pt-2 ${
-                active ? "bg-primary" : "bg-gray-300"
+            className={`mx-2 rounded-2xl px-5 py-2 shadow-sm ${
+                active ? "bg-primary" : "bg-white border border-gray-100"
             }`}
+            activeOpacity={0.7}
         >
-            <Text className={`text-xl font-bold ${active ? "text-white" : "text-black"}`}>
+            <Text className={`text-[17px] font-bold ${active ? "text-white" : "text-gray-500"}`}>
                 {title}
             </Text>
         </TouchableOpacity>

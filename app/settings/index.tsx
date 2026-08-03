@@ -63,7 +63,7 @@ const SettingsIndex = () => {
     };
 
     const handleContactSupport = () => {
-        Linking.openURL('mailto:contact@workout.com?subject=Support WorkOut App');
+        Linking.openURL('mailto:contact@hugodbsr.fr?subject=Support WorkOut App');
     };
 
     return (

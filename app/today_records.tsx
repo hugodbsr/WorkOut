@@ -14,6 +14,7 @@ import HistorySetItem from '@/app/components/history/HistorySetItem';
 import HistorySectionHeader from '@/app/components/history/HistorySectionHeader';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { useLocalSearchParams } from 'expo-router';
 
 type ExerciseSetData = {
     exerciseId: string;
@@ -32,8 +33,11 @@ type DaySection = {
 export default function TodayRecords() {
     const [sections, setSections] = useState<DaySection[]>([]);
     const [loading, setLoading] = useState(true);
-    const uiNoData = useUITranslation('no_session_today', "Aucune séance aujourd'hui. Lancez-vous !");
-    const uiTitle = useUITranslation('today_records', "Historique du jour");
+    const { date } = useLocalSearchParams<{ date?: string }>();
+    const targetDate = date || getTodayDate();
+
+    const uiNoData = useUITranslation('no_session_today', "Aucune séance à cette date.");
+    const uiTitle = useUITranslation('today_records', "Historique");
     const navigation = useNavigation();
 
     useLayoutEffect(() => {
@@ -48,7 +52,6 @@ export default function TodayRecords() {
         const loadHistory = async () => {
             try {
                 const allData = await getAllExerciseHistory();
-                const today = getTodayDate();
 
                 // Récupérer les noms des exercices (optimisation: seulement ceux d'aujourd'hui)
                 const exerciseNames: { [id: string]: string } = {};
@@ -58,7 +61,7 @@ export default function TodayRecords() {
                     if (!entry.sessions) continue;
 
                     for (const session of entry.sessions) {
-                        if (session.date !== today) continue; // Filtre pour aujourd'hui seulement
+                        if (session.date !== targetDate) continue; // Filtre pour la date cible
 
                         if (!dateMap[session.date]) {
                             dateMap[session.date] = {};
@@ -77,7 +80,7 @@ export default function TodayRecords() {
                     }
                 }
 
-                if (!dateMap[today]) {
+                if (!dateMap[targetDate]) {
                     setSections([]);
                     setLoading(false);
                     return;
@@ -85,7 +88,7 @@ export default function TodayRecords() {
 
                 const flatData: ExerciseSetData[] = [];
 
-                for (const [exerciseId, sets] of Object.entries(dateMap[today])) {
+                for (const [exerciseId, sets] of Object.entries(dateMap[targetDate])) {
                     sets.forEach((set, index) => {
                         flatData.push({
                             exerciseId,
@@ -101,13 +104,13 @@ export default function TodayRecords() {
 
                 const formattedSections: DaySection[] = [
                     {
-                        title: new Date(today).toLocaleDateString(userLocale, {
+                        title: new Date(targetDate).toLocaleDateString(userLocale, {
                             weekday: 'long',
                             year: 'numeric',
                             month: 'long',
                             day: 'numeric'
                         }),
-                        date: today,
+                        date: targetDate,
                         data: flatData
                     }
                 ];
@@ -121,7 +124,7 @@ export default function TodayRecords() {
         };
 
         loadHistory();
-    }, []);
+    }, [targetDate]);
 
     if (loading) {
         return (

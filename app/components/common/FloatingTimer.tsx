@@ -6,11 +6,12 @@ import {
     Animated,
     StyleSheet,
     Dimensions,
+    PanResponder,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useTimer } from "../../context/TimerContext";
 
-const { width: SCREEN_WIDTH } = Dimensions.get("window");
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
 const FloatingTimer = () => {
     const { elapsedTime, isRunning, toggle, reset, formatTime } = useTimer();
@@ -18,6 +19,32 @@ const FloatingTimer = () => {
 
     const expandAnim = useRef(new Animated.Value(0)).current;
     const scaleAnim = useRef(new Animated.Value(1)).current;
+    
+    // PanResponder pour déplacer le chrono
+    const pan = useRef(new Animated.ValueXY({ x: 0, y: 0 })).current;
+
+    const panResponder = useRef(
+        PanResponder.create({
+            onMoveShouldSetPanResponder: (evt, gestureState) => {
+                // Ne s'active que si on bouge vraiment (évite d'intercepter les clics)
+                return Math.abs(gestureState.dx) > 5 || Math.abs(gestureState.dy) > 5;
+            },
+            onPanResponderGrant: () => {
+                pan.setOffset({
+                    x: (pan.x as any)._value,
+                    y: (pan.y as any)._value
+                });
+                pan.setValue({ x: 0, y: 0 });
+            },
+            onPanResponderMove: Animated.event(
+                [null, { dx: pan.x, dy: pan.y }],
+                { useNativeDriver: false }
+            ),
+            onPanResponderRelease: () => {
+                pan.flattenOffset();
+            }
+        })
+    ).current;
 
     useEffect(() => {
         Animated.spring(expandAnim, {
@@ -29,7 +56,6 @@ const FloatingTimer = () => {
     }, [isExpanded]);
 
     const handlePress = () => {
-        // Petit effet de scale au tap
         Animated.sequence([
             Animated.timing(scaleAnim, {
                 toValue: 0.9,
@@ -55,7 +81,6 @@ const FloatingTimer = () => {
         setIsExpanded(false);
     };
 
-    // Animations pour les boutons du menu
     const menuTranslateY = expandAnim.interpolate({
         inputRange: [0, 1],
         outputRange: [0, -70],
@@ -71,7 +96,6 @@ const FloatingTimer = () => {
         outputRange: [0, -140],
     });
 
-    // Format compact pour le bouton (minutes:secondes)
     const formatCompact = (ms: number) => {
         const minutes = Math.floor(ms / 60000);
         const seconds = Math.floor((ms % 60000) / 1000);
@@ -85,7 +109,13 @@ const FloatingTimer = () => {
     }
 
     return (
-        <View style={styles.container} pointerEvents="box-none">
+        <Animated.View 
+            style={[
+                styles.container,
+                { transform: [{ translateX: pan.x }, { translateY: pan.y }] }
+            ]} 
+            pointerEvents="box-none"
+        >
             {/* Bouton Reset */}
             <Animated.View
                 style={[
@@ -131,8 +161,11 @@ const FloatingTimer = () => {
                 </TouchableOpacity>
             </Animated.View>
 
-            {/* Bouton Principal (FAB) */}
-            <Animated.View style={{ transform: [{ scale: scaleAnim }] }}>
+            {/* Bouton Principal (FAB) - C'est lui qu'on drag */}
+            <Animated.View 
+                style={{ transform: [{ scale: scaleAnim }] }}
+                {...panResponder.panHandlers}
+            >
                 <TouchableOpacity
                     style={[
                         styles.fab,
@@ -155,16 +188,17 @@ const FloatingTimer = () => {
                     />
                 </TouchableOpacity>
             </Animated.View>
-        </View>
+        </Animated.View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
         position: "absolute",
-        bottom: 100,
-        right: 20,
+        bottom: 120,
+        right: 20, // Revenir à droite par défaut car c'est plus naturel, mais on peut le bouger
         alignItems: "center",
+        zIndex: 9999,
     },
     fab: {
         width: 70,

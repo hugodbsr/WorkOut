@@ -40,37 +40,40 @@ export const SeriesItem: React.FC<SeriesItemProps> = React.memo(({
     const uiRightSide = useUITranslation('right_side', 'R');
 
     return (
-        <View className="flex-row items-center justify-center bg-gray-100 border-l-[5px] border-blue-800 h-13 my-2 mx-0">
-            <Text className="text-2xl font-normal">{uiSerieNumber}{index + 1} </Text>
+        <View className="flex-row items-center justify-between bg-white px-4 py-3 mx-4 my-2 rounded-2xl shadow-sm border border-gray-100">
+            {/* Série badge */}
+            <View className="bg-blue-50 px-3 py-2 rounded-xl mr-3 items-center justify-center">
+                <Text className="text-base font-bold text-[#3456AD]">{uiSerieNumber} {index + 1}</Text>
+            </View>
 
-            <View className="flex-row items-center bg-white justify-center px-3 py-2.5 rounded-lg">
+            {/* Inputs */}
+            <View className="flex-1 flex-row items-center justify-center">
                 <RepWeightInput
                     value={serie.reps}
                     onChangeText={onRepChange}
                     placeholder={placeholderReps || '10'}
                 />
-                <Text className="text-2xl font-normal"> X </Text>
+                <Text className="text-2xl font-bold text-gray-300 mx-2.5">×</Text>
                 <RepWeightInput
                     value={serie.weight}
                     onChangeText={onWeightChange}
                     placeholder={placeholderWeight || '30'}
                 />
-                <Text className="text-2xl font-normal"> Kg </Text>
+                <Text className="text-lg font-bold text-gray-400 ml-2">kg</Text>
             </View>
 
-            <View
-                className={`
-                  ml-2.5 w-10 h-10 rounded-md justify-center items-center
-                  ${serie.side === 'left' ? 'bg-[#205d30]' : serie.side === 'right' ? 'bg-[#b91e10]' : 'bg-transparent'}
-                `}
-            >
-                {(serie.side === 'left' || serie.side === 'right') && (
+            {/* Unilateral toggle if needed */}
+            <View className="ml-3 w-12 h-12 justify-center items-center">
+                {isUnilateral && (serie.side === 'left' || serie.side === 'right') && (
                     <TouchableOpacity
                         onPress={onSideChange}
-                        disabled={!isUnilateral}
-                        className="w-full h-full justify-center items-center"
+                        activeOpacity={0.7}
+                        className={`
+                          w-full h-full rounded-xl justify-center items-center shadow-sm
+                          ${serie.side === 'left' ? 'bg-emerald-600' : 'bg-rose-600'}
+                        `}
                     >
-                        <Text className="text-4xl font-bold text-white">
+                        <Text className="text-xl font-bold text-white">
                             {serie.side === 'left' ? uiLeftSide : uiRightSide}
                         </Text>
                     </TouchableOpacity>

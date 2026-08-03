@@ -30,7 +30,7 @@ export default function RootLayout() {
   useEffect(() => {
     if (Platform.OS === 'android') {
       NavigationBar.setPositionAsync('absolute');
-      NavigationBar.setBackgroundColorAsync('transparent');
+      NavigationBar.setBackgroundColorAsync('#ffffff00');
     }
 
     initLanguage().finally(() => {
@@ -95,6 +95,10 @@ export default function RootLayout() {
             <Stack.Screen
               name="settings/data"
               options={{ title: "Data" }}
+            />
+            <Stack.Screen
+              name="stats"
+              options={{ title: "Évolution" }}
             />
             <Stack.Screen
               name="chrono"

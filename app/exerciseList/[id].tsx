@@ -1,12 +1,13 @@
 import { ActivityIndicator, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { useCallback, useLayoutEffect } from 'react';
-import { Link, useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
+import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchExerciseListJson, fetchMuscleJson } from "@/services/api";
 import { useNavigation } from "@react-navigation/native";
 import { exerciseImages } from "@/src/constants/images";
 import { Image } from "expo-image";
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Feather } from '@expo/vector-icons';
 
 export default function Details() {
     const navigation = useNavigation();
@@ -32,18 +33,26 @@ export default function Details() {
         if (group) {
             navigation.setOptions({
                 headerTitle: () => (
-                    <Text className="font-bold text-xl text-white">{group.name}</Text>
+                    <Text className="font-bold text-xl text-white italic">{group.name}</Text>
                 ),
             });
         }
     }, [navigation, group]);
 
     if (exercisesLoading || groupLoading) {
-        return <ActivityIndicator size="large" color="blue" />;
+        return (
+            <SafeAreaView className="flex-1 bg-gray-100 justify-center items-center">
+                <ActivityIndicator size="large" color="#3456AD" />
+            </SafeAreaView>
+        );
     }
 
     if (exercisesError || groupError) {
-        return <Text>Error : {exercisesError?.message}</Text>;
+        return (
+            <SafeAreaView className="flex-1 bg-gray-100 justify-center items-center">
+                <Text className="text-red-500 font-medium">Error : {exercisesError?.message}</Text>
+            </SafeAreaView>
+        );
     }
 
     function getExerciseImage(name: string) {
@@ -60,65 +69,52 @@ export default function Details() {
     }
 
     return (
-        <SafeAreaView style={{ flex: 1 }} className="bg-gray-100">
-            <View style={styles.container}>
+        <SafeAreaView style={{ flex: 1 }} className="bg-gray-100" edges={['bottom', 'left', 'right']}>
+            <View style={{ flex: 1, marginTop: 10 }}>
                 <FlatList
-                    className="mb-12"
                     data={exercises}
                     keyExtractor={(item) => item.id.toString()}
+                    contentContainerStyle={{ paddingBottom: 100, paddingTop: 10 }}
                     renderItem={({ item }) => (
-                        <View className="bg-gray-50 rounded-2xl justify-around mb-2">
-                            <Link href={`/exercise/${item.id}`}>
-                                <View className="items-center flex flex-row gap-3">
-                                    <Image
-                                        source={getExerciseImage(item.image)}
-                                        style={{
-                                            width: 80,
-                                            height: 80,
-                                            borderRadius: 45,
-                                            margin: 5,
-                                        }}
-                                    />
-                                    <View style={{ flex: 1 }}>
-                                        <Text numberOfLines={2}
-                                            ellipsizeMode="tail"
-                                            className="text-xl font-bold flex-wrap">{item.name}</Text>
-                                    </View>
-                                </View>
-                            </Link>
-                        </View>
+                        <TouchableOpacity 
+                            onPress={() => router.push(`/exercise/${item.id}`)}
+                            className="bg-white mx-4 my-2 p-3 rounded-3xl flex-row items-center shadow-sm border border-gray-100"
+                            activeOpacity={0.7}
+                        >
+                            <View className="bg-gray-50 rounded-full mr-4 p-1">
+                                <Image
+                                    source={getExerciseImage(item.image)}
+                                    style={{ width: 60, height: 60, borderRadius: 30 }}
+                                />
+                            </View>
+                            <View className="flex-1">
+                                <Text className="text-lg font-bold text-gray-800" numberOfLines={2}>{item.name}</Text>
+                            </View>
+                            <Feather name="chevron-right" size={24} color="#d1d5db" />
+                        </TouchableOpacity>
                     )}
-                    contentContainerStyle={{ paddingBottom: 90 }}
                 />
             </View>
 
             <TouchableOpacity
                 style={styles.addButton}
-                className="bg-primary"
+                className="bg-[#3456AD]"
+                activeOpacity={0.8}
                 onPress={() => router.push(`/addExercise/${query}`)}>
-                <Text className="color-white text-3xl">+</Text>
+                <Feather name="plus" size={32} color="white" />
             </TouchableOpacity>
         </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        display: "flex",
-        flex: 1,
-        marginTop: 20,
-        paddingHorizontal: 18,
-        flexDirection: "row",
-        gap: 3,
-    },
-
     addButton: {
         position: "absolute",
-        bottom: 45,
+        bottom: 40,
         right: 20,
-        width: 70,
-        height: 70,
-        borderRadius: 35,
+        width: 65,
+        height: 65,
+        borderRadius: 32.5,
         justifyContent: "center",
         alignItems: "center",
         shadowColor: "#000",

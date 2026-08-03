@@ -37,22 +37,17 @@ export const ExerciseHeader: React.FC<ExerciseHeaderProps> = React.memo(({
 
     // @ts-ignore
     return (
-        <>
-            <Image
-                source={imageSource}
-                style={{
-                    width: 140,
-                    height: 140,
-                    borderWidth: 5,
-                    borderRadius: 30,
-                    borderColor: '#1e40af',
-                    alignSelf: 'center',
-                    marginTop: 20,
-                }}
-            />
-            <Text className="text-3xl m-4 font-bold flex-wrap text-center">{name}</Text>
+        <View className="mb-6 mt-4">
+            <View className="bg-white rounded-[40px] shadow-sm border border-gray-100 self-center p-3">
+                <Image
+                    source={imageSource}
+                    style={{ width: 140, height: 140, borderRadius: 28 }}
+                    contentFit="contain"
+                />
+            </View>
+            <Text className="text-3xl m-4 mt-6 font-black text-gray-800 text-center">{name}</Text>
             {isUnilateral && (
-                <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 10 }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                     <UnilateralButton
                         title={uiUnilateral}
                         onPress={() => setUnilateral(true)}
@@ -65,6 +60,6 @@ export const ExerciseHeader: React.FC<ExerciseHeaderProps> = React.memo(({
                     />
                 </View>
             )}
-        </>
+        </View>
     );
 });

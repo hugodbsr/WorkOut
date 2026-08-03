@@ -5,12 +5,15 @@ import {
     ScrollView,
     TouchableOpacity,
     Image,
+    KeyboardAvoidingView,
+    Platform,
 } from 'react-native';
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useLocalSearchParams } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchExerciseJson } from "@/services/api";
 import { addSessionToExercise, deleteSessionOfExercise, getExerciseHistory, Set, getTodayDate, Side } from "@/services/storage";
+import { useUITranslation } from '@/services/useUITranslation';
 import { GestureHandlerRootView, Swipeable } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import { exerciseImages } from "@/src/constants/images";
@@ -47,6 +50,7 @@ export default function Details() {
 
     const [isEditing, setIsEditing] = useState(false);
     const swipeableRefs = React.useRef<Record<string, Swipeable | null>>({});
+    const scrollViewRef = React.useRef<ScrollView>(null);
 
     const handleAddSerieField = () => {
         setSeries([...series, { id: nanoid(), reps: '', weight: '', side: unilateral ? "left" : "both", }]);
@@ -125,11 +129,13 @@ export default function Details() {
         });
     };
 
+    const uiTodaySeries = useUITranslation('today_series', "Séries effectuées aujourd'hui");
+
     useLayoutEffect(() => {
         if (exercise) {
             navigation.setOptions({
                 headerTitle: () => (
-                    <Text className="font-bold text-xl text-white">Série effectué aujourd&#39;hui</Text>
+                    <Text className="font-bold text-xl text-white italic">{uiTodaySeries}</Text>
                 ),
                 headerRight: () => (
                     <TouchableOpacity onPress={toggleEditMode}>
@@ -143,7 +149,7 @@ export default function Details() {
                 ),
             });
         }
-    }, [navigation, exercise, isEditing]);
+    }, [navigation, exercise, isEditing, uiTodaySeries]);
 
     useEffect(() => {
         const today = getTodayDate();
@@ -185,11 +191,19 @@ export default function Details() {
     }, [id]);
 
     if (exerciseLoading) {
-        return <ActivityIndicator size="large" color="blue" />;
+        return (
+            <SafeAreaView className="flex-1 bg-gray-100 justify-center items-center">
+                <ActivityIndicator size="large" color="#3456AD" />
+            </SafeAreaView>
+        );
     }
 
     if (exerciseError) {
-        return <Text>Error : {exerciseError?.message}</Text>;
+        return (
+            <SafeAreaView className="flex-1 bg-gray-100 justify-center items-center">
+                <Text className="text-red-500 font-medium">Error : {exerciseError?.message}</Text>
+            </SafeAreaView>
+        );
     }
 
     const renderRightActions = (index: number) => {
@@ -212,40 +226,55 @@ export default function Details() {
     return (
         <GestureHandlerRootView className="flex-1">
             <SafeAreaView className="flex-1 bg-gray-100">
-                <ScrollView className="bg-gray-100" style={{ marginBottom: 110 }} contentContainerStyle={{ flexGrow: 1 }}>
+                <KeyboardAvoidingView 
+                    style={{ flex: 1 }} 
+                    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                    keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}
+                >
+                    <ScrollView 
+                        ref={scrollViewRef}
+                        className="bg-gray-100" 
+                        style={{ marginBottom: 110 }} 
+                        contentContainerStyle={{ flexGrow: 1 }}
+                        keyboardShouldPersistTaps="handled"
+                        onContentSizeChange={() => {
+                            scrollViewRef.current?.scrollToEnd({ animated: true });
+                        }}
+                    >
 
-                    <ExerciseHeader
-                        name={exercise?.name}
-                        imageSource={getExerciseImage(exercise?.image)}
-                        isUnilateral={!!exercise?.unilateral}
-                        unilateral={unilateral}
-                        setUnilateral={setUnilateral}
-                    />
+                        <ExerciseHeader
+                            name={exercise?.name}
+                            imageSource={getExerciseImage(exercise?.image)}
+                            isUnilateral={!!exercise?.unilateral}
+                            unilateral={unilateral}
+                            setUnilateral={setUnilateral}
+                        />
 
-                    {series.map((serie, index) => (
-                        <Animated.View
-                            key={serie.id}
-                            exiting={SlideOutLeft.duration(300)}
-                            layout={Layout.springify()}>
-                            <Swipeable
+                        {series.map((serie, index) => (
+                            <Animated.View
                                 key={serie.id}
-                                ref={el => { swipeableRefs.current[serie.id] = el; }}
-                                renderRightActions={() => renderRightActions(index)}
-                            >
-                                <SeriesItem
-                                    serie={serie}
-                                    index={index}
-                                    placeholderReps={oldSeries[index]?.reps}
-                                    placeholderWeight={oldSeries[index]?.weight}
-                                    onRepChange={(text) => handleChangeSerie(index, 'reps', text)}
-                                    onWeightChange={(text) => handleChangeSerie(index, 'weight', text)}
-                                    onSideChange={() => handleChangeSide(index)}
-                                    isUnilateral={unilateral}
-                                />
-                            </Swipeable>
-                        </Animated.View>
-                    ))}
-                </ScrollView>
+                                exiting={SlideOutLeft.duration(300)}
+                                layout={Layout.springify()}>
+                                <Swipeable
+                                    key={serie.id}
+                                    ref={el => { swipeableRefs.current[serie.id] = el; }}
+                                    renderRightActions={() => renderRightActions(index)}
+                                >
+                                    <SeriesItem
+                                        serie={serie}
+                                        index={index}
+                                        placeholderReps={oldSeries[index]?.reps}
+                                        placeholderWeight={oldSeries[index]?.weight}
+                                        onRepChange={(text) => handleChangeSerie(index, 'reps', text)}
+                                        onWeightChange={(text) => handleChangeSerie(index, 'weight', text)}
+                                        onSideChange={() => handleChangeSide(index)}
+                                        isUnilateral={unilateral}
+                                    />
+                                </Swipeable>
+                            </Animated.View>
+                        ))}
+                    </ScrollView>
+                </KeyboardAvoidingView>
 
                 <ExerciseFooter
                     exerciseQuery={query}

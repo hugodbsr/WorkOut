@@ -55,7 +55,12 @@
     "front": "Front",
     "back": "Back",
     "running": "Running...",
-    "paused": "Paused"
+    "paused": "Paused",
+    "evolution": "Progress",
+    "workouts": "Workouts",
+    "sets": "Sets",
+    "total_volume": "Total Volume Lifted",
+    "top_exercises": "Top Exercises (Volume)"
   },
   "muscle": {
     "chest": "Chest",

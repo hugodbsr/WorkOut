@@ -4,9 +4,9 @@ import { TextInput, View, StyleSheet } from 'react-native';
 const RepWeightInput = ({...rest }) => {
     return (
         <TextInput
-            className="border-b-2 bg-gray-50 border-[#3456AD] rounded-b-sm rounded-md w-[55px] p-0.5 text-[22px] text-center"
+            className="bg-gray-100 text-gray-800 rounded-xl w-[60px] h-[45px] text-xl font-bold text-center"
             keyboardType="numeric"
-            placeholderTextColor="gray"
+            placeholderTextColor="#9ca3af"
             {...rest}
         />
     );

@@ -3,29 +3,36 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import { useUITranslation } from '@/services/useUITranslation';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export const HomeFooter: React.FC = React.memo(() => {
     const router = useRouter();
-    const uiRecords = useUITranslation('records', 'Records');
     const uiSettings = useUITranslation('settings', 'Settings');
+    const insets = useSafeAreaInsets();
+    const bottomPadding = insets.bottom > 0 ? insets.bottom : 0;
 
     return (
         <>
-            <View className="absolute bottom-[-1px] left-[-1px] right-[-1px] rounded-t-3xl flex-row justify-around bg-primary border-t pb-[43px]">
+            <View 
+                className="absolute left-[-1px] right-[-1px] rounded-t-3xl flex-row justify-around bg-primary border-t"
+                style={{ bottom: -1, paddingBottom: 43 + bottomPadding }}
+            >
+                {/* Bouton Statistiques à gauche */}
                 <TouchableOpacity
-                    className="bg-primary flex-1 py-[13px] rounded-tl-3xl mr-12 justify-center items-center relative overflow-hidden"
-                    onPress={() => router.push('/records')}>
+                    className="bg-primary flex-1 py-[13px] rounded-tl-3xl mr-12 justify-center items-center overflow-hidden"
+                    activeOpacity={0.7}
+                    onPress={() => router.push('/stats')}>
                     <View className="absolute justify-center items-center opacity-10">
-                        <MaterialCommunityIcons
-                            name="notebook"
+                        <Feather
+                            name="trending-up"
                             size={100}
                             color="white"
-                            style={{ transform: [{ rotate: '15deg' }] }}
+                            style={{ transform: [{ rotate: '-15deg' }] }}
                         />
                     </View>
 
-                    <Text className="text-white font-medium italic text-2xl z-10">
-                        {uiRecords}
+                    <Text className="text-white font-medium italic text-[22px] z-10">
+                        Évolution
                     </Text>
                 </TouchableOpacity>
 
@@ -48,7 +55,8 @@ export const HomeFooter: React.FC = React.memo(() => {
             </View>
 
             <TouchableOpacity
-                className="bg-primary absolute bottom-14 left-1/2 -translate-x-1/2 w-[100px] h-[100px] rounded-full justify-center items-center shadow-lg shadow-black"
+                className="bg-primary absolute left-1/2 -translate-x-1/2 w-[100px] h-[100px] rounded-full justify-center items-center shadow-lg shadow-black"
+                style={{ bottom: 14 + bottomPadding }}
                 onPress={() => router.push('/add')}
             >
                 <Text className="color-white text-6xl">+</Text>

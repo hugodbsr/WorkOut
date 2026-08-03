@@ -1,12 +1,14 @@
 import { ActivityIndicator, FlatList, Text, TouchableOpacity, View } from "react-native";
-import React from 'react'
-import { Link, useRouter } from "expo-router";
+import React, { useLayoutEffect } from 'react'
+import { useRouter } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchMuscleJsonList } from "@/services/api";
 import { Image } from "expo-image";
 import { muscleGroupImages } from "@/src/constants/images";
 import { useUITranslation } from "@/services/useUITranslation";
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 function getMuscleImage(name?: string) {
     if (name && muscleGroupImages[name as keyof typeof muscleGroupImages]) {
@@ -18,8 +20,16 @@ function getMuscleImage(name?: string) {
 
 export default function Add() {
     const router = useRouter();
+    const navigation = useNavigation();
+    const chooseExerciseText = useUITranslation('choose_exercise', 'Choisissez un exercice');
 
-    const chooseExerciseText = useUITranslation('choose_exercise', 'Choose an exercise');
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerTitle: () => (
+                <Text className="font-bold text-xl text-white italic">{chooseExerciseText}</Text>
+            ),
+        });
+    }, [navigation, chooseExerciseText]);
 
     const {
         data: muscleGroups,
@@ -28,40 +38,47 @@ export default function Add() {
     } = useFetch(fetchMuscleJsonList);
 
     if (muscleGroupsLoading) {
-        return <ActivityIndicator size="large" color="blue" />;
+        return (
+            <SafeAreaView className="flex-1 bg-gray-100 justify-center items-center">
+                <ActivityIndicator size="large" color="#3456AD" />
+            </SafeAreaView>
+        );
     }
 
     if (muscleGroupsError) {
-        return <Text>Error : {muscleGroupsError?.message}</Text>;
+        return (
+            <SafeAreaView className="flex-1 bg-gray-100 justify-center items-center">
+                <Text className="text-red-500 font-medium">Erreur : {muscleGroupsError?.message}</Text>
+            </SafeAreaView>
+        );
     }
 
     return (
-        <SafeAreaView className="flex-1">
-            <Text className="text-4xl font-bold text-center m-2">{chooseExerciseText}</Text>
+        <SafeAreaView className="flex-1 bg-gray-100" edges={['bottom', 'left', 'right']}>
             <FlatList
-                className="m-auto"
                 data={muscleGroups}
+                contentContainerStyle={{ paddingVertical: 12 }}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => (
-                    <TouchableOpacity>
-                        <Link href={`/exerciseList/${item.id}`}
-                            className="flex flex-row items-center px-12 my-1.5 bg-[#3456AD] rounded-xl">
-                            <View className="items-start flex flex-row">
-                                <Image
-                                    source={getMuscleImage(item.image)}
-                                    style={{ width: 65, height: 65, margin: "auto" }}
-
-                                />
-                                <Text
-                                    className="p-4 font-bold text-3xl text-white rounded-[10px]">
-                                    {item.name}
-                                </Text>
-                            </View>
-                        </Link>
+                    <TouchableOpacity 
+                        onPress={() => router.push(`/exerciseList/${item.id}`)}
+                        className="bg-white mx-4 mb-2.5 px-4 py-3 rounded-2xl flex-row items-center shadow-sm border border-gray-100"
+                        activeOpacity={0.7}
+                    >
+                        <View className="bg-blue-50 w-14 h-14 rounded-full items-center justify-center mr-4">
+                            <Image
+                                source={getMuscleImage(item.image)}
+                                style={{ width: 44, height: 44 }}
+                                contentFit="contain"
+                            />
+                        </View>
+                        <View className="flex-1">
+                            <Text className="text-[19px] font-bold text-gray-800">{item.name}</Text>
+                        </View>
+                        <Feather name="chevron-right" size={22} color="#d1d5db" />
                     </TouchableOpacity>
                 )}
             />
         </SafeAreaView>
     );
 }
-

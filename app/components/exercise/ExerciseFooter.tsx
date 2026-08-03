@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useUITranslation } from "@/services/useUITranslation";
 import { Octicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type ExerciseFooterProps = {
     exerciseQuery: string;
@@ -17,11 +18,15 @@ export const ExerciseFooter: React.FC<ExerciseFooterProps> = React.memo(({
     const router = useRouter();
     const uiChrono = useUITranslation("chrono", "Chrono");
     const uiRecords = useUITranslation("records", "Records");
-
+    const insets = useSafeAreaInsets();
+    const bottomPadding = insets.bottom > 0 ? insets.bottom : 0;
 
     return (
         <>
-            <View className="absolute bottom-[-1px] left-[-1px] right-[-1px] rounded-t-3xl flex-row justify-around bg-primary border-t pb-[43px]">
+            <View 
+                className="absolute left-[-1px] right-[-1px] rounded-t-3xl flex-row justify-around bg-primary border-t"
+                style={{ bottom: -1, paddingBottom: 43 + bottomPadding }}
+            >
                 <TouchableOpacity
                     className="bg-primary flex-1 py-[13px] rounded-tl-3xl mr-12 justify-center items-center relative overflow-hidden"
                     onPress={() => router.push(`/exerciseRecord/${exerciseQuery}`)}>
@@ -58,7 +63,8 @@ export const ExerciseFooter: React.FC<ExerciseFooterProps> = React.memo(({
             </View>
 
             <TouchableOpacity
-                className="bg-primary absolute bottom-14 left-1/2 -translate-x-1/2 w-[100px] h-[100px] rounded-full justify-center items-center shadow-lg shadow-black"
+                className="bg-primary absolute left-1/2 -translate-x-1/2 w-[100px] h-[100px] rounded-full justify-center items-center shadow-lg shadow-black"
+                style={{ bottom: 14 + bottomPadding }}
                 onPress={onAddPress}
             >
                 <Text className="color-white text-6xl">+</Text>

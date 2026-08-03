@@ -78,7 +78,7 @@ export default function Details() {
     useLayoutEffect(() => {
         navigation.setOptions({
             headerTitle: () => (
-                <Text className="text-xl font-semibold italic text-white">{uiAddExercise}</Text>
+                <Text className="font-bold text-xl text-white italic">{uiAddExercise}</Text>
             ),
         });
     }, [navigation, uiAddExercise]);
