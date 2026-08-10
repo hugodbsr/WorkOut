@@ -15,10 +15,6 @@ const BannerTimer = () => {
     if ((elapsedTime === 0 && !isRunning) || pathname === "/chrono") {
         return null;
     }
-    // Calcul de la position : en dessous du header si la page en a un
-    const hasHeader = pathname !== "/"; 
-    const headerHeight = hasHeader ? (Platform.OS === 'ios' ? 44 : 56) : 0;
-    const topPosition = insets.top + headerHeight;
 
     const formatCompact = (ms: number) => {
         const minutes = Math.floor(ms / 60000);
@@ -27,6 +23,11 @@ const BannerTimer = () => {
         const sec = ("0" + seconds).slice(-2);
         return `${min}:${sec}`;
     };
+
+    // Calcul de la position : en dessous du header si la page en a un
+    const hasHeader = pathname !== "/"; 
+    const headerHeight = hasHeader ? (Platform.OS === 'ios' ? 44 : 56) : 0;
+    const topPosition = insets.top + headerHeight;
 
     return (
         <View 

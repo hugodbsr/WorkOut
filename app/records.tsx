@@ -13,6 +13,7 @@ import { useUITranslation } from '@/services/useUITranslation';
 import HistorySetItem from '@/app/components/history/HistorySetItem';
 import HistorySectionHeader from '@/app/components/history/HistorySectionHeader';
 import { Feather } from '@expo/vector-icons';
+import { useTimer } from '@/app/context/TimerContext';
 
 type ExerciseSetData = {
     exerciseId: string;
@@ -32,6 +33,10 @@ export default function Records() {
     const [sections, setSections] = useState<DaySection[]>([]);
     const [loading, setLoading] = useState(true);
     const uiNoData = useUITranslation('no_data', 'No data');
+
+    const { elapsedTime, isRunning } = useTimer();
+    const bannerActive = elapsedTime > 0 || isRunning;
+    const bannerGap = bannerActive ? 52 : 0;
 
     useEffect(() => {
         const loadHistory = async () => {
@@ -143,7 +148,7 @@ export default function Records() {
                     renderSectionHeader={({ section: { title } }) => (
                         <HistorySectionHeader title={title} />
                     )}
-                    contentContainerStyle={{ paddingBottom: 50 }}
+                    contentContainerStyle={{ paddingBottom: 50, paddingTop: 15 + bannerGap }}
                     stickySectionHeadersEnabled={true}
                     SectionSeparatorComponent={() => <View className="h-2" />}
                 />

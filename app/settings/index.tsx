@@ -6,12 +6,17 @@ import { Feather } from '@expo/vector-icons';
 import { getLanguageCode } from "@/services/translation";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useUITranslation } from "@/services/useUITranslation";
+import { useTimer } from '@/app/context/TimerContext';
 
 const SettingsIndex = () => {
     const navigation = useNavigation();
     const router = useRouter();
     const [currentLanguage, setCurrentLanguage] = useState('en');
     const [defaultRestTime, setDefaultRestTime] = useState(90);
+
+    const { elapsedTime, isRunning } = useTimer();
+    const bannerActive = elapsedTime > 0 || isRunning;
+    const bannerGap = bannerActive ? 52 : 0;
 
     const uiSettings = useUITranslation("settings", "Settings");
     const uiPreferences = useUITranslation("preferences", "Preferences");
@@ -68,7 +73,7 @@ const SettingsIndex = () => {
 
     return (
         <SafeAreaView className="flex-1 bg-gray-100" edges={['bottom', 'left', 'right']}>
-            <ScrollView className="flex-1 px-4 pt-6">
+            <ScrollView className="flex-1 px-4" contentContainerStyle={{ paddingTop: 15 + bannerGap, paddingBottom: 40 }}>
 
                 {/* Section Préférences */}
                 <Text className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-2 ml-2">

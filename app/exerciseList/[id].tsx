@@ -8,11 +8,16 @@ import { exerciseImages } from "@/src/constants/images";
 import { Image } from "expo-image";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
+import { useTimer } from '@/app/context/TimerContext';
 
 export default function Details() {
     const navigation = useNavigation();
 
     const router = useRouter();
+
+    const { elapsedTime, isRunning } = useTimer();
+    const bannerActive = elapsedTime > 0 || isRunning;
+    const bannerGap = bannerActive ? 52 : 0;
 
     const { id } = useLocalSearchParams();
     const query = Array.isArray(id) ? id[0] : id;
@@ -70,11 +75,11 @@ export default function Details() {
 
     return (
         <SafeAreaView style={{ flex: 1 }} className="bg-gray-100" edges={['bottom', 'left', 'right']}>
-            <View style={{ flex: 1, marginTop: 10 }}>
+            <View style={{ flex: 1 }}>
                 <FlatList
                     data={exercises}
                     keyExtractor={(item) => item.id.toString()}
-                    contentContainerStyle={{ paddingBottom: 100, paddingTop: 10 }}
+                    contentContainerStyle={{ paddingBottom: 100, paddingTop: 15 + bannerGap }}
                     renderItem={({ item }) => (
                         <TouchableOpacity 
                             onPress={() => router.push(`/exercise/${item.id}`)}

@@ -12,11 +12,17 @@ import { useUITranslation } from "@/services/useUITranslation";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 
+import { useTimer } from '@/app/context/TimerContext';
+
 export default function Details() {
     const navigation = useNavigation();
     const router = useRouter();
     const { id } = useLocalSearchParams();
     const query = Array.isArray(id) ? id[0] : id;
+
+    const { elapsedTime, isRunning } = useTimer();
+    const bannerActive = elapsedTime > 0 || isRunning;
+    const bannerGap = bannerActive ? 52 : 0;
 
     const { data: type } = useFetch(() => fetchExerciseTypeJson());
     const { data: muscle } = useFetch(() => fetchMuscleJsonList());
@@ -107,9 +113,9 @@ export default function Details() {
     return (
         <SafeAreaView className="flex-1 bg-white">
             <ScrollView
-                className="flex-1 px-6 pt-4"
+                className="flex-1 px-6"
                 keyboardShouldPersistTaps="handled"
-                contentContainerStyle={{ paddingBottom: 120 }}
+                contentContainerStyle={{ paddingBottom: 120, paddingTop: 15 + bannerGap }}
             >
                 {/* Nom de l'exercice */}
                 <Text className="text-gray-700 text-base font-semibold mb-2 ml-1">{uiExerciseName}</Text>

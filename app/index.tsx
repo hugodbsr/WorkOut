@@ -14,6 +14,8 @@ import { EXACT_EXERCISE_MAPPING, FALLBACK_MUSCLE_MAPPING } from "@/src/data/musc
 import { Calendar, DateData } from 'react-native-calendars';
 import { FlingGestureHandler, Directions, State } from 'react-native-gesture-handler';
 
+import { useTimer } from '@/app/context/TimerContext';
+
 type TodayExercisePreview = {
     exerciseId: string;
     exerciseName: string;
@@ -22,6 +24,10 @@ type TodayExercisePreview = {
 
 export default function Index() {
     const router = useRouter();
+    const { elapsedTime, isRunning } = useTimer();
+    const bannerActive = elapsedTime > 0 || isRunning;
+    const bannerGap = bannerActive ? 52 : 0; // 48px banner + 4px margin
+
     const [recentExercises, setRecentExercises] = useState<TodayExercisePreview[]>([]);
     const [heatmapData, setHeatmapData] = useState<HeatmapData>({});
     const [loading, setLoading] = useState(true);
@@ -140,7 +146,7 @@ export default function Index() {
                     }}
                 >
                     <View className="flex-1">
-                        <ScrollView contentContainerStyle={{ paddingBottom: 120, paddingHorizontal: 16, paddingTop: 5 }}>
+                        <ScrollView contentContainerStyle={{ paddingBottom: 120, paddingHorizontal: 16, paddingTop: 15 + bannerGap }}>
                             
                             {/* En-tête centré avec titre cliquable pour ouvrir le calendrier */}
                             <View className="relative justify-center items-center mb-2 mt-2">

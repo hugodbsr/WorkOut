@@ -5,10 +5,15 @@ import { useNavigation } from "expo-router";
 import { Feather } from '@expo/vector-icons';
 import { getLanguageCode, setLanguageCode } from "@/services/translation";
 import { useUITranslation } from "@/services/useUITranslation";
+import { useTimer } from '@/app/context/TimerContext';
 
 const LanguageSettings = () => {
     const navigation = useNavigation();
     const [currentLanguage, setCurrentLanguage] = useState('en');
+
+    const { elapsedTime, isRunning } = useTimer();
+    const bannerActive = elapsedTime > 0 || isRunning;
+    const bannerGap = bannerActive ? 52 : 0;
 
     const uiLanguage = useUITranslation("language", "Language");
     const uiSelectLanguage = useUITranslation("select_language", "Select a language");
@@ -35,7 +40,7 @@ const LanguageSettings = () => {
 
     return (
         <SafeAreaView className="flex-1 bg-gray-100" edges={['bottom', 'left', 'right']}>
-            <View className="px-4 pt-6">
+            <View className="px-4" style={{ paddingTop: 15 + bannerGap }}>
                 <Text className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-2 ml-2">
                     {uiSelectLanguage}
                 </Text>

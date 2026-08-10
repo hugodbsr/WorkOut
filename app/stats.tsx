@@ -7,6 +7,8 @@ import { Feather } from '@expo/vector-icons';
 import { useNavigation, useRouter } from 'expo-router';
 import { useUITranslation } from '@/services/useUITranslation';
 
+import { useTimer } from '@/app/context/TimerContext';
+
 type StatsData = {
     totalWorkouts: number;
     totalVolume: number;
@@ -19,6 +21,10 @@ export default function Stats() {
     const [loading, setLoading] = useState(true);
     const navigation = useNavigation();
     const router = useRouter();
+
+    const { elapsedTime, isRunning } = useTimer();
+    const bannerActive = elapsedTime > 0 || isRunning;
+    const bannerGap = bannerActive ? 52 : 0;
 
     const uiEvolution = useUITranslation('evolution', 'Évolution');
     const uiWorkouts = useUITranslation('workouts', 'Séances');
@@ -112,7 +118,7 @@ export default function Stats() {
 
     return (
         <SafeAreaView className="flex-1 bg-gray-100" edges={['bottom', 'left', 'right']}>
-            <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 40 }}>
+            <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 40, paddingTop: 15 + bannerGap }}>
                 
                 {/* Global Stats Grid */}
                 <View className="flex-row flex-wrap justify-between gap-y-4 mb-8">

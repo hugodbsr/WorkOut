@@ -5,10 +5,15 @@ import { useNavigation } from "expo-router";
 import { Feather } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useUITranslation } from "@/services/useUITranslation";
+import { useTimer } from '@/app/context/TimerContext';
 
 const RestTimeSettings = () => {
     const navigation = useNavigation();
     const [defaultRestTime, setDefaultRestTime] = useState(90);
+
+    const { elapsedTime, isRunning } = useTimer();
+    const bannerActive = elapsedTime > 0 || isRunning;
+    const bannerGap = bannerActive ? 52 : 0;
 
     const uiDefaultRest = useUITranslation("default_rest", "Default rest time");
     const uiRestDuration = useUITranslation("rest_duration", "Rest duration");
@@ -51,7 +56,7 @@ const RestTimeSettings = () => {
 
     return (
         <SafeAreaView className="flex-1 bg-gray-100" edges={['bottom', 'left', 'right']}>
-            <View className="px-4 pt-6">
+            <View className="px-4" style={{ paddingTop: 15 + bannerGap }}>
                 <Text className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-2 ml-2">
                     {uiRestDuration}
                 </Text>

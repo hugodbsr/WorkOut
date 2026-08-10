@@ -23,10 +23,16 @@ type HistorySection = {
     data: Set[];
 }
 
+import { useTimer } from '@/app/context/TimerContext';
+
 export default function RecordScreen() {
     const { id } = useLocalSearchParams();
     const navigation = useNavigation();
     const query = Array.isArray(id) ? id[0] : id;
+
+    const { elapsedTime, isRunning } = useTimer();
+    const bannerActive = elapsedTime > 0 || isRunning;
+    const bannerGap = bannerActive ? 52 : 0;
 
     const {
         data: exercise,
@@ -105,7 +111,7 @@ export default function RecordScreen() {
                             <HistorySectionHeader title={title} />
                         )}
 
-                        contentContainerStyle={{ paddingBottom: 50 }}
+                        contentContainerStyle={{ paddingBottom: 50, paddingTop: 15 + bannerGap }}
                     />
                 )}
             </View>

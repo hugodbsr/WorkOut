@@ -1,12 +1,11 @@
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { Stack } from "expo-router";
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Stack, usePathname, useRouter } from "expo-router";
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import * as NavigationBar from 'expo-navigation-bar';
 import { useEffect, useState } from 'react';
 import { Platform, TouchableOpacity, ActivityIndicator, View } from 'react-native';
 import { TimerProvider } from './context/TimerContext';
 import { Feather } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
 import { initLanguage } from '@/services/translation';
 import './globals.css';
 import BannerTimer from './components/common/BannerTimer';
@@ -24,13 +23,32 @@ function CustomBackButton() {
   );
 }
 
+function CustomHomeButton() {
+  const router = useRouter();
+  const pathname = usePathname();
+  
+  if (pathname === '/') return null;
+
+  return (
+    <TouchableOpacity
+      onPress={() => router.dismissAll ? router.dismissAll() : router.replace('/')}
+      style={{ marginRight: 4, padding: 6 }}
+      activeOpacity={0.7}
+    >
+      <Feather name="home" size={22} color="white" />
+    </TouchableOpacity>
+  );
+}
+
 export default function RootLayout() {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     if (Platform.OS === 'android') {
       NavigationBar.setPositionAsync('absolute');
-      NavigationBar.setBackgroundColorAsync('#ffffff00');
+      NavigationBar.setBackgroundColorAsync('transparent');
+      NavigationBar.setButtonStyleAsync('dark');
+      NavigationBar.setBehaviorAsync('inset-swipe');
     }
 
     initLanguage().finally(() => {
@@ -62,6 +80,7 @@ export default function RootLayout() {
               },
               headerShadowVisible: false,
               headerLeft: () => <CustomBackButton />,
+              headerRight: () => <CustomHomeButton />,
             }}
           >
             <Stack.Screen

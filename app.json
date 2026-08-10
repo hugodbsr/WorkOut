@@ -18,6 +18,10 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
+      "navigationBar": {
+        "backgroundColor": "transparent",
+        "barStyle": "dark-content"
+      },
       "package": "com.anonymous.work_out_app"
     },
     "web": {

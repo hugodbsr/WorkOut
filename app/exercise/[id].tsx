@@ -26,6 +26,8 @@ import { nanoid } from "nanoid/non-secure";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Animated, { SlideOutLeft, Layout, FadeIn } from 'react-native-reanimated';
 
+import { useTimer } from '@/app/context/TimerContext';
+
 type LocalSet = {
     id: string;
     reps: string;
@@ -37,6 +39,10 @@ export default function Details() {
     const { id } = useLocalSearchParams();
     const navigation = useNavigation();
     const query = Array.isArray(id) ? id[0] : id;
+
+    const { elapsedTime, isRunning } = useTimer();
+    const bannerActive = elapsedTime > 0 || isRunning;
+    const bannerGap = bannerActive ? 42 : 0; // Réduit à 42px au lieu de 52px pour la page des séries
 
     const {
         data: exercise,
@@ -235,7 +241,7 @@ export default function Details() {
                         ref={scrollViewRef}
                         className="bg-gray-100" 
                         style={{ marginBottom: 110 }} 
-                        contentContainerStyle={{ flexGrow: 1 }}
+                        contentContainerStyle={{ flexGrow: 1, paddingTop: bannerGap }}
                         keyboardShouldPersistTaps="handled"
                         onContentSizeChange={() => {
                             scrollViewRef.current?.scrollToEnd({ animated: true });

@@ -10,6 +10,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
+import { useTimer } from '@/app/context/TimerContext';
+
 function getMuscleImage(name?: string) {
     if (name && muscleGroupImages[name as keyof typeof muscleGroupImages]) {
         return muscleGroupImages[name as keyof typeof muscleGroupImages];
@@ -22,6 +24,10 @@ export default function Add() {
     const router = useRouter();
     const navigation = useNavigation();
     const chooseExerciseText = useUITranslation('choose_exercise', 'Choisissez un exercice');
+    
+    const { elapsedTime, isRunning } = useTimer();
+    const bannerActive = elapsedTime > 0 || isRunning;
+    const bannerGap = bannerActive ? 52 : 0;
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -57,7 +63,7 @@ export default function Add() {
         <SafeAreaView className="flex-1 bg-gray-100" edges={['bottom', 'left', 'right']}>
             <FlatList
                 data={muscleGroups}
-                contentContainerStyle={{ paddingVertical: 12 }}
+                contentContainerStyle={{ paddingTop: 15 + bannerGap, paddingBottom: 12 }}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => (
                     <TouchableOpacity 

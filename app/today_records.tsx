@@ -30,11 +30,17 @@ type DaySection = {
     data: ExerciseSetData[];
 };
 
+import { useTimer } from '@/app/context/TimerContext';
+
 export default function TodayRecords() {
     const [sections, setSections] = useState<DaySection[]>([]);
     const [loading, setLoading] = useState(true);
     const { date } = useLocalSearchParams<{ date?: string }>();
     const targetDate = date || getTodayDate();
+
+    const { elapsedTime, isRunning } = useTimer();
+    const bannerActive = elapsedTime > 0 || isRunning;
+    const bannerGap = bannerActive ? 52 : 0;
 
     const uiNoData = useUITranslation('no_session_today', "Aucune séance à cette date.");
     const uiTitle = useUITranslation('today_records', "Historique");
@@ -161,7 +167,7 @@ export default function TodayRecords() {
                     renderSectionHeader={({ section: { title } }) => (
                         <HistorySectionHeader title={title} />
                     )}
-                    contentContainerStyle={{ paddingBottom: 50 }}
+                    contentContainerStyle={{ paddingBottom: 50, paddingTop: 15 + bannerGap }}
                     stickySectionHeadersEnabled={true}
                     SectionSeparatorComponent={() => <View className="h-2" />}
                 />
