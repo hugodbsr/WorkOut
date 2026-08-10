@@ -3,20 +3,20 @@ import React, { useCallback, useLayoutEffect } from 'react';
 import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchExerciseListJson, fetchMuscleJson } from "@/services/api";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from "expo-router";
 import { exerciseImages } from "@/src/constants/images";
 import { Image } from "expo-image";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
-import { useTimer } from '@/app/context/TimerContext';
+import { useBannerActive } from "@/app/context/TimerContext";
 
 export default function Details() {
     const navigation = useNavigation();
 
     const router = useRouter();
 
-    const { elapsedTime, isRunning } = useTimer();
-    const bannerActive = elapsedTime > 0 || isRunning;
+    const bannerActive = useBannerActive();
+    
     const bannerGap = bannerActive ? 52 : 0;
 
     const { id } = useLocalSearchParams();

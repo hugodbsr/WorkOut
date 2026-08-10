@@ -8,9 +8,9 @@ import { muscleGroupImages } from "@/src/constants/images";
 import { useUITranslation } from "@/services/useUITranslation";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "expo-router";
 
-import { useTimer } from '@/app/context/TimerContext';
+import { useBannerActive } from "@/app/context/TimerContext";
 
 function getMuscleImage(name?: string) {
     if (name && muscleGroupImages[name as keyof typeof muscleGroupImages]) {
@@ -25,8 +25,8 @@ export default function Add() {
     const navigation = useNavigation();
     const chooseExerciseText = useUITranslation('choose_exercise', 'Choisissez un exercice');
     
-    const { elapsedTime, isRunning } = useTimer();
-    const bannerActive = elapsedTime > 0 || isRunning;
+    const bannerActive = useBannerActive();
+    
     const bannerGap = bannerActive ? 52 : 0;
 
     useLayoutEffect(() => {

@@ -15,7 +15,7 @@ import { fetchExerciseJson } from "@/services/api";
 import { addSessionToExercise, deleteSessionOfExercise, getExerciseHistory, Set, getTodayDate, Side } from "@/services/storage";
 import { useUITranslation } from '@/services/useUITranslation';
 import { GestureHandlerRootView, Swipeable } from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "expo-router";
 import { exerciseImages } from "@/src/constants/images";
 import { Feather } from '@expo/vector-icons';
 
@@ -26,7 +26,7 @@ import { nanoid } from "nanoid/non-secure";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Animated, { SlideOutLeft, Layout, FadeIn } from 'react-native-reanimated';
 
-import { useTimer } from '@/app/context/TimerContext';
+import { useBannerActive } from "@/app/context/TimerContext";
 
 type LocalSet = {
     id: string;
@@ -40,8 +40,8 @@ export default function Details() {
     const navigation = useNavigation();
     const query = Array.isArray(id) ? id[0] : id;
 
-    const { elapsedTime, isRunning } = useTimer();
-    const bannerActive = elapsedTime > 0 || isRunning;
+    const bannerActive = useBannerActive();
+    
     const bannerGap = bannerActive ? 42 : 0; // Réduit à 42px au lieu de 52px pour la page des séries
 
     const {
@@ -171,16 +171,16 @@ export default function Details() {
             let currentSeries: LocalSet[] = todaySession
                 ? todaySession.sets.map(set => ({
                     id: set.id || nanoid(),
-                    reps: set.reps.toString(),
-                    weight: set.weight.toString(),
+                    reps: set.reps != null ? set.reps.toString() : '',
+                    weight: set.weight != null ? set.weight.toString() : '',
                     side: set.side ?? "both",
                 }))
                 : [];
 
             let previousSeries: { reps: string, weight: string, side?: Side }[] = pastSessions.length > 0
                 ? pastSessions[0].sets.map(set => ({
-                    reps: set.reps.toString(),
-                    weight: set.weight.toString(),
+                    reps: set.reps != null ? set.reps.toString() : '',
+                    weight: set.weight != null ? set.weight.toString() : '',
                     side: set.side ?? "both",
                 }))
                 : [];
@@ -250,6 +250,7 @@ export default function Details() {
 
                         <ExerciseHeader
                             name={exercise?.name}
+                            description={exercise?.description}
                             imageSource={getExerciseImage(exercise?.image)}
                             isUnilateral={!!exercise?.unilateral}
                             unilateral={unilateral}

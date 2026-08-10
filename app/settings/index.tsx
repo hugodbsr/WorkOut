@@ -6,7 +6,7 @@ import { Feather } from '@expo/vector-icons';
 import { getLanguageCode } from "@/services/translation";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useUITranslation } from "@/services/useUITranslation";
-import { useTimer } from '@/app/context/TimerContext';
+import { useBannerActive } from "@/app/context/TimerContext";
 
 const SettingsIndex = () => {
     const navigation = useNavigation();
@@ -14,8 +14,8 @@ const SettingsIndex = () => {
     const [currentLanguage, setCurrentLanguage] = useState('en');
     const [defaultRestTime, setDefaultRestTime] = useState(90);
 
-    const { elapsedTime, isRunning } = useTimer();
-    const bannerActive = elapsedTime > 0 || isRunning;
+    const bannerActive = useBannerActive();
+    
     const bannerGap = bannerActive ? 52 : 0;
 
     const uiSettings = useUITranslation("settings", "Settings");

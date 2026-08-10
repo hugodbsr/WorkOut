@@ -13,7 +13,7 @@ import { useUITranslation } from '@/services/useUITranslation';
 import HistorySetItem from '@/app/components/history/HistorySetItem';
 import HistorySectionHeader from '@/app/components/history/HistorySectionHeader';
 import { Feather } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "expo-router";
 import { useLocalSearchParams } from 'expo-router';
 
 type ExerciseSetData = {
@@ -30,7 +30,7 @@ type DaySection = {
     data: ExerciseSetData[];
 };
 
-import { useTimer } from '@/app/context/TimerContext';
+import { useBannerActive } from "@/app/context/TimerContext";
 
 export default function TodayRecords() {
     const [sections, setSections] = useState<DaySection[]>([]);
@@ -38,8 +38,8 @@ export default function TodayRecords() {
     const { date } = useLocalSearchParams<{ date?: string }>();
     const targetDate = date || getTodayDate();
 
-    const { elapsedTime, isRunning } = useTimer();
-    const bannerActive = elapsedTime > 0 || isRunning;
+    const bannerActive = useBannerActive();
+    
     const bannerGap = bannerActive ? 52 : 0;
 
     const uiNoData = useUITranslation('no_session_today', "Aucune séance à cette date.");

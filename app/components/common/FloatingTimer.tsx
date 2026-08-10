@@ -9,7 +9,7 @@ import {
     PanResponder,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import { useTimer } from "../../context/TimerContext";
+import { useBannerActive } from "@/app/context/TimerContext";
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 

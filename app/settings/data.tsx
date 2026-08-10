@@ -5,13 +5,13 @@ import { useNavigation } from "expo-router";
 import { Feather } from '@expo/vector-icons';
 import { clearAllExerciseHistory, clearUserCreatedExercises } from "@/services/storage";
 import { useUITranslation } from "@/services/useUITranslation";
-import { useTimer } from '@/app/context/TimerContext';
+import { useBannerActive } from "@/app/context/TimerContext";
 
 const DataSettings = () => {
     const navigation = useNavigation();
 
-    const { elapsedTime, isRunning } = useTimer();
-    const bannerActive = elapsedTime > 0 || isRunning;
+    const bannerActive = useBannerActive();
+    
     const bannerGap = bannerActive ? 52 : 0;
 
     const uiDataManagement = useUITranslation("data_management", "Data management");

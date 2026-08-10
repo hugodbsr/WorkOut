@@ -1,20 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, Platform } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useTimer } from "../../context/TimerContext";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { usePathname, useRouter } from "expo-router";
+import { router } from "expo-router";
 
 const BannerTimer = () => {
-    const { elapsedTime, isRunning, toggle, reset } = useTimer();
+    const { isRunning, savedTime, startTime, toggle, reset, mode, duration, bannerActive, isChronoPage } = useTimer();
+    const [localTime, setLocalTime] = useState(savedTime);
+    
     const insets = useSafeAreaInsets();
-    const pathname = usePathname();
-    const router = useRouter();
+
+    useEffect(() => {
+        let intervalId: ReturnType<typeof setInterval>;
+        if (isRunning && startTime !== null) {
+            // Update rapidly for smooth display, without triggering whole-app re-renders
+            intervalId = setInterval(() => {
+                setLocalTime(Date.now() - startTime + savedTime);
+            }, 50);
+        } else {
+            setLocalTime(savedTime);
+        }
+        return () => clearInterval(intervalId);
+    }, [isRunning, startTime, savedTime]);
     
     // Cacher si pas lancé ou si on est déjà sur la page chrono
-    if ((elapsedTime === 0 && !isRunning) || pathname === "/chrono") {
+    if (!bannerActive || isChronoPage) {
         return null;
     }
+
+    const displayMs = mode === 'countdown' ? Math.max(0, duration - localTime) : localTime;
 
     const formatCompact = (ms: number) => {
         const minutes = Math.floor(ms / 60000);
@@ -25,9 +40,13 @@ const BannerTimer = () => {
     };
 
     // Calcul de la position : en dessous du header si la page en a un
-    const hasHeader = pathname !== "/"; 
-    const headerHeight = hasHeader ? (Platform.OS === 'ios' ? 44 : 56) : 0;
+    // Sans useSegments, on assume qu'il y a toujours un header sauf si on veut passer ça en prop (mais la plupart des pages ont un header)
+    // On va juste mettre un fallback sécurisé
+    const headerHeight = Platform.OS === 'ios' ? 44 : 56;
     const topPosition = insets.top + headerHeight;
+
+    const bannerColor = isRunning ? '#16a34a' : '#f59e0b';
+    const isOver = mode === 'countdown' && displayMs === 0;
 
     return (
         <View 
@@ -37,14 +56,14 @@ const BannerTimer = () => {
         >
             <TouchableOpacity 
                 className="flex-row items-center justify-between w-full py-2 px-4"
-                style={{ backgroundColor: isRunning ? '#16a34a' : '#f59e0b' }}
+                style={{ backgroundColor: isOver ? '#ef4444' : bannerColor }}
                 activeOpacity={0.9}
                 onPress={() => router.push("/chrono")}
             >
                 <View className="flex-row items-center gap-2">
                     <Feather name="clock" size={16} color="white" />
                     <Text className="text-white text-lg font-bold tracking-widest">
-                        {formatCompact(elapsedTime)}
+                        {formatCompact(displayMs)}
                     </Text>
                 </View>
 

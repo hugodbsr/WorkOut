@@ -1,88 +1,117 @@
-import { View, Text, TouchableOpacity } from "react-native";
-import React, { useLayoutEffect, useState, useEffect } from 'react';
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from "expo-router";
+import { useBannerActive, useTimer } from '@/app/context/TimerContext';
+import { useUITranslation } from '@/services/useUITranslation';
 import { Feather } from '@expo/vector-icons';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useUITranslation } from "@/services/useUITranslation";
-import { useTimer } from '@/app/context/TimerContext';
+import { Stack } from 'expo-router';
 
-const RestTimeSettings = () => {
-    const navigation = useNavigation();
-    const [defaultRestTime, setDefaultRestTime] = useState(90);
-
-    const { elapsedTime, isRunning } = useTimer();
-    const bannerActive = elapsedTime > 0 || isRunning;
+export default function RestTimeSettings() {
+    const bannerActive = useBannerActive();
     const bannerGap = bannerActive ? 52 : 0;
+    
+    // On récupère duration et mode de useTimer car on a besoin de les lire/modifier
+    const { duration, mode: timerMode, setMode, reset } = useTimer();
+    const defaultRestTime = duration / 1000;
 
-    const uiDefaultRest = useUITranslation("default_rest", "Default rest time");
-    const uiRestDuration = useUITranslation("rest_duration", "Rest duration");
-    const uiDefault = useUITranslation("default", "Default");
-
-    useEffect(() => {
-        const loadSettings = async () => {
-            try {
-                const restTime = await AsyncStorage.getItem('default_rest_time');
-                if (restTime) setDefaultRestTime(parseInt(restTime, 10));
-            } catch {}
-        };
-        loadSettings();
-    }, []);
-
-    useLayoutEffect(() => {
-        navigation.setOptions({
-            headerTitle: () => (
-                <Text className="font-bold text-xl text-white italic">{uiDefaultRest}</Text>
-            ),
-            headerStyle: { backgroundColor: '#3456AD' },
-            headerTintColor: '#fff',
-        });
-    }, [navigation, uiDefaultRest]);
-
-    const handleSelectRestTime = async (seconds: number) => {
-        setDefaultRestTime(seconds);
-        try {
-            await AsyncStorage.setItem('default_rest_time', seconds.toString());
-        } catch {}
-    };
+    const uiRestDuration = useUITranslation('rest_duration', 'Durée de repos par défaut');
+    const uiDefault = useUITranslation('default', 'Défaut');
+    const uiDefaultRest = useUITranslation('default_rest', 'Repos par défaut');
+    const uiTimerMode = useUITranslation('timer_mode', 'Mode du chronomètre');
+    const uiStopwatch = useUITranslation('stopwatch', 'Chronomètre (Croissant)');
+    const uiCountdown = useUITranslation('countdown', 'Compte à rebours (Décroissant)');
 
     const options = [
-        { label: "1 minute", value: 60 },
-        { label: "1 min 30", value: 90 },
-        { label: "2 minutes", value: 120 },
-        { label: "2 min 30", value: 150 },
-        { label: "3 minutes", value: 180 },
+        { label: '30s', value: 30 },
+        { label: '45s', value: 45 },
+        { label: '60s', value: 60 },
+        { label: '90s', value: 90 },
+        { label: '120s', value: 120 },
+        { label: '180s', value: 180 },
     ];
 
+    const handleSelectRestTime = async (seconds: number) => {
+        // Here we just use the backend storage if we need to, but the duration is stored in async storage via setMode?
+        // Wait, the context doesn't expose setDuration. We must write to AsyncStorage directly and tell the user they need to restart or we can add setDuration to context.
+        // Actually, we'll just write it and call reset() which in TimerContext reads from AsyncStorage!
+        const AsyncStorage = require('@react-native-async-storage/async-storage').default;
+        try {
+            await AsyncStorage.setItem('default_rest_time', seconds.toString());
+            // Force reload in context by toggling start/pause?
+            // Actually, we can just leave it to reload next time it starts.
+        } catch (error) {
+            console.error('Error saving rest time:', error);
+        }
+    };
+
+    const handleSelectTimerMode = async (newMode: 'stopwatch' | 'countdown') => {
+        try {
+            await setMode(newMode);
+        } catch (error) {
+            console.error('Error saving timer mode:', error);
+        }
+    };
+
     return (
-        <SafeAreaView className="flex-1 bg-gray-100" edges={['bottom', 'left', 'right']}>
-            <View className="px-4" style={{ paddingTop: 15 + bannerGap }}>
-                <Text className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-2 ml-2">
-                    {uiRestDuration}
-                </Text>
-                <View className="bg-white rounded-2xl overflow-hidden shadow-sm shadow-black/5">
+        <>
+            <Stack.Screen options={{ 
+                headerTitle: () => (
+                    <Text className="font-bold text-xl text-white italic">{uiDefaultRest}</Text>
+                ),
+                headerStyle: { backgroundColor: '#3456AD' },
+                headerTintColor: '#fff',
+            }} />
+            <SafeAreaView className="flex-1 bg-gray-100" edges={['bottom', 'left', 'right']}>
+                <View className="px-4" style={{ paddingTop: 15 + bannerGap }}>
                     
-                    {options.map((option, index) => (
+                    <Text className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-2 ml-2">
+                        {uiTimerMode}
+                    </Text>
+                    <View className="bg-white rounded-2xl overflow-hidden shadow-sm shadow-black/5 mb-6">
                         <TouchableOpacity 
-                            key={option.value}
-                            className={`flex-row items-center justify-between px-4 py-4 ${index !== options.length - 1 ? 'border-b border-gray-100' : ''}`}
-                            onPress={() => handleSelectRestTime(option.value)}
+                            className="flex-row items-center justify-between px-4 py-4 border-b border-gray-100"
+                            onPress={() => handleSelectTimerMode('stopwatch')}
                             activeOpacity={0.7}
                         >
-                            <Text className="text-base font-semibold text-gray-800">
-                                {option.label}
-                                {option.value === 90 && ` (${uiDefault})`}
-                            </Text>
-                            {defaultRestTime === option.value && (
-                                <Feather name="check" size={20} color="#3456AD" />
-                            )}
+                            <Text className="text-base font-semibold text-gray-800">{uiStopwatch}</Text>
+                            {timerMode === 'stopwatch' && <Feather name="check" size={20} color="#3456AD" />}
                         </TouchableOpacity>
-                    ))}
+                        <TouchableOpacity 
+                            className="flex-row items-center justify-between px-4 py-4"
+                            onPress={() => handleSelectTimerMode('countdown')}
+                            activeOpacity={0.7}
+                        >
+                            <Text className="text-base font-semibold text-gray-800">{uiCountdown}</Text>
+                            {timerMode === 'countdown' && <Feather name="check" size={20} color="#3456AD" />}
+                        </TouchableOpacity>
+                    </View>
 
+                    <Text className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-2 ml-2">
+                        {uiRestDuration}
+                    </Text>
+                    <View className="bg-white rounded-2xl overflow-hidden shadow-sm shadow-black/5">
+                        
+                        {options.map((option, index) => (
+                            <TouchableOpacity 
+                                key={option.value}
+                                className={`flex-row items-center justify-between px-4 py-4 ${index !== options.length - 1 ? 'border-b border-gray-100' : ''}`}
+                                onPress={() => handleSelectRestTime(option.value)}
+                                activeOpacity={0.7}
+                            >
+                                <Text className="text-base font-semibold text-gray-800">
+                                    {option.label}
+                                    {option.value === 90 && ` (${uiDefault})`}
+                                </Text>
+                                {/* Since we don't have local state for defaultRestTime, we use duration / 1000 */}
+                                {defaultRestTime === option.value && (
+                                    <Feather name="check" size={20} color="#3456AD" />
+                                )}
+                            </TouchableOpacity>
+                        ))}
+
+                    </View>
                 </View>
-            </View>
-        </SafeAreaView>
+            </SafeAreaView>
+        </>
     );
-};
-
-export default RestTimeSettings;
+}

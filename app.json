@@ -22,7 +22,11 @@
         "backgroundColor": "transparent",
         "barStyle": "dark-content"
       },
-      "package": "com.anonymous.work_out_app"
+      "package": "com.anonymous.work_out_app",
+      "permissions": [
+        "FOREGROUND_SERVICE",
+        "POST_NOTIFICATIONS"
+      ]
     },
     "web": {
       "bundler": "metro",

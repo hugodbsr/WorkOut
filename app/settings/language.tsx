@@ -5,14 +5,14 @@ import { useNavigation } from "expo-router";
 import { Feather } from '@expo/vector-icons';
 import { getLanguageCode, setLanguageCode } from "@/services/translation";
 import { useUITranslation } from "@/services/useUITranslation";
-import { useTimer } from '@/app/context/TimerContext';
+import { useBannerActive } from "@/app/context/TimerContext";
 
 const LanguageSettings = () => {
     const navigation = useNavigation();
     const [currentLanguage, setCurrentLanguage] = useState('en');
 
-    const { elapsedTime, isRunning } = useTimer();
-    const bannerActive = elapsedTime > 0 || isRunning;
+    const bannerActive = useBannerActive();
+    
     const bannerGap = bannerActive ? 52 : 0;
 
     const uiLanguage = useUITranslation("language", "Language");

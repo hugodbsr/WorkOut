@@ -7,7 +7,7 @@ import { Feather } from '@expo/vector-icons';
 import { useNavigation, useRouter } from 'expo-router';
 import { useUITranslation } from '@/services/useUITranslation';
 
-import { useTimer } from '@/app/context/TimerContext';
+import { useBannerActive } from "@/app/context/TimerContext";
 
 type StatsData = {
     totalWorkouts: number;
@@ -22,8 +22,8 @@ export default function Stats() {
     const navigation = useNavigation();
     const router = useRouter();
 
-    const { elapsedTime, isRunning } = useTimer();
-    const bannerActive = elapsedTime > 0 || isRunning;
+    const bannerActive = useBannerActive();
+    
     const bannerGap = bannerActive ? 52 : 0;
 
     const uiEvolution = useUITranslation('evolution', 'Évolution');

@@ -13,7 +13,7 @@ import { useUITranslation } from '@/services/useUITranslation';
 import HistorySetItem from '@/app/components/history/HistorySetItem';
 import HistorySectionHeader from '@/app/components/history/HistorySectionHeader';
 import { Feather } from '@expo/vector-icons';
-import { useTimer } from '@/app/context/TimerContext';
+import { useBannerActive } from "@/app/context/TimerContext";
 
 type ExerciseSetData = {
     exerciseId: string;
@@ -34,8 +34,8 @@ export default function Records() {
     const [loading, setLoading] = useState(true);
     const uiNoData = useUITranslation('no_data', 'No data');
 
-    const { elapsedTime, isRunning } = useTimer();
-    const bannerActive = elapsedTime > 0 || isRunning;
+    const bannerActive = useBannerActive();
+    
     const bannerGap = bannerActive ? 52 : 0;
 
     useEffect(() => {

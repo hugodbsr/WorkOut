@@ -14,7 +14,7 @@ import { EXACT_EXERCISE_MAPPING, FALLBACK_MUSCLE_MAPPING } from "@/src/data/musc
 import { Calendar, DateData } from 'react-native-calendars';
 import { FlingGestureHandler, Directions, State } from 'react-native-gesture-handler';
 
-import { useTimer } from '@/app/context/TimerContext';
+import { useBannerActive } from "@/app/context/TimerContext";
 
 type TodayExercisePreview = {
     exerciseId: string;
@@ -24,8 +24,8 @@ type TodayExercisePreview = {
 
 export default function Index() {
     const router = useRouter();
-    const { elapsedTime, isRunning } = useTimer();
-    const bannerActive = elapsedTime > 0 || isRunning;
+    const bannerActive = useBannerActive();
+    
     const bannerGap = bannerActive ? 52 : 0; // 48px banner + 4px margin
 
     const [recentExercises, setRecentExercises] = useState<TodayExercisePreview[]>([]);

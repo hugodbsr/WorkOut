@@ -6,6 +6,7 @@ import { getUITranslation } from "@/services/translation";
 
 type ExerciseHeaderProps = {
     name?: string;
+    description?: string;
     imageSource?: ImageSource | string;
     isUnilateral: boolean;
     unilateral: boolean;
@@ -15,6 +16,7 @@ type ExerciseHeaderProps = {
 // eslint-disable-next-line react/display-name
 export const ExerciseHeader: React.FC<ExerciseHeaderProps> = React.memo(({
                                                                              name,
+                                                                             description,
                                                                              imageSource,
                                                                              isUnilateral,
                                                                              unilateral,
@@ -45,7 +47,12 @@ export const ExerciseHeader: React.FC<ExerciseHeaderProps> = React.memo(({
                     contentFit="contain"
                 />
             </View>
-            <Text className="text-3xl m-4 mt-6 font-black text-gray-800 text-center">{name}</Text>
+            <Text className="text-3xl mx-4 mt-6 font-black text-gray-800 text-center">{name}</Text>
+            {description ? (
+                <Text className="text-base text-gray-500 text-center mx-6 mt-2 mb-4 leading-relaxed">
+                    {description}
+                </Text>
+            ) : null}
             {isUnilateral && (
                 <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                     <UnilateralButton

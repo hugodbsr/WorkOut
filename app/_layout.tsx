@@ -7,8 +7,31 @@ import { Platform, TouchableOpacity, ActivityIndicator, View } from 'react-nativ
 import { TimerProvider } from './context/TimerContext';
 import { Feather } from '@expo/vector-icons';
 import { initLanguage } from '@/services/translation';
+import Constants from 'expo-constants';
 import './globals.css';
 import BannerTimer from './components/common/BannerTimer';
+
+let Notifications: any = null;
+let Notifee: any = null;
+if (Constants.appOwnership !== 'expo') {
+  try {
+    Notifications = require('expo-notifications');
+    Notifications.setNotificationHandler({
+      handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: true,
+        shouldSetBadge: false,
+      }),
+    });
+    
+    Notifee = require('@notifee/react-native').default;
+    Notifee.registerForegroundService((notification: any) => {
+      return new Promise(() => {});
+    });
+  } catch (e) {
+    console.warn("Notifications non supportées dans cet environnement");
+  }
+}
 
 function CustomBackButton() {
   const router = useRouter();
@@ -46,14 +69,20 @@ export default function RootLayout() {
   useEffect(() => {
     if (Platform.OS === 'android') {
       NavigationBar.setPositionAsync('absolute');
-      NavigationBar.setBackgroundColorAsync('transparent');
       NavigationBar.setButtonStyleAsync('dark');
-      NavigationBar.setBehaviorAsync('inset-swipe');
     }
 
-    initLanguage().finally(() => {
+    (async () => {
+      if (Notifications) {
+        try {
+          await Notifications.requestPermissionsAsync();
+        } catch (e) {
+          console.warn('Notification permission error', e);
+        }
+      }
+      await initLanguage();
       setIsReady(true);
-    });
+    })();
   }, []);
 
   if (!isReady) {

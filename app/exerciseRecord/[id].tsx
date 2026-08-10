@@ -10,7 +10,7 @@ import { useLocalSearchParams } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchExerciseJson } from "@/services/api";
 import { getExerciseHistory, Set, Session } from "@/services/storage";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "expo-router";
 
 import HistorySetItem from '@/app/components/history/HistorySetItem';
 import HistorySectionHeader from '@/app/components/history/HistorySectionHeader';
@@ -23,15 +23,15 @@ type HistorySection = {
     data: Set[];
 }
 
-import { useTimer } from '@/app/context/TimerContext';
+import { useBannerActive } from "@/app/context/TimerContext";
 
 export default function RecordScreen() {
     const { id } = useLocalSearchParams();
     const navigation = useNavigation();
     const query = Array.isArray(id) ? id[0] : id;
 
-    const { elapsedTime, isRunning } = useTimer();
-    const bannerActive = elapsedTime > 0 || isRunning;
+    const bannerActive = useBannerActive();
+    
     const bannerGap = bannerActive ? 52 : 0;
 
     const {

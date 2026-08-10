@@ -1,6 +1,6 @@
 import { Text, TextInput, TouchableOpacity, View, ScrollView, Alert } from "react-native";
 import React, { useLayoutEffect, useMemo, useState } from 'react'
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from "expo-router";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchExerciseTypeJson, fetchMuscleJsonList } from "@/services/api";
@@ -12,7 +12,7 @@ import { useUITranslation } from "@/services/useUITranslation";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 
-import { useTimer } from '@/app/context/TimerContext';
+import { useBannerActive } from "@/app/context/TimerContext";
 
 export default function Details() {
     const navigation = useNavigation();
@@ -20,8 +20,8 @@ export default function Details() {
     const { id } = useLocalSearchParams();
     const query = Array.isArray(id) ? id[0] : id;
 
-    const { elapsedTime, isRunning } = useTimer();
-    const bannerActive = elapsedTime > 0 || isRunning;
+    const bannerActive = useBannerActive();
+    
     const bannerGap = bannerActive ? 52 : 0;
 
     const { data: type } = useFetch(() => fetchExerciseTypeJson());
