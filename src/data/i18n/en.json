@@ -34,6 +34,8 @@
     "clear_history_alert_desc": "Are you sure you want to delete all your session history? This action is irreversible.",
     "cancel": "Cancel",
     "delete": "Delete",
+    "edit_exercise": "Edit exercise",
+    "edit": "Save",
     "success": "Success",
     "history_cleared": "History cleared.",
     "clear_custom": "Clear custom exercises",
@@ -60,7 +62,9 @@
     "workouts": "Workouts",
     "sets": "Sets",
     "total_volume": "Total Volume Lifted",
-    "top_exercises": "Top Exercises (Volume)"
+    "top_exercises": "Top Exercises (Volume)",
+    "stopwatch": "Stopwatch",
+    "countdown": "Countdown"
   },
   "muscle": {
     "chest": "Chest",

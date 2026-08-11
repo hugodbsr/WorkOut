@@ -34,6 +34,8 @@
     "clear_history_alert_desc": "Êtes-vous sûr de vouloir supprimer tout l'historique de vos séances ? Cette action est irréversible.",
     "cancel": "Annuler",
     "delete": "Supprimer",
+    "edit_exercise": "Modifier l'exercice",
+    "edit": "Enregistrer",
     "success": "Succès",
     "history_cleared": "L'historique a été effacé.",
     "clear_custom": "Effacer les exercices perso",
@@ -60,7 +62,9 @@
     "front": "Face",
     "back": "Dos",
     "running": "En cours...",
-    "paused": "En pause"
+    "paused": "En pause",
+    "stopwatch": "Chronomètre",
+    "countdown": "Minuteur"
   },
   "muscle": {
     "chest": "Pectoraux",

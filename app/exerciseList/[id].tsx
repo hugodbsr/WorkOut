@@ -10,6 +10,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { useBannerActive } from "@/app/context/TimerContext";
 
+import { Alert } from 'react-native';
+import { deleteUserExercise } from '@/services/storage';
+
 export default function Details() {
     const navigation = useNavigation();
 
@@ -32,7 +35,16 @@ export default function Details() {
         data: exercises,
         loading: exercisesLoading,
         error: exercisesError,
+        refetch,
     } = useFetch(() => fetchExerciseListJson({ query }));
+
+    useFocusEffect(
+        useCallback(() => {
+            if (refetch) {
+                refetch();
+            }
+        }, [refetch])
+    );
 
     useLayoutEffect(() => {
         if (group) {
@@ -61,6 +73,10 @@ export default function Details() {
     }
 
     function getExerciseImage(name: string) {
+        if (!name) return undefined;
+        if (name.startsWith('file://') || name.startsWith('http')) {
+            return name;
+        }
         try {
             if (exerciseImages[name as keyof typeof exerciseImages]) {
                 return exerciseImages[name as keyof typeof exerciseImages];
@@ -73,6 +89,24 @@ export default function Details() {
         }
     }
 
+    const handleDelete = (exerciseId: string, exerciseName: string) => {
+        Alert.alert(
+            "Supprimer l'exercice",
+            `Voulez-vous vraiment supprimer "${exerciseName}" ?`,
+            [
+                { text: "Annuler", style: "cancel" },
+                { 
+                    text: "Supprimer", 
+                    style: "destructive",
+                    onPress: async () => {
+                        await deleteUserExercise(exerciseId);
+                        refetch();
+                    }
+                }
+            ]
+        );
+    };
+
     return (
         <SafeAreaView style={{ flex: 1 }} className="bg-gray-100" edges={['bottom', 'left', 'right']}>
             <View style={{ flex: 1 }}>
@@ -80,24 +114,38 @@ export default function Details() {
                     data={exercises}
                     keyExtractor={(item) => item.id.toString()}
                     contentContainerStyle={{ paddingBottom: 100, paddingTop: 15 + bannerGap }}
-                    renderItem={({ item }) => (
-                        <TouchableOpacity 
-                            onPress={() => router.push(`/exercise/${item.id}`)}
-                            className="bg-white mx-4 my-2 p-3 rounded-3xl flex-row items-center shadow-sm border border-gray-100"
-                            activeOpacity={0.7}
-                        >
-                            <View className="bg-gray-50 rounded-full mr-4 p-1">
-                                <Image
-                                    source={getExerciseImage(item.image)}
-                                    style={{ width: 60, height: 60, borderRadius: 30 }}
-                                />
-                            </View>
-                            <View className="flex-1">
-                                <Text className="text-lg font-bold text-gray-800" numberOfLines={2}>{item.name}</Text>
-                            </View>
-                            <Feather name="chevron-right" size={24} color="#d1d5db" />
-                        </TouchableOpacity>
-                    )}
+                    renderItem={({ item }) => {
+                        const isCustom = isNaN(Number(item.id));
+                        return (
+                            <TouchableOpacity 
+                                onPress={() => router.push(`/exercise/${item.id}`)}
+                                className="bg-white mx-4 my-2 p-3 rounded-3xl flex-row items-center shadow-sm border border-gray-100"
+                                activeOpacity={0.7}
+                            >
+                                <View className="bg-gray-50 rounded-full mr-4 p-1">
+                                    <Image
+                                        source={getExerciseImage(item.image)}
+                                        style={{ width: 60, height: 60, borderRadius: 30 }}
+                                    />
+                                </View>
+                                <View className="flex-1">
+                                    <Text className="text-lg font-bold text-gray-800" numberOfLines={2}>{item.name}</Text>
+                                </View>
+                                {isCustom ? (
+                                    <TouchableOpacity 
+                                        onPress={(e) => {
+                                            e.stopPropagation();
+                                            router.push(`/editExercise/${item.id}`);
+                                        }}
+                                        className="p-2 mr-2"
+                                    >
+                                        <Feather name="edit-2" size={20} color="#9ca3af" />
+                                    </TouchableOpacity>
+                                ) : null}
+                                <Feather name="chevron-right" size={24} color="#d1d5db" />
+                            </TouchableOpacity>
+                        );
+                    }}
                 />
             </View>
 
@@ -115,7 +163,7 @@ export default function Details() {
 const styles = StyleSheet.create({
     addButton: {
         position: "absolute",
-        bottom: 40,
+        bottom: 100, // Remonté pour ne pas être couvert par le bandeau timer
         right: 20,
         width: 65,
         height: 65,

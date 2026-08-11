@@ -3,13 +3,14 @@ import { View, Text, TouchableOpacity, Platform } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useTimer } from "../../context/TimerContext";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { router } from "expo-router";
+import { router, usePathname } from "expo-router";
 
 const BannerTimer = () => {
     const { isRunning, savedTime, startTime, toggle, reset, mode, duration, bannerActive, isChronoPage } = useTimer();
     const [localTime, setLocalTime] = useState(savedTime);
     
     const insets = useSafeAreaInsets();
+    const pathname = usePathname();
 
     useEffect(() => {
         let intervalId: ReturnType<typeof setInterval>;
@@ -40,9 +41,9 @@ const BannerTimer = () => {
     };
 
     // Calcul de la position : en dessous du header si la page en a un
-    // Sans useSegments, on assume qu'il y a toujours un header sauf si on veut passer ça en prop (mais la plupart des pages ont un header)
-    // On va juste mettre un fallback sécurisé
-    const headerHeight = Platform.OS === 'ios' ? 44 : 56;
+    // La page principale ('/') n'a pas de header, donc on le place tout en haut (sous la barre d'état)
+    const hasHeader = pathname !== '/';
+    const headerHeight = hasHeader ? (Platform.OS === 'ios' ? 44 : 56) : 0;
     const topPosition = insets.top + headerHeight;
 
     const bannerColor = isRunning ? '#16a34a' : '#f59e0b';

@@ -95,9 +95,18 @@ export default function Details() {
     };
 
     function getExerciseImage(name?: string) {
-        if (name && exerciseImages[name as keyof typeof exerciseImages]) {
-            return exerciseImages[name as keyof typeof exerciseImages];
-        } else {
+        if (!name) return undefined;
+        if (name.startsWith('file://') || name.startsWith('http')) {
+            return name;
+        }
+        try {
+            if (exerciseImages[name as keyof typeof exerciseImages]) {
+                return exerciseImages[name as keyof typeof exerciseImages];
+            } else {
+                return undefined;
+            }
+        } catch (error) {
+            console.error("Erreur lors du chargement de l'image:", error);
             return undefined;
         }
     }

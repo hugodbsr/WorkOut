@@ -34,6 +34,35 @@ export const addUserExercise = async (exercise: any) => {
     }
 }
 
+export const updateUserExercise = async (exerciseId: string, updatedData: any) => {
+    try {
+        const json = await AsyncStorage.getItem(USER_CREATED_EXERCISES_KEY);
+        if (json) {
+            const userExercises = JSON.parse(json);
+            const index = userExercises.findIndex((ex: any) => ex.id === exerciseId);
+            if (index > -1) {
+                userExercises[index] = { ...userExercises[index], ...updatedData };
+                await AsyncStorage.setItem(USER_CREATED_EXERCISES_KEY, JSON.stringify(userExercises));
+            }
+        }
+    } catch (e) {
+        console.error("Erreur lors de la mise à jour de l'exercice personnalisé", e);
+    }
+}
+
+export const deleteUserExercise = async (exerciseId: string) => {
+    try {
+        const json = await AsyncStorage.getItem(USER_CREATED_EXERCISES_KEY);
+        if (json) {
+            const userExercises = JSON.parse(json);
+            const filteredExercises = userExercises.filter((ex: any) => ex.id !== exerciseId);
+            await AsyncStorage.setItem(USER_CREATED_EXERCISES_KEY, JSON.stringify(filteredExercises));
+        }
+    } catch (e) {
+        console.error("Erreur lors de la suppression de l'exercice personnalisé", e);
+    }
+}
+
 export const addSessionToExercise = async (
     exerciseId: string,
     set: Set
