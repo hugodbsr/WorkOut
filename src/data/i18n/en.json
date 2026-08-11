@@ -64,7 +64,9 @@
     "total_volume": "Total Volume Lifted",
     "top_exercises": "Top Exercises (Volume)",
     "stopwatch": "Stopwatch",
-    "countdown": "Countdown"
+    "countdown": "Countdown",
+    "timer_mode": "Timer Mode",
+    "ready": "Ready"
   },
   "muscle": {
     "chest": "Chest",

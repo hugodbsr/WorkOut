@@ -64,7 +64,9 @@
     "running": "En cours...",
     "paused": "En pause",
     "stopwatch": "Chronomètre",
-    "countdown": "Minuteur"
+    "countdown": "Minuteur",
+    "timer_mode": "Mode du chronomètre",
+    "ready": "À démarrer"
   },
   "muscle": {
     "chest": "Pectoraux",

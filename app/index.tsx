@@ -128,7 +128,7 @@ export default function Index() {
     };
 
     return (
-        <SafeAreaView className={"flex-1 bg-gray-100"} edges={['top', 'left', 'right']}>
+        <SafeAreaView className="flex-1 bg-gray-100" edges={['top', 'left', 'right']}>
             <FlingGestureHandler
                 direction={Directions.RIGHT}
                 onHandlerStateChange={({ nativeEvent }) => {

@@ -7,11 +7,15 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export const HomeFooter: React.FC = React.memo(() => {
     const router = useRouter();
+    const insets = useSafeAreaInsets();
     const uiSettings = useUITranslation('settings', 'Settings');
 
     return (
         <>
-            <View className="absolute bottom-[-1px] left-[-1px] right-[-1px] rounded-t-3xl flex-row justify-around bg-primary border-t pb-[43px]">
+            <View 
+                className="absolute left-[-1px] right-[-1px] rounded-t-3xl flex-row justify-around bg-primary border-t"
+                style={{ bottom: -1, paddingBottom: Math.max(insets.bottom, 16) + 10 }}
+            >
                 {/* Bouton Statistiques à gauche */}
                 <TouchableOpacity
                     className="bg-primary flex-1 py-[13px] rounded-tl-3xl mr-12 justify-center items-center overflow-hidden"
@@ -50,7 +54,8 @@ export const HomeFooter: React.FC = React.memo(() => {
             </View>
 
             <TouchableOpacity
-                className="bg-primary absolute bottom-14 left-1/2 -translate-x-1/2 w-[100px] h-[100px] rounded-full justify-center items-center shadow-lg shadow-black"
+                className="bg-primary absolute left-1/2 -translate-x-1/2 w-[100px] h-[100px] rounded-full justify-center items-center shadow-lg shadow-black"
+                style={{ bottom: Math.max(insets.bottom, 16) + 30 }}
                 onPress={() => router.push('/add')}
             >
                 <Text className="color-white text-6xl">+</Text>

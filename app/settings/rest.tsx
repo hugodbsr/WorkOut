@@ -11,7 +11,7 @@ export default function RestTimeSettings() {
     const bannerGap = bannerActive ? 52 : 0;
     
     // On récupère duration et mode de useTimer car on a besoin de les lire/modifier
-    const { duration, mode: timerMode, setMode, reset } = useTimer();
+    const { duration, mode: timerMode, setMode, reset, updateDuration } = useTimer();
     const defaultRestTime = duration / 1000;
 
     const uiRestDuration = useUITranslation('rest_duration', 'Durée de repos par défaut');
@@ -31,14 +31,10 @@ export default function RestTimeSettings() {
     ];
 
     const handleSelectRestTime = async (seconds: number) => {
-        // Here we just use the backend storage if we need to, but the duration is stored in async storage via setMode?
-        // Wait, the context doesn't expose setDuration. We must write to AsyncStorage directly and tell the user they need to restart or we can add setDuration to context.
-        // Actually, we'll just write it and call reset() which in TimerContext reads from AsyncStorage!
         const AsyncStorage = require('@react-native-async-storage/async-storage').default;
         try {
             await AsyncStorage.setItem('default_rest_time', seconds.toString());
-            // Force reload in context by toggling start/pause?
-            // Actually, we can just leave it to reload next time it starts.
+            updateDuration(seconds * 1000);
         } catch (error) {
             console.error('Error saving rest time:', error);
         }

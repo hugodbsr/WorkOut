@@ -23,6 +23,7 @@ interface TimerContextType {
     formatTime: (ms: number) => string;
     isChronoPage: boolean;
     setIsChronoPage: (val: boolean) => void;
+    updateDuration: (newDurationMs: number) => void;
 }
 
 const TimerContext = createContext<TimerContextType | undefined>(undefined);
@@ -164,7 +165,6 @@ export const TimerProvider = ({ children }: TimerProviderProps) => {
 
     const start = useCallback(async () => {
         if (!isRunning) {
-            await loadSettings();
             
             // If countdown is already over, reset it before starting
             if (mode === 'countdown' && savedTime >= duration) {
@@ -210,6 +210,10 @@ export const TimerProvider = ({ children }: TimerProviderProps) => {
         return `${min}:${sec},${cen}`;
     }, []);
 
+    const updateDuration = useCallback((newDurationMs: number) => {
+        setDuration(newDurationMs);
+    }, []);
+
     return (
         <BannerActiveContext.Provider value={bannerActive}>
             <TimerContext.Provider
@@ -228,6 +232,7 @@ export const TimerProvider = ({ children }: TimerProviderProps) => {
                     formatTime,
                     isChronoPage,
                     setIsChronoPage,
+                    updateDuration,
                 }}
             >
                 {children}
