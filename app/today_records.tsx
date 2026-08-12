@@ -13,8 +13,9 @@ import { useUITranslation } from '@/services/useUITranslation';
 import HistorySetItem from '@/app/components/history/HistorySetItem';
 import HistorySectionHeader from '@/app/components/history/HistorySectionHeader';
 import { Feather } from '@expo/vector-icons';
-import { useNavigation } from "expo-router";
-import { useLocalSearchParams } from 'expo-router';
+import { useNavigation , useLocalSearchParams } from "expo-router";
+
+import { useBannerActive } from "@/app/context/TimerContext";
 
 type TrackingMode = 'WEIGHT_REPS' | 'REPS_ONLY' | 'TIME_WEIGHT' | 'TIME_DISTANCE';
 
@@ -32,8 +33,6 @@ type DaySection = {
     date: string;
     data: ExerciseSetData[];
 };
-
-import { useBannerActive } from "@/app/context/TimerContext";
 
 export default function TodayRecords() {
     const [sections, setSections] = useState<DaySection[]>([]);

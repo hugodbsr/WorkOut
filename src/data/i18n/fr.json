@@ -67,7 +67,14 @@
     "stopwatch": "Chronomètre",
     "countdown": "Minuteur",
     "timer_mode": "Mode du chronomètre",
-    "ready": "À démarrer"
+    "ready": "À démarrer",
+    "musculation": "Musculation",
+    "musculation_desc": "Exercices avec poids ou au poids du corps",
+    "cardio": "Cardio",
+    "cardio_desc": "Exercices d'endurance et de résistance",
+    "reps": "reps",
+    "choose_workout_type": "Type d'entraînement",
+    "theoretical_pr": "PR théorique (1RM)"
   },
   "muscle": {
     "chest": "Pectoraux",
@@ -108,6 +115,286 @@
     "mobility": "Mobilité"
   },
   "exercise": {
+    "84": {
+      "name": "split squats",
+      "description": "Tiens-toi debout, les pieds écartés à la largeur des épaules. Fais un pas en avant avec un pied et place-le à environ soixante centimètres devant l'autre pied. Abaisse ton corps en fléchissant tes genoux et tes hanches, en gardant ton dos droit. Continue à descendre jusqu'à ce que ta cuisse avant soit parallèle au sol et que ton genou arrière soit juste au-dessus du sol. Marque une pause, puis pousse sur ton talon avant pour revenir à la position de départ. Répète le nombre de répétitions souhaité, puis change de jambe et recommence."
+    },
+    "85": {
+      "name": "dumbbell one arm incline chest press",
+      "description": "Règle le banc incliné sur un angle de 45 degrés. Assieds-toi sur le banc, le dos contre le coussin et les pieds à plat sur le sol. Tiens un haltère dans une main avec une prise en pronation, en le posant sur ton épaule. Pousse l'haltère vers le haut et loin de ton corps en tendant complètement ton bras. Marque une pause en haut, puis abaisse lentement l'haltère pour revenir à la position de départ. Répète le nombre de répétitions souhaité, puis passe à l'autre bras."
+    },
+    "86": {
+      "name": "barbell stiff leg good morning",
+      "description": "Tiens-toi debout, les pieds écartés à la largeur des épaules et les genoux légèrement fléchis. Tiens la barre en travers du haut de ton dos, en la faisant reposer sur tes trapèzes. En gardant le dos droit, bascule vers l'avant au niveau des hanches, en poussant tes fessiers vers l'arrière. Abaisse ton torse jusqu'à ce qu'il soit parallèle au sol, en ressentant un étirement dans tes ischio-jambiers. Contracte tes fessiers et tes ischio-jambiers pour revenir à la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "87": {
+      "name": "clap push up",
+      "description": "Commence en position de planche haute, les mains un peu plus écartées que la largeur des épaules. Abaisse ton corps vers le sol en fléchissant les coudes, en gardant ta sangle abdominale gainée. Pousse à travers tes paumes de manière explosive pour propulser ton corps hors du sol. En plein saut, tape des mains avant de retomber dans la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "88": {
+      "name": "barbell standing front raise over head",
+      "description": "Tiens-toi debout, les pieds écartés à la largeur des épaules, en tenant une barre devant tes cuisses en prise pronation. Garde le dos droit et gaine ta sangle abdominale. Soulève lentement la barre devant toi, en gardant tes bras tendus et tes paumes tournées vers le bas. Continue à soulever jusqu'à ce que la barre soit légèrement au-dessus du niveau des épaules. Marque une pause en haut, puis abaisse lentement la barre pour revenir à la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "89": {
+      "name": "barbell skier",
+      "description": "Tiens-toi debout, les pieds écartés à la largeur des épaules et tiens une barre devant tes cuisses en prise pronation. Fléchis légèrement les genoux et bascule vers l'avant au niveau des hanches en gardant le dos droit et la poitrine relevée. Soulève simultanément la barre vers tes épaules tout en sautant légèrement du sol. Une fois en haut du mouvement, inverse rapidement le mouvement et abaisse la barre jusqu'à la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "90": {
+      "name": "dumbbell incline hammer press on exercise ball",
+      "description": "Assieds-toi sur un ballon d'exercice avec un haltère dans chaque main, paumes tournées l'une vers l'autre. Fais avancer tes pieds et fais rouler ton corps le long du ballon jusqu'à ce que ta tête, ta nuque et le haut de ton dos soient soutenus par le ballon. Tiens les haltères à hauteur d'épaule, les coudes fléchis et pointés vers les côtés. Pousse les haltères vers le haut et légèrement vers l'intérieur, en gardant tes paumes tournées l'une vers l'autre. Étends complètement tes bras, en contractant tes triceps en haut du mouvement. Abaisse lentement les haltères vers la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "91": {
+      "name": "dumbbell close-grip press",
+      "description": "Assieds-toi sur un banc plat avec un haltère dans chaque main, posés sur tes cuisses. En utilisant tes cuisses pour aider à monter les haltères, soulève-les un à la fois de sorte que tu puisses les tenir devant toi à hauteur des épaules. Une fois à la largeur des épaules, tourne tes poignets vers l'avant de façon à ce que les paumes de tes mains soient tournées vers l'extérieur. Ce sera ta position de départ. En inspirant, abaisse lentement les haltères sur les côtés jusqu'à ce qu'ils soient à peu près à hauteur de ta poitrine. En expirant, utilise tes triceps pour ramener les haltères à la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "92": {
+      "name": "dumbbell biceps curl v sit on bosu ball",
+      "description": "Assieds-toi sur un ballon Bosu, les pieds à plat sur le sol et les genoux fléchis à un angle de 90 degrés. Tiens un haltère dans chaque main, les paumes tournées vers l'avant et les bras complètement étendus le long de tes flancs. En gardant le haut des bras immobile, expire et fléchis les poids en contractant tes biceps. Continue à lever les haltères jusqu'à ce que tes biceps soient complètement contractés et que les haltères soient à hauteur d'épaule. Maintiens la position contractée pendant une brève pause en contractant tes biceps. Inspire et commence lentement à abaisser les haltères jusqu'à la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "93": {
+      "name": "dumbbell arnold press",
+      "description": "Assieds-toi sur un banc avec dossier et tiens un haltère dans chaque main à hauteur d'épaule, paumes tournées vers ton corps et coudes fléchis. Pousse les haltères vers le haut jusqu'à ce que tes bras soient complètement tendus et tes paumes tournées vers l'avant. Tourne tes poignets pendant que tu soulèves, de sorte que tes paumes soient tournées vers l'avant en haut du mouvement. Marque une pause en haut, puis abaisse lentement les haltères pour revenir à la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "94": {
+      "name": "barbell side bent v. 2",
+      "description": "Tiens-toi debout, les pieds écartés à la largeur des épaules et tiens une barre à deux mains, paumes tournées vers le bas. Garde le dos droit et ta sangle abdominale gainée tout au long de l'exercice. Fléchis lentement ton torse vers le côté droit, en abaissant la barre vers ton genou droit. Marque une pause, puis reviens à la position de départ. Répète le mouvement du côté gauche. Continue à alterner les côtés pour le nombre de répétitions souhaité."
+    },
+    "95": {
+      "name": "dumbbell arnold press v. 2",
+      "description": "Assieds-toi sur un banc avec dossier et tiens un haltère dans chaque main à hauteur d'épaule, paumes tournées vers ton corps et coudes fléchis. Pousse les haltères vers le haut jusqu'à ce que tes bras soient complètement tendus et tes paumes tournées vers l'avant. Tourne tes poignets pendant que tu soulèves, de sorte que tes paumes finissent tournées vers l'avant en haut du mouvement. Marque une pause en haut, puis abaisse lentement les haltères pour revenir à la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "96": {
+      "name": "dumbbell lying rear delt row",
+      "description": "Allonge-toi face vers le bas sur un banc plat avec un haltère dans chaque main, paumes tournées vers l'intérieur. Étends les bras droit vers le sol, en gardant une légère flexion dans les coudes. En gainant les muscles de ton dos, soulève les haltères vers ta poitrine, en resserrant tes omoplates. Marque une pause en haut, puis abaisse lentement les haltères pour revenir à la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "97": {
+      "name": "dumbbell kickback",
+      "description": "Tiens-toi debout, les pieds écartés à la largeur des épaules et tiens un haltère dans chaque main. Fléchis légèrement les genoux et bascule vers l'avant au niveau des hanches en gardant le dos droit. Amène tes bras près de tes côtés, tes coudes fléchis à un angle de 90 degrés. Étends les bras droit vers l'arrière, en contractant tes triceps en haut du mouvement. Marque une pause, puis abaisse lentement les haltères jusqu'à la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "98": {
+      "name": "dumbbell kneeling bicep curl exercise ball",
+      "description": "Mets-toi à genoux au sol avec un ballon d'exercice devant toi. Place tes coudes sur le ballon d'exercice, en tenant un haltère dans chaque main avec tes paumes tournées vers le haut. En gardant le haut des bras immobile, expire et fléchis les haltères en contractant tes biceps. Continue à lever les haltères jusqu'à ce que tes biceps soient complètement contractés et que les haltères soient à hauteur d'épaule. Maintiens la position contractée pendant une brève pause en contractant tes biceps. Inspire et commence lentement à abaisser les haltères jusqu'à la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "99": {
+      "name": "decline crunch",
+      "description": "Allonge-toi sur un banc décliné, les pieds bloqués et les genoux fléchis à un angle de 90 degrés. Place tes mains derrière ta tête ou croisées sur ta poitrine. Gaine tes abdominaux et lève ton haut du corps vers tes genoux, en enroulant ton torse. Marque une pause en haut, puis abaisse lentement le haut de ton corps pour revenir à la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "100": {
+      "name": "barbell rollerout from bench",
+      "description": "Commence à genoux au sol, avec une barre posée sur un banc devant toi. Saisis la barre avec une prise en pronation, un peu plus large que la largeur des épaules. En gardant ta sangle abdominale gainée et le dos droit, fais lentement rouler la barre vers l'avant, en tendant tes bras devant toi. Continue à faire rouler la barre vers l'avant jusqu'à ce que ton corps soit complètement étendu et que tes bras soient au-dessus de ta tête. Marque une pause en position complètement étendue, puis fais rouler lentement la barre vers ton corps pour revenir à la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "101": {
+      "name": "barbell speed squat",
+      "description": "Tiens-toi debout, les pieds écartés à la largeur des épaules, les orteils légèrement tournés vers l'extérieur. Tiens la barre en travers du haut de ton dos, en la faisant reposer sur tes trapèzes ou tes deltoïdes postérieurs. Gaine ta sangle abdominale et garde ta poitrine relevée pendant que tu abaisses tes hanches vers l'arrière et le bas, comme si tu t'asseyais sur une chaise. Descends jusqu'à ce que tes cuisses soient parallèles au sol, ou aussi bas que tu peux confortablement aller. Pousse sur tes talons pour te relever, en contractant tes fessiers en haut. Répète le nombre de répétitions souhaité."
+    },
+    "102": {
+      "name": "barbell reverse grip decline bench press",
+      "description": "Allonge-toi sur un banc décliné, les pieds bloqués et la tête plus basse que les hanches. Saisis la barre avec une prise inversée, un peu plus large que la largeur des épaules. Sors la barre du support et abaisse-la lentement vers ta poitrine, en gardant les coudes rentrés. Marque une pause en bas, puis pousse la barre vers le haut jusqu'à la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "103": {
+      "name": "barbell romanian deadlift",
+      "description": "Tiens-toi debout, les pieds écartés à la largeur des épaules et les orteils pointés vers l'avant. Tiens la barre en prise pronation, les mains un peu plus écartées que la largeur des épaules. Fléchis les hanches en gardant ton dos droit et tes genoux légèrement fléchis. Abaisse la barre vers le sol, en la gardant près de ton corps. Sens l'étirement dans tes ischio-jambiers en abaissant la barre. Une fois que tu ressens un étirement dans tes ischio-jambiers, pousse tes hanches vers l'avant et redresse-toi. Contracte tes fessiers en haut du mouvement. Abaisse la barre jusqu'à la position de départ et répète pour le nombre de répétitions souhaité."
+    },
+    "104": {
+      "name": "dumbbell front raise v. 2",
+      "description": "Tiens-toi debout, les pieds écartés à la largeur des épaules, en tenant un haltère dans chaque main, paumes tournées vers tes cuisses. Garde le dos droit et gaine ta sangle abdominale. Soulève lentement les haltères devant toi, les bras tendus, jusqu'à ce qu'ils soient à hauteur des épaules. Marque une pause en haut, puis abaisse lentement les haltères pour revenir à la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "105": {
+      "name": "dumbbell decline fly",
+      "description": "Allonge-toi sur un banc décliné, les pieds bloqués et la tête plus basse que les hanches. Tiens un haltère dans chaque main, les paumes tournées l'une vers l'autre et les bras étendus au-dessus de ta poitrine. Abaisse les haltères sur les côtés en un large arc de cercle jusqu'à ce que tu ressentes un étirement dans ta poitrine. Marque une pause, puis contracte tes muscles pectoraux pour ramener les haltères à la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "106": {
+      "name": "rocking frog stretch",
+      "description": "Commence à genoux au sol, les genoux écartés à la largeur des hanches. Place tes mains au sol devant toi pour le soutien. Penche-toi lentement vers l'avant, en reportant ton poids sur tes mains et en tendant tes jambes derrière toi. Garde le dos droit et engage tes fessiers pendant que tu pousses tes hanches vers l'arrière et vers le plafond. Maintiens cette position pendant quelques secondes, en ressentant un étirement dans tes fessiers. Reviens lentement à la position de départ en fléchissant les genoux et en abaissant les hanches. Répète le nombre de répétitions souhaité."
+    },
+    "107": {
+      "name": "dumbbell lateral to front raise",
+      "description": "Tiens-toi debout, les pieds écartés à la largeur des épaules, en tenant un haltère dans chaque main, paumes tournées vers ton corps. Garde le dos droit et gaine ta sangle abdominale. Lève tes bras sur les côtés jusqu'à ce qu'ils soient parallèles au sol, en gardant une légère flexion dans tes coudes. Marque une pause en haut, puis abaisse lentement tes bras pour revenir à la position de départ. Ensuite, lève tes bras devant toi jusqu'à ce qu'ils soient parallèles au sol, en gardant à nouveau une légère flexion dans les coudes. Marque une pause en haut, puis abaisse lentement tes bras pour revenir à la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "108": {
+      "name": "barbell side split squat v. 2",
+      "description": "Tiens-toi debout, les pieds plus écartés que la largeur des épaules, les orteils légèrement tournés vers l'extérieur. Tiens une barre en travers du haut de ton dos, en la posant sur tes épaules. Fais un grand pas sur le côté avec le pied droit, en gardant le pied gauche bien ancré. Fléchis ton genou droit et abaisse ton corps en position accroupie en gardant la poitrine relevée et le dos droit. Pousse à travers ton talon droit pour revenir à la position de départ. Répète de l'autre côté en faisant un pas sur le côté avec ton pied gauche. Continue à alterner les côtés pour le nombre de répétitions souhaité."
+    },
+    "109": {
+      "name": "isometric wipers",
+      "description": "Commence allongé sur le dos sur un tapis ou un banc. Étends les bras droit sur les côtés, perpendiculaires à ton corps. Gaine ta sangle abdominale et lève tes deux jambes du sol, en les gardant jointes et droites. Abaisse lentement tes jambes d'un côté, en cherchant à toucher le sol avec tes pieds tout en gardant le contrôle. Marque une pause, puis utilise ta sangle abdominale pour ramener tes jambes à la position de départ. Répète le mouvement, cette fois en abaissant tes jambes vers le côté opposé. Continue à alterner les côtés pour le nombre de répétitions souhaité."
+    },
+    "110": {
+      "name": "kipping muscle up",
+      "description": "Commence suspendu à une barre de traction en prise pronation, les mains légèrement plus écartées que la largeur des épaules. Gaine ta sangle abdominale et utilise un mouvement de balancier pour générer de l'élan. En te balançant vers l'avant, tire ta poitrine vers la barre en utilisant tes grands dorsaux et tes biceps pour initier le mouvement. Continue le mouvement vers le haut jusqu'à ce que ta poitrine atteigne la barre, puis passe en position de dip en poussant sur la barre et en étendant tes bras. Redescends jusqu'à la position de départ en pliant les bras et en contrôlant la descente. Répète le nombre de répétitions souhaité."
+    },
+    "111": {
+      "name": "chest and front of shoulder stretch",
+      "description": "Tiens-toi bien droit, les pieds écartés à la largeur des épaules. Étends les bras droit devant toi à hauteur d'épaules. Croise tes bras devant ton corps, le bras droit par-dessus le bras gauche. Entrelace tes doigts et presse tes paumes l'une contre l'autre. Resserre doucement tes omoplates et pousse tes mains vers l'avant, en sentant un étirement dans ta poitrine et à l'avant de tes épaules. Maintiens l'étirement pendant 20 à 30 secondes, puis relâche. Répète le nombre de répétitions souhaité."
+    },
+    "112": {
+      "name": "barbell clean-grip front squat",
+      "description": "Commence debout, les pieds écartés à la largeur des épaules et la barre posée sur le haut de la poitrine, les coudes pointés vers l'avant. Abaisse ton corps en fléchissant tes genoux et en poussant tes hanches vers l'arrière, comme si tu t'asseyais sur une chaise. Garde la poitrine relevée et le dos droit pendant que tu descends, en veillant à ce que tes genoux ne dépassent pas tes orteils. Continue à descendre jusqu'à ce que tes cuisses soient parallèles au sol, ou aussi bas que tu peux confortablement aller. Marque une pause en bas, puis pousse sur tes talons pour te relever, en tendant tes hanches et tes genoux. Répète le nombre de répétitions souhaité."
+    },
+    "113": {
+      "name": "barbell squat jump step rear lunge",
+      "description": "Commence debout, les pieds écartés à la largeur des épaules, en tenant une barre sur le haut du dos. Abaisse ton corps en position de squat en fléchissant tes genoux et en poussant tes hanches vers l'arrière. Explose vers le haut, en sautant du sol aussi haut que possible. Atterris en douceur sur tes pieds et recule immédiatement une jambe pour une fente arrière. Abaisse ton corps jusqu'à ce que ta cuisse avant soit parallèle au sol, en gardant ton dos droit. Pousse à travers ton talon avant pour revenir à la position de départ. Répète la séquence de saut et de fente avec l'autre jambe. Continue à alterner les jambes pour le nombre de répétitions souhaité."
+    },
+    "114": {
+      "name": "back pec stretch",
+      "description": "Tiens-toi bien droit, les pieds écartés à la largeur des épaules. Étends les bras droit devant toi, parallèles au sol. Croise tes bras devant ton corps, le bras droit par-dessus le bras gauche. Entrelace tes doigts et tourne tes paumes vers l'extérieur, à l'opposé de ton corps. Soulève lentement tes bras vers le haut et loin de ton corps, en ressentant un étirement dans ton dos et ta poitrine. Maintiens l'étirement pendant 15 à 30 secondes, puis relâche. Répète du côté opposé."
+    },
+    "115": {
+      "name": "dumbbell incline press on exercise ball",
+      "description": "Assieds-toi sur un ballon d'exercice avec un haltère dans chaque main, paumes tournées vers l'avant. Avance lentement les pieds, en faisant rouler ton corps le long du ballon jusqu'à ce que ta tête, ta nuque et le haut de ton dos soient soutenus par le ballon. Tiens les haltères à hauteur d'épaule, les coudes fléchis et pointés vers les côtés. Pousse les haltères vers le haut, en tendant complètement tes bras. Marque une pause en haut, puis abaisse lentement les haltères pour revenir à la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "116": {
+      "name": "lunge with jump",
+      "description": "Commence debout, les pieds écartés à la largeur des épaules. Fais un pas en avant avec le pied droit, en abaissant ton corps en position de fente. Pousse sur ton pied droit et saute en l'air en changeant la position de tes pieds en plein saut. Atterris en douceur avec le pied gauche en avant et abaisse immédiatement ton corps en position de fente. Continue à alterner entre les fentes et les sauts pour le nombre de répétitions souhaité."
+    },
+    "117": {
+      "name": "barbell lying preacher curl",
+      "description": "Assieds-toi sur un banc à prêcheur, la poitrine contre le coussin et tes bras tendus par-dessus le bord, en tenant une barre avec une prise en supination. En gardant le haut des bras immobile, expire et fléchis les poids en contractant tes biceps. Continue à lever la barre jusqu'à ce que tes biceps soient complètement contractés et que la barre soit à hauteur d'épaule. Maintiens la position contractée pendant une brève pause en contractant tes biceps. Inspire et commence lentement à abaisser la barre jusqu'à la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "118": {
+      "name": "landmine 180",
+      "description": "Tiens-toi debout, les pieds écartés à la largeur des épaules et tiens la barre à deux mains devant ta poitrine. Fléchis légèrement les genoux et fais pivoter ton torse vers la droite en balançant la barre vers ta hanche droite. Une fois au bas du mouvement, inverse rapidement le mouvement et pivote ton torse vers la gauche en balançant la barre vers le haut et en travers de ton corps vers ton épaule gauche. Continue ce mouvement de torsion en alternant les côtés, pour le nombre de répétitions souhaité."
+    },
+    "119": {
+      "name": "dumbbell pronate-grip triceps extension",
+      "description": "Assieds-toi sur un banc ou une chaise, le dos droit et les pieds à plat sur le sol. Tiens un haltère des deux mains, les paumes tournées vers le bas, et étends les bras droit au-dessus de ta tête. En gardant le haut des bras près de la tête et les coudes pointés vers l'avant, abaisse lentement l'haltère derrière ta tête en fléchissant tes coudes. Marque une pause, puis étends tes bras vers le haut pour revenir à la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "120": {
+      "name": "dumbbell decline bench press",
+      "description": "Allonge-toi sur un banc décliné, les pieds bloqués et la tête plus basse que les hanches. Tiens un haltère dans chaque main et étends les bras droit au-dessus de ta poitrine, les paumes tournées vers l'avant. Abaisse lentement les haltères sur les côtés de ta poitrine, en gardant tes coudes à un angle de 90 degrés. Repousse les haltères vers le haut jusqu'à la position de départ en tendant complètement tes bras. Répète le nombre de répétitions souhaité."
+    },
+    "121": {
+      "name": "korean dips",
+      "description": "Positionne-toi entre deux barres parallèles, les bras tendus et soutenant le poids de ton corps. Abaisse ton corps en fléchissant tes coudes jusqu'à ce que le haut de tes bras soit parallèle au sol. Marque une pause, puis repousse-toi vers le haut jusqu'à la position de départ en tendant tes bras. Répète le nombre de répétitions souhaité."
+    },
+    "122": {
+      "name": "dumbbell standing alternate raise",
+      "description": "Tiens-toi debout, les pieds écartés à la largeur des épaules, en tenant un haltère dans chaque main, paumes tournées vers ton corps. Garde le dos droit et ta sangle abdominale gainée. Lève un haltère sur le côté en gardant ton bras tendu et ta paume tournée vers le bas. Continue à soulever jusqu'à ce que ton bras soit parallèle au sol. Marque une pause en haut, puis abaisse lentement l'haltère pour revenir à la position de départ. Répète avec l'autre bras. Alterne les bras pour le nombre de répétitions souhaité."
+    },
+    "123": {
+      "name": "barbell pullover",
+      "description": "Allonge-toi à plat sur un banc, la tête à une extrémité et les pieds au sol. Tiens une barre avec une prise à la largeur des épaules et étends les bras droit au-dessus de ta poitrine. En gardant les bras tendus, abaisse la barre derrière ta tête de manière contrôlée jusqu'à ressentir un étirement dans tes grands dorsaux. Marque une pause, puis ramène la barre à la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "124": {
+      "name": "dumbbell lying one arm rear lateral raise",
+      "description": "Allonge-toi face vers le bas sur un banc plat avec un haltère dans une main, pendant vers le sol. Garde ton bras tendu et soulève l'haltère sur le côté, à l'écart de ton corps. Marque une pause en haut, puis abaisse lentement l'haltère pour revenir à la position de départ. Répète le nombre de répétitions souhaité, puis passe à l'autre bras."
+    },
+    "125": {
+      "name": "dumbbell cross body hammer curl",
+      "description": "Tiens-toi bien droit avec un haltère dans chaque main, les paumes tournées vers ton corps. Garde tes coudes près de ton torse et le haut de tes bras immobile. Expire et remonte les poids en contractant tes biceps, en amenant les haltères en travers de ton corps vers l'épaule opposée. Continue à lever les haltères jusqu'à ce que tes biceps soient complètement contractés et que les haltères soient à hauteur d'épaule. Maintiens la position contractée pendant une brève pause en contractant tes biceps. Inspire et commence lentement à abaisser les haltères jusqu'à la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "126": {
+      "name": "lying (side) quads stretch",
+      "description": "Allonge-toi sur le côté, les jambes tendues. Fléchis ta jambe supérieure et attrape ta cheville ou ton pied avec ta main. Tire doucement ta cheville ou ton pied vers tes fessiers jusqu'à ce que tu sentes un étirement dans tes quadriceps. Maintiens l'étirement pendant 20 à 30 secondes. Relâche l'étirement et répète de l'autre côté."
+    },
+    "127": {
+      "name": "dumbbell sumo pull through",
+      "description": "Tiens-toi debout, les pieds plus écartés que la largeur des épaules, les orteils tournés vers l'extérieur. Tiens un haltère des deux mains devant ton corps, les bras étendus. Fléchis les genoux et abaisse tes hanches en position accroupie en gardant le dos droit. Abaisse l'haltère entre tes jambes, en gardant tes bras tendus. Pousse sur tes talons et étends tes hanches vers l'avant, en tirant l'haltère vers le haut et devant ton corps. Contracte tes fessiers en haut du mouvement, puis abaisse l'haltère entre tes jambes. Répète le nombre de répétitions souhaité."
+    },
+    "128": {
+      "name": "45° side bend",
+      "description": "Tiens-toi debout, les pieds écartés à la largeur des épaules et les bras tendus vers le bas le long du corps. En gardant le dos droit et ta sangle abdominale gainée, penche lentement ton torse sur un côté, en abaissant ta main vers ton genou. Marque une pause en bas, puis reviens lentement à la position de départ. Répète de l'autre côté. Continue à alterner les côtés pour le nombre de répétitions souhaité."
+    },
+    "129": {
+      "name": "hanging oblique knee raise",
+      "description": "Suspends-toi à une barre de traction, les bras complètement étendus et les paumes tournées vers l'extérieur. Gaine ta sangle abdominale et lève tes genoux vers ta poitrine, en faisant pivoter ton torse sur le côté en même temps. Marque une pause en haut, puis abaisse lentement tes jambes pour revenir à la position de départ. Répète de l'autre côté en faisant pivoter ton torse dans la direction opposée. Continue à alterner les côtés pour le nombre de répétitions souhaité."
+    },
+    "130": {
+      "name": "lever one arm bent over row",
+      "description": "Tiens-toi debout, les pieds écartés à la largeur des épaules, les genoux légèrement fléchis, et tiens une barre en prise pronation. Penche-toi vers l'avant au niveau des hanches en gardant ton dos droit et ta tête haute. Laisse la barre pendre devant toi, les bras entièrement tendus. Tire la barre vers le haut en direction de ta poitrine, en gardant tes coudes près de ton corps. Contracte tes omoplates l'une vers l'autre en haut du mouvement. Abaisse la barre jusqu'à la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "131": {
+      "name": "dumbbell lying one arm deltoid rear",
+      "description": "Allonge-toi face vers le bas sur un banc plat avec un haltère dans une main, paume tournée vers l'intérieur. Étends ton bras droit vers le bas en direction du sol, en le gardant près de ton corps. Lève ton bras vers le haut et vers l'arrière en contractant ton omoplate vers ta colonne vertébrale. Marque une pause en haut, puis abaisse lentement ton bras pour revenir à la position de départ. Répète le nombre de répétitions souhaité, puis change de bras."
+    },
+    "132": {
+      "name": "l-sit on floor",
+      "description": "Assieds-toi au sol, les jambes tendues devant toi. Place tes mains au sol à côté de tes hanches, les doigts pointés vers l'avant. Gaine ta sangle abdominale et lève tes jambes du sol, en les gardant droites. Essaie d'amener tes jambes parallèles au sol, en formant un « L » avec ton corps. Maintiens cette position aussi longtemps que possible. Abaisse lentement tes jambes vers la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "133": {
+      "name": "dumbbell incline row",
+      "description": "Installe un banc incliné à un angle de 45 degrés. Saisis un haltère dans chaque main et assieds-toi sur le banc, la poitrine contre l'inclinaison. Étends complètement tes bras, en laissant les haltères pendre droit vers le bas depuis tes épaules. Tire les haltères vers ta poitrine en contractant tes omoplates l'une vers l'autre. Marque une pause en haut, puis abaisse lentement les haltères pour revenir à la position de départ. Répète le nombre de répétitions souhaité."
+    },
+    "134": {
+      "name": "walking high knees lunge",
+      "description": "Tiens-toi debout, les pieds écartés à la largeur des hanches. Monte ton genou droit vers ta poitrine aussi haut que possible tout en tenant en équilibre sur ta jambe gauche. Avance le pied droit et abaisse ton corps en position de fente, en fléchissant les deux genoux à un angle de 90 degrés. Pousse sur ton pied droit et amène ton genou gauche vers le haut en direction de ta poitrine. Avance le pied gauche et abaisse ton corps en position de fente. Continue à alterner les jambes et à faire des fentes vers l'avant en gardant ta sangle abdominale gainée et un rythme régulier. Répète le nombre de répétitions souhaité."
+    },
+    "135": {
+      "name": "bear crawl",
+      "description": "Commence à quatre pattes, les mains directement sous les épaules et les genoux directement sous les hanches. Décolle légèrement tes genoux du sol, en gardant ton dos plat et ta sangle abdominale gainée. Avance simultanément ta main droite et ton pied gauche, puis ta main gauche et ton pied droit. Continue à ramper vers l'avant en alternant les mouvements de tes mains et de tes pieds. Maintiens un rythme régulier et garde ta sangle abdominale contractée pendant tout l'exercice. Continue sur la distance ou la durée souhaitée."
+    },
+    "136": {
+      "name": "back and forth step",
+      "description": "Tiens-toi debout, les pieds écartés à la largeur des épaules. Avance le pied droit, en fléchissant le genou et en abaissant ton corps en position de fente. Pousse sur ton pied droit et recule vers la position de départ. Répète le mouvement avec ton pied gauche, en alternant les jambes à chaque pas. Continue à faire des pas d'avant en arrière, en maintenant un rythme régulier. Répète pendant la durée souhaitée ou le nombre de répétitions souhaité."
+    },
+    "137": {
+      "name": "short stride run",
+      "description": "Trouve un espace dégagé ou un tapis de course pour effectuer l'exercice. Tiens-toi bien droit, les pieds écartés à la largeur des hanches. Commence à courir sur place, en levant bien les genoux et en pompant avec les bras. Après quelques secondes, commence à faire de petites foulées vers l'avant en maintenant un rythme rapide. Continue à courir à petites foulées pendant la durée ou la distance souhaitée."
+    },
+    "138": {
+      "name": "semi squat jump (male)",
+      "description": "Tiens-toi debout, les pieds écartés à la largeur des épaules. Fléchis les genoux et abaisse ton corps en position accroupie. Saute de manière explosive, en étendant tes hanches et tes genoux tout en balançant tes bras pour prendre de l'élan. Atterris en douceur sur la pointe des pieds et enchaîne immédiatement avec la répétition suivante. Répète le nombre de répétitions souhaité."
+    },
+    "139": {
+      "name": "walking on incline treadmill",
+      "description": "Règle le niveau d'inclinaison du tapis de course selon l'intensité souhaitée. Tiens-toi sur le tapis de course, les pieds écartés à la largeur des épaules. Commence à marcher à un rythme confortable, en veillant à conserver une bonne posture. Gaine tes muscles abdominaux et garde le dos droit tout au long de l'exercice. Continue à marcher sur le tapis incliné pendant la durée souhaitée de ton entraînement cardio. Diminue progressivement l'inclinaison et la vitesse du tapis de course pour récupérer avant de t'arrêter."
+    },
+    "140": {
+      "name": "scissor jumps (male)",
+      "description": "Tiens-toi debout, les pieds écartés à la largeur des épaules. Saute du sol et croise simultanément ta jambe droite devant ta jambe gauche. À l'atterrissage, change rapidement de jambe en croisant ta jambe gauche devant ta jambe droite. Continue à alterner les jambes et à sauter aussi vite que possible. Répète le nombre de répétitions souhaité."
+    },
+    "141": {
+      "name": "push to run",
+      "description": "Commence en position de pompe, les mains écartées à la largeur des épaules et le corps bien aligné. Abaisse ta poitrine vers le sol en fléchissant les coudes, en gardant ton corps droit. Pousse à travers tes mains pour étendre tes bras et revenir à la position de départ. Amène rapidement un genou vers ta poitrine, puis change rapidement et amène l'autre genou vers ta poitrine. Continue à alterner les genoux aussi vite que possible tout en gardant une bonne exécution. Continue pendant la durée ou le nombre de répétitions souhaité."
+    },
+    "142": {
+      "name": "cycle cross trainer",
+      "description": "Règle la hauteur du siège et installe-toi sur le vélo cross trainer. Place tes pieds sur les pédales et agrippe le guidon. Commence à pédaler d'un mouvement fluide et contrôlé. Maintiens un rythme régulier et augmente la résistance si tu le souhaites. Continue à pédaler pendant la durée souhaitée de ta séance de cardio."
+    },
+    "143": {
+      "name": "run",
+      "description": "Commence debout, bien droit, les pieds écartés à la largeur des hanches. Gaine ta sangle abdominale et garde ton haut du corps détendu. Commence à courir sur place en levant tes genoux vers ta poitrine et en atterrissant en douceur sur la plante de tes pieds. Maintiens un rythme régulier et continue à courir pendant la durée ou la distance souhaitée. Pense à respirer profondément et à maintenir une bonne posture tout au long de l'exercice."
+    },
+    "144": {
+      "name": "jack burpee",
+      "description": "Commence en position debout, les pieds écartés à la largeur des épaules. Descends en position accroupie, en posant les mains au sol devant toi. Renvoie tes pieds vers l'arrière, en atterrissant en position de pompe. Effectue une pompe, en abaissant ta poitrine vers le sol puis en te repoussant vers le haut. Ramène tes pieds vers l'avant en sautant, en atterrissant en position de squat. Saute vers le haut de manière explosive, en tendant les bras au-dessus de ta tête. Atterris en douceur et redescends immédiatement en position de squat pour commencer la répétition suivante."
+    },
+    "145": {
+      "name": "high knee against wall",
+      "description": "Tiens-toi face à un mur, les pieds écartés à la largeur des hanches. Place tes mains sur le mur pour te soutenir. Gaine ta sangle abdominale et lève ton genou droit vers ta poitrine, tout en gardant ton pied gauche au sol. Change rapidement de jambe, en amenant ton genou gauche vers le haut en direction de ta poitrine et en abaissant ton pied droit. Continue à alterner les jambes dans un mouvement de course en montant les genoux aussi haut que possible. Maintiens un rythme rapide et garde le haut du corps stable pendant tout l'exercice. Répète pendant la durée souhaitée ou le nombre de répétitions souhaité."
+    },
+    "146": {
+      "name": "swing 360",
+      "description": "Tiens-toi debout, les pieds écartés à la largeur des épaules et les genoux légèrement fléchis. Tends les bras droit devant toi, parallèles au sol. Gaine ta sangle abdominale et balance tes bras dans un mouvement circulaire, en faisant pivoter ton torse en même temps. Continue le mouvement circulaire en balançant tes bras et en faisant pivoter ton torse pour le nombre de répétitions souhaité. Pense à respirer tout au long de l'exercice."
+    },
+    "147": {
+      "name": "stationary bike run v. 3",
+      "description": "Règle la hauteur et la position du siège pour garantir un bon alignement. Place tes pieds sur les pédales et fixe-les avec les sangles si elles sont disponibles. Commence à pédaler à un rythme confortable. Maintiens un rythme régulier et augmente la résistance comme tu le souhaites. Gaine tes muscles abdominaux pour maintenir la stabilité et une posture correcte. Continue à pédaler pendant la durée souhaitée de ta séance. Diminue progressivement la résistance et ralentis avant de t'arrêter complètement. Étire tes jambes et récupère après l'entraînement."
+    },
+    "148": {
+      "name": "walk elliptical cross trainer",
+      "description": "Règle le niveau de résistance et l'inclinaison du vélo elliptique selon tes réglages souhaités. Monte sur les pédales de la machine et saisis légèrement les poignées. Commence par pousser avec tes pieds et tirer les poignées vers ton corps. Continue ce mouvement en alternant entre pousser et tirer, pour simuler une marche ou une course. Maintiens un rythme régulier et garde ta sangle abdominale gainée pendant tout l'exercice. Continue pendant la durée souhaitée de ta séance de cardio. Diminue progressivement l'intensité et la vitesse de la machine avant de descendre."
+    },
+    "149": {
+      "name": "stationary bike walk",
+      "description": "Règle la hauteur et la position du siège sur le vélo stationnaire pour garantir un bon alignement. Place tes pieds sur les pédales et fixe-les avec les sangles si elles sont disponibles. Commence à pédaler à un rythme confortable, en gardant le dos droit et la sangle abdominale gainée. Maintiens un rythme régulier et augmente le niveau de résistance si tu le souhaites. Continue à pédaler pendant la durée souhaitée de ta séance de cardio. Récupère en réduisant progressivement ton rythme et ton niveau de résistance. Étire les muscles de tes jambes après l'entraînement pour éviter les raideurs et favoriser la récupération."
+    },
+    "150": {
+      "name": "star jump (male)",
+      "description": "Tiens-toi debout, les pieds écartés à la largeur des épaules et les bras le long du corps. Fléchis légèrement les genoux et saute vers le haut de façon explosive. En sautant, écarte tes jambes et étends tes bras sur les côtés, formant une étoile avec ton corps. Atterris en douceur sur la pointe des pieds, les genoux légèrement fléchis. Répète le nombre de répétitions souhaité."
+    },
+    "151": {
+      "name": "dumbbell burpee",
+      "description": "Commence en position debout, les pieds écartés à la largeur des épaules et un haltère dans chaque main. Descends en position accroupie, en posant les haltères au sol devant toi. Renvoie tes pieds vers l'arrière en position de pompe, en gardant ton corps aligné. Effectue une pompe, en pliant tes coudes et en abaissant ta poitrine vers le sol. Ramène tes pieds vers tes mains en sautant, en atterrissant en position de squat. Redresse-toi de façon explosive, en soulevant les haltères du sol et en les amenant à tes épaules. Développe les haltères au-dessus de ta tête, en tendant complètement tes bras. Abaisse les haltères jusqu'à tes épaules et répète toute la séquence pour le nombre de répétitions souhaité."
+    },
+    "152": {
+      "name": "ski step",
+      "description": "Tiens-toi debout, les pieds écartés à la largeur des épaules. Fléchis légèrement les genoux et garde le dos droit. Saute vers la droite, en atterrissant sur ton pied droit tout en balançant ta jambe gauche derrière ta jambe droite. Saute immédiatement vers la gauche, en atterrissant sur ton pied gauche tout en balançant ta jambe droite derrière ta jambe gauche. Continue à alterner les sauts d'un côté à l'autre, en imitant un mouvement de ski. Répète le nombre de répétitions souhaité."
+    },
+    "153": {
+      "name": "walking on stepmill",
+      "description": "Règle le stepmill à un niveau confortable. Monte sur la machine et pose les mains sur les rampes pour te soutenir. Commence à marcher en posant un pied sur une marche puis l'autre, en alternant les jambes. Maintiens une posture bien droite et gaine tes muscles abdominaux. Continue à marcher pendant la durée ou la distance souhaitée. Augmente progressivement l'intensité ou la vitesse à mesure que tu te sens plus à l'aise avec l'exercice. Pense à récupérer et à t'étirer après avoir terminé l'exercice."
+    },
     "bench_press": {
       "name": "Développé couché",
       "description": "Exercice de base pour le développement des pectoraux."

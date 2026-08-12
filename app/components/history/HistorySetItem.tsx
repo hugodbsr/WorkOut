@@ -16,6 +16,7 @@ const HistorySetItem = ({ item, index, trackingMode = 'WEIGHT_REPS' }: HistorySe
     const [serieLabel, setSerieLabel] = useState('');
     const [leftLabel, setLeftLabel] = useState('Gauche');
     const [rightLabel, setRightLabel] = useState('Droite');
+    const [repsLabel, setRepsLabel] = useState('reps');
 
     const isCardio = trackingMode === 'TIME_DISTANCE';
     const isTimeWeight = trackingMode === 'TIME_WEIGHT';
@@ -23,9 +24,9 @@ const HistorySetItem = ({ item, index, trackingMode = 'WEIGHT_REPS' }: HistorySe
 
     useEffect(() => {
         const loadTranslations = async () => {
-            const serie = await getUITranslation("serie_number");
-            setSerieLabel(serie);
-
+            setSerieLabel(await getUITranslation('serie_number'));
+            setRepsLabel(await getUITranslation('reps'));
+            
             const lang = getLanguageCode();
             if (lang === 'en') {
                 setLeftLabel('Left');
@@ -52,7 +53,7 @@ const HistorySetItem = ({ item, index, trackingMode = 'WEIGHT_REPS' }: HistorySe
             )}
 
             {isRepsOnly ? (
-                <Text className="text-gray-500 text-base ml-1 mr-2">reps</Text>
+                <Text className="text-gray-500 text-base ml-1 mr-2">{repsLabel}</Text>
             ) : null}
 
             {!isRepsOnly && (

@@ -1,7 +1,6 @@
 import { Text, TextInput, TouchableOpacity, View, ScrollView, Alert } from "react-native";
 import React, { useLayoutEffect, useMemo, useState } from 'react'
-import { useNavigation } from "expo-router";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useNavigation , useLocalSearchParams, useRouter } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchExerciseTypeJson, fetchMuscleJsonList, fetchTrackingModesJson } from "@/services/api";
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -48,7 +47,7 @@ export default function Details() {
     const uiFillAllFields = useUITranslation("fill_all_fields", "Please fill all fields");
     const [selectedMuscle, setSelectedMuscle] = useState(query || null);
     const [selectedTrackingMode, setSelectedTrackingMode] = useState("WEIGHT_REPS");
-    const [selectedType, setSelectedType] = useState([]);
+    const [selectedType, setSelectedType] = useState<string[]>([]);
     const [muscleOpen, setMuscleOpen] = useState(false);
     const [typeOpen, setTypeOpen] = useState(false);
     const [isUnilateral, setIsUnilateral] = useState(false);

@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useUITranslation } from "@/services/useUITranslation";
 import { Octicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 
 type ExerciseFooterProps = {
     exerciseQuery: string;

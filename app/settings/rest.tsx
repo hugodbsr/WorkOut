@@ -11,7 +11,7 @@ export default function RestTimeSettings() {
     const bannerGap = bannerActive ? 52 : 0;
     
     // On récupère duration et mode de useTimer car on a besoin de les lire/modifier
-    const { duration, mode: timerMode, setMode, reset, updateDuration } = useTimer();
+    const { duration, mode: timerMode, setMode, updateDuration } = useTimer();
     const defaultRestTime = duration / 1000;
 
     const uiRestDuration = useUITranslation('rest_duration', 'Durée de repos par défaut');

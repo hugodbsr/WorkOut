@@ -14,9 +14,12 @@ export type MuscleGroup = {
 export type Exercise = {
     id: string | number;
     nameKey: string;
-    descriptionKey: string;
+    descriptionKey?: string;
     image: string;
-    muscleGroupId: string | number;
+    muscleGroupId?: string | number;
+    categoryId?: string | number;
+    exerciseTypeKey?: string | number;
+    createdByUser?: boolean;
     unilateral?: boolean;
 };
 
@@ -141,7 +144,7 @@ export const fetchExerciseJson = async ({ query }: { query: string }) => {
         id: exercise.id,
         name: await getTranslatedValue(exercise.nameKey, translations),
         image: exercise.image,
-        description: await getTranslatedValue(exercise.descriptionKey, translations),
+        description: await getTranslatedValue(exercise.descriptionKey ?? '', translations),
         unilateral: exercise.unilateral,
         exerciseTypeKey: (exercise as any).exerciseTypeKey,
         trackingMode: (exercise as any).trackingMode || (exerciseTypeObj ? (exerciseTypeObj as any).trackingModeId : 'WEIGHT_REPS')

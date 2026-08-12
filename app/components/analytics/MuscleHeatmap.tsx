@@ -1,7 +1,6 @@
-import React, { useMemo, useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import React, { useMemo } from 'react';
+import { View, Text } from 'react-native';
 import Body, { Slug } from 'react-native-body-highlighter';
-import { Feather } from '@expo/vector-icons';
 import { useUITranslation } from '@/services/useUITranslation';
 
 export type HeatmapData = {

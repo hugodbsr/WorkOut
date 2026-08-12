@@ -1,10 +1,9 @@
 import { Text, TextInput, TouchableOpacity, View, ScrollView, Alert, ActivityIndicator } from "react-native";
 import React, { useLayoutEffect, useMemo, useState, useEffect } from 'react'
-import { useNavigation } from "expo-router";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useNavigation , useLocalSearchParams, useRouter } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchExerciseTypeJson, fetchMuscleJsonList, fetchExerciseJson } from "@/services/api";
-import DropDownPicker from 'react-native-dropdown-picker';
+
 import { Checkbox } from 'expo-checkbox';
 import { updateUserExercise, deleteUserExercise } from "@/services/storage";
 import { useUITranslation } from "@/services/useUITranslation";
@@ -54,15 +53,13 @@ export default function EditExercise() {
     const uiExerciseDesc = useUITranslation("exercise_desc", "Exercise's description");
     const uiMuscleUsed = useUITranslation("muscle_used", "Muscle used");
     const uiExerciseType = useUITranslation("exercise_type", "Exercise's type");
-    const uiSelectMuscle = useUITranslation("select_muscle", "Select a muscle");
-    const uiSelectType = useUITranslation("select_type", "Select type(s)");
+
     const uiUnilateral = useUITranslation("unilateral", "Unilateral");
     const uiEditExerciseButton = useUITranslation("edit", "Enregistrer");
     const uiDelete = useUITranslation("delete", "Supprimer");
     const uiFillAllFields = useUITranslation("fill_all_fields", "Please fill all fields");
 
-    const [muscleOpen, setMuscleOpen] = useState(false);
-    const [typeOpen, setTypeOpen] = useState(false);
+
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -135,27 +132,6 @@ export default function EditExercise() {
             ),
         });
     }, [navigation, uiEditExercise]);
-
-    const dropdownStyle = {
-        borderWidth: 1,
-        borderColor: '#e5e7eb',
-        borderRadius: 12,
-        paddingHorizontal: 16,
-        backgroundColor: '#f9fafb',
-        minHeight: 50,
-    };
-
-    const dropdownContainerStyle = {
-        width: '100%' as const,
-        marginBottom: 4,
-    };
-
-    const dropdownListStyle = {
-        backgroundColor: 'white',
-        borderWidth: 1,
-        borderColor: '#e5e7eb',
-        borderRadius: 12,
-    };
 
     if (exerciseLoading) {
         return (

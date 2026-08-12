@@ -8,6 +8,9 @@ import React, {
 } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { Vibration } from 'react-native';
+import Constants from 'expo-constants';
+
 interface TimerContextType {
     bannerActive: boolean;
     isRunning: boolean;
@@ -32,9 +35,6 @@ const BannerActiveContext = createContext<boolean | undefined>(undefined);
 interface TimerProviderProps {
     children: ReactNode;
 }
-
-import { Vibration } from 'react-native';
-import Constants from 'expo-constants';
 
 let Notifications: any = null;
 let Notifee: any = null;

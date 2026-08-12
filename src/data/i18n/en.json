@@ -67,7 +67,14 @@
     "stopwatch": "Stopwatch",
     "countdown": "Countdown",
     "timer_mode": "Timer Mode",
-    "ready": "Ready"
+    "ready": "Ready",
+    "musculation": "Weightlifting",
+    "musculation_desc": "Exercises with weights or bodyweight",
+    "cardio": "Cardio",
+    "cardio_desc": "Endurance and resistance exercises",
+    "reps": "reps",
+    "choose_workout_type": "Workout type",
+    "theoretical_pr": "Theoretical PR (1RM)"
   },
   "muscle": {
     "chest": "Chest",
@@ -108,6 +115,286 @@
     "mobility": "Mobility"
   },
   "exercise": {
+    "84": {
+      "name": "split squats",
+      "description": "Stand with your feet shoulder-width apart. Take a step forward with one foot and place it about two feet in front of the other foot. Lower your body by bending your knees and hips, keeping your back straight. Continue lowering until your front thigh is parallel to the ground, and your back knee is hovering just above the ground. Pause for a moment, then push through your front heel to return to the starting position. Repeat for the desired number of repetitions, then switch legs and repeat."
+    },
+    "85": {
+      "name": "dumbbell one arm incline chest press",
+      "description": "Adjust the incline bench to a 45-degree angle. Sit on the bench with your back against the pad and feet flat on the ground. Hold a dumbbell in one hand with an overhand grip, resting it on your shoulder. Push the dumbbell up and away from your body, extending your arm fully. Pause for a moment at the top, then slowly lower the dumbbell back down to the starting position. Repeat for the desired number of repetitions, then switch to the other arm."
+    },
+    "86": {
+      "name": "barbell stiff leg good morning",
+      "description": "Stand with your feet shoulder-width apart and your knees slightly bent. Hold the barbell across your upper back, resting it on your traps. Keeping your back straight, hinge forward at the hips, pushing your glutes back. Lower your torso until it is parallel to the ground, feeling a stretch in your hamstrings. Engage your glutes and hamstrings to return to the starting position. Repeat for the desired number of repetitions."
+    },
+    "87": {
+      "name": "clap push up",
+      "description": "Start in a high plank position with your hands slightly wider than shoulder-width apart. Lower your body towards the ground by bending your elbows, keeping your core engaged. Push through your palms explosively to propel your body off the ground. While in mid-air, clap your hands together before landing back in the starting position. Repeat for the desired number of repetitions."
+    },
+    "88": {
+      "name": "barbell standing front raise over head",
+      "description": "Stand with your feet shoulder-width apart, holding a barbell in front of your thighs with an overhand grip. Keep your back straight and engage your core. Slowly raise the barbell in front of you, keeping your arms straight and your palms facing down. Continue lifting until the barbell is slightly above shoulder level. Pause for a moment at the top, then slowly lower the barbell back down to the starting position. Repeat for the desired number of repetitions."
+    },
+    "89": {
+      "name": "barbell skier",
+      "description": "Stand with your feet shoulder-width apart and hold a barbell in front of your thighs with an overhand grip. Bend your knees slightly and hinge forward at the hips, keeping your back straight and chest up. Simultaneously lift the barbell up towards your shoulders while jumping slightly off the ground. As you reach the top of the movement, quickly reverse the motion and lower the barbell back down to the starting position. Repeat for the desired number of repetitions."
+    },
+    "90": {
+      "name": "dumbbell incline hammer press on exercise ball",
+      "description": "Sit on an exercise ball with a dumbbell in each hand, palms facing each other. Walk your feet forward and roll your body down the ball until your head, neck, and upper back are supported on the ball. Hold the dumbbells at shoulder level, elbows bent and pointing out to the sides. Press the dumbbells up and slightly inward, keeping your palms facing each other. Extend your arms fully, squeezing your triceps at the top of the movement. Slowly lower the dumbbells back to the starting position. Repeat for the desired number of repetitions."
+    },
+    "91": {
+      "name": "dumbbell close-grip press",
+      "description": "Sit on a flat bench with a dumbbell in each hand, resting on your thighs. Using your thighs to help raise the dumbbells, lift the dumbbells one at a time so that you can hold them in front of you at shoulder width. Once at shoulder width, rotate your wrists forward so that the palms of your hands are facing away from you. This will be your starting position. As you breathe in, slowly lower the dumbbells to your side until they are about level with your chest. As you exhale, use your triceps to lift the dumbbells back to the starting position. Repeat for the desired number of repetitions."
+    },
+    "92": {
+      "name": "dumbbell biceps curl v sit on bosu ball",
+      "description": "Sit on a bosu ball with your feet flat on the ground and your knees bent at a 90-degree angle. Hold a dumbbell in each hand with your palms facing forward and your arms fully extended down by your sides. Keeping your upper arms stationary, exhale and curl the weights while contracting your biceps. Continue to raise the dumbbells until your biceps are fully contracted and the dumbbells are at shoulder level. Hold the contracted position for a brief pause as you squeeze your biceps. Inhale and slowly begin to lower the dumbbells back to the starting position. Repeat for the desired number of repetitions."
+    },
+    "93": {
+      "name": "dumbbell arnold press",
+      "description": "Sit on a bench with back support and hold a dumbbell in each hand at shoulder level, palms facing your body and elbows bent. Press the dumbbells upward until your arms are fully extended and your palms are facing forward. Rotate your wrists as you lift, so that your palms are facing forward at the top of the movement. Pause for a moment at the top, then slowly lower the dumbbells back to the starting position. Repeat for the desired number of repetitions."
+    },
+    "94": {
+      "name": "barbell side bent v. 2",
+      "description": "Stand with your feet shoulder-width apart and hold a barbell with both hands, palms facing down. Keep your back straight and core engaged throughout the exercise. Slowly bend your torso to the right side, lowering the barbell towards your right knee. Pause for a moment, then return to the starting position. Repeat the movement on the left side. Continue alternating sides for the desired number of repetitions."
+    },
+    "95": {
+      "name": "dumbbell arnold press v. 2",
+      "description": "Sit on a bench with back support and hold a dumbbell in each hand at shoulder level, palms facing your body and elbows bent. Press the dumbbells upward until your arms are fully extended and your palms are facing forward. Rotate your wrists as you lift, so that your palms end up facing forward at the top of the movement. Pause for a moment at the top, then slowly lower the dumbbells back to the starting position. Repeat for the desired number of repetitions."
+    },
+    "96": {
+      "name": "dumbbell lying rear delt row",
+      "description": "Lie face down on a flat bench with a dumbbell in each hand, palms facing inwards. Extend your arms straight down towards the floor, keeping a slight bend in your elbows. Engaging your back muscles, lift the dumbbells up towards your chest, squeezing your shoulder blades together. Pause for a moment at the top, then slowly lower the dumbbells back down to the starting position. Repeat for the desired number of repetitions."
+    },
+    "97": {
+      "name": "dumbbell kickback",
+      "description": "Stand with your feet shoulder-width apart and hold a dumbbell in each hand. Bend your knees slightly and hinge forward at the hips, keeping your back straight. Bring your upper arms close to your sides, with your elbows bent at a 90-degree angle. Extend your arms straight back, squeezing your triceps at the top of the movement. Pause for a moment, then slowly lower the dumbbells back to the starting position. Repeat for the desired number of repetitions."
+    },
+    "98": {
+      "name": "dumbbell kneeling bicep curl exercise ball",
+      "description": "Kneel on the floor with an exercise ball in front of you. Place your elbows on top of the exercise ball, holding a dumbbell in each hand with your palms facing up. Keeping your upper arms stationary, exhale and curl the dumbbells while contracting your biceps. Continue to raise the dumbbells until your biceps are fully contracted and the dumbbells are at shoulder level. Hold the contracted position for a brief pause as you squeeze your biceps. Inhale and slowly begin to lower the dumbbells back to the starting position. Repeat for the desired number of repetitions."
+    },
+    "99": {
+      "name": "decline crunch",
+      "description": "Lie on a decline bench with your feet secured and your knees bent at a 90-degree angle. Place your hands behind your head or across your chest. Engage your abs and lift your upper body towards your knees, curling your torso. Pause for a moment at the top, then slowly lower your upper body back down to the starting position. Repeat for the desired number of repetitions."
+    },
+    "100": {
+      "name": "barbell rollerout from bench",
+      "description": "Start by kneeling on the floor with a barbell placed on a bench in front of you. Grasp the barbell with an overhand grip, slightly wider than shoulder-width apart. Keeping your core engaged and your back straight, slowly roll the barbell forward, extending your arms in front of you. Continue rolling the barbell forward until your body is fully extended and your arms are overhead. Pause for a moment at the fully extended position, then slowly roll the barbell back towards your body, returning to the starting position. Repeat for the desired number of repetitions."
+    },
+    "101": {
+      "name": "barbell speed squat",
+      "description": "Stand with your feet shoulder-width apart, toes slightly turned out. Hold the barbell across your upper back, resting it on your traps or rear delts. Engage your core and keep your chest up as you lower your hips back and down, as if sitting into a chair. Lower until your thighs are parallel to the ground, or as low as you can comfortably go. Drive through your heels to stand back up, squeezing your glutes at the top. Repeat for the desired number of repetitions."
+    },
+    "102": {
+      "name": "barbell reverse grip decline bench press",
+      "description": "Lie on a decline bench with your feet secured and your head lower than your hips. Grasp the barbell with a reverse grip, slightly wider than shoulder-width apart. Unrack the barbell and lower it slowly towards your chest, keeping your elbows tucked in. Pause for a moment at the bottom, then push the barbell back up to the starting position. Repeat for the desired number of repetitions."
+    },
+    "103": {
+      "name": "barbell romanian deadlift",
+      "description": "Stand with your feet shoulder-width apart and your toes pointing forward. Hold the barbell with an overhand grip, hands slightly wider than shoulder-width apart. Bend at the hips, keeping your back straight and your knees slightly bent. Lower the barbell towards the ground, keeping it close to your body. Feel the stretch in your hamstrings as you lower the barbell. Once you feel a stretch in your hamstrings, push your hips forward and stand up straight. Squeeze your glutes at the top of the movement. Lower the barbell back down to the starting position and repeat for the desired number of repetitions."
+    },
+    "104": {
+      "name": "dumbbell front raise v. 2",
+      "description": "Stand with your feet shoulder-width apart, holding a dumbbell in each hand with your palms facing your thighs. Keep your back straight and engage your core. Slowly lift the dumbbells in front of you, with your arms straight, until they are at shoulder level. Pause for a moment at the top, then slowly lower the dumbbells back down to the starting position. Repeat for the desired number of repetitions."
+    },
+    "105": {
+      "name": "dumbbell decline fly",
+      "description": "Lie on a decline bench with your feet secured and your head lower than your hips. Hold a dumbbell in each hand with your palms facing each other and your arms extended above your chest. Lower the dumbbells out to the sides in a wide arc until you feel a stretch in your chest. Pause for a moment, then squeeze your chest muscles to bring the dumbbells back to the starting position. Repeat for the desired number of repetitions."
+    },
+    "106": {
+      "name": "rocking frog stretch",
+      "description": "Start by kneeling on the ground with your knees hip-width apart. Place your hands on the ground in front of you for support. Slowly lean forward, shifting your weight onto your hands and extending your legs behind you. Keep your back straight and engage your glutes as you push your hips back and up towards the ceiling. Hold this position for a few seconds, feeling a stretch in your glutes. Slowly return to the starting position by bending your knees and lowering your hips back down. Repeat for the desired number of repetitions."
+    },
+    "107": {
+      "name": "dumbbell lateral to front raise",
+      "description": "Stand with your feet shoulder-width apart, holding a dumbbell in each hand with your palms facing your body. Keep your back straight and engage your core. Raise your arms out to the sides until they are parallel to the ground, keeping a slight bend in your elbows. Pause for a moment at the top, then slowly lower your arms back down to the starting position. Next, raise your arms in front of you until they are parallel to the ground, again keeping a slight bend in your elbows. Pause for a moment at the top, then slowly lower your arms back down to the starting position. Repeat for the desired number of repetitions."
+    },
+    "108": {
+      "name": "barbell side split squat v. 2",
+      "description": "Stand with your feet wider than shoulder-width apart, toes pointing slightly outwards. Hold a barbell across your upper back, resting it on your shoulders. Take a big step to the side with your right foot, keeping your left foot planted. Bend your right knee and lower your body down into a squat position, keeping your chest up and your back straight. Push through your right heel to return to the starting position. Repeat on the other side, stepping out with your left foot. Continue alternating sides for the desired number of repetitions."
+    },
+    "109": {
+      "name": "isometric wipers",
+      "description": "Start by lying flat on your back on a mat or bench. Extend your arms straight out to the sides, perpendicular to your body. Engage your core and lift both legs off the ground, keeping them together and straight. Slowly lower your legs to one side, aiming to touch the ground with your feet while maintaining control. Pause for a moment, then use your core to lift your legs back to the starting position. Repeat the movement, this time lowering your legs to the opposite side. Continue alternating sides for the desired number of repetitions."
+    },
+    "110": {
+      "name": "kipping muscle up",
+      "description": "Start by hanging from a pull-up bar with an overhand grip, hands slightly wider than shoulder-width apart. Engage your core and use a swinging motion to generate momentum. As you swing forward, pull your chest towards the bar, using your lats and biceps to initiate the movement. Continue the upward motion until your chest reaches the bar, then transition into a dip position by pushing down on the bar and extending your arms. Lower yourself back down to the starting position by bending your arms and controlling the descent. Repeat for the desired number of repetitions."
+    },
+    "111": {
+      "name": "chest and front of shoulder stretch",
+      "description": "Stand tall with your feet shoulder-width apart. Extend your arms straight out in front of you at shoulder height. Cross your arms in front of your body, with your right arm on top of your left arm. Interlace your fingers and press your palms together. Gently squeeze your shoulder blades together and push your hands forward, feeling a stretch in your chest and front of your shoulders. Hold the stretch for 20-30 seconds, then release. Repeat for the desired number of repetitions."
+    },
+    "112": {
+      "name": "barbell clean-grip front squat",
+      "description": "Start by standing with your feet shoulder-width apart and the barbell resting on your upper chest, with your elbows pointing forward. Lower your body by bending your knees and pushing your hips back, as if you are sitting back into a chair. Keep your chest up and your back straight as you lower down, making sure your knees do not go past your toes. Continue lowering until your thighs are parallel to the ground, or as low as you can comfortably go. Pause for a moment at the bottom, then push through your heels to stand back up, extending your hips and knees. Repeat for the desired number of repetitions."
+    },
+    "113": {
+      "name": "barbell squat jump step rear lunge",
+      "description": "Start by standing with your feet shoulder-width apart, holding a barbell across your upper back. Lower your body into a squat position by bending your knees and pushing your hips back. Explode upwards, jumping off the ground as high as you can. Land softly on your feet and immediately step back with one leg into a reverse lunge. Lower your body down until your front thigh is parallel to the ground, keeping your back straight. Push through your front heel to return to the starting position. Repeat the jump and lunge sequence on the other leg. Continue alternating legs for the desired number of repetitions."
+    },
+    "114": {
+      "name": "back pec stretch",
+      "description": "Stand tall with your feet shoulder-width apart. Extend your arms straight out in front of you, parallel to the ground. Cross your arms in front of your body, with your right arm over your left arm. Interlock your fingers and rotate your palms away from your body. Slowly raise your arms up and away from your body, feeling a stretch in your back and chest. Hold the stretch for 15-30 seconds, then release. Repeat on the opposite side."
+    },
+    "115": {
+      "name": "dumbbell incline press on exercise ball",
+      "description": "Sit on an exercise ball with a dumbbell in each hand, palms facing forward. Slowly walk your feet forward, rolling your body down the ball until your head, neck, and upper back are supported on the ball. Hold the dumbbells at shoulder level, elbows bent and pointing out to the sides. Press the dumbbells upward, extending your arms fully. Pause for a moment at the top, then slowly lower the dumbbells back to the starting position. Repeat for the desired number of repetitions."
+    },
+    "116": {
+      "name": "lunge with jump",
+      "description": "Start by standing with your feet shoulder-width apart. Take a step forward with your right foot, lowering your body into a lunge position. Push off with your right foot and jump into the air, switching the position of your feet mid-air. Land softly with your left foot forward and immediately lower your body into a lunge position. Continue alternating between lunges and jumps for the desired number of repetitions."
+    },
+    "117": {
+      "name": "barbell lying preacher curl",
+      "description": "Sit on a preacher bench with your chest against the pad and your arms extended over the edge, holding a barbell with an underhand grip. Keeping your upper arms stationary, exhale and curl the weights while contracting your biceps. Continue to raise the bar until your biceps are fully contracted and the bar is at shoulder level. Hold the contracted position for a brief pause as you squeeze your biceps. Inhale and slowly begin to lower the barbell back to the starting position. Repeat for the desired number of repetitions."
+    },
+    "118": {
+      "name": "landmine 180",
+      "description": "Stand with your feet shoulder-width apart and hold the barbell with both hands in front of your chest. Bend your knees slightly and rotate your torso to the right, swinging the barbell down towards your right hip. As you reach the bottom of the movement, quickly reverse the motion and rotate your torso to the left, swinging the barbell up and across your body towards your left shoulder. Continue this twisting motion, alternating sides, for the desired number of repetitions."
+    },
+    "119": {
+      "name": "dumbbell pronate-grip triceps extension",
+      "description": "Sit on a bench or chair with your back straight and feet flat on the ground. Hold a dumbbell with both hands, palms facing down, and extend your arms straight up overhead. Keeping your upper arms close to your head and elbows pointing forward, slowly lower the dumbbell behind your head by bending your elbows. Pause for a moment, then extend your arms back up to the starting position. Repeat for the desired number of repetitions."
+    },
+    "120": {
+      "name": "dumbbell decline bench press",
+      "description": "Lie down on a decline bench with your feet secured and your head lower than your hips. Hold a dumbbell in each hand and extend your arms straight up above your chest, palms facing forward. Lower the dumbbells slowly to the sides of your chest, keeping your elbows at a 90-degree angle. Push the dumbbells back up to the starting position, fully extending your arms. Repeat for the desired number of repetitions."
+    },
+    "121": {
+      "name": "korean dips",
+      "description": "Position yourself between two parallel bars with your arms extended and supporting your body weight. Lower your body by bending your elbows until your upper arms are parallel to the ground. Pause for a moment, then push yourself back up to the starting position by straightening your arms. Repeat for the desired number of repetitions."
+    },
+    "122": {
+      "name": "dumbbell standing alternate raise",
+      "description": "Stand with your feet shoulder-width apart, holding a dumbbell in each hand with your palms facing your body. Keep your back straight and your core engaged. Raise one dumbbell to the side, keeping your arm straight and your palm facing down. Continue lifting until your arm is parallel to the ground. Pause for a moment at the top, then slowly lower the dumbbell back to the starting position. Repeat with the other arm. Alternate between arms for the desired number of repetitions."
+    },
+    "123": {
+      "name": "barbell pullover",
+      "description": "Lie flat on a bench with your head at one end and your feet on the floor. Hold a barbell with a shoulder-width grip and extend your arms straight above your chest. Keeping your arms straight, lower the barbell behind your head in a controlled manner until you feel a stretch in your lats. Pause for a moment, then raise the barbell back to the starting position. Repeat for the desired number of repetitions."
+    },
+    "124": {
+      "name": "dumbbell lying one arm rear lateral raise",
+      "description": "Lie face down on a flat bench with a dumbbell in one hand, hanging towards the floor. Keep your arm straight and lift the dumbbell out to the side, away from your body. Pause for a moment at the top, then slowly lower the dumbbell back down to the starting position. Repeat for the desired number of repetitions, then switch to the other arm."
+    },
+    "125": {
+      "name": "dumbbell cross body hammer curl",
+      "description": "Stand up straight with a dumbbell in each hand, palms facing your body. Keep your elbows close to your torso and your upper arms stationary. Exhale and curl the weights while contracting your biceps, bringing the dumbbells across your body towards your opposite shoulder. Continue to raise the dumbbells until your biceps are fully contracted and the dumbbells are at shoulder level. Hold the contracted position for a brief pause as you squeeze your biceps. Inhale and slowly begin to lower the dumbbells back to the starting position. Repeat for the desired number of repetitions."
+    },
+    "126": {
+      "name": "lying (side) quads stretch",
+      "description": "Lie on your side with your legs straight. Bend your top leg and grab your ankle or foot with your hand. Gently pull your ankle or foot towards your glutes until you feel a stretch in your quads. Hold the stretch for 20-30 seconds. Release the stretch and repeat on the other side."
+    },
+    "127": {
+      "name": "dumbbell sumo pull through",
+      "description": "Stand with your feet wider than shoulder-width apart, toes pointed outwards. Hold a dumbbell with both hands in front of your body, arms extended. Bend your knees and lower your hips down into a squat position, keeping your back straight. Lower the dumbbell down between your legs, keeping your arms straight. Drive through your heels and extend your hips forward, pulling the dumbbell up and in front of your body. Squeeze your glutes at the top of the movement, then lower the dumbbell back down between your legs. Repeat for the desired number of repetitions."
+    },
+    "128": {
+      "name": "45° side bend",
+      "description": "Stand with your feet shoulder-width apart and your arms extended straight down by your sides. Keeping your back straight and your core engaged, slowly bend your torso to one side, lowering your hand towards your knee. Pause for a moment at the bottom, then slowly return to the starting position. Repeat on the other side. Continue alternating sides for the desired number of repetitions."
+    },
+    "129": {
+      "name": "hanging oblique knee raise",
+      "description": "Hang from a pull-up bar with your arms fully extended and your palms facing away from you. Engage your core and lift your knees towards your chest, twisting your torso to the side as you do so. Pause for a moment at the top, then slowly lower your legs back down to the starting position. Repeat on the other side, twisting your torso in the opposite direction. Continue alternating sides for the desired number of repetitions."
+    },
+    "130": {
+      "name": "lever one arm bent over row",
+      "description": "Stand with your feet shoulder-width apart, knees slightly bent, and hold a barbell with an overhand grip. Bend forward at the hips, keeping your back straight and your head up. Let the barbell hang in front of you with your arms fully extended. Pull the barbell up towards your chest, keeping your elbows close to your body. Squeeze your shoulder blades together at the top of the movement. Lower the barbell back down to the starting position. Repeat for the desired number of repetitions."
+    },
+    "131": {
+      "name": "dumbbell lying one arm deltoid rear",
+      "description": "Lie face down on a flat bench with a dumbbell in one hand, palm facing inwards. Extend your arm straight down towards the floor, keeping it close to your body. Raise your arm up and back, squeezing your shoulder blade towards your spine. Pause for a moment at the top, then slowly lower your arm back down to the starting position. Repeat for the desired number of repetitions, then switch arms."
+    },
+    "132": {
+      "name": "l-sit on floor",
+      "description": "Sit on the floor with your legs extended in front of you. Place your hands on the floor beside your hips, fingers pointing forward. Engage your core and lift your legs off the ground, keeping them straight. Try to bring your legs parallel to the floor, forming an 'L' shape with your body. Hold this position for as long as you can. Slowly lower your legs back down to the starting position. Repeat for the desired number of repetitions."
+    },
+    "133": {
+      "name": "dumbbell incline row",
+      "description": "Set up an incline bench at a 45-degree angle. Grab a dumbbell in each hand and sit on the bench with your chest against the incline. Extend your arms fully, allowing the dumbbells to hang straight down from your shoulders. Pull the dumbbells up towards your chest, squeezing your shoulder blades together. Pause for a moment at the top, then slowly lower the dumbbells back to the starting position. Repeat for the desired number of repetitions."
+    },
+    "134": {
+      "name": "walking high knees lunge",
+      "description": "Stand with your feet hip-width apart. Lift your right knee up towards your chest as high as you can while balancing on your left leg. Step forward with your right foot and lower your body into a lunge position, bending both knees to a 90-degree angle. Push off with your right foot and bring your left knee up towards your chest. Step forward with your left foot and lower your body into a lunge position. Continue alternating legs and lunging forward, keeping your core engaged and maintaining a steady pace. Repeat for the desired number of repetitions."
+    },
+    "135": {
+      "name": "bear crawl",
+      "description": "Start on all fours with your hands directly under your shoulders and your knees directly under your hips. Lift your knees slightly off the ground, keeping your back flat and your core engaged. Move your right hand and left foot forward simultaneously, followed by your left hand and right foot. Continue crawling forward, alternating your hand and foot movements. Maintain a steady pace and keep your core tight throughout the exercise. Continue for the desired distance or time."
+    },
+    "136": {
+      "name": "back and forth step",
+      "description": "Stand with your feet shoulder-width apart. Step forward with your right foot, bending your knee and lowering your body into a lunge position. Push off with your right foot and step back to the starting position. Repeat the movement with your left foot, alternating legs with each step. Continue stepping back and forth, maintaining a steady pace. Repeat for the desired duration or number of repetitions."
+    },
+    "137": {
+      "name": "short stride run",
+      "description": "Find an open space or a treadmill to perform the exercise. Stand tall with your feet hip-width apart. Start jogging in place, lifting your knees high and pumping your arms. After a few seconds, start taking short strides forward, maintaining a quick pace. Continue running with short strides for the desired duration or distance."
+    },
+    "138": {
+      "name": "semi squat jump (male)",
+      "description": "Stand with your feet shoulder-width apart. Bend your knees and lower your body into a squat position. Jump explosively, extending your hips and knees while swinging your arms for momentum. Land softly on the balls of your feet and immediately go into the next repetition. Repeat for the desired number of repetitions."
+    },
+    "139": {
+      "name": "walking on incline treadmill",
+      "description": "Adjust the incline level on the treadmill to your desired intensity. Stand on the treadmill with your feet shoulder-width apart. Start walking at a comfortable pace, ensuring that you maintain proper form. Engage your core muscles and keep your back straight throughout the exercise. Continue walking on the incline treadmill for the desired duration of your cardio workout. Gradually decrease the incline and speed of the treadmill to cool down before stopping."
+    },
+    "140": {
+      "name": "scissor jumps (male)",
+      "description": "Stand with your feet shoulder-width apart. Jump off the ground and simultaneously cross your right leg in front of your left leg. As you land, quickly switch legs, crossing your left leg in front of your right leg. Continue alternating legs and jumping as quickly as possible. Repeat for the desired number of repetitions."
+    },
+    "141": {
+      "name": "push to run",
+      "description": "Start in a push-up position with your hands shoulder-width apart and your body in a straight line. Lower your chest towards the ground by bending your elbows, keeping your body straight. Push through your hands to extend your arms and return to the starting position. Quickly bring one knee towards your chest, then quickly switch and bring the other knee towards your chest. Continue alternating knees as fast as you can while maintaining good form. Continue for the desired duration or number of repetitions."
+    },
+    "142": {
+      "name": "cycle cross trainer",
+      "description": "Adjust the seat height and position yourself on the cycle cross trainer. Place your feet on the pedals and grip the handlebars. Start pedaling in a smooth and controlled motion. Maintain a steady pace and increase the resistance if desired. Continue pedaling for the desired duration of your cardio workout."
+    },
+    "143": {
+      "name": "run",
+      "description": "Start by standing upright with your feet hip-width apart. Engage your core and keep your upper body relaxed. Begin jogging in place, lifting your knees up towards your chest and landing softly on the balls of your feet. Maintain a steady pace and continue jogging for the desired duration or distance. Remember to breathe deeply and maintain good posture throughout the exercise."
+    },
+    "144": {
+      "name": "jack burpee",
+      "description": "Start in a standing position with your feet shoulder-width apart. Lower your body into a squat position, placing your hands on the ground in front of you. Kick your feet back, landing in a push-up position. Perform a push-up, lowering your chest to the ground and then pushing back up. Jump your feet forward, landing in a squat position. Jump up explosively, reaching your arms overhead. Land softly and immediately lower back into the squat position to begin the next repetition."
+    },
+    "145": {
+      "name": "high knee against wall",
+      "description": "Stand facing a wall with your feet hip-width apart. Place your hands on the wall for support. Engage your core and lift your right knee up towards your chest, while keeping your left foot on the ground. Quickly switch legs, bringing your left knee up towards your chest and lowering your right foot back down. Continue alternating legs in a running motion, bringing your knees up as high as possible. Maintain a fast pace and keep your upper body stable throughout the exercise. Repeat for the desired duration or number of repetitions."
+    },
+    "146": {
+      "name": "swing 360",
+      "description": "Stand with your feet shoulder-width apart and knees slightly bent. Hold your arms straight out in front of you, parallel to the ground. Engage your core and swing your arms in a circular motion, rotating your torso as you do so. Continue the circular motion, swinging your arms and rotating your torso for the desired number of repetitions. Remember to breathe throughout the exercise."
+    },
+    "147": {
+      "name": "stationary bike run v. 3",
+      "description": "Adjust the seat height and position to ensure proper alignment. Place your feet on the pedals and secure them with the straps if available. Start pedaling at a comfortable pace. Maintain a steady rhythm and increase the resistance as desired. Engage your core muscles to maintain stability and proper posture. Continue pedaling for the desired duration of your workout. Gradually decrease the resistance and slow down before coming to a complete stop. Stretch your legs and cool down after the workout."
+    },
+    "148": {
+      "name": "walk elliptical cross trainer",
+      "description": "Adjust the resistance level and incline of the elliptical machine to your desired settings. Step onto the pedals of the machine and grip the handles lightly. Begin by pushing down with your feet and pulling the handles towards your body. Continue this motion, alternating between pushing and pulling, to simulate a walking or running motion. Maintain a steady pace and keep your core engaged throughout the exercise. Continue for the desired duration of your cardio workout. Gradually decrease the intensity and speed of the machine before stepping off."
+    },
+    "149": {
+      "name": "stationary bike walk",
+      "description": "Adjust the seat height and position on the stationary bike to ensure proper alignment. Place your feet on the pedals and secure them with the straps if available. Start pedaling at a comfortable pace, keeping your back straight and core engaged. Maintain a steady rhythm and increase the resistance level if desired. Continue pedaling for the desired duration of your cardio workout. Cool down by gradually reducing your pace and resistance level. Stretch your leg muscles after the workout to prevent tightness and promote recovery."
+    },
+    "150": {
+      "name": "star jump (male)",
+      "description": "Stand with your feet shoulder-width apart and your arms by your sides. Bend your knees slightly and jump up explosively. As you jump, spread your legs and extend your arms out to the sides, forming a star shape with your body. Land softly on the balls of your feet with your knees slightly bent. Repeat for the desired number of repetitions."
+    },
+    "151": {
+      "name": "dumbbell burpee",
+      "description": "Start in a standing position with your feet shoulder-width apart and a dumbbell in each hand. Lower your body into a squat position, placing the dumbbells on the ground in front of you. Kick your feet back into a push-up position, keeping your body in a straight line. Perform a push-up, bending your elbows and lowering your chest towards the ground. Jump your feet back towards your hands, landing in a squat position. Stand up explosively, lifting the dumbbells off the ground and bringing them to your shoulders. Press the dumbbells overhead, fully extending your arms. Lower the dumbbells back to your shoulders and repeat the entire sequence for the desired number of repetitions."
+    },
+    "152": {
+      "name": "ski step",
+      "description": "Stand with your feet shoulder-width apart. Bend your knees slightly and keep your back straight. Jump to the right, landing on your right foot while swinging your left leg behind your right leg. Immediately jump to the left, landing on your left foot while swinging your right leg behind your left leg. Continue alternating jumps from side to side, mimicking a skiing motion. Repeat for the desired number of repetitions."
+    },
+    "153": {
+      "name": "walking on stepmill",
+      "description": "Adjust the stepmill machine to a comfortable level. Step onto the machine and place your hands on the handrails for support. Start walking by placing one foot on a step and then the other, alternating between legs. Maintain an upright posture and engage your core muscles. Continue walking for the desired duration or distance. Gradually increase the intensity or speed as you become more comfortable with the exercise. Remember to cool down and stretch after completing the exercise."
+    },
     "bench_press": {
       "name": "Bench Press",
       "description": "Basic exercise for developing the chest muscles."

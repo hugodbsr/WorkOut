@@ -9,13 +9,26 @@ import {
     PanResponder,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import { useBannerActive } from "@/app/context/TimerContext";
+import { useTimer, useBannerActive } from "@/app/context/TimerContext";
 
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
+
 
 const FloatingTimer = () => {
-    const { elapsedTime, isRunning, toggle, reset, formatTime } = useTimer();
+    const { isRunning, savedTime, startTime, toggle, reset } = useTimer();
+    const [localTime, setLocalTime] = useState(savedTime);
     const [isExpanded, setIsExpanded] = useState(false);
+
+    useEffect(() => {
+        let intervalId: ReturnType<typeof setInterval>;
+        if (isRunning && startTime !== null) {
+            intervalId = setInterval(() => {
+                setLocalTime(Date.now() - startTime + savedTime);
+            }, 100);
+        } else {
+            setLocalTime(savedTime);
+        }
+        return () => clearInterval(intervalId);
+    }, [isRunning, startTime, savedTime]);
 
     const expandAnim = useRef(new Animated.Value(0)).current;
     const scaleAnim = useRef(new Animated.Value(1)).current;
@@ -104,7 +117,7 @@ const FloatingTimer = () => {
         return `${min}:${sec}`;
     };
 
-    if (elapsedTime === 0 && !isRunning) {
+    if (localTime === 0 && !isRunning) {
         return null;
     }
 
@@ -178,7 +191,7 @@ const FloatingTimer = () => {
                     <Text
                         style={[styles.timerText, isRunning && styles.timerTextRunning]}
                     >
-                        {formatCompact(elapsedTime)}
+                        {formatCompact(localTime)}
                     </Text>
                     <Feather
                         name={isExpanded ? "x" : "clock"}

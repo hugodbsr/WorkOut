@@ -38,6 +38,7 @@ export const SeriesItem: React.FC<SeriesItemProps> = React.memo(({
                                                                      trackingMode = 'WEIGHT_REPS',
                                                                  }) => {
     const uiSerieNumber = useUITranslation('serie_number', 'Série n°');
+    const repsText = useUITranslation('reps', 'reps');
     const uiLeftSide = useUITranslation('left_side', 'L');
     const uiRightSide = useUITranslation('right_side', 'R');
 
@@ -64,7 +65,7 @@ export const SeriesItem: React.FC<SeriesItemProps> = React.memo(({
                 )}
                 
                 {isRepsOnly ? (
-                    <Text className="text-lg font-bold text-gray-400 ml-1">reps</Text>
+                    <Text className="text-lg font-bold text-gray-400 ml-1">{repsText}</Text>
                 ) : null}
 
                 {!isRepsOnly && (

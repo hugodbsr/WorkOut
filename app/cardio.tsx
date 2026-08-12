@@ -1,13 +1,13 @@
 import { ActivityIndicator, FlatList, Text, TouchableOpacity, View } from "react-native";
 import React, { useLayoutEffect } from 'react'
-import { useRouter } from "expo-router";
+import { useRouter , useNavigation } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchCardioGroupsJsonList } from "@/services/api";
 import { Image } from "expo-image";
 import { exerciseImages } from "@/src/constants/images";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
-import { useNavigation } from "expo-router";
+import { useUITranslation } from '@/services/useUITranslation';
 
 import { useBannerActive } from "@/app/context/TimerContext";
 
@@ -22,6 +22,7 @@ function getCardioImage(name?: string) {
 export default function Cardio() {
     const router = useRouter();
     const navigation = useNavigation();
+    const cardioTitle = useUITranslation('cardio', 'Cardio');
     
     const bannerActive = useBannerActive();
     
@@ -30,7 +31,7 @@ export default function Cardio() {
     useLayoutEffect(() => {
         navigation.setOptions({
             headerTitle: () => (
-                <Text className="font-bold text-xl text-white italic">Cardio</Text>
+                <Text className="font-bold text-xl text-white italic">{cardioTitle}</Text>
             ),
         });
     }, [navigation]);

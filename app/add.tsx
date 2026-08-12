@@ -12,6 +12,11 @@ export default function WorkoutType() {
     
     const titleText = useUITranslation('choose_workout_type', 'Type d\'entraînement');
     
+    const musculationText = useUITranslation('musculation', 'Musculation');
+    const musculationDescText = useUITranslation('musculation_desc', 'Exercices avec poids ou au poids du corps');
+    const cardioText = useUITranslation('cardio', 'Cardio');
+    const cardioDescText = useUITranslation('cardio_desc', 'Exercices d\'endurance et de résistance');
+    
     const bannerActive = useBannerActive();
     const bannerGap = bannerActive ? 52 : 0;
 
@@ -36,8 +41,8 @@ export default function WorkoutType() {
                             <MaterialCommunityIcons name="dumbbell" size={40} color="#3456AD" />
                         </View>
                         <View className="flex-1">
-                            <Text className="text-2xl font-bold text-gray-800">Musculation</Text>
-                            <Text className="text-gray-500 mt-1">Exercices avec poids ou au poids du corps</Text>
+                            <Text className="text-2xl font-bold text-gray-800">{musculationText}</Text>
+                            <Text className="text-gray-500 mt-1">{musculationDescText}</Text>
                         </View>
                     </View>
                     <MaterialCommunityIcons name="chevron-right" size={28} color="#d1d5db" />
@@ -53,8 +58,8 @@ export default function WorkoutType() {
                             <MaterialCommunityIcons name="heart-pulse" size={40} color="#ef4444" />
                         </View>
                         <View className="flex-1">
-                            <Text className="text-2xl font-bold text-gray-800">Cardio</Text>
-                            <Text className="text-gray-500 mt-1">Exercices d'endurance et de résistance</Text>
+                            <Text className="text-2xl font-bold text-gray-800">{cardioText}</Text>
+                            <Text className="text-gray-500 mt-1">{cardioDescText}</Text>
                         </View>
                     </View>
                     <MaterialCommunityIcons name="chevron-right" size={28} color="#d1d5db" />

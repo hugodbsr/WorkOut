@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import * as Haptics from 'expo-haptics';
-import { useNavigation } from "expo-router";
+
 import { Feather } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { PanGestureHandler, State } from 'react-native-gesture-handler';
@@ -9,7 +9,7 @@ import { useTimer } from './context/TimerContext';
 import { useUITranslation } from '@/services/useUITranslation';
 
 const Chrono = () => {
-    const { isRunning, savedTime, startTime, toggle, reset, formatTime, mode, duration, setMode, setIsChronoPage, updateDuration } = useTimer();
+    const { isRunning, savedTime, startTime, toggle, reset, formatTime, mode, duration, setIsChronoPage, updateDuration } = useTimer();
     const [localTime, setLocalTime] = useState(savedTime);
     const [dragStartDuration, setDragStartDuration] = useState<number | null>(null);
     const lastHapticDuration = useRef<number | null>(null);

@@ -9,13 +9,12 @@ import {
     Platform,
 } from 'react-native';
 import React, { useEffect, useLayoutEffect, useState } from 'react';
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams , useNavigation } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchExerciseJson } from "@/services/api";
-import { addSessionToExercise, deleteSessionOfExercise, getExerciseHistory, Set, getTodayDate, Side } from "@/services/storage";
+import { addSessionToExercise, deleteSessionOfExercise, getExerciseHistory, getTodayDate, Side } from "@/services/storage";
 import { useUITranslation } from '@/services/useUITranslation';
 import { GestureHandlerRootView, Swipeable } from 'react-native-gesture-handler';
-import { useNavigation } from "expo-router";
 import { exerciseImages } from "@/src/constants/images";
 import { Feather } from '@expo/vector-icons';
 
@@ -24,7 +23,7 @@ import { SeriesItem } from '@/app/components/exercise/SeriesItem';
 import { ExerciseFooter } from '@/app/components/exercise/ExerciseFooter';
 import { nanoid } from "nanoid/non-secure";
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Animated, { SlideOutLeft, Layout, FadeIn } from 'react-native-reanimated';
+import Animated, { SlideOutLeft, Layout } from 'react-native-reanimated';
 
 import { useBannerActive } from "@/app/context/TimerContext";
 

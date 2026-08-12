@@ -1,17 +1,15 @@
-import { ActivityIndicator, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, FlatList, StyleSheet, Text, TouchableOpacity, View , Alert } from 'react-native';
 import React, { useCallback, useLayoutEffect, useState, useMemo } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
+import { useFocusEffect, useLocalSearchParams, useRouter , useNavigation } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchExerciseListJson, fetchMuscleJson, fetchExerciseTypeJson, fetchTrackingModesJson } from "@/services/api";
-import { useNavigation } from "expo-router";
 import { exerciseImages } from "@/src/constants/images";
 import { Image } from "expo-image";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { useBannerActive } from "@/app/context/TimerContext";
 
-import { Alert } from 'react-native';
 import { deleteUserExercise, getAllExerciseHistory } from '@/services/storage';
 
 export default function Details() {

@@ -1,5 +1,5 @@
-import { Text, View, ScrollView, TouchableOpacity, ActivityIndicator, Platform, Modal } from "react-native";
-import { useRouter } from "expo-router";
+import { Text, View, ScrollView, TouchableOpacity, ActivityIndicator, Modal } from "react-native";
+import { useRouter , useFocusEffect } from "expo-router";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { HomeFooter } from '@/app/components/home/HomeFooter';
 import React, { useState, useCallback } from 'react';
@@ -8,7 +8,6 @@ import { fetchExerciseJson, fetchAllExercises } from "@/services/api";
 import { useUITranslation } from "@/services/useUITranslation";
 import { getLanguageCode } from "@/services/translation";
 import { Feather } from '@expo/vector-icons';
-import { useFocusEffect } from 'expo-router';
 import MuscleHeatmap, { HeatmapData } from "@/app/components/analytics/MuscleHeatmap";
 import { EXACT_EXERCISE_MAPPING, FALLBACK_MUSCLE_MAPPING } from "@/src/data/muscleMapping";
 import { Calendar, DateData } from 'react-native-calendars';
@@ -56,7 +55,8 @@ export default function Index() {
 
                     const exerciseMuscleMap: Record<string, string> = {};
                     allExercises.forEach(ex => {
-                        exerciseMuscleMap[ex.id.toString()] = ex.muscleGroupId.toString();
+                        const groupId = ex.muscleGroupId ?? ex.categoryId ?? '13';
+                        exerciseMuscleMap[ex.id.toString()] = groupId.toString();
                     });
 
                     for (const [exerciseId, entry] of Object.entries(allData)) {

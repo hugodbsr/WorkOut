@@ -1,6 +1,6 @@
 import { ActivityIndicator, FlatList, Text, TouchableOpacity, View } from "react-native";
 import React, { useLayoutEffect } from 'react'
-import { useRouter } from "expo-router";
+import { useRouter , useNavigation } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchMuscleJsonList } from "@/services/api";
 import { Image } from "expo-image";
@@ -8,7 +8,6 @@ import { muscleGroupImages } from "@/src/constants/images";
 import { useUITranslation } from "@/services/useUITranslation";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
-import { useNavigation } from "expo-router";
 
 import { useBannerActive } from "@/app/context/TimerContext";
 

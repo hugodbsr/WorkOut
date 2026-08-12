@@ -6,11 +6,10 @@ import {
     SectionList
 } from 'react-native';
 import React, { useEffect, useLayoutEffect, useState } from 'react';
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams , useNavigation } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchExerciseJson } from "@/services/api";
 import { getExerciseHistory, Set, Session } from "@/services/storage";
-import { useNavigation } from "expo-router";
 import { Feather } from '@expo/vector-icons';
 
 import HistorySetItem from '@/app/components/history/HistorySetItem';
@@ -19,12 +18,12 @@ import { nanoid } from "nanoid/non-secure";
 import { useUITranslation } from "@/services/useUITranslation";
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { useBannerActive } from "@/app/context/TimerContext";
+
 type HistorySection = {
     title: string;
     data: Set[];
 }
-
-import { useBannerActive } from "@/app/context/TimerContext";
 
 export default function RecordScreen() {
     const { id } = useLocalSearchParams();
