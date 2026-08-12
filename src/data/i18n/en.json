@@ -13,6 +13,7 @@
     "exercise_type": "Exercise's type",
     "select_type": "Select type(s)",
     "unilateral": "Unilateral",
+    "tracking_mode": "Tracking Mode",
     "bilateral": "Bilateral",
     "add_exercise": "Add an exercise",
     "add_exercise_button": "Add",
@@ -352,6 +353,24 @@
     "oblique_crunch": {
       "name": "Oblique Crunch",
       "description": "Crunch sideways to target the oblique muscles."
+    },
+    "running": {
+      "name": "Running",
+      "description": "Running exercise."
+    },
+    "cycling": {
+      "name": "Cycling",
+      "description": "Cycling exercise."
+    },
+    "swimming": {
+      "name": "Swimming",
+      "description": "Swimming exercise."
     }
+  },
+  "trackingMode": {
+    "weight_reps": "Weight & Reps",
+    "reps_only": "Reps only",
+    "time_weight": "Duration & Weight (e.g. Plank)",
+    "time_distance": "Time & Distance"
   }
 }

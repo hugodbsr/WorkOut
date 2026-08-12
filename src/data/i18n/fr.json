@@ -11,13 +11,14 @@
     "exercise_desc": "Description de l'exercice",
     "muscle_used": "Muscle sollicité",
     "exercise_type": "Catégories de l'exercice",
-    "select_type": "Sélectionner une ou plusieurs catégories",
+    "select_type": "Sélectionner un type",
     "unilateral": "Unilatéral",
+    "tracking_mode": "Mode de comptage",
     "bilateral": "Bilatéral",
     "add_exercise": "Ajouter un exercice",
     "add_exercise_button": "Ajouter",
     "select_muscle": "Sélectionner un muscle",
-    "fill_all_fields": "Veuillez remplir tous les champs",
+    "fill_all_fields": "Veuillez remplir tous les champs obligatoires",
     "settings": "Paramètres",
     "preferences": "Préférences",
     "language": "Langue",
@@ -352,6 +353,24 @@
     "oblique_crunch": {
       "name": "Crunch oblique",
       "description": "Travaille les abdominaux obliques pour le gainage latéral."
+    },
+    "running": {
+      "name": "Course à pied",
+      "description": "Exercice de course à pied."
+    },
+    "cycling": {
+      "name": "Vélo",
+      "description": "Exercice de cyclisme."
+    },
+    "swimming": {
+      "name": "Piscine",
+      "description": "Exercice de natation."
     }
+  },
+  "trackingMode": {
+    "weight_reps": "Poids & Répétitions",
+    "reps_only": "Répétitions",
+    "time_weight": "Durée & Poids (ex: Gainage)",
+    "time_distance": "Temps & Distance"
   }
 }

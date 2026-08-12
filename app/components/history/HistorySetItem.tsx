@@ -4,15 +4,22 @@ import { Set } from '@/services/storage';
 import { getUITranslation, getLanguageCode } from '@/services/translation';
 import { Feather } from '@expo/vector-icons';
 
+type TrackingMode = 'WEIGHT_REPS' | 'REPS_ONLY' | 'TIME_WEIGHT' | 'TIME_DISTANCE';
+
 type HistorySetItemProps = {
     item: Set;
     index: number;
+    trackingMode?: TrackingMode;
 };
 
-const HistorySetItem = ({ item, index }: HistorySetItemProps) => {
+const HistorySetItem = ({ item, index, trackingMode = 'WEIGHT_REPS' }: HistorySetItemProps) => {
     const [serieLabel, setSerieLabel] = useState('');
     const [leftLabel, setLeftLabel] = useState('Gauche');
     const [rightLabel, setRightLabel] = useState('Droite');
+
+    const isCardio = trackingMode === 'TIME_DISTANCE';
+    const isTimeWeight = trackingMode === 'TIME_WEIGHT';
+    const isRepsOnly = trackingMode === 'REPS_ONLY';
 
     useEffect(() => {
         const loadTranslations = async () => {
@@ -39,15 +46,29 @@ const HistorySetItem = ({ item, index }: HistorySetItemProps) => {
             <View className="items-center mr-1">
                 <Text className="text-2xl font-bold text-primary">{item.reps}</Text>
             </View>
+            
+            {(isCardio || isTimeWeight) && (
+                <Text className="text-gray-500 text-base ml-1 mr-2">{isTimeWeight ? 'sec' : 'min'}</Text>
+            )}
 
-            <Text className="text-gray-400 text-lg mx-1">×</Text>
+            {isRepsOnly ? (
+                <Text className="text-gray-500 text-base ml-1 mr-2">reps</Text>
+            ) : null}
+
+            {!isRepsOnly && (
+                <Text className="text-gray-400 text-lg mx-1">{isCardio ? '-' : '×'}</Text>
+            )}
 
             {/* Poids */}
-            <View className="items-center mr-1">
-                <Text className="text-2xl font-bold text-primary">{item.weight}</Text>
-            </View>
+            {!isRepsOnly && (
+                <View className="items-center mr-1 ml-2">
+                    <Text className="text-2xl font-bold text-primary">{item.weight}</Text>
+                </View>
+            )}
 
-            <Text className="text-gray-500 text-base ml-1">kg</Text>
+            {!isRepsOnly && (
+                <Text className="text-gray-500 text-base ml-1">{isCardio ? 'km' : 'kg'}</Text>
+            )}
 
             {/* Côté (unilatéral) */}
             {item.side && item.side !== "both" && (

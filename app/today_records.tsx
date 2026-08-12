@@ -16,12 +16,15 @@ import { Feather } from '@expo/vector-icons';
 import { useNavigation } from "expo-router";
 import { useLocalSearchParams } from 'expo-router';
 
+type TrackingMode = 'WEIGHT_REPS' | 'REPS_ONLY' | 'TIME_WEIGHT' | 'TIME_DISTANCE';
+
 type ExerciseSetData = {
     exerciseId: string;
     exerciseName: string;
     set: Set;
     setIndex: number;
     isFirstOfExercise: boolean;
+    trackingMode?: TrackingMode;
 };
 
 type DaySection = {
@@ -95,13 +98,22 @@ export default function TodayRecords() {
                 const flatData: ExerciseSetData[] = [];
 
                 for (const [exerciseId, sets] of Object.entries(dateMap[targetDate])) {
+                    let trackingMode: TrackingMode = 'WEIGHT_REPS';
+                    try {
+                        const exerciseData = await fetchExerciseJson({ query: exerciseId });
+                        if (exerciseData.trackingMode) {
+                            trackingMode = exerciseData.trackingMode as TrackingMode;
+                        }
+                    } catch {}
+
                     sets.forEach((set, index) => {
                         flatData.push({
                             exerciseId,
                             exerciseName: exerciseNames[exerciseId] || exerciseId,
                             set,
                             setIndex: index,
-                            isFirstOfExercise: index === 0
+                            isFirstOfExercise: index === 0,
+                            trackingMode
                         });
                     });
                 }
@@ -110,12 +122,9 @@ export default function TodayRecords() {
 
                 const formattedSections: DaySection[] = [
                     {
-                        title: new Date(targetDate).toLocaleDateString(userLocale, {
-                            weekday: 'long',
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                        }),
+                        title: targetDate === getTodayDate() 
+                               ? 'Aujourd\'hui' 
+                               : new Date(targetDate).toLocaleDateString(userLocale, { weekday: 'long', day: 'numeric', month: 'long' }),
                         date: targetDate,
                         data: flatData
                     }
@@ -148,7 +157,7 @@ export default function TodayRecords() {
                     <Text className="text-lg font-bold text-gray-800">{item.exerciseName}</Text>
                 </View>
             )}
-            <HistorySetItem item={item.set} index={item.setIndex} />
+            <HistorySetItem item={item.set} index={item.setIndex} trackingMode={item.trackingMode} />
         </View>
     );
 

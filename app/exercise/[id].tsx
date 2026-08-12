@@ -285,6 +285,7 @@ export default function Details() {
                                         onWeightChange={(text) => handleChangeSerie(index, 'weight', text)}
                                         onSideChange={() => handleChangeSide(index)}
                                         isUnilateral={unilateral}
+                                        trackingMode={exercise?.trackingMode || 'WEIGHT_REPS'}
                                     />
                                 </Swipeable>
                             </Animated.View>

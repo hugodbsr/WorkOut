@@ -3,7 +3,7 @@ import React, { useLayoutEffect, useMemo, useState } from 'react'
 import { useNavigation } from "expo-router";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import useFetch from "@/services/useFetch";
-import { fetchExerciseTypeJson, fetchMuscleJsonList } from "@/services/api";
+import { fetchExerciseTypeJson, fetchMuscleJsonList, fetchTrackingModesJson } from "@/services/api";
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Checkbox } from 'expo-checkbox';
 import { addUserExercise } from "@/services/storage";
@@ -29,6 +29,7 @@ export default function Details() {
 
     const { data: type } = useFetch(() => fetchExerciseTypeJson());
     const { data: muscle } = useFetch(() => fetchMuscleJsonList());
+    const { data: trackingModesData } = useFetch(() => fetchTrackingModesJson());
 
     const [exerciseName, setExerciseName] = useState<string>();
     const [exerciseDesc, setExerciseDesc] = useState<string>();
@@ -41,10 +42,12 @@ export default function Details() {
     const uiExerciseType = useUITranslation("exercise_type", "Exercise's type");
     const uiSelectMuscle = useUITranslation("select_muscle", "Select a muscle");
     const uiSelectType = useUITranslation("select_type", "Select type(s)");
+    const uiTrackingMode = useUITranslation("tracking_mode", "Tracking Mode");
     const uiUnilateral = useUITranslation("unilateral", "Unilateral");
     const uiAddExerciseButton = useUITranslation("add_exercise_button", "Add");
     const uiFillAllFields = useUITranslation("fill_all_fields", "Please fill all fields");
     const [selectedMuscle, setSelectedMuscle] = useState(query || null);
+    const [selectedTrackingMode, setSelectedTrackingMode] = useState("WEIGHT_REPS");
     const [selectedType, setSelectedType] = useState([]);
     const [muscleOpen, setMuscleOpen] = useState(false);
     const [typeOpen, setTypeOpen] = useState(false);
@@ -75,6 +78,7 @@ export default function Details() {
             image: imageUri || "cable_triceps_extension.gif",
             exerciseTypeKey: selectedType,
             muscleGroupId: selectedMuscle,
+            trackingMode: selectedTrackingMode,
             createdByUser: true,
             unilateral: isUnilateral,
         }
@@ -234,6 +238,29 @@ export default function Details() {
                             </TouchableOpacity>
                         );
                     })}
+                </View>
+
+                {/* Mode de Suivi (Tracking Mode) */}
+                <Text className="text-gray-700 text-base font-semibold mb-2 ml-1 mt-5">{uiTrackingMode}</Text>
+                <View className="flex-row flex-wrap mt-1">
+                    {(trackingModesData || []).map((item) => (
+                        <TouchableOpacity
+                            key={item.value}
+                            onPress={() => setSelectedTrackingMode(item.value)}
+                            activeOpacity={0.7}
+                            className={`px-4 py-2 mr-2 mb-3 rounded-full border ${
+                                selectedTrackingMode === item.value
+                                    ? 'bg-[#3456AD] border-[#3456AD]'
+                                    : 'bg-gray-50 border-gray-200'
+                            }`}
+                        >
+                            <Text className={`font-medium ${
+                                selectedTrackingMode === item.value ? 'text-white' : 'text-gray-600'
+                            }`}>
+                                {item.label}
+                            </Text>
+                        </TouchableOpacity>
+                    ))}
                 </View>
 
                 {/* Unilatéral */}

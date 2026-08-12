@@ -9,27 +9,33 @@
     { "id": 7, "nameKey": "muscle.abs", "image": "abs.png" },
     { "id": 8, "nameKey": "muscle.other", "image": "other.png" }
   ],
+  "trackingModes": [
+    { "id": "WEIGHT_REPS", "nameKey": "trackingMode.weight_reps" },
+    { "id": "REPS_ONLY", "nameKey": "trackingMode.reps_only" },
+    { "id": "TIME_WEIGHT", "nameKey": "trackingMode.time_weight" },
+    { "id": "TIME_DISTANCE", "nameKey": "trackingMode.time_distance" }
+  ],
   "exerciseType": [
-    {"id": 1, "nameKey": "type.weight_training"},
-    {"id": 2, "nameKey": "type.bodyweight"},
-    {"id": 3, "nameKey": "type.bench"},
-    {"id": 4, "nameKey": "type.cardio"},
-    {"id": 5, "nameKey": "type.flexibility"},
-    {"id": 6, "nameKey": "type.functional"},
-    {"id": 7, "nameKey": "type.powerlifting"},
-    {"id": 8, "nameKey": "type.olympic_lifting"},
-    {"id": 9, "nameKey": "type.isometric"},
-    {"id": 10, "nameKey": "type.plyometric"},
-    {"id": 11, "nameKey": "type.resistance_band"},
-    {"id": 12, "nameKey": "type.kettlebell"},
-    {"id": 13, "nameKey": "type.cable_machine"},
-    {"id": 14, "nameKey": "type.machine_based"},
-    {"id": 15, "nameKey": "type.free_weights"},
-    {"id": 16, "nameKey": "type.core_training"},
-    {"id": 17, "nameKey": "type.high_intensity"},
-    {"id": 18, "nameKey": "type.low_impact"},
-    {"id": 19, "nameKey": "type.stability"},
-    {"id": 20, "nameKey": "type.mobility"}
+    {"id": 1, "nameKey": "type.weight_training", "trackingModeId": "WEIGHT_REPS"},
+    {"id": 2, "nameKey": "type.bodyweight", "trackingModeId": "REPS_ONLY"},
+    {"id": 3, "nameKey": "type.bench", "trackingModeId": "WEIGHT_REPS"},
+    {"id": 4, "nameKey": "type.cardio", "trackingModeId": "TIME_DISTANCE"},
+    {"id": 5, "nameKey": "type.flexibility", "trackingModeId": "TIME_WEIGHT"},
+    {"id": 6, "nameKey": "type.functional", "trackingModeId": "WEIGHT_REPS"},
+    {"id": 7, "nameKey": "type.powerlifting", "trackingModeId": "WEIGHT_REPS"},
+    {"id": 8, "nameKey": "type.olympic_lifting", "trackingModeId": "WEIGHT_REPS"},
+    {"id": 9, "nameKey": "type.isometric", "trackingModeId": "TIME_WEIGHT"},
+    {"id": 10, "nameKey": "type.plyometric", "trackingModeId": "REPS_ONLY"},
+    {"id": 11, "nameKey": "type.resistance_band", "trackingModeId": "WEIGHT_REPS"},
+    {"id": 12, "nameKey": "type.kettlebell", "trackingModeId": "WEIGHT_REPS"},
+    {"id": 13, "nameKey": "type.cable_machine", "trackingModeId": "WEIGHT_REPS"},
+    {"id": 14, "nameKey": "type.machine_based", "trackingModeId": "WEIGHT_REPS"},
+    {"id": 15, "nameKey": "type.free_weights", "trackingModeId": "WEIGHT_REPS"},
+    {"id": 16, "nameKey": "type.core_training", "trackingModeId": "WEIGHT_REPS"},
+    {"id": 17, "nameKey": "type.high_intensity", "trackingModeId": "WEIGHT_REPS"},
+    {"id": 18, "nameKey": "type.low_impact", "trackingModeId": "WEIGHT_REPS"},
+    {"id": 19, "nameKey": "type.stability", "trackingModeId": "TIME_WEIGHT"},
+    {"id": 20, "nameKey": "type.mobility", "trackingModeId": "WEIGHT_REPS"}
   ],
   "exercises": [
     {
@@ -642,6 +648,36 @@
       "image": "oblique_crunch.webp",
       "exerciseTypeKey": "2",
       "muscleGroupId": 7,
+      "createdByUser": false,
+      "unilateral": false
+    },
+    {
+      "id": 64,
+      "nameKey": "exercise.running.name",
+      "descriptionKey": "exercise.running.description",
+      "image": "running.webp",
+      "exerciseTypeKey": "4",
+      "muscleGroupId": 8,
+      "createdByUser": false,
+      "unilateral": false
+    },
+    {
+      "id": 65,
+      "nameKey": "exercise.cycling.name",
+      "descriptionKey": "exercise.cycling.description",
+      "image": "cycling.webp",
+      "exerciseTypeKey": "4",
+      "muscleGroupId": 8,
+      "createdByUser": false,
+      "unilateral": false
+    },
+    {
+      "id": 66,
+      "nameKey": "exercise.swimming.name",
+      "descriptionKey": "exercise.swimming.description",
+      "image": "swimming.webp",
+      "exerciseTypeKey": "4",
+      "muscleGroupId": 8,
       "createdByUser": false,
       "unilateral": false
     }

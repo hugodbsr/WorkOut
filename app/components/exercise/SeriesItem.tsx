@@ -11,6 +11,8 @@ type LocalSet = {
     side: Side;
 };
 
+type TrackingMode = 'WEIGHT_REPS' | 'REPS_ONLY' | 'TIME_WEIGHT' | 'TIME_DISTANCE';
+
 type SeriesItemProps = {
     serie: LocalSet;
     index: number;
@@ -20,9 +22,8 @@ type SeriesItemProps = {
     onWeightChange: (text: string) => void;
     onSideChange: () => void;
     isUnilateral: boolean;
+    trackingMode?: TrackingMode;
 };
-
-
 
 // eslint-disable-next-line react/display-name
 export const SeriesItem: React.FC<SeriesItemProps> = React.memo(({
@@ -34,10 +35,15 @@ export const SeriesItem: React.FC<SeriesItemProps> = React.memo(({
                                                                      onWeightChange,
                                                                      onSideChange,
                                                                      isUnilateral,
+                                                                     trackingMode = 'WEIGHT_REPS',
                                                                  }) => {
     const uiSerieNumber = useUITranslation('serie_number', 'Série n°');
     const uiLeftSide = useUITranslation('left_side', 'L');
     const uiRightSide = useUITranslation('right_side', 'R');
+
+    const isCardio = trackingMode === 'TIME_DISTANCE';
+    const isTimeWeight = trackingMode === 'TIME_WEIGHT';
+    const isRepsOnly = trackingMode === 'REPS_ONLY';
 
     return (
         <View className="flex-row items-center justify-between bg-white px-4 py-3 mx-4 my-2 rounded-2xl shadow-sm border border-gray-100">
@@ -51,15 +57,30 @@ export const SeriesItem: React.FC<SeriesItemProps> = React.memo(({
                 <RepWeightInput
                     value={serie.reps}
                     onChangeText={onRepChange}
-                    placeholder={placeholderReps || '10'}
+                    placeholder={placeholderReps || (isCardio || isTimeWeight ? '30' : '10')}
                 />
-                <Text className="text-2xl font-bold text-gray-300 mx-2.5">×</Text>
-                <RepWeightInput
-                    value={serie.weight}
-                    onChangeText={onWeightChange}
-                    placeholder={placeholderWeight || '30'}
-                />
-                <Text className="text-lg font-bold text-gray-400 ml-2">kg</Text>
+                {(isCardio || isTimeWeight) && (
+                    <Text className="text-lg font-bold text-gray-400 mx-1">{isTimeWeight ? 'sec' : 'min'}</Text>
+                )}
+                
+                {isRepsOnly ? (
+                    <Text className="text-lg font-bold text-gray-400 ml-1">reps</Text>
+                ) : null}
+
+                {!isRepsOnly && (
+                    <Text className="text-2xl font-bold text-gray-300 mx-2.5">{isCardio ? '-' : '×'}</Text>
+                )}
+
+                {!isRepsOnly && (
+                    <RepWeightInput
+                        value={serie.weight}
+                        onChangeText={onWeightChange}
+                        placeholder={placeholderWeight || (isCardio ? '5' : '30')}
+                    />
+                )}
+                {!isRepsOnly && (
+                    <Text className="text-lg font-bold text-gray-400 ml-2">{isCardio ? 'km' : 'kg'}</Text>
+                )}
             </View>
 
             {/* Unilateral toggle if needed */}

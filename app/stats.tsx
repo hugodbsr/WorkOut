@@ -57,13 +57,25 @@ export default function Stats() {
                         exerciseStats[exerciseId] = { volume: 0, sets: 0 };
                     }
 
+                    let trackingMode = 'WEIGHT_REPS';
+                    try {
+                        const exData = await fetchExerciseJson({ query: exerciseId });
+                        if (exData.trackingMode) trackingMode = exData.trackingMode;
+                    } catch (e) {}
+
                     for (const session of entry.sessions) {
                         if (session.sets.length > 0) {
                             uniqueDates.add(session.date);
                         }
                         for (const set of session.sets) {
                             totalSets++;
-                            const vol = set.reps * set.weight;
+                            
+                            // Ne calculer le volume en kg que pour les modes pertinents
+                            let vol = 0;
+                            if (trackingMode === 'WEIGHT_REPS') {
+                                vol = Number(set.reps) * Number(set.weight);
+                            }
+                            
                             totalVolume += vol;
                             exerciseStats[exerciseId].volume += vol;
                             exerciseStats[exerciseId].sets += 1;
@@ -73,6 +85,7 @@ export default function Stats() {
 
                 // Get top 3 exercises by volume
                 const sortedExercises = Object.entries(exerciseStats)
+                    .filter(a => a[1].volume > 0)
                     .sort((a, b) => b[1].volume - a[1].volume)
                     .slice(0, 3);
                 

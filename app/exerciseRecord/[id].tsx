@@ -67,6 +67,7 @@ export default function RecordScreen() {
 
             let max1RM = 0;
 
+            const trackingMode = exercise?.trackingMode || 'WEIGHT_REPS';
             const sortedSessions = history.sessions.sort(
                 (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
             );
@@ -75,7 +76,7 @@ export default function RecordScreen() {
                 session.sets.forEach(set => {
                     const weight = set.weight || 0;
                     const reps = set.reps || 0;
-                    if (weight > 0 && reps > 0) {
+                    if (trackingMode === 'WEIGHT_REPS' && weight > 0 && reps > 0) {
                         const estimated1RM = reps === 1 ? weight : weight * (1 + reps / 30);
                         if (estimated1RM > max1RM) {
                             max1RM = estimated1RM;
@@ -99,7 +100,7 @@ export default function RecordScreen() {
         };
 
         getHistory();
-    }, [id]);
+    }, [id, exercise]);
 
     if (exerciseLoading) {
         return <ActivityIndicator size="large" color="blue" />;
@@ -134,7 +135,7 @@ export default function RecordScreen() {
                         keyExtractor={(item, index) => item.id || `${item.reps}-${item.weight}-${index}-${item.side || ''}`}
 
                         renderItem={({ item, index }) => (
-                            <HistorySetItem item={item} index={index} />
+                            <HistorySetItem item={item} index={index} trackingMode={exercise?.trackingMode} />
                         )}
                         renderSectionHeader={({ section: { title } }) => (
                             <HistorySectionHeader title={title} />

@@ -15,12 +15,15 @@ import HistorySectionHeader from '@/app/components/history/HistorySectionHeader'
 import { Feather } from '@expo/vector-icons';
 import { useBannerActive } from "@/app/context/TimerContext";
 
+type TrackingMode = 'WEIGHT_REPS' | 'REPS_ONLY' | 'TIME_WEIGHT' | 'TIME_DISTANCE';
+
 type ExerciseSetData = {
     exerciseId: string;
     exerciseName: string;
     set: Set;
     setIndex: number;
     isFirstOfExercise: boolean;
+    trackingMode?: TrackingMode;
 };
 
 type DaySection = {
@@ -43,14 +46,17 @@ export default function Records() {
             try {
                 const allData = await getAllExerciseHistory();
 
-                // Récupérer les noms des exercices
-                const exerciseNames: { [id: string]: string } = {};
+                // Récupérer les noms des exercices et leur mode de comptage
+                const exerciseInfo: { [id: string]: { name: string, trackingMode: TrackingMode } } = {};
                 for (const exerciseId of Object.keys(allData)) {
                     try {
                         const exerciseData = await fetchExerciseJson({ query: exerciseId });
-                        exerciseNames[exerciseId] = exerciseData.name;
+                        exerciseInfo[exerciseId] = { 
+                            name: exerciseData.name, 
+                            trackingMode: (exerciseData.trackingMode || 'WEIGHT_REPS') as TrackingMode 
+                        };
                     } catch {
-                        exerciseNames[exerciseId] = exerciseId;
+                        exerciseInfo[exerciseId] = { name: exerciseId, trackingMode: 'WEIGHT_REPS' };
                     }
                 }
 
@@ -80,10 +86,11 @@ export default function Records() {
                         sets.forEach((set, index) => {
                             flatData.push({
                                 exerciseId,
-                                exerciseName: exerciseNames[exerciseId] || exerciseId,
+                                exerciseName: exerciseInfo[exerciseId]?.name || exerciseId,
                                 set,
                                 setIndex: index,
-                                isFirstOfExercise: index === 0
+                                isFirstOfExercise: index === 0,
+                                trackingMode: exerciseInfo[exerciseId]?.trackingMode || 'WEIGHT_REPS'
                             });
                         });
                     }
@@ -129,7 +136,7 @@ export default function Records() {
                     <Text className="text-lg font-bold text-gray-800">{item.exerciseName}</Text>
                 </View>
             )}
-            <HistorySetItem item={item.set} index={item.setIndex} />
+            <HistorySetItem item={item.set} index={item.setIndex} trackingMode={item.trackingMode} />
         </View>
     );
 

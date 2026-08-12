@@ -105,12 +105,18 @@ export const fetchExerciseJson = async ({ query }: { query: string }) => {
         throw new Error("exercice hasn't been found");
     }
 
+    const exerciseTypeObj = exercisesData.exerciseType.find(
+        (t: any) => t.id.toString() === (exercise as any).exerciseTypeKey?.toString()
+    );
+
     return {
         id: exercise.id,
         name: await getTranslatedValue(exercise.nameKey, translations),
         image: exercise.image,
         description: await getTranslatedValue(exercise.descriptionKey, translations),
-        unilateral: exercise.unilateral
+        unilateral: exercise.unilateral,
+        exerciseTypeKey: (exercise as any).exerciseTypeKey,
+        trackingMode: (exercise as any).trackingMode || (exerciseTypeObj ? (exerciseTypeObj as any).trackingModeId : 'WEIGHT_REPS')
     };
 };
 
@@ -126,4 +132,18 @@ export const fetchExerciseTypeJson = async () => {
     );
 
     return types;
+};
+
+export const fetchTrackingModesJson = async () => {
+    const languageCode = getLanguageCode();
+    const translations = await loadTranslations(languageCode);
+
+    const modes = await Promise.all(
+        (exercisesData.trackingModes || []).map(async (mode: any) => ({
+            value: mode.id,
+            label: await getTranslatedValue(mode.nameKey, translations),
+        }))
+    );
+
+    return modes;
 };
