@@ -44,3 +44,6 @@ ios/
 # Fichiers et dossiers d'IDE / OS
 .idea/
 .directory
+
+# Fichiers de test temporaires
+test.webp
