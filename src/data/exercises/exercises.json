@@ -9,6 +9,12 @@
     { "id": 7, "nameKey": "muscle.abs", "image": "abs.png" },
     { "id": 8, "nameKey": "muscle.other", "image": "other.png" }
   ],
+  "cardioGroups": [
+    { "id": 10, "nameKey": "cardio.running", "image": "running.webp" },
+    { "id": 11, "nameKey": "cardio.cycling", "image": "cycling.webp" },
+    { "id": 12, "nameKey": "cardio.swimming", "image": "swimming.webp" },
+    { "id": 13, "nameKey": "cardio.other", "image": "other.webp" }
+  ],
   "trackingModes": [
     { "id": "WEIGHT_REPS", "nameKey": "trackingMode.weight_reps" },
     { "id": "REPS_ONLY", "nameKey": "trackingMode.reps_only" },
@@ -657,7 +663,7 @@
       "descriptionKey": "exercise.running.description",
       "image": "running.webp",
       "exerciseTypeKey": "4",
-      "muscleGroupId": 8,
+      "muscleGroupId": 10,
       "createdByUser": false,
       "unilateral": false
     },
@@ -667,7 +673,7 @@
       "descriptionKey": "exercise.cycling.description",
       "image": "cycling.webp",
       "exerciseTypeKey": "4",
-      "muscleGroupId": 8,
+      "muscleGroupId": 11,
       "createdByUser": false,
       "unilateral": false
     },
@@ -677,7 +683,177 @@
       "descriptionKey": "exercise.swimming.description",
       "image": "swimming.webp",
       "exerciseTypeKey": "4",
-      "muscleGroupId": 8,
+      "muscleGroupId": 12,
+      "createdByUser": false,
+      "unilateral": false
+    },
+    {
+      "id": 67,
+      "nameKey": "exercise.elliptical.name",
+      "descriptionKey": "exercise.elliptical.description",
+      "image": "elliptical.webp",
+      "exerciseTypeKey": "4",
+      "muscleGroupId": 13,
+      "createdByUser": false,
+      "unilateral": false
+    },
+    {
+      "id": 68,
+      "nameKey": "exercise.rowing_machine.name",
+      "descriptionKey": "exercise.rowing_machine.description",
+      "image": "rowing_machine.webp",
+      "exerciseTypeKey": "4",
+      "muscleGroupId": 13,
+      "createdByUser": false,
+      "unilateral": false
+    },
+    {
+      "id": 69,
+      "nameKey": "exercise.jump_rope.name",
+      "descriptionKey": "exercise.jump_rope.description",
+      "image": "jump_rope.webp",
+      "exerciseTypeKey": "4",
+      "muscleGroupId": 13,
+      "createdByUser": false,
+      "unilateral": false
+    },
+    {
+      "id": 70,
+      "nameKey": "exercise.stair_climber.name",
+      "descriptionKey": "exercise.stair_climber.description",
+      "image": "stair_climber.webp",
+      "exerciseTypeKey": "4",
+      "muscleGroupId": 13,
+      "createdByUser": false,
+      "unilateral": false
+    },
+    {
+      "id": 71,
+      "nameKey": "exercise.walking.name",
+      "descriptionKey": "exercise.walking.description",
+      "image": "walking.webp",
+      "exerciseTypeKey": "4",
+      "muscleGroupId": 10,
+      "createdByUser": false,
+      "unilateral": false
+    },
+    {
+      "id": 72,
+      "nameKey": "exercise.hiit.name",
+      "descriptionKey": "exercise.hiit.description",
+      "image": "hiit.webp",
+      "exerciseTypeKey": "4",
+      "muscleGroupId": 13,
+      "createdByUser": false,
+      "unilateral": false
+    },
+    {
+      "id": 73,
+      "nameKey": "exercise.breaststroke.name",
+      "descriptionKey": "exercise.breaststroke.description",
+      "image": "breaststroke.webp",
+      "exerciseTypeKey": "4",
+      "muscleGroupId": 12,
+      "createdByUser": false,
+      "unilateral": false
+    },
+    {
+      "id": 74,
+      "nameKey": "exercise.freestyle_swimming.name",
+      "descriptionKey": "exercise.freestyle_swimming.description",
+      "image": "freestyle_swimming.webp",
+      "exerciseTypeKey": "4",
+      "muscleGroupId": 12,
+      "createdByUser": false,
+      "unilateral": false
+    },
+    {
+      "id": 75,
+      "nameKey": "exercise.backstroke.name",
+      "descriptionKey": "exercise.backstroke.description",
+      "image": "backstroke.webp",
+      "exerciseTypeKey": "4",
+      "muscleGroupId": 12,
+      "createdByUser": false,
+      "unilateral": false
+    },
+    {
+      "id": 76,
+      "nameKey": "exercise.butterfly_swimming.name",
+      "descriptionKey": "exercise.butterfly_swimming.description",
+      "image": "butterfly_swimming.webp",
+      "exerciseTypeKey": "4",
+      "muscleGroupId": 12,
+      "createdByUser": false,
+      "unilateral": false
+    },
+    {
+      "id": 77,
+      "nameKey": "exercise.road_cycling.name",
+      "descriptionKey": "exercise.road_cycling.description",
+      "image": "road_cycling.webp",
+      "exerciseTypeKey": "4",
+      "muscleGroupId": 11,
+      "createdByUser": false,
+      "unilateral": false
+    },
+    {
+      "id": 78,
+      "nameKey": "exercise.mountain_biking.name",
+      "descriptionKey": "exercise.mountain_biking.description",
+      "image": "mountain_biking.webp",
+      "exerciseTypeKey": "4",
+      "muscleGroupId": 11,
+      "createdByUser": false,
+      "unilateral": false
+    },
+    {
+      "id": 79,
+      "nameKey": "exercise.stationary_bike.name",
+      "descriptionKey": "exercise.stationary_bike.description",
+      "image": "stationary_bike.webp",
+      "exerciseTypeKey": "4",
+      "muscleGroupId": 11,
+      "createdByUser": false,
+      "unilateral": false
+    },
+    {
+      "id": 80,
+      "nameKey": "exercise.treadmill_running.name",
+      "descriptionKey": "exercise.treadmill_running.description",
+      "image": "treadmill_running.webp",
+      "exerciseTypeKey": "4",
+      "muscleGroupId": 10,
+      "createdByUser": false,
+      "unilateral": false
+    },
+    {
+      "id": 81,
+      "nameKey": "exercise.trail_running.name",
+      "descriptionKey": "exercise.trail_running.description",
+      "image": "trail_running.webp",
+      "exerciseTypeKey": "4",
+      "muscleGroupId": 10,
+      "createdByUser": false,
+      "unilateral": false
+    },
+    {
+      "id": 82,
+      "nameKey": "exercise.track_sprinting.name",
+      "descriptionKey": "exercise.track_sprinting.description",
+      "image": "track_sprinting.webp",
+      "exerciseTypeKey": "4",
+      "muscleGroupId": 10,
+      "createdByUser": false,
+      "unilateral": false
+    },
+    {
+      "id": 83,
+      "nameKey": "exercise.long_distance_running.name",
+      "descriptionKey": "exercise.long_distance_running.description",
+      "image": "long_distance_running.webp",
+      "exerciseTypeKey": "4",
+      "muscleGroupId": 10,
       "createdByUser": false,
       "unilateral": false
     }

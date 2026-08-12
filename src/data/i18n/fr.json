@@ -79,6 +79,12 @@
     "abs": "Abdominaux",
     "other": "Autre"
   },
+  "cardio": {
+    "running": "Course à pied",
+    "cycling": "Cyclisme",
+    "swimming": "Natation",
+    "other": "Machines & Autre"
+  },
   "type": {
     "weight_training": "Musculation",
     "bodyweight": "Poids du corps",
@@ -365,6 +371,74 @@
     "swimming": {
       "name": "Piscine",
       "description": "Exercice de natation."
+    },
+    "elliptical": {
+      "name": "Vélo elliptique",
+      "description": "Appareil de cardio sollicitant l'ensemble du corps sans impact."
+    },
+    "rowing_machine": {
+      "name": "Rameur",
+      "description": "Exercice cardiovasculaire complet qui travaille le dos, les jambes et les bras."
+    },
+    "jump_rope": {
+      "name": "Corde à sauter",
+      "description": "Exercice intense de cardio améliorant l'agilité et l'endurance."
+    },
+    "stair_climber": {
+      "name": "Escalier",
+      "description": "Machine simulant la montée d'escaliers pour le cardio et le renforcement des jambes."
+    },
+    "walking": {
+      "name": "Marche",
+      "description": "Marche rapide ou sur tapis pour un cardio à faible impact."
+    },
+    "hiit": {
+      "name": "HIIT",
+      "description": "Entraînement fractionné de haute intensité alternant efforts intenses et récupération."
+    },
+    "breaststroke": {
+      "name": "Brasse",
+      "description": "Natation classique à la brasse."
+    },
+    "freestyle_swimming": {
+      "name": "Crawl",
+      "description": "Nage libre."
+    },
+    "backstroke": {
+      "name": "Dos crawlé",
+      "description": "Nage sur le dos."
+    },
+    "butterfly_swimming": {
+      "name": "Papillon",
+      "description": "Nage papillon, très exigeante."
+    },
+    "road_cycling": {
+      "name": "Vélo sur route",
+      "description": "Cyclisme classique sur asphalte."
+    },
+    "mountain_biking": {
+      "name": "VTT",
+      "description": "Vélo tout-terrain / en montagne."
+    },
+    "stationary_bike": {
+      "name": "Vélo d'appartement",
+      "description": "Vélo en salle ou d'intérieur."
+    },
+    "treadmill_running": {
+      "name": "Tapis de course",
+      "description": "Course en salle."
+    },
+    "trail_running": {
+      "name": "Trail",
+      "description": "Course en nature, avec dénivelé."
+    },
+    "track_sprinting": {
+      "name": "Sprint sur piste",
+      "description": "Course de vitesse sur courte distance."
+    },
+    "long_distance_running": {
+      "name": "Course de fond",
+      "description": "Endurance longue (semi-marathon, marathon)."
     }
   },
   "trackingMode": {

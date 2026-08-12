@@ -53,13 +53,34 @@ export const fetchMuscleJsonList = async () => {
     return muscles;
 };
 
+export const fetchCardioGroupsJsonList = async () => {
+    const languageCode = getLanguageCode();
+    const translations = await loadTranslations(languageCode);
+
+    const cardioGroups = await Promise.all(
+        exercisesData.cardioGroups.map(async (group: MuscleGroup) => ({
+            id: group.id,
+            name: await getTranslatedValue(group.nameKey, translations),
+            image: group.image,
+        }))
+    );
+
+    return cardioGroups;
+};
+
 export const fetchMuscleJson = async ({ query }: { query: string }) => {
     const languageCode = getLanguageCode();
     const translations = await loadTranslations(languageCode);
 
-    const muscle = exercisesData.muscleGroups.find(
+    let muscle = exercisesData.muscleGroups.find(
         (msc: MuscleGroup) => msc.id.toString() === query
     );
+
+    if (!muscle) {
+        muscle = exercisesData.cardioGroups.find(
+            (msc: MuscleGroup) => msc.id.toString() === query
+        );
+    }
 
     if (!muscle) {
         throw new Error("muscle not found");
@@ -84,11 +105,18 @@ export const fetchExerciseListJson = async ({ query }: { query: string }) => {
         throw new Error("no exercice for this muscle");
     }
 
-    return await Promise.all(muscleList.map(async (exercise: Exercise) => ({
-        id: exercise.id,
-        name: await getTranslatedValue(exercise.nameKey, translations),
-        image: exercise.image,
-    })));
+    return await Promise.all(muscleList.map(async (exercise: Exercise) => {
+        const exerciseTypeObj = exercisesData.exerciseType.find(
+            (t: any) => t.id.toString() === (exercise as any).exerciseTypeKey?.toString()
+        );
+        return {
+            id: exercise.id,
+            name: await getTranslatedValue(exercise.nameKey, translations),
+            image: exercise.image,
+            exerciseTypeKey: (exercise as any).exerciseTypeKey,
+            trackingMode: (exercise as any).trackingMode || (exerciseTypeObj ? (exerciseTypeObj as any).trackingModeId : 'WEIGHT_REPS')
+        };
+    }));
 };
 
 export const fetchExerciseJson = async ({ query }: { query: string }) => {

@@ -118,7 +118,15 @@ export default function RootLayout() {
             />
             <Stack.Screen
               name="add"
-              options={{ title: "Add" }}
+              options={{ title: "Type d'entraînement" }}
+            />
+            <Stack.Screen
+              name="muscles"
+              options={{ title: "Musculation" }}
+            />
+            <Stack.Screen
+              name="cardio"
+              options={{ title: "Cardio" }}
             />
             <Stack.Screen
               name="records"

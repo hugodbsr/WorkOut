@@ -1,90 +1,65 @@
-import { ActivityIndicator, FlatList, Text, TouchableOpacity, View } from "react-native";
-import React, { useLayoutEffect } from 'react'
-import { useRouter } from "expo-router";
-import useFetch from "@/services/useFetch";
-import { fetchMuscleJsonList } from "@/services/api";
-import { Image } from "expo-image";
-import { muscleGroupImages } from "@/src/constants/images";
-import { useUITranslation } from "@/services/useUITranslation";
+import React, { useLayoutEffect } from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { useRouter, useNavigation } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Feather } from '@expo/vector-icons';
-import { useNavigation } from "expo-router";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useUITranslation } from '@/services/useUITranslation';
+import { useBannerActive } from '@/app/context/TimerContext';
 
-import { useBannerActive } from "@/app/context/TimerContext";
-
-function getMuscleImage(name?: string) {
-    if (name && muscleGroupImages[name as keyof typeof muscleGroupImages]) {
-        return muscleGroupImages[name as keyof typeof muscleGroupImages];
-    } else {
-        return undefined;
-    }
-}
-
-export default function Add() {
+export default function WorkoutType() {
     const router = useRouter();
     const navigation = useNavigation();
-    const chooseExerciseText = useUITranslation('choose_exercise', 'Choisissez un exercice');
+    
+    const titleText = useUITranslation('choose_workout_type', 'Type d\'entraînement');
     
     const bannerActive = useBannerActive();
-    
     const bannerGap = bannerActive ? 52 : 0;
 
     useLayoutEffect(() => {
         navigation.setOptions({
             headerTitle: () => (
-                <Text className="font-bold text-xl text-white italic">{chooseExerciseText}</Text>
+                <Text className="font-bold text-xl text-white italic">{titleText}</Text>
             ),
         });
-    }, [navigation, chooseExerciseText]);
-
-    const {
-        data: muscleGroups,
-        loading: muscleGroupsLoading,
-        error: muscleGroupsError,
-    } = useFetch(fetchMuscleJsonList);
-
-    if (muscleGroupsLoading) {
-        return (
-            <SafeAreaView className="flex-1 bg-gray-100 justify-center items-center">
-                <ActivityIndicator size="large" color="#3456AD" />
-            </SafeAreaView>
-        );
-    }
-
-    if (muscleGroupsError) {
-        return (
-            <SafeAreaView className="flex-1 bg-gray-100 justify-center items-center">
-                <Text className="text-red-500 font-medium">Erreur : {muscleGroupsError?.message}</Text>
-            </SafeAreaView>
-        );
-    }
+    }, [navigation, titleText]);
 
     return (
-        <SafeAreaView className="flex-1 bg-gray-100" edges={['bottom', 'left', 'right']}>
-            <FlatList
-                data={muscleGroups}
-                contentContainerStyle={{ paddingTop: 15 + bannerGap, paddingBottom: 12 }}
-                keyExtractor={(item) => item.id.toString()}
-                renderItem={({ item }) => (
-                    <TouchableOpacity 
-                        onPress={() => router.push(`/exerciseList/${item.id}`)}
-                        className="bg-white mx-4 mb-2.5 px-4 py-3 rounded-2xl flex-row items-center shadow-sm border border-gray-100"
-                        activeOpacity={0.7}
-                    >
-                        <View className="bg-blue-50 w-14 h-14 rounded-full items-center justify-center mr-4">
-                            <Image
-                                source={getMuscleImage(item.image)}
-                                style={{ width: 44, height: 44 }}
-                                contentFit="contain"
-                            />
+        <SafeAreaView className="flex-1 bg-gray-100 p-4" edges={['bottom', 'left', 'right']}>
+            <View style={{ paddingTop: 15 + bannerGap, flex: 1, gap: 16 }}>
+                <TouchableOpacity 
+                    onPress={() => router.push('/muscles')}
+                    className="bg-white p-6 rounded-3xl flex-row items-center justify-between shadow-sm border border-gray-100 flex-1 max-h-[160px]"
+                    activeOpacity={0.7}
+                >
+                    <View className="flex-row items-center gap-4 flex-1">
+                        <View className="bg-blue-50 w-20 h-20 rounded-full items-center justify-center">
+                            <MaterialCommunityIcons name="dumbbell" size={40} color="#3456AD" />
                         </View>
                         <View className="flex-1">
-                            <Text className="text-[19px] font-bold text-gray-800">{item.name}</Text>
+                            <Text className="text-2xl font-bold text-gray-800">Musculation</Text>
+                            <Text className="text-gray-500 mt-1">Exercices avec poids ou au poids du corps</Text>
                         </View>
-                        <Feather name="chevron-right" size={22} color="#d1d5db" />
-                    </TouchableOpacity>
-                )}
-            />
+                    </View>
+                    <MaterialCommunityIcons name="chevron-right" size={28} color="#d1d5db" />
+                </TouchableOpacity>
+
+                <TouchableOpacity 
+                    onPress={() => router.push('/cardio')}
+                    className="bg-white p-6 rounded-3xl flex-row items-center justify-between shadow-sm border border-gray-100 flex-1 max-h-[160px]"
+                    activeOpacity={0.7}
+                >
+                    <View className="flex-row items-center gap-4 flex-1">
+                        <View className="bg-red-50 w-20 h-20 rounded-full items-center justify-center">
+                            <MaterialCommunityIcons name="heart-pulse" size={40} color="#ef4444" />
+                        </View>
+                        <View className="flex-1">
+                            <Text className="text-2xl font-bold text-gray-800">Cardio</Text>
+                            <Text className="text-gray-500 mt-1">Exercices d'endurance et de résistance</Text>
+                        </View>
+                    </View>
+                    <MaterialCommunityIcons name="chevron-right" size={28} color="#d1d5db" />
+                </TouchableOpacity>
+            </View>
         </SafeAreaView>
     );
 }

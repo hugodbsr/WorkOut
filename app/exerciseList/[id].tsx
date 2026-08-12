@@ -1,8 +1,9 @@
 import { ActivityIndicator, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useCallback, useLayoutEffect } from 'react';
+import React, { useCallback, useLayoutEffect, useState, useMemo } from 'react';
+import DropDownPicker from 'react-native-dropdown-picker';
 import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
 import useFetch from "@/services/useFetch";
-import { fetchExerciseListJson, fetchMuscleJson } from "@/services/api";
+import { fetchExerciseListJson, fetchMuscleJson, fetchExerciseTypeJson, fetchTrackingModesJson } from "@/services/api";
 import { useNavigation } from "expo-router";
 import { exerciseImages } from "@/src/constants/images";
 import { Image } from "expo-image";
@@ -11,7 +12,7 @@ import { Feather } from '@expo/vector-icons';
 import { useBannerActive } from "@/app/context/TimerContext";
 
 import { Alert } from 'react-native';
-import { deleteUserExercise } from '@/services/storage';
+import { deleteUserExercise, getAllExerciseHistory } from '@/services/storage';
 
 export default function Details() {
     const navigation = useNavigation();
@@ -43,8 +44,95 @@ export default function Details() {
             if (refetch) {
                 refetch();
             }
+            const fetchHistory = async () => {
+                const history = await getAllExerciseHistory();
+                setExerciseHistory(history);
+            };
+            fetchHistory();
         }, [refetch])
     );
+
+    const { data: exerciseTypes } = useFetch(fetchExerciseTypeJson);
+    const { data: trackingModes } = useFetch(fetchTrackingModesJson);
+
+    const [exerciseHistory, setExerciseHistory] = useState<any>({});
+
+    const [selectedType, setSelectedType] = useState<string | number | null>(null);
+    const [selectedTrackingMode, setSelectedTrackingMode] = useState<string | null>(null);
+    const [selectedSort, setSelectedSort] = useState<string | null>("");
+
+    const [typeOpen, setTypeOpen] = useState(false);
+    const [modeOpen, setModeOpen] = useState(false);
+    const [sortOpen, setSortOpen] = useState(false);
+
+    const sortItems = [
+        { label: "Défaut", value: "" },
+        { label: "Récents", value: "recent" },
+        { label: "A - Z", value: "az" },
+        { label: "Z - A", value: "za" },
+    ];
+
+    const typeItems = useMemo(() => {
+        if (!exercises || !exerciseTypes) return [];
+        const usedTypeKeys = new Set(exercises.map((ex: any) => ex.exerciseTypeKey?.toString()));
+        const filtered = exerciseTypes.filter((type: any) => usedTypeKeys.has(type.id.toString()));
+        return [
+            { label: "Toutes", value: "" },
+            ...filtered.map((t: any) => ({ label: t.name, value: t.id }))
+        ];
+    }, [exercises, exerciseTypes]);
+
+    const modeItems = useMemo(() => {
+        if (!exercises || !trackingModes) return [];
+        const usedModes = new Set(exercises.map((ex: any) => ex.trackingMode));
+        const filtered = trackingModes.filter((mode: any) => usedModes.has(mode.value));
+        return [
+            { label: "Tous", value: "" },
+            ...filtered
+        ];
+    }, [exercises, trackingModes]);
+
+    const onTypeOpen = useCallback(() => {
+        setModeOpen(false);
+        setSortOpen(false);
+    }, []);
+
+    const onModeOpen = useCallback(() => {
+        setTypeOpen(false);
+        setSortOpen(false);
+    }, []);
+
+    const onSortOpen = useCallback(() => {
+        setTypeOpen(false);
+        setModeOpen(false);
+    }, []);
+
+    const filteredExercises = useMemo(() => {
+        if (!exercises) return [];
+        let result = exercises.filter((ex: any) => {
+            if (selectedType && ex.exerciseTypeKey?.toString() !== selectedType.toString()) return false;
+            if (selectedTrackingMode && ex.trackingMode !== selectedTrackingMode) return false;
+            return true;
+        });
+
+        if (selectedSort === "az") {
+            result.sort((a: any, b: any) => a.name.localeCompare(b.name));
+        } else if (selectedSort === "za") {
+            result.sort((a: any, b: any) => b.name.localeCompare(a.name));
+        } else if (selectedSort === "recent") {
+            result.sort((a: any, b: any) => {
+                const historyA = exerciseHistory[a.id]?.sessions || [];
+                const historyB = exerciseHistory[b.id]?.sessions || [];
+                
+                const dateA = historyA.length > 0 ? Math.max(...historyA.map((s:any) => new Date(s.date).getTime())) : 0;
+                const dateB = historyB.length > 0 ? Math.max(...historyB.map((s:any) => new Date(s.date).getTime())) : 0;
+                
+                return dateB - dateA;
+            });
+        }
+
+        return result;
+    }, [exercises, selectedType, selectedTrackingMode, selectedSort, exerciseHistory]);
 
     useLayoutEffect(() => {
         if (group) {
@@ -110,10 +198,61 @@ export default function Details() {
     return (
         <SafeAreaView style={{ flex: 1 }} className="bg-gray-100" edges={['bottom', 'left', 'right']}>
             <View style={{ flex: 1 }}>
+                <View style={{ paddingTop: 15 + bannerGap, paddingHorizontal: 16, zIndex: 1000, flexDirection: 'row', gap: 5, paddingBottom: 5 }}>
+                    <View style={{ flex: 1, zIndex: 3000 }}>
+                        <DropDownPicker
+                            open={typeOpen}
+                            value={selectedType}
+                            items={typeItems}
+                            setOpen={setTypeOpen}
+                            setValue={setSelectedType}
+                            onOpen={onTypeOpen}
+                            placeholder="Type"
+                            style={{ borderColor: '#d1d5db', borderRadius: 12, minHeight: 40, backgroundColor: 'white' }}
+                            dropDownContainerStyle={{ borderColor: '#d1d5db', borderRadius: 12, backgroundColor: 'white' }}
+                            textStyle={{ fontSize: 13, color: '#4b5563' }}
+                            zIndex={3000}
+                            zIndexInverse={1000}
+                        />
+                    </View>
+                    <View style={{ flex: 1, zIndex: 2000 }}>
+                        <DropDownPicker
+                            open={modeOpen}
+                            value={selectedTrackingMode}
+                            items={modeItems}
+                            setOpen={setModeOpen}
+                            setValue={setSelectedTrackingMode}
+                            onOpen={onModeOpen}
+                            placeholder="Suivi"
+                            style={{ borderColor: '#d1d5db', borderRadius: 12, minHeight: 40, backgroundColor: 'white' }}
+                            dropDownContainerStyle={{ borderColor: '#d1d5db', borderRadius: 12, backgroundColor: 'white' }}
+                            textStyle={{ fontSize: 13, color: '#4b5563' }}
+                            zIndex={2000}
+                            zIndexInverse={2000}
+                        />
+                    </View>
+                    <View style={{ flex: 1, zIndex: 1000 }}>
+                        <DropDownPicker
+                            open={sortOpen}
+                            value={selectedSort}
+                            items={sortItems}
+                            setOpen={setSortOpen}
+                            setValue={setSelectedSort}
+                            onOpen={onSortOpen}
+                            placeholder="Tri"
+                            style={{ borderColor: '#d1d5db', borderRadius: 12, minHeight: 40, backgroundColor: 'white' }}
+                            dropDownContainerStyle={{ borderColor: '#d1d5db', borderRadius: 12, backgroundColor: 'white' }}
+                            textStyle={{ fontSize: 13, color: '#4b5563' }}
+                            zIndex={1000}
+                            zIndexInverse={3000}
+                        />
+                    </View>
+                </View>
+
                 <FlatList
-                    data={exercises}
+                    data={filteredExercises}
                     keyExtractor={(item) => item.id.toString()}
-                    contentContainerStyle={{ paddingBottom: 100, paddingTop: 15 + bannerGap }}
+                    contentContainerStyle={{ paddingBottom: 100, paddingTop: 10 }}
                     renderItem={({ item }) => {
                         const isCustom = isNaN(Number(item.id));
                         return (

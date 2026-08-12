@@ -79,6 +79,12 @@
     "abs": "Abs",
     "other": "Other"
   },
+  "cardio": {
+    "running": "Running",
+    "cycling": "Cycling",
+    "swimming": "Swimming",
+    "other": "Machines & Other"
+  },
   "type": {
     "weight_training": "Weight Training",
     "bodyweight": "Bodyweight",
@@ -365,6 +371,74 @@
     "swimming": {
       "name": "Swimming",
       "description": "Swimming exercise."
+    },
+    "elliptical": {
+      "name": "Elliptical",
+      "description": "Low-impact cardio machine that works the entire body."
+    },
+    "rowing_machine": {
+      "name": "Rowing Machine",
+      "description": "Full-body cardiovascular exercise that targets the back, legs, and arms."
+    },
+    "jump_rope": {
+      "name": "Jump Rope",
+      "description": "Intense cardio exercise that improves agility and endurance."
+    },
+    "stair_climber": {
+      "name": "Stair Climber",
+      "description": "Machine simulating stair climbing for cardio and leg strengthening."
+    },
+    "walking": {
+      "name": "Walking",
+      "description": "Brisk walking or treadmill for low-impact cardio."
+    },
+    "hiit": {
+      "name": "HIIT",
+      "description": "High-Intensity Interval Training alternating intense effort and recovery."
+    },
+    "breaststroke": {
+      "name": "Breaststroke",
+      "description": "Classic breaststroke swimming."
+    },
+    "freestyle_swimming": {
+      "name": "Freestyle",
+      "description": "Freestyle or front crawl swimming."
+    },
+    "backstroke": {
+      "name": "Backstroke",
+      "description": "Swimming on the back."
+    },
+    "butterfly_swimming": {
+      "name": "Butterfly",
+      "description": "Butterfly stroke, very demanding."
+    },
+    "road_cycling": {
+      "name": "Road Cycling",
+      "description": "Classic cycling on asphalt."
+    },
+    "mountain_biking": {
+      "name": "Mountain Biking",
+      "description": "Off-road or mountain biking."
+    },
+    "stationary_bike": {
+      "name": "Stationary Bike",
+      "description": "Indoor or stationary cycling."
+    },
+    "treadmill_running": {
+      "name": "Treadmill Running",
+      "description": "Indoor running on a treadmill."
+    },
+    "trail_running": {
+      "name": "Trail Running",
+      "description": "Running in nature, with elevation."
+    },
+    "track_sprinting": {
+      "name": "Track Sprinting",
+      "description": "Short distance speed running."
+    },
+    "long_distance_running": {
+      "name": "Long Distance Running",
+      "description": "Long endurance running (half-marathon, marathon)."
     }
   },
   "trackingMode": {
