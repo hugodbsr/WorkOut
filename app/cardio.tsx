@@ -71,11 +71,15 @@ export default function Cardio() {
                         activeOpacity={0.7}
                     >
                         <View className="bg-blue-50 w-14 h-14 rounded-full items-center justify-center mr-4 overflow-hidden">
-                            <Image
-                                source={getCardioImage(item.image)}
-                                style={{ width: 44, height: 44 }}
-                                contentFit="contain"
-                            />
+                            {item.iconName ? (
+                                <Feather name={item.iconName as any} size={24} color="#3456AD" />
+                            ) : (
+                                <Image
+                                    source={getCardioImage(item.image)}
+                                    style={{ width: 44, height: 44 }}
+                                    contentFit="contain"
+                                />
+                            )}
                         </View>
                         <View className="flex-1">
                             <Text className="text-[19px] font-bold text-gray-800">{item.name}</Text>

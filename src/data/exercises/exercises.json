@@ -45,22 +45,22 @@
         {
             "id": 10,
             "nameKey": "cardio.running",
-            "image": "running.webp"
+            "iconName": "wind"
         },
         {
             "id": 11,
             "nameKey": "cardio.cycling",
-            "image": "cycling.webp"
+            "iconName": "aperture"
         },
         {
             "id": 12,
             "nameKey": "cardio.swimming",
-            "image": "swimming.webp"
+            "iconName": "droplet"
         },
         {
             "id": 13,
             "nameKey": "cardio.other",
-            "image": "other.webp"
+            "iconName": "activity"
         }
     ],
     "trackingModes": [
@@ -238,7 +238,7 @@
             "id": 6,
             "nameKey": "exercise.cable_biceps_neutral.name",
             "descriptionKey": "exercise.cable_biceps_neutral.description",
-            "image": "cable_biceps_neutral.webp",
+            "image": "0165.gif",
             "exerciseTypeKey": "13",
             "muscleGroupId": 4,
             "createdByUser": false,
@@ -248,7 +248,7 @@
             "id": 7,
             "nameKey": "exercise.concentration_curl_hammer.name",
             "descriptionKey": "exercise.concentration_curl_hammer.description",
-            "image": "concentration_curl_hammer.webp",
+            "image": "0297.gif",
             "exerciseTypeKey": "1",
             "muscleGroupId": 4,
             "createdByUser": false,
@@ -258,7 +258,7 @@
             "id": 8,
             "nameKey": "exercise.concentration_curl_neutral.name",
             "descriptionKey": "exercise.concentration_curl_neutral.description",
-            "image": "concentration_curl_neutral.webp",
+            "image": "0297.gif",
             "exerciseTypeKey": "1",
             "muscleGroupId": 4,
             "createdByUser": false,
@@ -358,7 +358,7 @@
             "id": 18,
             "nameKey": "exercise.dips_chest.name",
             "descriptionKey": "exercise.dips_chest.description",
-            "image": "dips_chest.webp",
+            "image": "0251.gif",
             "exerciseTypeKey": "2",
             "muscleGroupId": 1,
             "createdByUser": false,
@@ -408,7 +408,7 @@
             "id": 24,
             "nameKey": "exercise.machine_dips.name",
             "descriptionKey": "exercise.machine_dips.description",
-            "image": "machine_dips.webp",
+            "image": "0019.gif",
             "exerciseTypeKey": "14",
             "muscleGroupId": 5,
             "createdByUser": false,
@@ -438,7 +438,7 @@
             "id": 27,
             "nameKey": "exercise.triceps_kickback.name",
             "descriptionKey": "exercise.triceps_kickback.description",
-            "image": "triceps_kickback.webp",
+            "image": "0333.gif",
             "exerciseTypeKey": "15",
             "muscleGroupId": 5,
             "createdByUser": false,
@@ -488,7 +488,7 @@
             "id": 32,
             "nameKey": "exercise.barbell_shoulder_press.name",
             "descriptionKey": "exercise.barbell_shoulder_press.description",
-            "image": "barbell_shoulder_press.webp",
+            "image": "0091.gif",
             "exerciseTypeKey": "1",
             "muscleGroupId": 3,
             "createdByUser": false,
@@ -498,7 +498,7 @@
             "id": 33,
             "nameKey": "exercise.machine_shoulder_press.name",
             "descriptionKey": "exercise.machine_shoulder_press.description",
-            "image": "machine_shoulder_press.webp",
+            "image": "0603.gif",
             "exerciseTypeKey": "14",
             "muscleGroupId": 3,
             "createdByUser": false,
@@ -588,7 +588,7 @@
             "id": 43,
             "nameKey": "exercise.close_grip_seated_row.name",
             "descriptionKey": "exercise.close_grip_seated_row.description",
-            "image": "close_grip_seated_row.webp",
+            "image": "0861.gif",
             "exerciseTypeKey": "14",
             "muscleGroupId": 2,
             "createdByUser": false,
@@ -768,7 +768,7 @@
             "id": 61,
             "nameKey": "exercise.incline_bench_crunch.name",
             "descriptionKey": "exercise.incline_bench_crunch.description",
-            "image": "incline_bench_crunch.webp",
+            "image": "0277.gif",
             "exerciseTypeKey": "2",
             "muscleGroupId": 7,
             "createdByUser": false,
@@ -798,201 +798,201 @@
             "id": 64,
             "nameKey": "exercise.running.name",
             "descriptionKey": "exercise.running.description",
-            "image": "run.gif",
             "exerciseTypeKey": "4",
             "muscleGroupId": 10,
             "createdByUser": false,
-            "unilateral": false
+            "unilateral": false,
+            "image": "0685-oLrKqDH.gif"
         },
         {
             "id": 65,
             "nameKey": "exercise.cycling.name",
             "descriptionKey": "exercise.cycling.description",
-            "image": "stationary_bike.gif",
             "exerciseTypeKey": "4",
             "muscleGroupId": 11,
             "createdByUser": false,
-            "unilateral": false
+            "unilateral": false,
+            "image": "0798-a8VDgLw.gif"
         },
         {
             "id": 66,
             "nameKey": "exercise.swimming.name",
             "descriptionKey": "exercise.swimming.description",
-            "image": "butterfly_swimming.gif",
             "exerciseTypeKey": "4",
             "muscleGroupId": 12,
             "createdByUser": false,
-            "unilateral": false
+            "unilateral": false,
+            "iconName": "droplet"
         },
         {
             "id": 67,
             "nameKey": "exercise.elliptical.name",
             "descriptionKey": "exercise.elliptical.description",
-            "image": "elliptical.gif",
             "exerciseTypeKey": "4",
             "muscleGroupId": 13,
             "createdByUser": false,
-            "unilateral": false
+            "unilateral": false,
+            "image": "2141-rjtuP6X.gif"
         },
         {
             "id": 68,
             "nameKey": "exercise.rowing_machine.name",
             "descriptionKey": "exercise.rowing_machine.description",
-            "image": "wide_grip_seated_row.gif",
             "exerciseTypeKey": "4",
             "muscleGroupId": 13,
             "createdByUser": false,
-            "unilateral": false
+            "unilateral": false,
+            "iconName": "activity"
         },
         {
             "id": 69,
             "nameKey": "exercise.jump_rope.name",
             "descriptionKey": "exercise.jump_rope.description",
-            "image": "jump_rope.gif",
             "exerciseTypeKey": "4",
             "muscleGroupId": 13,
             "createdByUser": false,
-            "unilateral": false
+            "unilateral": false,
+            "image": "2612-e1e76I2.gif"
         },
         {
             "id": 70,
             "nameKey": "exercise.stair_climber.name",
             "descriptionKey": "exercise.stair_climber.description",
-            "image": "walking_on_stepmill.gif",
             "exerciseTypeKey": "4",
             "muscleGroupId": 13,
             "createdByUser": false,
-            "unilateral": false
+            "unilateral": false,
+            "image": "2311-j9Q5crt.gif"
         },
         {
             "id": 71,
             "nameKey": "exercise.walking.name",
             "descriptionKey": "exercise.walking.description",
-            "image": "walking.gif",
             "exerciseTypeKey": "4",
             "muscleGroupId": 10,
             "createdByUser": false,
-            "unilateral": false
+            "unilateral": false,
+            "iconName": "wind"
         },
         {
             "id": 72,
             "nameKey": "exercise.hiit.name",
             "descriptionKey": "exercise.hiit.description",
-            "image": "jump_rope.gif",
             "exerciseTypeKey": "4",
             "muscleGroupId": 13,
             "createdByUser": false,
-            "unilateral": false
+            "unilateral": false,
+            "iconName": "activity"
         },
         {
             "id": 73,
             "nameKey": "exercise.breaststroke.name",
             "descriptionKey": "exercise.breaststroke.description",
-            "image": "butterfly_swimming.gif",
             "exerciseTypeKey": "4",
             "muscleGroupId": 12,
             "createdByUser": false,
-            "unilateral": false
+            "unilateral": false,
+            "iconName": "droplet"
         },
         {
             "id": 74,
             "nameKey": "exercise.freestyle_swimming.name",
             "descriptionKey": "exercise.freestyle_swimming.description",
-            "image": "butterfly_swimming.gif",
             "exerciseTypeKey": "4",
             "muscleGroupId": 12,
             "createdByUser": false,
-            "unilateral": false
+            "unilateral": false,
+            "iconName": "droplet"
         },
         {
             "id": 75,
             "nameKey": "exercise.backstroke.name",
             "descriptionKey": "exercise.backstroke.description",
-            "image": "butterfly_swimming.gif",
             "exerciseTypeKey": "4",
             "muscleGroupId": 12,
             "createdByUser": false,
-            "unilateral": false
+            "unilateral": false,
+            "iconName": "droplet"
         },
         {
             "id": 76,
             "nameKey": "exercise.butterfly_swimming.name",
             "descriptionKey": "exercise.butterfly_swimming.description",
-            "image": "butterfly_swimming.gif",
             "exerciseTypeKey": "4",
             "muscleGroupId": 12,
             "createdByUser": false,
-            "unilateral": false
+            "unilateral": false,
+            "iconName": "droplet"
         },
         {
             "id": 77,
             "nameKey": "exercise.road_cycling.name",
             "descriptionKey": "exercise.road_cycling.description",
-            "image": "cycle_cross_trainer.gif",
             "exerciseTypeKey": "4",
             "muscleGroupId": 11,
             "createdByUser": false,
-            "unilateral": false
+            "unilateral": false,
+            "iconName": "aperture"
         },
         {
             "id": 78,
             "nameKey": "exercise.mountain_biking.name",
             "descriptionKey": "exercise.mountain_biking.description",
-            "image": "cycle_cross_trainer.gif",
             "exerciseTypeKey": "4",
             "muscleGroupId": 11,
             "createdByUser": false,
-            "unilateral": false
+            "unilateral": false,
+            "iconName": "aperture"
         },
         {
             "id": 79,
             "nameKey": "exercise.stationary_bike.name",
             "descriptionKey": "exercise.stationary_bike.description",
-            "image": "stationary_bike.gif",
             "exerciseTypeKey": "4",
             "muscleGroupId": 11,
             "createdByUser": false,
-            "unilateral": false
+            "unilateral": false,
+            "iconName": "aperture"
         },
         {
             "id": 80,
             "nameKey": "exercise.treadmill_running.name",
             "descriptionKey": "exercise.treadmill_running.description",
-            "image": "run.gif",
             "exerciseTypeKey": "4",
             "muscleGroupId": 10,
             "createdByUser": false,
-            "unilateral": false
+            "unilateral": false,
+            "image": "0685-oLrKqDH.gif"
         },
         {
             "id": 81,
             "nameKey": "exercise.trail_running.name",
             "descriptionKey": "exercise.trail_running.description",
-            "image": "short_stride_run.gif",
             "exerciseTypeKey": "4",
             "muscleGroupId": 10,
             "createdByUser": false,
-            "unilateral": false
+            "unilateral": false,
+            "iconName": "wind"
         },
         {
             "id": 82,
             "nameKey": "exercise.track_sprinting.name",
             "descriptionKey": "exercise.track_sprinting.description",
-            "image": "push_to_run.gif",
             "exerciseTypeKey": "4",
             "muscleGroupId": 10,
             "createdByUser": false,
-            "unilateral": false
+            "unilateral": false,
+            "iconName": "wind"
         },
         {
             "id": 83,
             "nameKey": "exercise.long_distance_running.name",
             "descriptionKey": "exercise.long_distance_running.description",
-            "image": "run.gif",
             "exerciseTypeKey": "4",
             "muscleGroupId": 10,
             "createdByUser": false,
-            "unilateral": false
+            "unilateral": false,
+            "iconName": "wind"
         },
         {
             "id": "84",
@@ -1298,121 +1298,121 @@
             "id": "134",
             "categoryId": 13,
             "nameKey": "134",
-            "image": "walking_high_knees_lunge.gif"
+            "iconName": "activity"
         },
         {
             "id": "135",
             "categoryId": 13,
             "nameKey": "135",
-            "image": "bear_crawl.gif"
+            "iconName": "activity"
         },
         {
             "id": "136",
             "categoryId": 13,
             "nameKey": "136",
-            "image": "back_and_forth_step.gif"
+            "iconName": "activity"
         },
         {
             "id": "137",
             "categoryId": 13,
             "nameKey": "137",
-            "image": "short_stride_run.gif"
+            "iconName": "activity"
         },
         {
             "id": "138",
             "categoryId": 13,
             "nameKey": "138",
-            "image": "semi_squat_jump_male.gif"
+            "iconName": "activity"
         },
         {
             "id": "139",
             "categoryId": 13,
             "nameKey": "139",
-            "image": "walking_on_incline_treadmill.gif"
+            "iconName": "activity"
         },
         {
             "id": "140",
             "categoryId": 13,
             "nameKey": "140",
-            "image": "scissor_jumps_male.gif"
+            "iconName": "activity"
         },
         {
             "id": "141",
             "categoryId": 13,
             "nameKey": "141",
-            "image": "push_to_run.gif"
+            "iconName": "activity"
         },
         {
             "id": "142",
             "categoryId": 13,
             "nameKey": "142",
-            "image": "cycle_cross_trainer.gif"
+            "iconName": "activity"
         },
         {
             "id": "143",
             "categoryId": 13,
             "nameKey": "143",
-            "image": "run.gif"
+            "iconName": "activity"
         },
         {
             "id": "144",
             "categoryId": 13,
             "nameKey": "144",
-            "image": "jack_burpee.gif"
+            "iconName": "activity"
         },
         {
             "id": "145",
             "categoryId": 13,
             "nameKey": "145",
-            "image": "high_knee_against_wall.gif"
+            "iconName": "activity"
         },
         {
             "id": "146",
             "categoryId": 13,
             "nameKey": "146",
-            "image": "swing_360.gif"
+            "iconName": "activity"
         },
         {
             "id": "147",
             "categoryId": 13,
             "nameKey": "147",
-            "image": "stationary_bike_run_v_3.gif"
+            "iconName": "activity"
         },
         {
             "id": "148",
             "categoryId": 13,
             "nameKey": "148",
-            "image": "walk_elliptical_cross_trainer.gif"
+            "iconName": "activity"
         },
         {
             "id": "149",
             "categoryId": 13,
             "nameKey": "149",
-            "image": "stationary_bike_walk.gif"
+            "iconName": "activity"
         },
         {
             "id": "150",
             "categoryId": 13,
             "nameKey": "150",
-            "image": "star_jump_male.gif"
+            "iconName": "activity"
         },
         {
             "id": "151",
             "categoryId": 13,
             "nameKey": "151",
-            "image": "dumbbell_burpee.gif"
+            "iconName": "activity"
         },
         {
             "id": "152",
             "categoryId": 13,
             "nameKey": "152",
-            "image": "ski_step.gif"
+            "iconName": "activity"
         },
         {
             "id": "153",
             "categoryId": 13,
             "nameKey": "153",
-            "image": "walking_on_stepmill.gif"
+            "iconName": "activity"
         }
     ]
 }

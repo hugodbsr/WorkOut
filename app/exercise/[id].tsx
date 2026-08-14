@@ -4,10 +4,10 @@ import {
     View,
     ScrollView,
     TouchableOpacity,
-    Image,
     KeyboardAvoidingView,
     Platform,
 } from 'react-native';
+import { Image } from 'expo-image';
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useLocalSearchParams , useNavigation } from "expo-router";
 import useFetch from "@/services/useFetch";
@@ -260,6 +260,7 @@ export default function Details() {
                             name={exercise?.name}
                             description={exercise?.description}
                             imageSource={getExerciseImage(exercise?.image)}
+                            iconName={(exercise as any)?.iconName}
                             isUnilateral={!!exercise?.unilateral}
                             unilateral={unilateral}
                             setUnilateral={setUnilateral}

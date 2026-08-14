@@ -3,11 +3,13 @@ import { View, Text } from 'react-native';
 import { Image, ImageSource } from 'expo-image';
 import UnilateralButton from '../common/UnilateralButton';
 import { getUITranslation } from "@/services/translation";
+import { Feather } from '@expo/vector-icons';
 
 type ExerciseHeaderProps = {
     name?: string;
     description?: string;
     imageSource?: ImageSource | string;
+    iconName?: string;
     isUnilateral: boolean;
     unilateral: boolean;
     setUnilateral: (value: boolean) => void;
@@ -18,6 +20,7 @@ export const ExerciseHeader: React.FC<ExerciseHeaderProps> = React.memo(({
                                                                              name,
                                                                              description,
                                                                              imageSource,
+                                                                             iconName,
                                                                              isUnilateral,
                                                                              unilateral,
                                                                              setUnilateral,
@@ -40,12 +43,16 @@ export const ExerciseHeader: React.FC<ExerciseHeaderProps> = React.memo(({
     // @ts-ignore
     return (
         <View className="mb-6 mt-4">
-            <View className="bg-white rounded-[40px] shadow-sm border border-gray-100 self-center p-3">
-                <Image
-                    source={imageSource}
-                    style={{ width: 140, height: 140, borderRadius: 28 }}
-                    contentFit="contain"
-                />
+            <View className="bg-white rounded-[40px] shadow-sm border border-gray-100 self-center p-3 items-center justify-center" style={{ width: 164, height: 164 }}>
+                {iconName ? (
+                    <Feather name={iconName as any} size={70} color="#3456AD" />
+                ) : (
+                    <Image
+                        source={imageSource}
+                        style={{ width: 140, height: 140, borderRadius: 28 }}
+                        contentFit="contain"
+                    />
+                )}
             </View>
             <Text className="text-3xl mx-4 mt-6 font-black text-gray-800 text-center">{name}</Text>
             {description ? (

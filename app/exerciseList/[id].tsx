@@ -158,7 +158,7 @@ export default function Details() {
         );
     }
 
-    function getExerciseImage(name: string) {
+    function getExerciseImage(name?: string) {
         if (!name) return undefined;
         if (name.startsWith('file://') || name.startsWith('http')) {
             return name;
@@ -259,11 +259,15 @@ export default function Details() {
                                 className="bg-white mx-4 my-2 p-3 rounded-3xl flex-row items-center shadow-sm border border-gray-100"
                                 activeOpacity={0.7}
                             >
-                                <View className="bg-gray-50 rounded-full mr-4 p-1">
-                                    <Image
-                                        source={getExerciseImage(item.image)}
-                                        style={{ width: 60, height: 60, borderRadius: 30 }}
-                                    />
+                                <View className="bg-gray-50 rounded-full mr-4 p-1 items-center justify-center" style={{ width: 68, height: 68 }}>
+                                    {(item as any).iconName ? (
+                                        <Feather name={(item as any).iconName as any} size={30} color="#3456AD" />
+                                    ) : (
+                                        <Image
+                                            source={getExerciseImage(item.image)}
+                                            style={{ width: 60, height: 60, borderRadius: 30 }}
+                                        />
+                                    )}
                                 </View>
                                 <View className="flex-1">
                                     <Text className="text-lg font-bold text-gray-800" numberOfLines={2}>{item.name}</Text>

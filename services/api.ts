@@ -8,14 +8,16 @@ const USER_CREATED_EXERCISES_KEY = "user_created_exercises";
 export type MuscleGroup = {
     id: string | number;
     nameKey: string;
-    image: string;
+    image?: string;
+    iconName?: string;
 };
 
 export type Exercise = {
     id: string | number;
     nameKey: string;
     descriptionKey?: string;
-    image: string;
+    image?: string;
+    iconName?: string;
     muscleGroupId?: string | number;
     categoryId?: string | number;
     exerciseTypeKey?: string | number;
@@ -50,6 +52,7 @@ export const fetchMuscleJsonList = async () => {
             id: muscle.id,
             name: await getTranslatedValue(muscle.nameKey, translations),
             image: muscle.image,
+            iconName: muscle.iconName,
         }))
     );
 
@@ -65,6 +68,7 @@ export const fetchCardioGroupsJsonList = async () => {
             id: group.id,
             name: await getTranslatedValue(group.nameKey, translations),
             image: group.image,
+            iconName: group.iconName,
         }))
     );
 
@@ -81,8 +85,8 @@ export const fetchMuscleJson = async ({ query }: { query: string }) => {
 
     if (!muscle) {
         muscle = exercisesData.cardioGroups.find(
-            (msc: MuscleGroup) => msc.id.toString() === query
-        );
+            (msc: any) => msc.id.toString() === query
+        ) as any;
     }
 
     if (!muscle) {
