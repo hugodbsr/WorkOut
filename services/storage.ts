@@ -167,3 +167,37 @@ export const clearUserCreatedExercises = async () => {
         console.error('Erreur lors de la suppression des exercices créés', error);
     }
 };
+
+const USER_WEIGHT_HISTORY_KEY = 'user_weight_history';
+
+export type WeightEntry = { date: string; weight: number };
+
+export const addWeightEntry = async (weight: number, date: string) => {
+    try {
+        const json = await AsyncStorage.getItem(USER_WEIGHT_HISTORY_KEY);
+        let history: WeightEntry[] = json ? JSON.parse(json) : [];
+        
+        const existingIndex = history.findIndex(entry => entry.date === date);
+        if (existingIndex > -1) {
+            history[existingIndex].weight = weight;
+        } else {
+            history.push({ date, weight });
+        }
+        
+        history.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+        await AsyncStorage.setItem(USER_WEIGHT_HISTORY_KEY, JSON.stringify(history));
+    } catch (e) {
+        console.error("Erreur ajout poids", e);
+    }
+};
+
+export const getWeightHistory = async (): Promise<WeightEntry[]> => {
+    try {
+        const json = await AsyncStorage.getItem(USER_WEIGHT_HISTORY_KEY);
+        return json ? JSON.parse(json) : [];
+    } catch (e) {
+        console.error("Erreur lecture poids", e);
+        return [];
+    }
+};
+

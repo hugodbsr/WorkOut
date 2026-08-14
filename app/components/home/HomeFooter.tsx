@@ -55,7 +55,7 @@ export const HomeFooter: React.FC = React.memo(() => {
 
             <TouchableOpacity
                 className="bg-primary absolute left-1/2 -translate-x-1/2 w-[100px] h-[100px] rounded-full justify-center items-center shadow-lg shadow-black"
-                style={{ bottom: Math.max(insets.bottom, 16) + 30 }}
+                style={{ bottom: Math.max(insets.bottom, 16) + 20 }}
                 onPress={() => router.push('/add')}
             >
                 <Text className="color-white text-6xl">+</Text>

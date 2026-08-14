@@ -166,15 +166,24 @@ export default function Index() {
                                     <Feather name="chevron-down" size={20} color="#3456AD" />
                                 </TouchableOpacity>
 
-                                {selectedDate !== getTodayDate() && (
+                                <View className="absolute right-0 flex-row items-center gap-2">
+                                    {selectedDate !== getTodayDate() && (
+                                        <TouchableOpacity 
+                                            onPress={() => setSelectedDate(getTodayDate())}
+                                            className="p-2 bg-blue-50 rounded-full"
+                                            activeOpacity={0.7}
+                                        >
+                                            <Feather name="corner-up-left" size={18} color="#3456AD" />
+                                        </TouchableOpacity>
+                                    )}
                                     <TouchableOpacity 
-                                        onPress={() => setSelectedDate(getTodayDate())}
-                                        className="absolute right-0 p-2 bg-blue-50 rounded-full"
+                                        onPress={() => router.push('/settings/profile')}
+                                        className="p-2 bg-blue-50 rounded-full"
                                         activeOpacity={0.7}
                                     >
-                                        <Feather name="corner-up-left" size={18} color="#3456AD" />
+                                        <Feather name="user" size={24} color="#3456AD" />
                                     </TouchableOpacity>
-                                )}
+                                </View>
                             </View>
 
                             <Modal visible={showDatePicker} transparent={true} animationType="fade">
