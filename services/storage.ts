@@ -5,7 +5,7 @@ const USER_CREATED_EXERCISES_KEY = "user_created_exercises";
 
 export type Side = "left" | "right" | "both";
 
-export type Set = { id: string; reps: number; weight: number; side: Side; };
+export type Set = { id: string; reps: number; weight: number; side: Side; isDropSet?: boolean; };
 export type Session = {
     date: string;
     sets: Set[]

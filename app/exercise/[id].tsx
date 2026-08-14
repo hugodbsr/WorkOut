@@ -32,6 +32,7 @@ type LocalSet = {
     reps: string;
     weight: string;
     side: Side;
+    isDropSet?: boolean;
 };
 
 export default function Details() {
@@ -52,13 +53,14 @@ export default function Details() {
     const [oldSeries, setOldSeries] = useState<{ reps: string, weight: string, side?: Side }[]>([]);
     const [series, setSeries] = useState<LocalSet[]>([{ id: nanoid(), reps: '', weight: '', side: 'both' }]);
     const [unilateral, setUnilateral] = useState(false);
+    const [dropSetButtonVisible, setDropSetButtonVisible] = useState<Record<string, boolean>>({});
 
     const [isEditing, setIsEditing] = useState(false);
     const swipeableRefs = React.useRef<Record<string, Swipeable | null>>({});
     const scrollViewRef = React.useRef<ScrollView>(null);
 
     const handleAddSerieField = () => {
-        setSeries([...series, { id: nanoid(), reps: '', weight: '', side: unilateral ? "left" : "both", }]);
+        setSeries([...series, { id: nanoid(), reps: '', weight: '', side: unilateral ? "left" : "both", isDropSet: false }]);
     };
 
     const saveSetToStorage = async (set: LocalSet) => {
@@ -71,6 +73,7 @@ export default function Details() {
                     reps: parseInt(set.reps, 10),
                     weight: parseFloat(set.weight),
                     side: set.side,
+                    isDropSet: set.isDropSet || false,
                 });
         }
     }
@@ -91,6 +94,14 @@ export default function Details() {
         setSeries(updated);
 
         await saveSetToStorage(updated[index]);
+    };
+
+    const handleAddDropSet = (globalMainIndex: number, dropSetsCount: number) => {
+        const insertAt = globalMainIndex + dropSetsCount + 1;
+        const newSeries = [...series];
+        const mainSide = newSeries[globalMainIndex].side;
+        newSeries.splice(insertAt, 0, { id: nanoid(), reps: '', weight: '', side: mainSide, isDropSet: true });
+        setSeries(newSeries);
     };
 
     function getExerciseImage(name?: string) {
@@ -182,6 +193,7 @@ export default function Details() {
                     reps: set.reps != null ? set.reps.toString() : '',
                     weight: set.weight != null ? set.weight.toString() : '',
                     side: set.side ?? "both",
+                    isDropSet: set.isDropSet || false,
                 }))
                 : [];
 
@@ -194,11 +206,11 @@ export default function Details() {
                 : [];
 
             while (currentSeries.length < previousSeries.length) {
-                currentSeries.push({ id: nanoid(), reps: '', weight: '', side: 'left' });
+                currentSeries.push({ id: nanoid(), reps: '', weight: '', side: 'left', isDropSet: false });
             }
 
             setOldSeries(previousSeries);
-            setSeries(currentSeries.length > 0 ? currentSeries : [{ id: nanoid(), reps: '', weight: '', side: 'both' }]);
+            setSeries(currentSeries.length > 0 ? currentSeries : [{ id: nanoid(), reps: '', weight: '', side: 'both', isDropSet: false }]);
         };
 
         getHistory();
@@ -237,6 +249,11 @@ export default function Details() {
         )
     }
 
+    const toggleDropSetButton = (groupId: string, dropSetsCount: number) => {
+        if (dropSetsCount > 0) return; // Bloqué sur ON s'il y a des drop sets
+        setDropSetButtonVisible(prev => ({ ...prev, [groupId]: !prev[groupId] }));
+    }
+
     return (
         <GestureHandlerRootView className="flex-1">
             <SafeAreaView className="flex-1 bg-gray-100">
@@ -266,30 +283,115 @@ export default function Details() {
                             setUnilateral={setUnilateral}
                         />
 
-                        {series.map((serie, index) => (
-                            <Animated.View
-                                key={serie.id}
-                                exiting={SlideOutLeft.duration(300)}
-                                layout={Layout.springify()}>
-                                <Swipeable
-                                    key={serie.id}
-                                    ref={el => { swipeableRefs.current[serie.id] = el; }}
-                                    renderRightActions={() => renderRightActions(index)}
+                        {(() => {
+                            type GroupedSets = {
+                                mainSet: LocalSet;
+                                globalMainIndex: number;
+                                mainDisplayIndex: number;
+                                dropSets: { set: LocalSet; globalIndex: number; dropDisplayIndex: number }[];
+                            };
+
+                            const groupedSeries: GroupedSets[] = [];
+                            let currentGroup: GroupedSets | null = null;
+                            let mainCounter = 1;
+                            
+                            series.forEach((serie, globalIndex) => {
+                                if (!serie.isDropSet) {
+                                    if (currentGroup) groupedSeries.push(currentGroup);
+                                    currentGroup = {
+                                        mainSet: serie,
+                                        globalMainIndex: globalIndex,
+                                        mainDisplayIndex: mainCounter++,
+                                        dropSets: []
+                                    };
+                                } else {
+                                    if (currentGroup) {
+                                        currentGroup.dropSets.push({
+                                            set: serie,
+                                            globalIndex: globalIndex,
+                                            dropDisplayIndex: currentGroup.dropSets.length + 1
+                                        });
+                                    }
+                                }
+                            });
+                            if (currentGroup) groupedSeries.push(currentGroup);
+
+                            return groupedSeries.map((group) => (
+                                <Animated.View
+                                    key={group.mainSet.id}
+                                    exiting={SlideOutLeft.duration(300)}
+                                    layout={Layout.springify()}
+                                    className="mx-4 my-2 rounded-2xl shadow-sm"
+                                    style={{
+                                        shadowColor: '#000',
+                                        shadowOffset: { width: 0, height: 1 },
+                                        shadowOpacity: 0.05,
+                                        shadowRadius: 2,
+                                        elevation: 2,
+                                    }}
                                 >
-                                    <SeriesItem
-                                        serie={serie}
-                                        index={index}
-                                        placeholderReps={oldSeries[index]?.reps}
-                                        placeholderWeight={oldSeries[index]?.weight}
-                                        onRepChange={(text) => handleChangeSerie(index, 'reps', text)}
-                                        onWeightChange={(text) => handleChangeSerie(index, 'weight', text)}
-                                        onSideChange={() => handleChangeSide(index)}
-                                        isUnilateral={unilateral}
-                                        trackingMode={exercise?.trackingMode || 'WEIGHT_REPS'}
-                                    />
-                                </Swipeable>
-                            </Animated.View>
-                        ))}
+                                    <View className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+                                        <Swipeable
+                                            key={`swipe-main-${group.mainSet.id}`}
+                                            ref={el => { swipeableRefs.current[group.mainSet.id] = el; }}
+                                            renderRightActions={() => renderRightActions(group.globalMainIndex)}
+                                        >
+                                            <SeriesItem
+                                                serie={group.mainSet}
+                                                index={group.mainDisplayIndex}
+                                                placeholderReps={oldSeries[group.globalMainIndex]?.reps}
+                                                placeholderWeight={oldSeries[group.globalMainIndex]?.weight}
+                                                onRepChange={(text) => handleChangeSerie(group.globalMainIndex, 'reps', text)}
+                                                onWeightChange={(text) => handleChangeSerie(group.globalMainIndex, 'weight', text)}
+                                                onSideChange={() => handleChangeSide(group.globalMainIndex)}
+                                                isUnilateral={unilateral}
+                                                trackingMode={exercise?.trackingMode || 'WEIGHT_REPS'}
+                                                isDropSet={false}
+                                                onOptionsPress={() => toggleDropSetButton(group.mainSet.id, group.dropSets.length)}
+                                                isDropSetButtonVisible={group.dropSets.length > 0 || dropSetButtonVisible[group.mainSet.id]}
+                                            />
+                                    </Swipeable>
+                                    
+                                    {group.dropSets.map((drop) => (
+                                        <Swipeable
+                                            key={`swipe-drop-${drop.set.id}`}
+                                            ref={el => { swipeableRefs.current[drop.set.id] = el; }}
+                                            renderRightActions={() => renderRightActions(drop.globalIndex)}
+                                        >
+                                            <SeriesItem
+                                                serie={drop.set}
+                                                index={drop.dropDisplayIndex}
+                                                placeholderReps={oldSeries[drop.globalIndex]?.reps}
+                                                placeholderWeight={oldSeries[drop.globalIndex]?.weight}
+                                                onRepChange={(text) => handleChangeSerie(drop.globalIndex, 'reps', text)}
+                                                onWeightChange={(text) => handleChangeSerie(drop.globalIndex, 'weight', text)}
+                                                onSideChange={() => handleChangeSide(drop.globalIndex)}
+                                                isUnilateral={unilateral}
+                                                trackingMode={exercise?.trackingMode || 'WEIGHT_REPS'}
+                                                isDropSet={true}
+                                            />
+                                        </Swipeable>
+                                    ))}
+                                    
+                                    {(() => {
+                                        const isVisible = group.dropSets.length > 0 || dropSetButtonVisible[group.mainSet.id];
+                                        
+                                        if (!isVisible) return null;
+                                        
+                                        return (
+                                            <TouchableOpacity
+                                                onPress={() => handleAddDropSet(group.globalMainIndex, group.dropSets.length)}
+                                                className="py-3 items-center justify-center border-t border-gray-100 bg-slate-50/50"
+                                                activeOpacity={0.7}
+                                            >
+                                                <Text className="text-[#3456AD] font-bold">+ Ajouter Drop set</Text>
+                                            </TouchableOpacity>
+                                        );
+                                    })()}
+                                    </View>
+                                </Animated.View>
+                            ));
+                        })()}
                     </ScrollView>
                 </KeyboardAvoidingView>
 

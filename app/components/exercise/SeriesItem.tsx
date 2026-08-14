@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 import RepWeightInput from '../common/RepWeightInput';
 import { Side } from '@/services/storage';
 import { useUITranslation } from '@/services/useUITranslation';
@@ -9,6 +10,7 @@ type LocalSet = {
     reps: string;
     weight: string;
     side: Side;
+    isDropSet?: boolean;
 };
 
 type TrackingMode = 'WEIGHT_REPS' | 'REPS_ONLY' | 'TIME_WEIGHT' | 'TIME_DISTANCE';
@@ -16,13 +18,16 @@ type TrackingMode = 'WEIGHT_REPS' | 'REPS_ONLY' | 'TIME_WEIGHT' | 'TIME_DISTANCE
 type SeriesItemProps = {
     serie: LocalSet;
     index: number;
-    placeholderReps: string;
-    placeholderWeight: string;
+    placeholderReps?: string;
+    placeholderWeight?: string;
     onRepChange: (text: string) => void;
     onWeightChange: (text: string) => void;
     onSideChange: () => void;
     isUnilateral: boolean;
     trackingMode?: TrackingMode;
+    isDropSet?: boolean;
+    onOptionsPress?: () => void;
+    isDropSetButtonVisible?: boolean;
 };
 
 // eslint-disable-next-line react/display-name
@@ -36,9 +41,15 @@ export const SeriesItem: React.FC<SeriesItemProps> = React.memo(({
                                                                      onSideChange,
                                                                      isUnilateral,
                                                                      trackingMode = 'WEIGHT_REPS',
+                                                                     isDropSet = false,
+                                                                     onOptionsPress,
+                                                                     isDropSetButtonVisible = false,
                                                                  }) => {
     const uiSerieNumber = useUITranslation('serie_number', 'Série n°');
     const repsText = useUITranslation('reps', 'reps');
+    const timeText = useUITranslation('time', 'temps');
+    const weightText = useUITranslation('weight', 'poids');
+    const distanceText = useUITranslation('distance', 'distance');
     const uiLeftSide = useUITranslation('left_side', 'L');
     const uiRightSide = useUITranslation('right_side', 'R');
 
@@ -47,10 +58,20 @@ export const SeriesItem: React.FC<SeriesItemProps> = React.memo(({
     const isRepsOnly = trackingMode === 'REPS_ONLY';
 
     return (
-        <View className="flex-row items-center justify-between bg-white px-4 py-3 mx-4 my-2 rounded-2xl shadow-sm border border-gray-100">
-            {/* Série badge */}
-            <View className="bg-blue-50 px-3 py-2 rounded-xl mr-3 items-center justify-center">
-                <Text className="text-base font-bold text-[#3456AD]">{uiSerieNumber} {index + 1}</Text>
+        <View className={`flex-row items-center justify-between px-4 py-3 ${isDropSet ? 'bg-slate-50 border-t border-gray-100' : ''}`}>
+            {/* Série badge & Options */}
+            <View className="flex-row items-center">
+                {!isDropSet && onOptionsPress && (
+                    <TouchableOpacity onPress={onOptionsPress} className="pr-2 py-2">
+                        <Feather name="trending-down" size={20} color={isDropSetButtonVisible ? "#3456AD" : "#9ca3af"} />
+                    </TouchableOpacity>
+                )}
+                <View className="bg-blue-50 px-3 py-2 rounded-xl mr-2 items-center justify-center flex-row">
+                    {isDropSet && <Text className="text-[#3456AD] font-bold mr-1">↳</Text>}
+                    <Text className="text-base font-bold text-[#3456AD]">
+                        {isDropSet ? `Drop set n°${index}` : `${uiSerieNumber} ${index}`}
+                    </Text>
+                </View>
             </View>
 
             {/* Inputs */}
@@ -86,7 +107,7 @@ export const SeriesItem: React.FC<SeriesItemProps> = React.memo(({
 
             {/* Unilateral toggle if needed */}
             <View className="ml-3 w-12 h-12 justify-center items-center">
-                {isUnilateral && (serie.side === 'left' || serie.side === 'right') && (
+                {!isDropSet && isUnilateral && (serie.side === 'left' || serie.side === 'right') && (
                     <TouchableOpacity
                         onPress={onSideChange}
                         activeOpacity={0.7}

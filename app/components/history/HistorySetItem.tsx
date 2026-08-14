@@ -39,8 +39,10 @@ const HistorySetItem = ({ item, index, trackingMode = 'WEIGHT_REPS' }: HistorySe
     return (
         <View className="flex-row items-center bg-white mx-4 my-1 px-4 py-3 rounded-xl shadow-sm shadow-black/5">
             {/* Numéro de série */}
-            <View className="bg-primary/10 rounded-full w-8 h-8 items-center justify-center mr-3">
-                <Text className="text-primary font-bold text-sm">{index + 1}</Text>
+            <View className={`rounded-full w-8 h-8 items-center justify-center mr-3 ${item.isDropSet ? 'bg-slate-100' : 'bg-primary/10'}`}>
+                <Text className={`font-bold ${item.isDropSet ? 'text-slate-500 text-lg -mt-1' : 'text-primary text-sm'}`}>
+                    {item.isDropSet ? '↳' : index + 1}
+                </Text>
             </View>
 
             {/* Reps */}
