@@ -64,6 +64,23 @@ export default function WorkoutType() {
                     </View>
                     <MaterialCommunityIcons name="chevron-right" size={28} color="#d1d5db" />
                 </TouchableOpacity>
+
+                <TouchableOpacity 
+                    onPress={() => router.push('/routines')}
+                    className="bg-white p-6 rounded-3xl flex-row items-center justify-between shadow-sm border border-gray-100 flex-1 max-h-[160px]"
+                    activeOpacity={0.7}
+                >
+                    <View className="flex-row items-center gap-4 flex-1">
+                        <View className="bg-orange-50 w-20 h-20 rounded-full items-center justify-center">
+                            <MaterialCommunityIcons name="clipboard-list" size={40} color="#f97316" />
+                        </View>
+                        <View className="flex-1">
+                            <Text className="text-2xl font-bold text-gray-800">Entraînements</Text>
+                            <Text className="text-gray-500 mt-1">Programmes complets prédéfinis</Text>
+                        </View>
+                    </View>
+                    <MaterialCommunityIcons name="chevron-right" size={28} color="#d1d5db" />
+                </TouchableOpacity>
             </View>
         </SafeAreaView>
     );

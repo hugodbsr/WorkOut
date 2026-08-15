@@ -1,4 +1,5 @@
-import exercisesData from "@/src/data/exercises/exercises.json"
+import exercisesData from "@/src/data/exercises/exercises.json";
+import routinesData from "@/src/data/routines_db.json";
 import * as Localization from "expo-localization";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { loadTranslations, getTranslatedValue, getLanguageCode } from "./translation";
@@ -133,7 +134,7 @@ export const fetchExerciseJson = async ({ query }: { query: string }) => {
     const allExercices = await fetchAllExercises();
 
     const exercise = allExercices.find(
-        (msc: Exercise) => msc.id.toString() === query
+        (msc: Exercise) => msc.id.toString() === query?.toString()
     );
 
     if (!exercise) {
@@ -181,4 +182,64 @@ export const fetchTrackingModesJson = async () => {
     );
 
     return modes;
+};
+
+import { getUserRoutines } from "./storage";
+
+export const fetchRoutinesJsonList = async () => {
+    const languageCode = getLanguageCode();
+    const userRoutines = await getUserRoutines();
+
+    const formattedJsonRoutines = routinesData.map((routine: any) => ({
+        id: routine.id,
+        title: routine.title[languageCode] || routine.title["en"],
+        description: routine.description[languageCode] || routine.description["en"],
+        level: routine.level,
+        duration: routine.duration,
+        exercises: routine.exercises,
+        isCustom: false,
+    }));
+
+    return [...userRoutines, ...formattedJsonRoutines];
+};
+
+export const fetchRoutineJson = async ({ query }: { query: string }) => {
+    const languageCode = getLanguageCode();
+    
+    // Check in user routines first
+    const userRoutines = await getUserRoutines();
+    const customRoutine = userRoutines.find((r: any) => r.id === query);
+    if (customRoutine) {
+        return customRoutine;
+    }
+
+    // Then in JSON
+    const routine = routinesData.find((r: any) => r.id === query);
+    
+    if (!routine) throw new Error("Routine not found");
+
+    return {
+        id: routine.id,
+        title: routine.title[languageCode] || routine.title["en"],
+        description: routine.description[languageCode] || routine.description["en"],
+        level: routine.level,
+        duration: routine.duration,
+        exercises: routine.exercises,
+        isCustom: false,
+    };
+};
+
+export const fetchAllTranslatedExercises = async () => {
+    const languageCode = getLanguageCode();
+    const translations = await loadTranslations(languageCode);
+    const allExercices = await fetchAllExercises();
+
+    return await Promise.all(allExercices.map(async (exercise: Exercise) => {
+        return {
+            id: exercise.id,
+            name: await getTranslatedValue(exercise.nameKey, translations),
+            image: exercise.image,
+            iconName: exercise.iconName,
+        };
+    }));
 };

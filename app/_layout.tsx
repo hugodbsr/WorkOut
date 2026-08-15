@@ -129,6 +129,18 @@ export default function RootLayout() {
               options={{ title: "Cardio" }}
             />
             <Stack.Screen
+              name="routines"
+              options={{ title: "Entraînements" }}
+            />
+            <Stack.Screen
+              name="routine/[id]"
+              options={{ title: "Programme" }}
+            />
+            <Stack.Screen
+              name="editRoutine/[id]"
+              options={{ title: "Édition du Programme" }}
+            />
+            <Stack.Screen
               name="records"
               options={{ title: "Records" }}
             />
