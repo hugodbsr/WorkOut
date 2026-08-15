@@ -64,14 +64,14 @@ export default function Details() {
     };
 
     const saveSetToStorage = async (set: LocalSet) => {
-        const isComplete = set.reps !== '' && set.weight !== '';
+        const isComplete = set.reps !== '';
         if (isComplete) {
             await addSessionToExercise(
                 query as string,
                 {
                     id: set.id,
                     reps: parseInt(set.reps, 10),
-                    weight: parseFloat(set.weight),
+                    weight: set.weight ? parseFloat(set.weight) : 0,
                     side: set.side,
                     isDropSet: set.isDropSet || false,
                 });

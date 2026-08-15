@@ -3,8 +3,8 @@ import { useRouter , useFocusEffect } from "expo-router";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { HomeFooter } from '@/app/components/home/HomeFooter';
 import React, { useState, useCallback } from 'react';
-import { getAllExerciseHistory, getTodayDate } from "@/services/storage";
-import { fetchExerciseJson, fetchAllExercises } from "@/services/api";
+import { getAllExerciseHistory, getTodayDate, getRoutineForDay } from "@/services/storage";
+import { fetchExerciseJson, fetchAllExercises, fetchRoutineJson } from "@/services/api";
 import { useUITranslation } from "@/services/useUITranslation";
 import { getLanguageCode } from "@/services/translation";
 import { Feather } from '@expo/vector-icons';
@@ -28,6 +28,7 @@ export default function Index() {
     const bannerGap = bannerActive ? 52 : 0; // 48px banner + 4px margin
 
     const [recentExercises, setRecentExercises] = useState<TodayExercisePreview[]>([]);
+    const [todayRoutine, setTodayRoutine] = useState<any>(null);
     const [heatmapData, setHeatmapData] = useState<HeatmapData>({});
     const [loading, setLoading] = useState(true);
     
@@ -46,6 +47,25 @@ export default function Index() {
             const fetchPreview = async () => {
                 try {
                     setLoading(true);
+
+                    let rData: any = null;
+                    const rId = await getRoutineForDay(selectedDate);
+                    if (rId) {
+                        try {
+                            rData = await fetchRoutineJson({ query: rId });
+                            setTodayRoutine(rData);
+                        } catch (e) {
+                            setTodayRoutine(null);
+                        }
+                    } else {
+                        setTodayRoutine(null);
+                    }
+
+                    const routineExerciseIds = new Set<string>();
+                    if (rData && rData.exercises) {
+                        rData.exercises.forEach((exId: string | number) => routineExerciseIds.add(exId.toString()));
+                    }
+
                     const allData = await getAllExerciseHistory();
                     const allExercises = await fetchAllExercises();
                     
@@ -83,19 +103,22 @@ export default function Index() {
                                     heatData[slug] = (heatData[slug] || 0) + 1;
                                 }
 
-                                let name = exerciseId;
-                                try {
-                                    const exerciseData = await fetchExerciseJson({ query: exerciseId });
-                                    name = exerciseData.name;
-                                } catch {
-                                    // fallback
+                                // Si l'exercice fait partie du programme du jour, on ne l'affiche pas dans la liste des exos individuels
+                                if (!routineExerciseIds.has(exerciseId.toString())) {
+                                    let name = exerciseId;
+                                    try {
+                                        const exerciseData = await fetchExerciseJson({ query: exerciseId });
+                                        name = exerciseData.name;
+                                    } catch {
+                                        // fallback
+                                    }
+                                    
+                                    previews.push({
+                                        exerciseId,
+                                        exerciseName: name,
+                                        setsCount: session.sets.length
+                                    });
                                 }
-                                
-                                previews.push({
-                                    exerciseId,
-                                    exerciseName: name,
-                                    setsCount: session.sets.length
-                                });
                             }
                         }
                     }
@@ -219,48 +242,90 @@ export default function Index() {
                                 <MuscleHeatmap heatmapData={heatmapData} />
                             </View>
 
-                            {/* Liste des exercices */}
+                            {/* Liste des exercices et Programme */}
                             {loading ? (
                                 <ActivityIndicator size="large" color="#3456AD" className="mt-10" />
-                            ) : recentExercises.length === 0 ? (
-                                <View className="items-center justify-center mt-2 bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
-                                    <Feather name="sun" size={56} color="#d1d5db" />
-                                    <Text className="text-gray-400 text-lg mt-5 text-center font-medium">{uiNoSessionToday}</Text>
-                                </View>
                             ) : (
                                 <>
-                                    <View className="gap-2.5">
-                                        {recentExercises.map((ex, index) => (
+                                    {todayRoutine && (
+                                        <TouchableOpacity 
+                                            onPress={() => {
+                                                if (selectedDate === getTodayDate()) {
+                                                    router.push(`/routine/${todayRoutine.id}`);
+                                                } else {
+                                                    router.push({ pathname: '/today_records', params: { date: selectedDate } });
+                                                }
+                                            }}
+                                            className="bg-orange-50 px-4 py-3 rounded-2xl flex-row items-center justify-between shadow-sm border border-orange-100 mb-4 mt-2"
+                                            activeOpacity={0.7}
+                                        >
+                                            <View className="flex-row items-center gap-3 flex-1 pr-2">
+                                                <View className="bg-orange-100 w-9 h-9 rounded-full items-center justify-center">
+                                                    <Feather name="clipboard" size={18} color="#ea580c" />
+                                                </View>
+                                                <View className="flex-1">
+                                                    <Text className="text-[17px] font-bold text-gray-800" numberOfLines={1} ellipsizeMode="tail">
+                                                        {todayRoutine.title}
+                                                    </Text>
+                                                    <Text className="text-orange-600 text-xs font-medium">{todayRoutine.exercises.length} exercices</Text>
+                                                </View>
+                                            </View>
+                                            <View className="flex-row items-center gap-1.5 bg-[#ea580c] py-1.5 px-3 rounded-full">
+                                                {selectedDate === getTodayDate() ? (
+                                                    <>
+                                                        <Feather name="play" size={12} color="white" />
+                                                        <Text className="text-white font-bold text-xs">Reprendre</Text>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <Feather name="list" size={12} color="white" />
+                                                        <Text className="text-white font-bold text-xs">Résumé</Text>
+                                                    </>
+                                                )}
+                                            </View>
+                                        </TouchableOpacity>
+                                    )}
+
+                                    {recentExercises.length > 0 ? (
+                                        <>
+                                            <View className="gap-2.5">
+                                                {recentExercises.map((ex, index) => (
+                                                    <TouchableOpacity 
+                                                        key={ex.exerciseId + index}
+                                                        onPress={() => router.push(`/exercise/${ex.exerciseId}`)}
+                                                        className="bg-white px-4 py-3 rounded-2xl flex-row items-center justify-between shadow-sm border border-gray-100"
+                                                        activeOpacity={0.7}
+                                                    >
+                                                        <View className="flex-row items-center gap-3 flex-1 pr-2">
+                                                            <View className="bg-blue-50 w-9 h-9 rounded-full items-center justify-center">
+                                                                <Feather name="activity" size={18} color="#3456AD" />
+                                                            </View>
+                                                            <View className="flex-1">
+                                                                <Text className="text-[17px] font-bold text-gray-800" numberOfLines={1} ellipsizeMode="tail">
+                                                                    {ex.exerciseName}
+                                                                </Text>
+                                                                <Text className="text-gray-500 text-xs font-medium">{ex.setsCount} {uiSetsCount}</Text>
+                                                            </View>
+                                                        </View>
+                                                        <Feather name="chevron-right" size={20} color="#d1d5db" />
+                                                    </TouchableOpacity>
+                                                ))}
+                                            </View>
+                                            
                                             <TouchableOpacity 
-                                                key={ex.exerciseId + index}
-                                                onPress={() => router.push(`/exercise/${ex.exerciseId}`)}
-                                                className="bg-white px-4 py-3 rounded-2xl flex-row items-center justify-between shadow-sm border border-gray-100"
+                                                onPress={() => router.push({ pathname: '/today_records', params: { date: selectedDate } })} 
+                                                className="mt-3 py-2.5 bg-blue-50 rounded-xl items-center justify-center"
                                                 activeOpacity={0.7}
                                             >
-                                                <View className="flex-row items-center gap-3 flex-1 pr-2">
-                                                    <View className="bg-blue-50 w-9 h-9 rounded-full items-center justify-center">
-                                                        <Feather name="activity" size={18} color="#3456AD" />
-                                                    </View>
-                                                    <View className="flex-1">
-                                                        <Text className="text-[17px] font-bold text-gray-800" numberOfLines={1} ellipsizeMode="tail">
-                                                            {ex.exerciseName}
-                                                        </Text>
-                                                        <Text className="text-gray-500 text-xs font-medium">{ex.setsCount} {uiSetsCount}</Text>
-                                                    </View>
-                                                </View>
-                                                <Feather name="chevron-right" size={20} color="#d1d5db" />
+                                                <Text className="text-[#3456AD] font-semibold text-[17px]">{uiSeeMore}</Text>
                                             </TouchableOpacity>
-                                        ))}
-                                    </View>
-                                    
-                                    {/* Bouton Voir plus en dessous */}
-                                    <TouchableOpacity 
-                                        onPress={() => router.push({ pathname: '/today_records', params: { date: selectedDate } })} 
-                                        className="mt-3 py-2.5 bg-blue-50 rounded-xl items-center justify-center"
-                                        activeOpacity={0.7}
-                                    >
-                                        <Text className="text-[#3456AD] font-semibold text-[17px]">{uiSeeMore}</Text>
-                                    </TouchableOpacity>
+                                        </>
+                                    ) : !todayRoutine ? (
+                                        <View className="items-center justify-center mt-2 bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                                            <Feather name="sun" size={56} color="#d1d5db" />
+                                            <Text className="text-gray-400 text-lg mt-5 text-center font-medium">{uiNoSessionToday}</Text>
+                                        </View>
+                                    ) : null}
                                 </>
                             )}
                         </ScrollView>

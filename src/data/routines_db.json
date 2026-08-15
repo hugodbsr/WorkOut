@@ -1,0 +1,100 @@
+[
+    {
+        "id": "routine_ppl_push",
+        "title": {
+            "fr": "PPL - Push (Poussée)",
+            "en": "PPL - Push Day"
+        },
+        "description": {
+            "fr": "Séance 1 du programme Push/Pull/Legs : Pectoraux, épaules et triceps.",
+            "en": "Session 1 of the Push/Pull/Legs program: Chest, shoulders, and triceps."
+        },
+        "level": "Intermédiaire",
+        "duration": "1h15",
+        "exercises": [
+            "1",
+            "13",
+            "31",
+            "38",
+            "26",
+            "18"
+        ]
+    },
+    {
+        "id": "routine_ppl_pull",
+        "title": {
+            "fr": "PPL - Pull (Tirage)",
+            "en": "PPL - Pull Day"
+        },
+        "description": {
+            "fr": "Séance 2 du programme Push/Pull/Legs : Dos, arrière d'épaules et biceps.",
+            "en": "Session 2 of the Push/Pull/Legs program: Back, rear delts, and biceps."
+        },
+        "level": "Intermédiaire",
+        "duration": "1h15",
+        "exercises": [
+            "48",
+            "2",
+            "46",
+            "44",
+            "10"
+        ]
+    },
+    {
+        "id": "routine_ppl_legs",
+        "title": {
+            "fr": "PPL - Legs (Jambes)",
+            "en": "PPL - Legs Day"
+        },
+        "description": {
+            "fr": "Séance 3 du programme Push/Pull/Legs : Quadriceps, ischio-jambiers, mollets et sangle abdominale.",
+            "en": "Session 3 of the Push/Pull/Legs program: Quads, hamstrings, calves, and core."
+        },
+        "level": "Intermédiaire",
+        "duration": "1h00",
+        "exercises": [
+            "58",
+            "57",
+            "52",
+            "51",
+            "60"
+        ]
+    },
+    {
+        "id": "routine_fullbody_1",
+        "title": {
+            "fr": "Full Body Essentiel",
+            "en": "Essential Full Body"
+        },
+        "description": {
+            "fr": "Un entraînement complet pour solliciter tous les groupes musculaires principaux.",
+            "en": "A complete workout to engage all major muscle groups."
+        },
+        "level": "Débutant",
+        "duration": "45 min",
+        "exercises": [
+            "58",
+            "1",
+            "44",
+            "31",
+            "60"
+        ]
+    },
+    {
+        "id": "routine_cardio_hiit",
+        "title": {
+            "fr": "Cardio Express HIIT",
+            "en": "HIIT Cardio Express"
+        },
+        "description": {
+            "fr": "Séance courte et intense pour brûler des calories.",
+            "en": "Short and intense session to burn calories."
+        },
+        "level": "Avancé",
+        "duration": "15 min",
+        "exercises": [
+            "10",
+            "11"
+        ]
+    }
+]

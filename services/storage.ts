@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const USER_EXERCISE_KEY = 'user_exercises_data';
 const USER_CREATED_EXERCISES_KEY = "user_created_exercises";
+const USER_CREATED_ROUTINES_KEY = "user_created_routines";
 
 export type Side = "left" | "right" | "both";
 
@@ -201,3 +202,70 @@ export const getWeightHistory = async (): Promise<WeightEntry[]> => {
     }
 };
 
+// --- ROUTINES (Entraînements personnalisés) ---
+
+export const getUserRoutines = async (): Promise<any[]> => {
+    try {
+        const json = await AsyncStorage.getItem(USER_CREATED_ROUTINES_KEY);
+        if (json) {
+            return JSON.parse(json);
+        }
+    } catch (e) {
+        console.error("Erreur getUserRoutines", e);
+    }
+    return [];
+};
+
+export const saveUserRoutine = async (routine: any) => {
+    try {
+        const routines = await getUserRoutines();
+        const index = routines.findIndex((r) => r.id === routine.id);
+        if (index >= 0) {
+            routines[index] = routine;
+        } else {
+            routines.push(routine);
+        }
+        await AsyncStorage.setItem(USER_CREATED_ROUTINES_KEY, JSON.stringify(routines));
+    } catch (e) {
+        console.error("Erreur saveUserRoutine", e);
+        throw e;
+    }
+};
+
+export const deleteUserRoutine = async (routineId: string) => {
+    try {
+        const routines = await getUserRoutines();
+        const filtered = routines.filter((r) => r.id !== routineId);
+        await AsyncStorage.setItem(USER_CREATED_ROUTINES_KEY, JSON.stringify(filtered));
+    } catch (e) {
+        console.error("Erreur deleteUserRoutine", e);
+        throw e;
+    }
+};
+
+// --- Routine History ---
+
+const ROUTINE_HISTORY_KEY = 'user_routine_history';
+
+export const saveRoutineForDay = async (date: string, routineId: string) => {
+    try {
+        const json = await AsyncStorage.getItem(ROUTINE_HISTORY_KEY);
+        const history = json ? JSON.parse(json) : {};
+        history[date] = routineId;
+        await AsyncStorage.setItem(ROUTINE_HISTORY_KEY, JSON.stringify(history));
+    } catch (e) {
+        console.error("Erreur lors de la sauvegarde de la routine du jour", e);
+    }
+};
+
+export const getRoutineForDay = async (date: string): Promise<string | null> => {
+    try {
+        const json = await AsyncStorage.getItem(ROUTINE_HISTORY_KEY);
+        if (!json) return null;
+        const history = JSON.parse(json);
+        return history[date] || null;
+    } catch (e) {
+        console.error("Erreur lors de la récupération de la routine du jour", e);
+        return null;
+    }
+};
