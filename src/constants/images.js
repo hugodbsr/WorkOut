@@ -125,5 +125,13 @@ export const exerciseImages = {
     "lever_one_arm_bent_over_row.gif": require("../../assets/images/exercises_gifs/lever_one_arm_bent_over_row.gif"),
     "dumbbell_lying_one_arm_deltoid_rear.gif": require("../../assets/images/exercises_gifs/dumbbell_lying_one_arm_deltoid_rear.gif"),
     "l-sit_on_floor.gif": require("../../assets/images/exercises_gifs/l-sit_on_floor.gif"),
-    "dumbbell_incline_row.gif": require("../../assets/images/exercises_gifs/dumbbell_incline_row.gif")
+    "dumbbell_incline_row.gif": require("../../assets/images/exercises_gifs/dumbbell_incline_row.gif"),
+    "0138.gif": require("../../assets/images/exercises_gifs/0138.gif"),
+    "0247.gif": require("../../assets/images/exercises_gifs/0247.gif"),
+    "0347.gif": require("../../assets/images/exercises_gifs/0347.gif"),
+    "0349.gif": require("../../assets/images/exercises_gifs/0349.gif"),
+    "0455.gif": require("../../assets/images/exercises_gifs/0455.gif"),
+    "0126.gif": require("../../assets/images/exercises_gifs/0126.gif"),
+    "1428.gif": require("../../assets/images/exercises_gifs/1428.gif"),
+    "0859.gif": require("../../assets/images/exercises_gifs/0859.gif")
 };

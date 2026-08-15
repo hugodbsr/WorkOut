@@ -36,14 +36,14 @@
             "image": "abs.png"
         },
         {
-            "id": 8,
-            "nameKey": "muscle.other",
-            "image": "other.png"
-        },
-        {
             "id": 9,
             "nameKey": "muscle.forearms",
             "iconName": "minus"
+        },
+        {
+            "id": 8,
+            "nameKey": "muscle.other",
+            "image": "other.png"
         }
     ],
     "cardioGroups": [
@@ -1698,6 +1698,256 @@
             "createdByUser": false,
             "unilateral": false,
             "descriptionKey": "exercise.153.description"
+        },
+        {
+            "id": 157,
+            "nameKey": "exercise.157.name",
+            "descriptionKey": "exercise.157.description",
+            "image": "0138.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
+        },
+        {
+            "id": 158,
+            "nameKey": "exercise.158.name",
+            "descriptionKey": "exercise.158.description",
+            "image": "0247.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
+        },
+        {
+            "id": 159,
+            "nameKey": "exercise.159.name",
+            "descriptionKey": "exercise.159.description",
+            "image": "0347.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
+        },
+        {
+            "id": 160,
+            "nameKey": "exercise.160.name",
+            "descriptionKey": "exercise.160.description",
+            "image": "0349.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
+        },
+        {
+            "id": 161,
+            "nameKey": "exercise.161.name",
+            "descriptionKey": "exercise.161.description",
+            "image": "default.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
+        },
+        {
+            "id": 162,
+            "nameKey": "exercise.162.name",
+            "descriptionKey": "exercise.162.description",
+            "image": "0455.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
+        },
+        {
+            "id": 163,
+            "nameKey": "exercise.163.name",
+            "descriptionKey": "exercise.163.description",
+            "image": "default.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
+        },
+        {
+            "id": 164,
+            "nameKey": "exercise.164.name",
+            "descriptionKey": "exercise.164.description",
+            "image": "default.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
+        },
+        {
+            "id": 165,
+            "nameKey": "exercise.165.name",
+            "descriptionKey": "exercise.165.description",
+            "image": "default.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
+        },
+        {
+            "id": 166,
+            "nameKey": "exercise.166.name",
+            "descriptionKey": "exercise.166.description",
+            "image": "0126.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
+        },
+        {
+            "id": 167,
+            "nameKey": "exercise.167.name",
+            "descriptionKey": "exercise.167.description",
+            "image": "default.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
+        },
+        {
+            "id": 168,
+            "nameKey": "exercise.168.name",
+            "descriptionKey": "exercise.168.description",
+            "image": "default.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
+        },
+        {
+            "id": 169,
+            "nameKey": "exercise.169.name",
+            "descriptionKey": "exercise.169.description",
+            "image": "default.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
+        },
+        {
+            "id": 170,
+            "nameKey": "exercise.170.name",
+            "descriptionKey": "exercise.170.description",
+            "image": "default.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
+        },
+        {
+            "id": 171,
+            "nameKey": "exercise.171.name",
+            "descriptionKey": "exercise.171.description",
+            "image": "default.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
+        },
+        {
+            "id": 172,
+            "nameKey": "exercise.172.name",
+            "descriptionKey": "exercise.172.description",
+            "image": "default.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
+        },
+        {
+            "id": 173,
+            "nameKey": "exercise.173.name",
+            "descriptionKey": "exercise.173.description",
+            "image": "default.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
+        },
+        {
+            "id": 174,
+            "nameKey": "exercise.174.name",
+            "descriptionKey": "exercise.174.description",
+            "image": "0126.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
+        },
+        {
+            "id": 175,
+            "nameKey": "exercise.175.name",
+            "descriptionKey": "exercise.175.description",
+            "image": "0126.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
+        },
+        {
+            "id": 176,
+            "nameKey": "exercise.176.name",
+            "descriptionKey": "exercise.176.description",
+            "image": "default.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
+        },
+        {
+            "id": 177,
+            "nameKey": "exercise.177.name",
+            "descriptionKey": "exercise.177.description",
+            "image": "default.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
+        },
+        {
+            "id": 178,
+            "nameKey": "exercise.178.name",
+            "descriptionKey": "exercise.178.description",
+            "image": "default.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
+        },
+        {
+            "id": 179,
+            "nameKey": "exercise.179.name",
+            "descriptionKey": "exercise.179.description",
+            "image": "1428.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
+        },
+        {
+            "id": 180,
+            "nameKey": "exercise.180.name",
+            "descriptionKey": "exercise.180.description",
+            "image": "0859.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
+        },
+        {
+            "id": 181,
+            "nameKey": "exercise.181.name",
+            "descriptionKey": "exercise.181.description",
+            "image": "default.gif",
+            "exerciseTypeKey": "1",
+            "muscleGroupId": 9,
+            "createdByUser": false,
+            "unilateral": false
         }
     ]
 }

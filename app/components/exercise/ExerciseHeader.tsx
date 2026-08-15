@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { Image, ImageSource } from 'expo-image';
 import UnilateralButton from '../common/UnilateralButton';
 import { getUITranslation } from "@/services/translation";
@@ -27,6 +27,7 @@ export const ExerciseHeader: React.FC<ExerciseHeaderProps> = React.memo(({
                                                                          }) => {
     const [uiUnilateral, setUiUnilateral] = useState<string>('Unilateral');
     const [uiBilateral, setUiBilateral] = useState<string>('Bilateral');
+    const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
 
     useEffect(() => {
         const loadTranslations = async () => {
@@ -56,9 +57,17 @@ export const ExerciseHeader: React.FC<ExerciseHeaderProps> = React.memo(({
             </View>
             <Text className="text-3xl mx-4 mt-6 font-black text-gray-800 text-center">{name}</Text>
             {description ? (
-                <Text className="text-base text-gray-500 text-center mx-6 mt-2 mb-4 leading-relaxed">
-                    {description}
-                </Text>
+                <TouchableOpacity 
+                    activeOpacity={0.7} 
+                    onPress={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
+                >
+                    <Text 
+                        className="text-base text-gray-500 text-center mx-6 mt-2 mb-4 leading-relaxed"
+                        numberOfLines={isDescriptionExpanded ? undefined : 3}
+                    >
+                        {description}
+                    </Text>
+                </TouchableOpacity>
             ) : null}
             {isUnilateral && (
                 <View style={{ flexDirection: 'row', justifyContent: 'center' }}>

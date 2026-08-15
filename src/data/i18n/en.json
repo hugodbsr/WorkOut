@@ -415,6 +415,106 @@
       "name": "walking on stepmill",
       "description": "Adjust the stepmill machine to a comfortable level. Step onto the machine and place your hands on the handrails for support. Start walking by placing one foot on a step and then the other, alternating between legs. Maintain an upright posture and engage your core muscles. Continue walking for the desired duration or distance. Gradually increase the intensity or speed as you become more comfortable with the exercise. Remember to cool down and stretch after completing the exercise."
     },
+    "157": {
+      "name": "Bottoms-Up Clean From The Hang Position",
+      "description": "Clean the kettlebell from a hang position while keeping the bottom of the kettlebell facing upwards."
+    },
+    "158": {
+      "name": "Cable Wrist Curl",
+      "description": "Sit on a bench and curl the cable straight bar upwards by only moving your wrists."
+    },
+    "159": {
+      "name": "Dumbbell Lying Pronation",
+      "description": "Lie on a bench and externally rotate your forearm until it is parallel to the floor."
+    },
+    "160": {
+      "name": "Dumbbell Lying Supination",
+      "description": "Lie on a bench and externally rotate your forearm upward in a semicircle motion."
+    },
+    "161": {
+      "name": "Farmer's Walk",
+      "description": "Walk for a set distance or time while gripping heavy weights tightly."
+    },
+    "162": {
+      "name": "Finger Curls",
+      "description": "Roll a barbell down to your fingertips, then curl your fingers to squeeze it back up."
+    },
+    "163": {
+      "name": "Kneeling Forearm Stretch",
+      "description": "Kneel with your palms flat on the floor, fingers pointing towards your knees, and lean back slightly."
+    },
+    "164": {
+      "name": "Palms-Down Dumbbell Wrist Curl Over Bench",
+      "description": "Rest your forearms on a bench and extend your wrists upward while holding dumbbells palms down."
+    },
+    "165": {
+      "name": "Palms-Down Wrist Curl Over A Bench",
+      "description": "Rest your forearms on a bench and extend your wrists upward holding a barbell palms down."
+    },
+    "166": {
+      "name": "Palms-Up Barbell Wrist Curl Over A Bench",
+      "description": "Rest your forearms on a bench and curl your wrists upward holding a barbell palms up."
+    },
+    "167": {
+      "name": "Palms-Up Dumbbell Wrist Curl Over A Bench",
+      "description": "Rest your forearms on a bench and curl your wrists upward holding dumbbells palms up."
+    },
+    "168": {
+      "name": "Plate Pinch",
+      "description": "Hold two or more plates together with a pinch grip for as long as possible."
+    },
+    "169": {
+      "name": "Rickshaw Carry",
+      "description": "Lift the rickshaw frame and walk for a given distance to build grip and core strength."
+    },
+    "170": {
+      "name": "Seated Dumbbell Palms-Down Wrist Curl",
+      "description": "Sit on a bench, rest your forearms on your thighs, and extend your wrists upward."
+    },
+    "171": {
+      "name": "Seated Dumbbell Palms-Up Wrist Curl",
+      "description": "Sit on a bench, rest your forearms on your thighs, and curl your wrists upward."
+    },
+    "172": {
+      "name": "Seated One-Arm Dumbbell Palms-Down Wrist Curl",
+      "description": "Sit and rest one forearm on your thigh, extending your wrist upward with a dumbbell."
+    },
+    "173": {
+      "name": "Seated One-Arm Dumbbell Palms-Up Wrist Curl",
+      "description": "Sit and rest one forearm on your thigh, curling your wrist upward with a dumbbell."
+    },
+    "174": {
+      "name": "Seated Palm-Up Barbell Wrist Curl",
+      "description": "Sit and rest your forearms on your thighs, curling your wrists upward with a barbell."
+    },
+    "175": {
+      "name": "Seated Palms-Down Barbell Wrist Curl",
+      "description": "Sit and rest your forearms on your thighs, extending your wrists upward with a barbell."
+    },
+    "176": {
+      "name": "Seated Two-Arm Palms-Up Low-Pulley Wrist Curl",
+      "description": "Sit in front of a low pulley and curl the straight bar upward with your wrists."
+    },
+    "177": {
+      "name": "Standing Olympic Plate Hand Squeeze",
+      "description": "Stand and pinch a heavy weight plate with your fingers and thumb to build pinch strength."
+    },
+    "178": {
+      "name": "Standing Palms-Up Barbell Behind The Back",
+      "description": "Stand and hold a barbell behind your back, curling your wrists upward."
+    },
+    "179": {
+      "name": "Wrist Circles",
+      "description": "Make circular motions with your wrists to warm up or strengthen them."
+    },
+    "180": {
+      "name": "Wrist Roller",
+      "description": "Roll a suspended weight up and down by twisting the handle in your hands."
+    },
+    "181": {
+      "name": "Wrist Rotations with Straight Bar",
+      "description": "Hold a straight bar and rotate your wrists up and down for forearms endurance."
+    },
     "bench_press": {
       "name": "Bench Press",
       "description": "Basic exercise for developing the chest muscles."
