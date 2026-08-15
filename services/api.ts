@@ -186,9 +186,12 @@ export const fetchTrackingModesJson = async () => {
 
 import { getUserRoutines } from "./storage";
 
-export const fetchRoutinesJsonList = async () => {
+export const fetchUserRoutinesList = async () => {
+    return await getUserRoutines();
+};
+
+export const fetchLibraryRoutinesList = async () => {
     const languageCode = getLanguageCode();
-    const userRoutines = await getUserRoutines();
 
     const formattedJsonRoutines = routinesData.map((routine: any) => ({
         id: routine.id,
@@ -200,7 +203,7 @@ export const fetchRoutinesJsonList = async () => {
         isCustom: false,
     }));
 
-    return [...userRoutines, ...formattedJsonRoutines];
+    return formattedJsonRoutines;
 };
 
 export const fetchRoutineJson = async ({ query }: { query: string }) => {

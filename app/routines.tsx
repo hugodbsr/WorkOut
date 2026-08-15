@@ -1,8 +1,8 @@
-import { ActivityIndicator, FlatList, Text, TouchableOpacity, View } from "react-native";
-import React, { useLayoutEffect, useCallback } from 'react'
+import { ActivityIndicator, FlatList, Text, TouchableOpacity, View, Animated } from "react-native";
+import React, { useLayoutEffect, useCallback, useState, useRef } from 'react'
 import { useRouter , useNavigation, useFocusEffect } from "expo-router";
 import useFetch from "@/services/useFetch";
-import { fetchRoutinesJsonList } from "@/services/api";
+import { fetchUserRoutinesList } from "@/services/api";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 
@@ -14,11 +14,15 @@ export default function Routines() {
     
     const bannerActive = useBannerActive();
     const bannerGap = bannerActive ? 52 : 0;
+    
+    const [isFabOpen, setIsFabOpen] = useState(false);
+    
+    const toggleFab = () => setIsFabOpen(!isFabOpen);
 
     useLayoutEffect(() => {
         navigation.setOptions({
             headerTitle: () => (
-                <Text className="font-bold text-xl text-white italic">Entraînements</Text>
+                <Text className="font-bold text-xl text-white italic">Mes Programmes</Text>
             ),
         });
     }, [navigation]);
@@ -28,7 +32,7 @@ export default function Routines() {
         loading: routinesLoading,
         error: routinesError,
         refetch
-    } = useFetch(fetchRoutinesJsonList);
+    } = useFetch(fetchUserRoutinesList);
 
     useFocusEffect(
         useCallback(() => {
@@ -58,6 +62,14 @@ export default function Routines() {
                 data={routines}
                 contentContainerStyle={{ paddingTop: 15 + bannerGap, paddingBottom: 120 }}
                 keyExtractor={(item) => item.id.toString()}
+                ListEmptyComponent={() => (
+                    <View className="items-center justify-center mt-10 px-6">
+                        <Feather name="inbox" size={48} color="#d1d5db" />
+                        <Text className="text-gray-400 font-medium text-center mt-4">
+                            Vous n'avez pas encore de programme. Créez le vôtre ou ajoutez-en un depuis la bibliothèque !
+                        </Text>
+                    </View>
+                )}
                 renderItem={({ item }) => (
                     <TouchableOpacity 
                         onPress={() => router.push(`/routine/${item.id}`)}
@@ -82,30 +94,75 @@ export default function Routines() {
                             </View>
                         </View>
                         
-                        {/* Actions pour les routines personnalisées */}
-                        {item.isCustom ? (
-                            <TouchableOpacity 
-                                onPress={(e) => {
-                                    e.stopPropagation();
-                                    router.push(`/editRoutine/${item.id}`);
-                                }}
-                                className="p-2 ml-2"
-                            >
-                                <Feather name="edit-2" size={20} color="#9ca3af" />
-                            </TouchableOpacity>
-                        ) : null}
+                        <TouchableOpacity 
+                            onPress={(e) => {
+                                e.stopPropagation();
+                                router.push(`/editRoutine/${item.id}`);
+                            }}
+                            className="p-2 ml-2"
+                        >
+                            <Feather name="edit-2" size={20} color="#9ca3af" />
+                        </TouchableOpacity>
                     </TouchableOpacity>
                 )}
             />
-            
-            <TouchableOpacity
-                className="bg-[#ea580c] absolute right-6 shadow-md items-center justify-center"
-                style={{ bottom: 100, width: 60, height: 60, borderRadius: 30 }}
-                activeOpacity={0.8}
-                onPress={() => router.push(`/editRoutine/new`)}
-            >
-                <Feather name="plus" size={30} color="white" />
-            </TouchableOpacity>
+
+            {/* Fond semi-transparent quand ouvert */}
+            {isFabOpen && (
+                <TouchableOpacity 
+                    className="absolute top-0 bottom-0 left-0 right-0 bg-black/40"
+                    activeOpacity={1}
+                    onPress={() => setIsFabOpen(false)}
+                />
+            )}
+
+            {/* Speed Dial Menu */}
+            <View className="absolute right-6 bottom-[100px] items-end">
+                {isFabOpen && (
+                    <>
+                        <View className="flex-row items-center mb-4">
+                            <Text className="bg-white px-3 py-1.5 rounded-lg overflow-hidden shadow-sm mr-3 font-medium text-gray-800">
+                                Bibliothèque
+                            </Text>
+                            <TouchableOpacity
+                                className="bg-white border border-gray-200 shadow-md items-center justify-center w-12 h-12 rounded-full"
+                                activeOpacity={0.8}
+                                onPress={() => {
+                                    setIsFabOpen(false);
+                                    router.push(`/routineLibrary`);
+                                }}
+                            >
+                                <Feather name="book-open" size={20} color="#ea580c" />
+                            </TouchableOpacity>
+                        </View>
+
+                        <View className="flex-row items-center mb-4">
+                            <Text className="bg-white px-3 py-1.5 rounded-lg overflow-hidden shadow-sm mr-3 font-medium text-gray-800">
+                                Créer de zéro
+                            </Text>
+                            <TouchableOpacity
+                                className="bg-[#3456AD] shadow-md items-center justify-center w-12 h-12 rounded-full"
+                                activeOpacity={0.8}
+                                onPress={() => {
+                                    setIsFabOpen(false);
+                                    router.push(`/editRoutine/new`);
+                                }}
+                            >
+                                <Feather name="edit-2" size={20} color="white" />
+                            </TouchableOpacity>
+                        </View>
+                    </>
+                )}
+                
+                <TouchableOpacity
+                    className="bg-[#ea580c] shadow-lg items-center justify-center"
+                    style={{ width: 60, height: 60, borderRadius: 30 }}
+                    activeOpacity={0.8}
+                    onPress={toggleFab}
+                >
+                    <Feather name={isFabOpen ? "x" : "plus"} size={30} color="white" />
+                </TouchableOpacity>
+            </View>
         </SafeAreaView>
     );
 }
