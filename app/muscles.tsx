@@ -71,11 +71,15 @@ export default function Add() {
                         activeOpacity={0.7}
                     >
                         <View className="bg-blue-50 w-14 h-14 rounded-full items-center justify-center mr-4">
-                            <Image
-                                source={getMuscleImage(item.image)}
-                                style={{ width: 44, height: 44 }}
-                                contentFit="contain"
-                            />
+                            {item.image ? (
+                                <Image
+                                    source={getMuscleImage(item.image)}
+                                    style={{ width: 44, height: 44 }}
+                                    contentFit="contain"
+                                />
+                            ) : item.iconName ? (
+                                <Feather name={item.iconName as any} size={24} color="#3456AD" />
+                            ) : null}
                         </View>
                         <View className="flex-1">
                             <Text className="text-[19px] font-bold text-gray-800">{item.name}</Text>

@@ -39,6 +39,11 @@
             "id": 8,
             "nameKey": "muscle.other",
             "image": "other.png"
+        },
+        {
+            "id": 9,
+            "nameKey": "muscle.forearms",
+            "iconName": "minus"
         }
     ],
     "cardioGroups": [
@@ -995,424 +1000,704 @@
             "iconName": "wind"
         },
         {
-            "id": "84",
-            "categoryId": 6,
-            "nameKey": "84",
-            "image": "split_squats.gif"
-        },
-        {
-            "id": "85",
-            "categoryId": 1,
-            "nameKey": "85",
-            "image": "dumbbell_one_arm_incline_chest_press.gif"
-        },
-        {
-            "id": "86",
-            "categoryId": 6,
-            "nameKey": "86",
-            "image": "barbell_stiff_leg_good_morning.gif"
-        },
-        {
-            "id": "87",
-            "categoryId": 1,
-            "nameKey": "87",
-            "image": "clap_push_up.gif"
-        },
-        {
-            "id": "88",
-            "categoryId": 3,
-            "nameKey": "88",
-            "image": "barbell_standing_front_raise_over_head.gif"
-        },
-        {
-            "id": "89",
-            "categoryId": 3,
-            "nameKey": "89",
-            "image": "barbell_skier.gif"
-        },
-        {
-            "id": "90",
-            "categoryId": 5,
-            "nameKey": "90",
-            "image": "dumbbell_incline_hammer_press_on_exercise_ball.gif"
-        },
-        {
-            "id": "91",
-            "categoryId": 5,
-            "nameKey": "91",
-            "image": "dumbbell_close-grip_press.gif"
-        },
-        {
-            "id": "92",
-            "categoryId": 4,
-            "nameKey": "92",
-            "image": "dumbbell_biceps_curl_v_sit_on_bosu_ball.gif"
-        },
-        {
-            "id": "93",
-            "categoryId": 3,
-            "nameKey": "93",
-            "image": "dumbbell_arnold_press.gif"
-        },
-        {
-            "id": "94",
-            "categoryId": 7,
-            "nameKey": "94",
-            "image": "barbell_side_bent_v_2.gif"
-        },
-        {
-            "id": "95",
-            "categoryId": 3,
-            "nameKey": "95",
-            "image": "dumbbell_arnold_press_v_2.gif"
-        },
-        {
-            "id": "96",
-            "categoryId": 2,
-            "nameKey": "96",
-            "image": "dumbbell_lying_rear_delt_row.gif"
-        },
-        {
-            "id": "97",
-            "categoryId": 5,
-            "nameKey": "97",
-            "image": "dumbbell_kickback.gif"
-        },
-        {
-            "id": "98",
-            "categoryId": 4,
-            "nameKey": "98",
-            "image": "dumbbell_kneeling_bicep_curl_exercise_ball.gif"
-        },
-        {
-            "id": "99",
-            "categoryId": 7,
-            "nameKey": "99",
-            "image": "decline_crunch.gif"
-        },
-        {
-            "id": "100",
-            "categoryId": 7,
-            "nameKey": "100",
-            "image": "barbell_rollerout_from_bench.gif"
-        },
-        {
-            "id": "101",
-            "categoryId": 6,
-            "nameKey": "101",
-            "image": "barbell_speed_squat.gif"
-        },
-        {
-            "id": "102",
-            "categoryId": 1,
-            "nameKey": "102",
-            "image": "barbell_reverse_grip_decline_bench_press.gif"
-        },
-        {
-            "id": "103",
-            "categoryId": 6,
-            "nameKey": "103",
-            "image": "barbell_romanian_deadlift.gif"
-        },
-        {
-            "id": "104",
-            "categoryId": 3,
-            "nameKey": "104",
-            "image": "dumbbell_front_raise_v_2.gif"
-        },
-        {
-            "id": "105",
-            "categoryId": 1,
-            "nameKey": "105",
-            "image": "dumbbell_decline_fly.gif"
-        },
-        {
-            "id": "106",
-            "categoryId": 6,
-            "nameKey": "106",
-            "image": "rocking_frog_stretch.gif"
-        },
-        {
-            "id": "107",
-            "categoryId": 3,
-            "nameKey": "107",
-            "image": "dumbbell_lateral_to_front_raise.gif"
-        },
-        {
-            "id": "108",
-            "categoryId": 6,
-            "nameKey": "108",
-            "image": "barbell_side_split_squat_v_2.gif"
-        },
-        {
-            "id": "109",
-            "categoryId": 1,
-            "nameKey": "109",
-            "image": "isometric_wipers.gif"
-        },
-        {
-            "id": "110",
-            "categoryId": 2,
-            "nameKey": "110",
-            "image": "kipping_muscle_up.gif"
-        },
-        {
-            "id": "111",
-            "categoryId": 1,
-            "nameKey": "111",
-            "image": "chest_and_front_of_shoulder_stretch.gif"
-        },
-        {
-            "id": "112",
-            "categoryId": 6,
-            "nameKey": "112",
-            "image": "barbell_clean-grip_front_squat.gif"
-        },
-        {
-            "id": "113",
-            "categoryId": 6,
-            "nameKey": "113",
-            "image": "barbell_squat_jump_step_rear_lunge.gif"
-        },
-        {
-            "id": "114",
-            "categoryId": 2,
-            "nameKey": "114",
-            "image": "back_pec_stretch.gif"
-        },
-        {
-            "id": "115",
-            "categoryId": 1,
-            "nameKey": "115",
-            "image": "dumbbell_incline_press_on_exercise_ball.gif"
-        },
-        {
-            "id": "116",
-            "categoryId": 6,
-            "nameKey": "116",
-            "image": "lunge_with_jump.gif"
-        },
-        {
-            "id": "117",
-            "categoryId": 4,
-            "nameKey": "117",
-            "image": "barbell_lying_preacher_curl.gif"
-        },
-        {
-            "id": "118",
-            "categoryId": 7,
-            "nameKey": "118",
-            "image": "landmine_180.gif"
-        },
-        {
-            "id": "119",
-            "categoryId": 5,
-            "nameKey": "119",
-            "image": "dumbbell_pronate-grip_triceps_extension.gif"
-        },
-        {
-            "id": "120",
-            "categoryId": 1,
-            "nameKey": "120",
-            "image": "dumbbell_decline_bench_press.gif"
-        },
-        {
-            "id": "121",
-            "categoryId": 1,
-            "nameKey": "121",
-            "image": "korean_dips.gif"
-        },
-        {
-            "id": "122",
-            "categoryId": 3,
-            "nameKey": "122",
-            "image": "dumbbell_standing_alternate_raise.gif"
-        },
-        {
-            "id": "123",
-            "categoryId": 2,
-            "nameKey": "123",
-            "image": "barbell_pullover.gif"
-        },
-        {
-            "id": "124",
-            "categoryId": 3,
-            "nameKey": "124",
-            "image": "dumbbell_lying_one_arm_rear_lateral_raise.gif"
-        },
-        {
-            "id": "125",
-            "categoryId": 4,
-            "nameKey": "125",
-            "image": "dumbbell_cross_body_hammer_curl.gif"
-        },
-        {
-            "id": "126",
-            "categoryId": 6,
-            "nameKey": "126",
-            "image": "lying_side_quads_stretch.gif"
-        },
-        {
-            "id": "127",
-            "categoryId": 6,
-            "nameKey": "127",
-            "image": "dumbbell_sumo_pull_through.gif"
-        },
-        {
-            "id": "128",
-            "categoryId": 7,
-            "nameKey": "128",
-            "image": "45_side_bend.gif"
-        },
-        {
-            "id": "129",
-            "categoryId": 7,
-            "nameKey": "129",
-            "image": "hanging_oblique_knee_raise.gif"
-        },
-        {
-            "id": "130",
-            "categoryId": 2,
-            "nameKey": "130",
-            "image": "lever_one_arm_bent_over_row.gif"
-        },
-        {
-            "id": "131",
-            "categoryId": 3,
-            "nameKey": "131",
-            "image": "dumbbell_lying_one_arm_deltoid_rear.gif"
-        },
-        {
-            "id": "132",
-            "categoryId": 7,
-            "nameKey": "132",
-            "image": "l-sit_on_floor.gif"
-        },
-        {
-            "id": "133",
-            "categoryId": 2,
-            "nameKey": "133",
-            "image": "dumbbell_incline_row.gif"
-        },
-        {
-            "id": "134",
-            "categoryId": 13,
-            "nameKey": "134",
-            "iconName": "activity"
-        },
-        {
-            "id": "135",
-            "categoryId": 13,
-            "nameKey": "135",
-            "iconName": "activity"
-        },
-        {
-            "id": "136",
-            "categoryId": 13,
-            "nameKey": "136",
-            "iconName": "activity"
-        },
-        {
-            "id": "137",
-            "categoryId": 13,
-            "nameKey": "137",
-            "iconName": "activity"
-        },
-        {
-            "id": "138",
-            "categoryId": 13,
-            "nameKey": "138",
-            "iconName": "activity"
-        },
-        {
-            "id": "139",
-            "categoryId": 13,
-            "nameKey": "139",
-            "iconName": "activity"
-        },
-        {
-            "id": "140",
-            "categoryId": 13,
-            "nameKey": "140",
-            "iconName": "activity"
-        },
-        {
-            "id": "141",
-            "categoryId": 13,
-            "nameKey": "141",
-            "iconName": "activity"
-        },
-        {
-            "id": "142",
-            "categoryId": 13,
-            "nameKey": "142",
-            "iconName": "activity"
-        },
-        {
-            "id": "143",
-            "categoryId": 13,
-            "nameKey": "143",
-            "iconName": "activity"
-        },
-        {
-            "id": "144",
-            "categoryId": 13,
-            "nameKey": "144",
-            "iconName": "activity"
-        },
-        {
-            "id": "145",
-            "categoryId": 13,
-            "nameKey": "145",
-            "iconName": "activity"
-        },
-        {
-            "id": "146",
-            "categoryId": 13,
-            "nameKey": "146",
-            "iconName": "activity"
-        },
-        {
-            "id": "147",
-            "categoryId": 13,
-            "nameKey": "147",
-            "iconName": "activity"
-        },
-        {
-            "id": "148",
-            "categoryId": 13,
-            "nameKey": "148",
-            "iconName": "activity"
-        },
-        {
-            "id": "149",
-            "categoryId": 13,
-            "nameKey": "149",
-            "iconName": "activity"
-        },
-        {
-            "id": "150",
-            "categoryId": 13,
-            "nameKey": "150",
-            "iconName": "activity"
-        },
-        {
-            "id": "151",
-            "categoryId": 13,
-            "nameKey": "151",
-            "iconName": "activity"
-        },
-        {
-            "id": "152",
-            "categoryId": 13,
-            "nameKey": "152",
-            "iconName": "activity"
-        },
-        {
-            "id": "153",
-            "categoryId": 13,
-            "nameKey": "153",
-            "iconName": "activity"
+            "id": 84,
+            "nameKey": "exercise.84.name",
+            "image": "split_squats.gif",
+            "muscleGroupId": 6,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.84.description"
+        },
+        {
+            "id": 85,
+            "nameKey": "exercise.85.name",
+            "image": "dumbbell_one_arm_incline_chest_press.gif",
+            "muscleGroupId": 1,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.85.description"
+        },
+        {
+            "id": 86,
+            "nameKey": "exercise.86.name",
+            "image": "barbell_stiff_leg_good_morning.gif",
+            "muscleGroupId": 6,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.86.description"
+        },
+        {
+            "id": 87,
+            "nameKey": "exercise.87.name",
+            "image": "clap_push_up.gif",
+            "muscleGroupId": 1,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.87.description"
+        },
+        {
+            "id": 88,
+            "nameKey": "exercise.88.name",
+            "image": "barbell_standing_front_raise_over_head.gif",
+            "muscleGroupId": 3,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.88.description"
+        },
+        {
+            "id": 89,
+            "nameKey": "exercise.89.name",
+            "image": "barbell_skier.gif",
+            "muscleGroupId": 3,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.89.description"
+        },
+        {
+            "id": 90,
+            "nameKey": "exercise.90.name",
+            "image": "dumbbell_incline_hammer_press_on_exercise_ball.gif",
+            "muscleGroupId": 5,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.90.description"
+        },
+        {
+            "id": 91,
+            "nameKey": "exercise.91.name",
+            "image": "dumbbell_close-grip_press.gif",
+            "muscleGroupId": 5,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.91.description"
+        },
+        {
+            "id": 92,
+            "nameKey": "exercise.92.name",
+            "image": "dumbbell_biceps_curl_v_sit_on_bosu_ball.gif",
+            "muscleGroupId": 4,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.92.description"
+        },
+        {
+            "id": 93,
+            "nameKey": "exercise.93.name",
+            "image": "dumbbell_arnold_press.gif",
+            "muscleGroupId": 3,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.93.description"
+        },
+        {
+            "id": 94,
+            "nameKey": "exercise.94.name",
+            "image": "barbell_side_bent_v_2.gif",
+            "muscleGroupId": 7,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.94.description"
+        },
+        {
+            "id": 95,
+            "nameKey": "exercise.95.name",
+            "image": "dumbbell_arnold_press_v_2.gif",
+            "muscleGroupId": 3,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.95.description"
+        },
+        {
+            "id": 96,
+            "nameKey": "exercise.96.name",
+            "image": "dumbbell_lying_rear_delt_row.gif",
+            "muscleGroupId": 2,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.96.description"
+        },
+        {
+            "id": 97,
+            "nameKey": "exercise.97.name",
+            "image": "dumbbell_kickback.gif",
+            "muscleGroupId": 5,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.97.description"
+        },
+        {
+            "id": 98,
+            "nameKey": "exercise.98.name",
+            "image": "dumbbell_kneeling_bicep_curl_exercise_ball.gif",
+            "muscleGroupId": 4,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.98.description"
+        },
+        {
+            "id": 99,
+            "nameKey": "exercise.99.name",
+            "image": "decline_crunch.gif",
+            "muscleGroupId": 7,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.99.description"
+        },
+        {
+            "id": 100,
+            "nameKey": "exercise.100.name",
+            "image": "barbell_rollerout_from_bench.gif",
+            "muscleGroupId": 7,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.100.description"
+        },
+        {
+            "id": 101,
+            "nameKey": "exercise.101.name",
+            "image": "barbell_speed_squat.gif",
+            "muscleGroupId": 6,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.101.description"
+        },
+        {
+            "id": 102,
+            "nameKey": "exercise.102.name",
+            "image": "barbell_reverse_grip_decline_bench_press.gif",
+            "muscleGroupId": 1,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.102.description"
+        },
+        {
+            "id": 103,
+            "nameKey": "exercise.103.name",
+            "image": "barbell_romanian_deadlift.gif",
+            "muscleGroupId": 6,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.103.description"
+        },
+        {
+            "id": 104,
+            "nameKey": "exercise.104.name",
+            "image": "dumbbell_front_raise_v_2.gif",
+            "muscleGroupId": 3,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.104.description"
+        },
+        {
+            "id": 105,
+            "nameKey": "exercise.105.name",
+            "image": "dumbbell_decline_fly.gif",
+            "muscleGroupId": 1,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.105.description"
+        },
+        {
+            "id": 106,
+            "nameKey": "exercise.106.name",
+            "image": "rocking_frog_stretch.gif",
+            "muscleGroupId": 6,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.106.description"
+        },
+        {
+            "id": 107,
+            "nameKey": "exercise.107.name",
+            "image": "dumbbell_lateral_to_front_raise.gif",
+            "muscleGroupId": 3,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.107.description"
+        },
+        {
+            "id": 108,
+            "nameKey": "exercise.108.name",
+            "image": "barbell_side_split_squat_v_2.gif",
+            "muscleGroupId": 6,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.108.description"
+        },
+        {
+            "id": 109,
+            "nameKey": "exercise.109.name",
+            "image": "isometric_wipers.gif",
+            "muscleGroupId": 1,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.109.description"
+        },
+        {
+            "id": 110,
+            "nameKey": "exercise.110.name",
+            "image": "kipping_muscle_up.gif",
+            "muscleGroupId": 2,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.110.description"
+        },
+        {
+            "id": 111,
+            "nameKey": "exercise.111.name",
+            "image": "chest_and_front_of_shoulder_stretch.gif",
+            "muscleGroupId": 1,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.111.description"
+        },
+        {
+            "id": 112,
+            "nameKey": "exercise.112.name",
+            "image": "barbell_clean-grip_front_squat.gif",
+            "muscleGroupId": 6,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.112.description"
+        },
+        {
+            "id": 113,
+            "nameKey": "exercise.113.name",
+            "image": "barbell_squat_jump_step_rear_lunge.gif",
+            "muscleGroupId": 6,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.113.description"
+        },
+        {
+            "id": 114,
+            "nameKey": "exercise.114.name",
+            "image": "back_pec_stretch.gif",
+            "muscleGroupId": 2,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.114.description"
+        },
+        {
+            "id": 115,
+            "nameKey": "exercise.115.name",
+            "image": "dumbbell_incline_press_on_exercise_ball.gif",
+            "muscleGroupId": 1,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.115.description"
+        },
+        {
+            "id": 116,
+            "nameKey": "exercise.116.name",
+            "image": "lunge_with_jump.gif",
+            "muscleGroupId": 6,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.116.description"
+        },
+        {
+            "id": 117,
+            "nameKey": "exercise.117.name",
+            "image": "barbell_lying_preacher_curl.gif",
+            "muscleGroupId": 4,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.117.description"
+        },
+        {
+            "id": 118,
+            "nameKey": "exercise.118.name",
+            "image": "landmine_180.gif",
+            "muscleGroupId": 7,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.118.description"
+        },
+        {
+            "id": 119,
+            "nameKey": "exercise.119.name",
+            "image": "dumbbell_pronate-grip_triceps_extension.gif",
+            "muscleGroupId": 5,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.119.description"
+        },
+        {
+            "id": 120,
+            "nameKey": "exercise.120.name",
+            "image": "dumbbell_decline_bench_press.gif",
+            "muscleGroupId": 1,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.120.description"
+        },
+        {
+            "id": 121,
+            "nameKey": "exercise.121.name",
+            "image": "korean_dips.gif",
+            "muscleGroupId": 1,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.121.description"
+        },
+        {
+            "id": 122,
+            "nameKey": "exercise.122.name",
+            "image": "dumbbell_standing_alternate_raise.gif",
+            "muscleGroupId": 3,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.122.description"
+        },
+        {
+            "id": 123,
+            "nameKey": "exercise.123.name",
+            "image": "barbell_pullover.gif",
+            "muscleGroupId": 2,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.123.description"
+        },
+        {
+            "id": 124,
+            "nameKey": "exercise.124.name",
+            "image": "dumbbell_lying_one_arm_rear_lateral_raise.gif",
+            "muscleGroupId": 3,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.124.description"
+        },
+        {
+            "id": 125,
+            "nameKey": "exercise.125.name",
+            "image": "dumbbell_cross_body_hammer_curl.gif",
+            "muscleGroupId": 4,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.125.description"
+        },
+        {
+            "id": 126,
+            "nameKey": "exercise.126.name",
+            "image": "lying_side_quads_stretch.gif",
+            "muscleGroupId": 6,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.126.description"
+        },
+        {
+            "id": 127,
+            "nameKey": "exercise.127.name",
+            "image": "dumbbell_sumo_pull_through.gif",
+            "muscleGroupId": 6,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.127.description"
+        },
+        {
+            "id": 128,
+            "nameKey": "exercise.128.name",
+            "image": "45_side_bend.gif",
+            "muscleGroupId": 7,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.128.description"
+        },
+        {
+            "id": 129,
+            "nameKey": "exercise.129.name",
+            "image": "hanging_oblique_knee_raise.gif",
+            "muscleGroupId": 7,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.129.description"
+        },
+        {
+            "id": 130,
+            "nameKey": "exercise.130.name",
+            "image": "lever_one_arm_bent_over_row.gif",
+            "muscleGroupId": 2,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.130.description"
+        },
+        {
+            "id": 131,
+            "nameKey": "exercise.131.name",
+            "image": "dumbbell_lying_one_arm_deltoid_rear.gif",
+            "muscleGroupId": 3,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.131.description"
+        },
+        {
+            "id": 132,
+            "nameKey": "exercise.132.name",
+            "image": "l-sit_on_floor.gif",
+            "muscleGroupId": 7,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.132.description"
+        },
+        {
+            "id": 133,
+            "nameKey": "exercise.133.name",
+            "image": "dumbbell_incline_row.gif",
+            "muscleGroupId": 2,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.133.description"
+        },
+        {
+            "id": 134,
+            "nameKey": "exercise.134.name",
+            "iconName": "activity",
+            "muscleGroupId": 13,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.134.description"
+        },
+        {
+            "id": 135,
+            "nameKey": "exercise.135.name",
+            "iconName": "activity",
+            "muscleGroupId": 13,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.135.description"
+        },
+        {
+            "id": 136,
+            "nameKey": "exercise.136.name",
+            "iconName": "activity",
+            "muscleGroupId": 13,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.136.description"
+        },
+        {
+            "id": 137,
+            "nameKey": "exercise.137.name",
+            "iconName": "activity",
+            "muscleGroupId": 13,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.137.description"
+        },
+        {
+            "id": 138,
+            "nameKey": "exercise.138.name",
+            "iconName": "activity",
+            "muscleGroupId": 13,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.138.description"
+        },
+        {
+            "id": 139,
+            "nameKey": "exercise.139.name",
+            "iconName": "activity",
+            "muscleGroupId": 13,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.139.description"
+        },
+        {
+            "id": 140,
+            "nameKey": "exercise.140.name",
+            "iconName": "activity",
+            "muscleGroupId": 13,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.140.description"
+        },
+        {
+            "id": 141,
+            "nameKey": "exercise.141.name",
+            "iconName": "activity",
+            "muscleGroupId": 13,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.141.description"
+        },
+        {
+            "id": 142,
+            "nameKey": "exercise.142.name",
+            "iconName": "activity",
+            "muscleGroupId": 13,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.142.description"
+        },
+        {
+            "id": 143,
+            "nameKey": "exercise.143.name",
+            "iconName": "activity",
+            "muscleGroupId": 13,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.143.description"
+        },
+        {
+            "id": 144,
+            "nameKey": "exercise.144.name",
+            "iconName": "activity",
+            "muscleGroupId": 13,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.144.description"
+        },
+        {
+            "id": 145,
+            "nameKey": "exercise.145.name",
+            "iconName": "activity",
+            "muscleGroupId": 13,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.145.description"
+        },
+        {
+            "id": 146,
+            "nameKey": "exercise.146.name",
+            "iconName": "activity",
+            "muscleGroupId": 13,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.146.description"
+        },
+        {
+            "id": 147,
+            "nameKey": "exercise.147.name",
+            "iconName": "activity",
+            "muscleGroupId": 13,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.147.description"
+        },
+        {
+            "id": 148,
+            "nameKey": "exercise.148.name",
+            "iconName": "activity",
+            "muscleGroupId": 13,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.148.description"
+        },
+        {
+            "id": 149,
+            "nameKey": "exercise.149.name",
+            "iconName": "activity",
+            "muscleGroupId": 13,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.149.description"
+        },
+        {
+            "id": 150,
+            "nameKey": "exercise.150.name",
+            "iconName": "activity",
+            "muscleGroupId": 13,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.150.description"
+        },
+        {
+            "id": 151,
+            "nameKey": "exercise.151.name",
+            "iconName": "activity",
+            "muscleGroupId": 13,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.151.description"
+        },
+        {
+            "id": 152,
+            "nameKey": "exercise.152.name",
+            "iconName": "activity",
+            "muscleGroupId": 13,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.152.description"
+        },
+        {
+            "id": 153,
+            "nameKey": "exercise.153.name",
+            "iconName": "activity",
+            "muscleGroupId": 13,
+            "exerciseTypeKey": "1",
+            "createdByUser": false,
+            "unilateral": false,
+            "descriptionKey": "exercise.153.description"
         }
     ]
 }
